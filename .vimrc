@@ -14,6 +14,7 @@ if dein#load_state('~/.vim/bundles')
     call dein#add('Shougo/deoplete.nvim')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('scrooloose/nerdtree')
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
@@ -41,7 +42,15 @@ autocmd FIleType javascript colorscheme hybrid
 
 "------ Airline ------
 let g:airline_theme='term'
+let g:airline#extensions#tabline#enabled = 1
 set ttimeoutlen=50
+
+nnoremap <C-p> <Plug>AirlineSelectPrevTab
+nnoremap <C-n> <Plug>AirlineSelectNextTab
+
+"------ NerdTree ------
+nnoremap <C-t> :NERDTreeToggle<CR>
+
 
 "------ Encode ------
 set fileformat=unix
