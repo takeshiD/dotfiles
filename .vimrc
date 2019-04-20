@@ -15,6 +15,8 @@ if dein#load_state('~/.vim/bundles')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('scrooloose/nerdtree')
+    call dein#add('Shougo/neosnippet-snippets')
+    call dein#add('Shougo/neocomplete.vim')
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
@@ -28,6 +30,16 @@ if dein#check_install()
 endif
 filetype plugin indent on
 syntax on
+
+"====================================================
+" Deleting Plugin Step
+" (1) commentout plugin row
+" (2) write call map(dein#check_clean(), "delete(v:val, 'rf')") in .vimrc
+" (3) vim cmd ':call dein#recache_runtimepath()'
+" (4) enter in vim, delete plugin row, commentout call map...
+"====================================================
+"call map(dein#check_clean(), "delete(v:val, 'rf')")
+
 
 "====================================================
 " Utility Vim Configurations

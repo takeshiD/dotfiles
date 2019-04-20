@@ -1,120 +1,61 @@
+# vim-airline-themes
 
-# Yet Another Remote Plugin Framework for Neovim
+This is the official theme repository for [vim-airline][11]
 
-This is my attempt on writing a remote plugin framework without
-`:UpdateRemotePlugins`.
+# Installation
 
-## Requirements
+This plugin follows the standard runtime path structure, and as such it can be installed with a variety of plugin managers:
 
-- `has('python3')`
-- For Vim 8:
-  - [roxma/vim-hug-neovim-rpc](https://github.com/roxma/vim-hug-neovim-rpc)
-  - `g:python3_host_prog` pointed to your python3 executable, or `echo
-      exepath('python3')` is not empty.
-  - [pynvim](https://github.com/neovim/pynvim) (`pip3
-      install pynvim`)
+| Plugin Manager | Install with... |
+| -------------  | ------------- |
+| [Pathogen][4]  | `git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes`<br/>Remember to run `:Helptags` to generate help tags |
+| [NeoBundle][5] | `NeoBundle 'vim-airline/vim-airline-themes'` |
+| [Vundle][6]    | `Plugin 'vim-airline/vim-airline-themes'` |
+| [Plug][7]      | `Plug 'vim-airline/vim-airline-themes'` |
+| [VAM][8]       | `call vam#ActivateAddons([ 'vim-airline-themes' ])` |
+| [Dein][9]      | `call dein#add('vim-airline/vim-airline-themes')` |
+| [minpac][10]   | `call minpac#add('vim-airline/vim-airline-themes')` |
+| manual         | copy all of the files into your `~/.vim` directory |
 
-## Use case
+# Using a Theme
 
-- [shougo/deoplete.nvim](https://github.com/shougo/deoplete.nvim)
-- [ncm2/ncm2](https://github.com/ncm2/ncm2) and most of its plugins
+Once installed, use  `:AirlineTheme <theme>` to set the theme, e.g. `:AirlineTheme simple`
 
-## Usage
+To set in .vimrc, use `let g:airline_theme='<theme>'`, e.g. `let g:airline_theme='simple'`
 
-pythonx/hello.py
+**Note:** The command `:AirlineTheme` is only available, if you have also cloned and installed the main [vim-airline][11] repository.
 
-```python
-import vim, time
-def greet():
-    time.sleep(3)
-    vim.command('echo "Hello world"')
-```
+# Contribution Guidelines
 
-plugin/hello.vim
+## New themes
 
-```vim
-" Create a python3 process running the hello module. The process is lazy load.
-let s:hello = yarp#py3('hello')
+* Pull requests for new themes are welcome.  Please be sure to include a screenshot.  You can paste an image into issue [#1](https://github.com/vim-airline/vim-airline-themes/issues/1), and then editing the post to reveal the uploaded image URL.  Please don't forgot to update the documentation.
 
-com HelloSync call s:hello.request('greet')
-com HelloAsync call s:hello.notify('greet')
+## Modifications to existing themes
 
-" You could type :Hello greet
-com -nargs=1 Hello call s:hello.request(<f-args>)
-```
+* Themes are subjective, so if you are going to make modifications to an existing theme, please expose a configurable variable to allow users to choose how the theme will react.
 
-## Debugging
+# Screenshots
 
-Add logging settigns to your vimrc. Log files will be generated with prefix
-`/tmp/nvim_log`. An alternative is to export environment variables before
-starting vim/nvim.
+Screenshots are in the process of being migrated here.  In the meantime you can find screenshots in the existing repository's [Wiki](https://github.com/vim-airline/vim-airline/wiki/Screenshots).
 
-```vim
-let $NVIM_PYTHON_LOG_FILE="/tmp/nvim_log"
-let $NVIM_PYTHON_LOG_LEVEL="DEBUG"
-```
+# Maintenance
 
-## Example for existing neovim rplugin porting to Vim 8
+If you are interested in becoming the official maintainer of this project, please contact [**@bling**][1], [**@chrisbra**][2], or [**@mhartington**][3].
 
-More realistic examples could be found at
-[nvim-typescript#84](https://github.com/mhartington/nvim-typescript/pull/84),
-[deoplete#553](https://github.com/Shougo/deoplete.nvim/pull/553),
-[callmekohei/quickdebug](https://github.com/callmekohei/quickdebug).
+# License
 
-Now let's consider the following simple rplugin.
-
-After `UpdateRemotePlugins` and restarting neovim, you get `foobar` by `:echo
-Bar()`.
-
-```python
-# rplugin/python3/foo.py
-import pynvim
-
-@pynvim.plugin
-class Foo(object):
-
-    def __init__(self, vim):
-        self._vim = vim
-
-    @pynvim.function("Bar", sync=True)
-    def bar(self, args):
-        return 'hello' + str(args)
-```
-
-For working on Vim 8, you need to add these two files:
+MIT License. Copyright (c) 2013-2017 Bailey Ling & Contributors.
 
 
-```vim
-" plugin/foo.vim
-if has('nvim')
-    finish
-endif
-
-let s:foo = yarp#py3('foo_wrap')
-
-func! Bar(v)
-    return s:foo.call('bar',a:v)
-endfunc
-```
-
-
-```python
-# pythonx/foo_wrap.py
-from foo import Foo as _Foo
-import vim
-
-_obj = _Foo(vim)
-
-
-def bar(*args):
-    return _obj.bar(args)
-```
-
-How to use
-```
-$ vim
-
-: echo bar('world')
-
-hello('world',)
-```
+[1]: https://github.com/bling
+[2]: https://github.com/chrisbra
+[3]: https://github.com/mhartington
+[4]: https://github.com/tpope/vim-pathogen
+[5]: https://github.com/Shougo/neobundle.vim
+[6]: https://github.com/VundleVim/Vundle.vim
+[7]: https://github.com/junegunn/vim-plug
+[8]: https://github.com/MarcWeber/vim-addon-manager
+[9]: https://github.com/Shougo/dein.vim
+[10]: https://github.com/k-takata/minpac/
+[11]: https://github.com/vim-airline/vim-airline
