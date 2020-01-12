@@ -1,3 +1,3 @@
 #!/bin/sh
-ln -sf ~/dotfile/.vimrc ~/.vimrc
-ln -sf ~/dotfile/bundles ~/.vim
+ln -sf ~/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/dotfiles ~/.vim

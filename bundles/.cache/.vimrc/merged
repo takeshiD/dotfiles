@@ -1,2 +1,2 @@
 100
-['/home/vpsuser/.vim/bundles/dein.vim/', 'Shougo/deoplete.nvim', 'Shougo/neocomplete.vim', 'Shougo/neosnippet-snippets', 'roxma/nvim-yarp', 'roxma/vim-hug-neovim-rpc', 'scrooloose/nerdtree', 'vim-airline/vim-airline', 'vim-airline/vim-airline-themes']
+['/home/tkcd/.vim/bundles/dein.vim/', 'Shougo/deoplete.nvim', 'Shougo/neocomplete.vim', 'Shougo/neosnippet-snippets', 'roxma/nvim-yarp', 'roxma/vim-hug-neovim-rpc', 'scrooloose/nerdtree', 'vim-airline/vim-airline', 'vim-airline/vim-airline-themes']
