@@ -17,6 +17,7 @@ if dein#load_state('~/.vim/bundles')
     call dein#add('scrooloose/nerdtree')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neocomplete.vim')
+    call dein#add('thinca/vim-quickrun')
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
@@ -49,8 +50,8 @@ set background=dark
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 autocmd FileType python colorscheme badwolf
-autocmd FIleType html colorscheme hybrid
-autocmd FIleType javascript colorscheme hybrid
+autocmd FileType html colorscheme hybrid
+autocmd FileType javascript colorscheme hybrid
 
 "------ Airline ------
 let g:airline_theme='term'
@@ -63,6 +64,8 @@ nnoremap <C-n> <Plug>AirlineSelectNextTab
 "------ NerdTree ------
 nnoremap <C-t> :NERDTreeToggle<CR>
 
+"------ Quickrun ------
+"let g:quickrun_config.cpp = {'command': 'g++', 'cmdopt': '-std=c++11'}
 
 "------ Encode ------
 set fileformat=unix
@@ -101,3 +104,4 @@ set visualbell
 set laststatus=2
 set wildmode=list:longest
 set wildmenu
+set clipboard=unnamedplus
