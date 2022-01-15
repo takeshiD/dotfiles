@@ -1,2 +1,2 @@
 # dotfiles
-Various kind of configuration files
+my dotfiles
