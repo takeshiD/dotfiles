@@ -6,22 +6,22 @@ if &compatible
     set nocompatible
 endif
 
-set runtimepath+=~/.vim/bundles/dein.vim
+set runtimepath+=~/.vim/bundles/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/.vim/bundles')
-    call dein#begin('~/.vim/bundles')
-    call dein#add('~/.vim/bundles/dein.vim')
+if dein#load_state('~/.vim/bundles/dein')
+    call dein#begin('~/.vim/bundles/dein')
+    call dein#add('~/.vim/bundles/dein/repos/github.com/Shougo/dein.vim')
     call dein#add('Shougo/deoplete.nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+    let g:deoplete#enable_at_startup = 1
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('scrooloose/nerdtree')
+    call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neocomplete.vim')
     call dein#add('thinca/vim-quickrun')
-    if !has('nvim')
-        call dein#add('roxma/nvim-yarp')
-        call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
 
     call dein#end()
     call dein#save_state()
@@ -105,3 +105,13 @@ set laststatus=2
 set wildmode=list:longest
 set wildmenu
 set clipboard=unnamedplus
+
+"------ Neosnippet ------
+imap <C-k>  <Plug>(neosnippet_expand_or_jump)
+smap <C-k>  <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>  <Plug>(neosnippet_expand_target)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+if has('conceal')
+    set conceallevel=2 concealcursor=niv
+endif
