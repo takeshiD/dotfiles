@@ -54,42 +54,8 @@ if len(s:removed_plugins) > 0
 endif
 " }}}
 
-
-" set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
-" if dein#check_install()
-"     call dein#install()
-" endif
-" if dein#load_state('~/.vim/bundles/dein')
-"     call dein#begin('~/.vim/bundles/dein')
-"         call dein#add('Shougo/dein.vim')
-"         call dein#add('roxma/nvim-yarp')
-"         call dein#add('roxma/vim-hug-neovim-rpc')
-"         call dein#add('vim-airline/vim-airline')
-"         call dein#add('vim-airline/vim-airline-themes')
-"         call dein#add('ryanoasis/vim-devicons')
-"         call dein#add('scrooloose/nerdtree')
-"         call dein#add('Shougo/neosnippet.vim')
-"         call dein#add('Shougo/neosnippet-snippets')
-"         call dein#add('Shougo/neocomplete.vim')
-"         call dein#add('thinca/vim-quickrun')
-"         call dein#add('tpope/vim-fugitive')
-"         call dein#add('airblade/vim-gitgutter')
-"         call dein#add('morhetz/gruvbox')
-"         call dein#add('w0ng/vim-hybrid')
-"     call dein#end()
-"     call dein#save_state()
-" endif
 filetype plugin indent on
 syntax on
-
-"====================================================
-" Deleting Plugin Step
-" (1) commentout plugin row
-" (2) write call map(dein#check_clean(), "delete(v:val, 'rf')") in .vimrc
-" (3) vim cmd ':call dein#recache_runtimepath()'
-" (4) enter in vim, delete plugin row, commentout call map...
-"====================================================
-"call map(dein#check_clean(), "delete(v:val, 'rf')")
 
 
 "====================================================
