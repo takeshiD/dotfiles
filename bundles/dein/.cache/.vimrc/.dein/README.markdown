@@ -1,227 +1,136 @@
-![Help Wanted](http://blog.ncce.org/wp-content/uploads/2013/12/help-wanted.jpg)
+# fugitive.vim
 
-**NERDTree** is on the lookout for a new maintainer. See [issue #1280](https://github.com/preservim/nerdtree/issues/1280) to submit your name for consideration.
+Fugitive is the premier Vim plugin for Git.  Or maybe it's the premier Git
+plugin for Vim?  Either way, it's "so awesome, it should be illegal".  That's
+why it's called Fugitive.
 
----
+The crown jewel of Fugitive is `:Git` (or just `:G`), which calls any
+arbitrary Git command.  If you know how to use Git at the command line, you
+know how to use `:Git`.  It's vaguely akin to `:!git` but with numerous
+improvements:
 
-# The NERDTree [![Vint](https://github.com/preservim/nerdtree/workflows/Vint/badge.svg)](https://github.com/preservim/nerdtree/actions?workflow=Vint)
+* The default behavior is to directly echo the command's output.  Quiet
+  commands like `:Git add` avoid the dreaded "Press ENTER or type command to
+  continue" prompt.
+* `:Git commit`, `:Git rebase -i`, and other commands that invoke an editor do
+  their editing in the current Vim instance.
+* `:Git diff`, `:Git log`, and other verbose, paginated commands have their
+  output loaded into a temporary buffer.  Force this behavior for any command
+  with `:Git --paginate` or `:Git -p`.
+* `:Git blame` uses a temporary buffer with maps for additional triage.  Press
+  enter on a line to view the commit where the line changed, or `g?` to see
+  other available maps.  Omit the filename argument and the currently edited
+  file will be blamed in a vertical, scroll-bound split.
+* `:Git mergetool` and `:Git difftool` load their changesets into the quickfix
+  list.
+* Called with no arguments, `:Git` opens a summary window with dirty files and
+  unpushed and unpulled commits.  Press `g?` to bring up a list of maps for
+  numerous operations including diffing, staging, committing, rebasing, and
+  stashing.  (This is the successor to the old `:Gstatus`.)
+* This command (along with all other commands) always uses the current
+  buffer's repository, so you don't need to worry about the current working
+  directory.
 
-## Introduction
+Additional commands are provided for higher level operations:
 
-The NERDTree is a file system explorer for the Vim editor. Using this plugin, users can visually browse complex directory hierarchies, quickly open files for reading or editing, and perform basic file system operations.
+* View any blob, tree, commit, or tag in the repository with `:Gedit` (and
+  `:Gsplit`, etc.).  For example, `:Gedit HEAD~3:%` loads the current file as
+  it existed 3 commits ago.
+* `:Gdiffsplit` (or `:Gvdiffsplit`) brings up the staged version of the file
+  side by side with the working tree version.  Use Vim's diff handling
+  capabilities to apply changes to the staged version, and write that buffer
+  to stage the changes.  You can also give an arbitrary `:Gedit` argument to
+  diff against older versions of the file.
+* `:Gread` is a variant of `git checkout -- filename` that operates on the
+  buffer rather than the file itself.  This means you can use `u` to undo it
+  and you never get any warnings about the file changing outside Vim.
+* `:Gwrite` writes to both the work tree and index versions of a file, making
+  it like `git add` when called from a work tree file and like `git checkout`
+  when called from the index or a blob in history.
+* `:Ggrep` is `:grep` for `git grep`.  `:Glgrep` is `:lgrep` for the same.
+* `:GMove` does a `git mv` on the current file and changes the buffer name to
+  match.  `:GRename` does the same with a destination filename relative to the
+  current file's directory.
+* `:GDelete` does a `git rm` on the current file and simultaneously deletes
+  the buffer.  `:GRemove` does the same but leaves the (now empty) buffer
+  open.
+* `:GBrowse` to open the current file on the web front-end of your favorite
+  hosting provider, with optional line range (try it in visual mode).  Plugins
+  are available for popular providers such as [GitHub][rhubarb.vim],
+  [GitLab][fugitive-gitlab.vim], [Bitbucket][fubitive.vim],
+  [Gitee][fugitive-gitee.vim], [Pagure][pagure],
+  [Phabricator][vim-phabricator], [Azure DevOps][fugitive-azure-devops.vim],
+  and [sourcehut][srht.vim].
 
-![NERDTree Screenshot](https://github.com/preservim/nerdtree/raw/master/screenshot.png)
+[rhubarb.vim]: https://github.com/tpope/vim-rhubarb
+[fugitive-gitlab.vim]: https://github.com/shumphrey/fugitive-gitlab.vim
+[fubitive.vim]: https://github.com/tommcdo/vim-fubitive
+[fugitive-gitee.vim]: https://github.com/linuxsuren/fugitive-gitee.vim
+[pagure]: https://github.com/FrostyX/vim-fugitive-pagure
+[vim-phabricator]: https://github.com/jparise/vim-phabricator
+[fugitive-azure-devops.vim]: https://github.com/cedarbaum/fugitive-azure-devops.vim
+[srht.vim]: https://git.sr.ht/~willdurand/srht.vim
+
+Add `%{FugitiveStatusline()}` to `'statusline'` to get an indicator
+with the current branch in your statusline.
+
+For more information, see `:help fugitive`.
+
+## Screencasts
+
+* [A complement to command line git](http://vimcasts.org/e/31)
+* [Working with the git index](http://vimcasts.org/e/32)
+* [Resolving merge conflicts with vimdiff](http://vimcasts.org/e/33)
+* [Browsing the git object database](http://vimcasts.org/e/34)
+* [Exploring the history of a git repository](http://vimcasts.org/e/35)
 
 ## Installation
 
-Use your favorite plugin manager to install this plugin. [tpope/vim-pathogen](https://github.com/tpope/vim-pathogen), [VundleVim/Vundle.vim](https://github.com/VundleVim/Vundle.vim), [junegunn/vim-plug](https://github.com/junegunn/vim-plug), and [Shougo/dein.vim](https://github.com/Shougo/dein.vim) are some of the more popular ones. A lengthy discussion of these and other managers can be found on [vi.stackexchange.com](https://vi.stackexchange.com/questions/388/what-is-the-difference-between-the-vim-plugin-managers). Basic instructions are provided below, but please **be sure to read, understand, and follow all the safety rules that come with your ~~power tools~~ plugin manager.**
+Install using your favorite package manager, or use Vim's built-in package support:
 
-If you have no favorite, or want to manage your plugins without 3rd-party dependencies, consider using Vim 8+ packages, as described in Greg Hurrell's excellent Youtube video: [Vim screencast #75: Plugin managers](https://www.youtube.com/watch?v=X2_R3uxDN6g).
+    mkdir -p ~/.vim/pack/tpope/start
+    cd ~/.vim/pack/tpope/start
+    git clone https://tpope.io/vim/fugitive.git
+    vim -u NONE -c "helptags fugitive/doc" -c q
 
-<details>
-<summary>Pathogen</summary>
-Pathogen is more of a runtime path manager than a plugin manager. You must clone the plugins' repositories yourself to a specific location, and Pathogen makes sure they are available in Vim.
+## FAQ
 
+> What happened to the dispatch.vim backed asynchronous `:Gpush` and
+> `:Gfetch`?
 
-1. In the terminal,
-    ```bash
-    git clone https://github.com/preservim/nerdtree.git ~/.vim/bundle/nerdtree
-    ```
-1. In your `vimrc`,
-    ```vim
-    call pathogen#infect()
-    syntax on
-    filetype plugin indent on
-    ```
-1. Restart Vim, and run `:helptags ~/.vim/bundle/nerdtree/doc/` or `:Helptags`.
-</details>
+This behavior was divisive, confusing, and complicated inputting passwords, so
+it was removed.  Use `:Git! push` to use Fugitive's own asynchronous
+execution, or retroactively make `:Git push` asynchronous by pressing
+`CTRL-D`.
 
-<details>
-  <summary>Vundle</summary>
+> Why am I getting `core.worktree is required when using an external Git dir`?
 
-1. Install Vundle, according to its instructions.
-1. Add the following text to your `vimrc`.
-    ```vim
-    call vundle#begin()
-      Plugin 'preservim/nerdtree'
-    call vundle#end()
-    ```
-1. Restart Vim, and run the `:PluginInstall` statement to install your plugins.
-</details>
+Git generally sets `core.worktree` for you automatically when necessary, but
+if you're doing something weird, or using a third-party tool that does
+something weird, you may need to set it manually:
 
-<details>
-  <summary>Vim-Plug</summary>
+    git config core.worktree "$PWD"
 
-1. Install Vim-Plug, according to its instructions.
-1. Add the following text to your `vimrc`.
-```vim
-call plug#begin()
-  Plug 'preservim/nerdtree'
-call plug#end()
-```
-1. Restart Vim, and run the `:PlugInstall` statement to install your plugins.
-</details>
+This may be necessary even when simple `git` commands seem to work fine
+without it.
 
-<details>
-  <summary>Dein</summary>
+> So I have a symlink and...
 
-1. Install Dein, according to its instructions.
-1. Add the following text to your `vimrc`.
-    ```vim
-    call dein#begin()
-      call dein#add('preservim/nerdtree')
-    call dein#end()
-    ```
-1. Restart Vim, and run the `:call dein#install()` statement to install your plugins.
-</details>
+Stop.  Just stop.  If Git won't deal with your symlink, then Fugitive won't
+either.  Consider using a [plugin that resolves
+symlinks](https://github.com/aymericbeaumet/symlink.vim), or even better,
+using fewer symlinks.
 
-<details>
-<summary>Vim 8+ packages</summary>
+## Self-Promotion
 
-If you are using Vim version 8 or higher you can use its built-in package management; see `:help packages` for more information. Just run these commands in your terminal:
+Like fugitive.vim? Follow the repository on
+[GitHub](https://github.com/tpope/vim-fugitive) and vote for it on
+[vim.org](http://www.vim.org/scripts/script.php?script_id=2975).  And if
+you're feeling especially charitable, follow [tpope](http://tpo.pe/) on
+[Twitter](http://twitter.com/tpope) and
+[GitHub](https://github.com/tpope).
 
-```bash
-git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
-vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
-```
-</details>
+## License
 
-## Getting Started
-After installing NERDTree, the best way to learn it is to turn on the Quick Help. Open NERDTree with the `:NERDTree` command, and press `?` to turn on the Quick Help, which will show you all the mappings and commands available in the NERDTree. Of course, your most complete source of information is the documentation: `:help NERDTree`.
-
-## NERDTree Plugins
-NERDTree can be extended with custom mappings and functions using its built-in API. The details of this API and are described in the included documentation. Several plugins have been written, and are available on Github for installation like any other plugin. The plugins in this list are maintained (or not) by their respective owners, and certain combinations may be incompatible.
-
-* [Xuyuanp/nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin): Shows Git status flags for files and folders in NERDTree.
-* [ryanoasis/vim-devicons](https://github.com/ryanoasis/vim-devicons): Adds filetype-specific icons to NERDTree files and folders,
-* [tiagofumo/vim-nerdtree-syntax-highlight](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight): Adds syntax highlighting to NERDTree based on filetype.
-* [scrooloose/nerdtree-project-plugin](https://github.com/scrooloose/nerdtree-project-plugin): Saves and restores the state of the NERDTree between sessions.
-* [PhilRunninger/nerdtree-buffer-ops](https://github.com/PhilRunninger/nerdtree-buffer-ops): 1) Highlights open files in a different color. 2) Closes a buffer directly from NERDTree.
-* [PhilRunninger/nerdtree-visual-selection](https://github.com/PhilRunninger/nerdtree-visual-selection): Enables NERDTree to open, delete, move, or copy multiple Visually-selected files at once.
-
-If any others should be listed, mention them in an issue or pull request.
-
-
-## Frequently Asked Questions
-
-In the answers to these questions, you will see code blocks that you can put in your `vimrc` file.
-
-### How can I map a specific key or shortcut to open NERDTree?
-
-NERDTree doesn't create any shortcuts outside of the NERDTree window, so as not to overwrite any of your other shortcuts. Use the `nnoremap` command in your `vimrc`. You, of course, have many keys and NERDTree commands to choose from. Here are but a few examples.
-```vim
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-```
-
-### How do I open NERDTree automatically when Vim starts?
-Each code block below is slightly different, as described in the `" Comment lines`.
-
-```vim
-" Start NERDTree and leave the cursor in it.
-autocmd VimEnter * NERDTree
-```
----
-```vim
-" Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
-```
----
-```vim
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-```
----
-```vim
-" Start NERDTree. If a file is specified, move the cursor to its window.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-```
----
-```vim
-" Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
-```
----
-```vim
-" Start NERDTree when Vim starts with a directory argument.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-```
-
-### How can I close Vim or a tab automatically when NERDTree is the last window?
-
-```vim
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-```
----
-```vim
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-```
-
-### How can I prevent other buffers replacing NERDTree in its window?
-
-```vim
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-```
-
-### Can I have the same NERDTree on every tab automatically?
-
-```vim
-" Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-```
-or change your NERDTree-launching shortcut key like so:
-```vim
-" Mirror the NERDTree before showing it. This makes it the same on all tabs.
-nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
-```
-
-### How can I change the default arrows?
-
-```vim
-let g:NERDTreeDirArrowExpandable = '?'
-let g:NERDTreeDirArrowCollapsible = '?'
-```
-The preceding values are the non-Windows default arrow symbols. Setting these variables to empty strings will remove the arrows completely and shift the entire tree two character positions to the left. See `:h NERDTreeDirArrowExpandable` for more details.
-
-### Can NERDTree access remote files via scp or ftp?
-
-Short answer: No, and there are no plans to add that functionality. However, Vim ships with a plugin that does just that. It's called netrw, and by adding the following lines to your `.vimrc`, you can use it to open files over the `scp:`, `ftp:`, or other protocols, while still using NERDTree for all local files. The function seamlessly makes the decision to open NERDTree or netrw, and other supported protocols can be added to the regular expression.
-
-```vim
-" Function to open the file or NERDTree or netrw.
-"   Returns: 1 if either file explorer was opened; otherwise, 0.
-function! s:OpenFileOrExplorer(...)
-    if a:0 == 0 || a:1 == ''
-        NERDTree
-    elseif filereadable(a:1)
-        execute 'edit '.a:1
-        return 0
-    elseif a:1 =~? '^\(scp\|ftp\)://' " Add other protocols as needed.
-        execute 'Vexplore '.a:1
-    elseif isdirectory(a:1)
-        execute 'NERDTree '.a:1
-    endif
-    return 1
-endfunction
-
-" Auto commands to handle OS commandline arguments
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc()==1 && !exists('s:std_in') | if <SID>OpenFileOrExplorer(argv()[0]) | wincmd p | enew | wincmd p | endif | endif
-
-" Command to call the OpenFileOrExplorer function.
-command! -n=? -complete=file -bar Edit :call <SID>OpenFileOrExplorer('<args>')
-
-" Command-mode abbreviation to replace the :edit Vim command.
-cnoreabbrev e Edit
-```
+Copyright (c) Tim Pope.  Distributed under the same terms as Vim itself.
+See `:help license`.

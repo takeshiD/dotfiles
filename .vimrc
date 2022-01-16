@@ -6,23 +6,25 @@ if &compatible
     set nocompatible
 endif
 
-set runtimepath+=~/.vim/bundles/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.vim/bundles/dein')
     call dein#begin('~/.vim/bundles/dein')
-    call dein#add('~/.vim/bundles/dein/repos/github.com/Shougo/dein.vim')
-    call dein#add('Shougo/deoplete.nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-    let g:deoplete#enable_at_startup = 1
-    call dein#add('vim-airline/vim-airline')
-    call dein#add('vim-airline/vim-airline-themes')
-    call dein#add('scrooloose/nerdtree')
-    call dein#add('Shougo/neosnippet.vim')
-    call dein#add('Shougo/neosnippet-snippets')
-    call dein#add('Shougo/neocomplete.vim')
-    call dein#add('thinca/vim-quickrun')
-
+        call dein#add('Shougo/dein.vim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+        call dein#add('vim-airline/vim-airline')
+        call dein#add('vim-airline/vim-airline-themes')
+        call dein#add('ryanoasis/vim-devicons')
+        call dein#add('scrooloose/nerdtree')
+        call dein#add('Shougo/neosnippet.vim')
+        call dein#add('Shougo/neosnippet-snippets')
+        call dein#add('Shougo/neocomplete.vim')
+        call dein#add('thinca/vim-quickrun')
+        call dein#add('tpope/vim-fugitive')
+        call dein#add('airblade/vim-gitgutter')
+        call dein#add('morhetz/gruvbox')
+        call dein#add('w0ng/vim-hybrid')
     call dein#end()
     call dein#save_state()
 endif
@@ -46,16 +48,17 @@ syntax on
 " Utility Vim Configurations
 "====================================================
 "------ ColorScheme ------
+syntax enable
 set background=dark
-let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
-autocmd FileType python colorscheme badwolf
+let g:gruvbox_contrast_dark='hard'
 autocmd FileType html colorscheme hybrid
 autocmd FileType javascript colorscheme hybrid
 
 "------ Airline ------
-let g:airline_theme='term'
+let g:airline_theme='base16'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 set ttimeoutlen=50
 
 nnoremap <C-p> <Plug>AirlineSelectPrevTab
@@ -85,10 +88,11 @@ set number
 set list
 set listchars=tab:\|\ ,eol:$
 set hlsearch
+set incsearch
 set ruler
 set number
 set diffopt=vertical
-
+set cursorline
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
 
@@ -114,4 +118,11 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
             \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 if has('conceal')
     set conceallevel=2 concealcursor=niv
+endif
+
+"------ Undo Persistent ------
+if has('persistent_undo')
+    let undo_path = expand("~/.vim/.undo")
+    exe 'set undodir=' .. undo_path
+    set undofile
 endif

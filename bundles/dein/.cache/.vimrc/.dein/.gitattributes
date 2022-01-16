@@ -1,1 +1,2 @@
-autoload/vital/** binary linguist-vendored linguist-generated=true
+.git* export-ignore
+*.markdown export-ignore

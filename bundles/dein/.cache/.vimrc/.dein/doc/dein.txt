@@ -231,6 +231,9 @@ dein#disable({plugins})
 		{plugins} is the plugins name list.
 		Note: This command must be executed before dein loads
 		the plugins.
+		Note: The plugins must be disabled |dein-options-merged|.
+		Because merged plugins are moved to plugins directory and
+		loaded automatically.
 		Note: Disabled plugins are removed from dein's plugin list.
 		You cannot get disabled plugins from dein.
 
@@ -715,6 +718,8 @@ merged		(Bool)
 		If set to v:false, dein doesn't merge the plugin directory.
 		It is useful for the plugin files conflicts.
 
+		Default: See |dein-merge|.
+
 						*dein-options-merge_ftdetect*
 merge_ftdetect	(Bool)
 		If set to v:true, dein merge the plugin "ftdetect" directory.
@@ -744,6 +749,8 @@ normalized_name	(String)
 		denite.nvim       denite
 		dein.vim          dein
 		vim-quickrun      quickrun
+		dps-dial          dial
+		denops-foo        foo
 <
 							*dein-options-on_cmd*
 on_cmd		(List) or (String)
