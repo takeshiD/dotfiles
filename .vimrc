@@ -6,33 +6,79 @@ if &compatible
     set nocompatible
 endif
 
-set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+" install dir {{{
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+" }}}
+
+" dein installation check {{{
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+" }}}
+
+" begin settings {{{
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " .toml file
+  let s:rc_dir = expand('~/.vim')
+  if !isdirectory(s:rc_dir)
+    call mkdir(s:rc_dir, 'p')
+  endif
+  let s:toml = s:rc_dir . '/dein.toml'
+
+  " read toml and cache
+  call dein#load_toml(s:toml, {'lazy': 0})
+
+  " end settings
+  call dein#end()
+  call dein#save_state()
+endif
+" }}}
+
+" plugin installation check {{{
 if dein#check_install()
-    call dein#install()
+  call dein#install()
 endif
-if dein#load_state('~/.vim/bundles/dein')
-    call dein#begin('~/.vim/bundles/dein')
-        call dein#add('Shougo/dein.vim')
-        call dein#add('roxma/nvim-yarp')
-        call dein#add('roxma/vim-hug-neovim-rpc')
-        call dein#add('vim-airline/vim-airline')
-        call dein#add('vim-airline/vim-airline-themes')
-        call dein#add('ryanoasis/vim-devicons')
-        call dein#add('scrooloose/nerdtree')
-        call dein#add('Shougo/neosnippet.vim')
-        call dein#add('Shougo/neosnippet-snippets')
-        call dein#add('Shougo/neocomplete.vim')
-        call dein#add('thinca/vim-quickrun')
-        call dein#add('tpope/vim-fugitive')
-        call dein#add('airblade/vim-gitgutter')
-        call dein#add('morhetz/gruvbox')
-        call dein#add('w0ng/vim-hybrid')
-    call dein#end()
-    call dein#save_state()
+" }}}
+
+" plugin remove check {{{
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+  call map(s:removed_plugins, "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
 endif
-"if dein#check_install()
-"    call dein#install()
-"endif
+" }}}
+
+
+" set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+" if dein#check_install()
+"     call dein#install()
+" endif
+" if dein#load_state('~/.vim/bundles/dein')
+"     call dein#begin('~/.vim/bundles/dein')
+"         call dein#add('Shougo/dein.vim')
+"         call dein#add('roxma/nvim-yarp')
+"         call dein#add('roxma/vim-hug-neovim-rpc')
+"         call dein#add('vim-airline/vim-airline')
+"         call dein#add('vim-airline/vim-airline-themes')
+"         call dein#add('ryanoasis/vim-devicons')
+"         call dein#add('scrooloose/nerdtree')
+"         call dein#add('Shougo/neosnippet.vim')
+"         call dein#add('Shougo/neosnippet-snippets')
+"         call dein#add('Shougo/neocomplete.vim')
+"         call dein#add('thinca/vim-quickrun')
+"         call dein#add('tpope/vim-fugitive')
+"         call dein#add('airblade/vim-gitgutter')
+"         call dein#add('morhetz/gruvbox')
+"         call dein#add('w0ng/vim-hybrid')
+"     call dein#end()
+"     call dein#save_state()
+" endif
 filetype plugin indent on
 syntax on
 
