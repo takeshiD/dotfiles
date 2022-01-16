@@ -7,7 +7,9 @@ if &compatible
 endif
 
 set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
-
+if dein#check_install()
+    call dein#install()
+endif
 if dein#load_state('~/.vim/bundles/dein')
     call dein#begin('~/.vim/bundles/dein')
         call dein#add('Shougo/dein.vim')
@@ -28,9 +30,9 @@ if dein#load_state('~/.vim/bundles/dein')
     call dein#end()
     call dein#save_state()
 endif
-if dein#check_install()
-    call dein#install()
-endif
+"if dein#check_install()
+"    call dein#install()
+"endif
 filetype plugin indent on
 syntax on
 
