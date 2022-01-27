@@ -103,6 +103,7 @@ set diffopt=vertical
 set cursorline
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
+nnoremap <C-e> :NERDTreeToggle<CR>
 
 "------ Misc ------
 set nobackup

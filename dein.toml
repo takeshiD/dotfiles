@@ -27,6 +27,7 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
+
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 
@@ -41,3 +42,10 @@ repo = 'morhetz/gruvbox'
 
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
