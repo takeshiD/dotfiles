@@ -49,3 +49,5 @@ repo = 'Shougo/ddc.vim'
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 
+[[plugins]]
+repo = 'thinca/vim-quickrun'
