@@ -50,4 +50,4 @@ repo = 'Shougo/ddc.vim'
 repo = 'vim-denops/denops.vim'
 
 [[plugins]]
-repo = 'thinca/vim-quickrun'
+repo = 'nathanaelkane/vim-indent-guides'

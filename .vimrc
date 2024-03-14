@@ -64,19 +64,23 @@ autocmd FileType html colorscheme hybrid
 autocmd FileType javascript colorscheme hybrid
 
 "------ Airline ------
-let g:airline_theme='base16'
+let g:airline_theme = 'badwolf'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set ttimeoutlen=50
 
-nnoremap <C-p> <Plug>AirlineSelectPrevTab
-nnoremap <C-n> <Plug>AirlineSelectNextTab
+nmap <C-p> <Plug>AirlineSelectPrevTab
+nmap <C-n> <Plug>AirlineSelectNextTab
 
 "------ NerdTree ------
-nnoremap <C-t> :NERDTreeToggle<CR>
-
+let NERDTreeShowHidden = 1
+"
 "------ Quickrun ------
-"let g:quickrun_config.cpp = {'command': 'g++', 'cmdopt': '-std=c++11'}
+let g:quickrun_config = {}
+let g:quickrun_config.cpp = {
+            \ 'command': 'g++', 
+            \ 'cmdopt' : '-std=c++11'
+            \}
 
 "------ Encode ------
 set fileformat=unix
@@ -101,6 +105,7 @@ set ruler
 set number
 set diffopt=vertical
 set cursorline
+
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap <C-e> :NERDTreeToggle<CR>
@@ -120,6 +125,7 @@ set wildmenu
 set clipboard=unnamedplus
 
 "------ Neosnippet ------
+let g:deoplete#enable_at_startup = 1
 imap <C-k>  <Plug>(neosnippet_expand_or_jump)
 smap <C-k>  <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>  <Plug>(neosnippet_expand_target)
@@ -128,6 +134,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
     set conceallevel=2 concealcursor=niv
 endif
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 
 "------ Undo Persistent ------
 if has('persistent_undo')
@@ -135,3 +142,8 @@ if has('persistent_undo')
     exe 'set undodir=' .. undo_path
     set undofile
 endif
+
+"------ Indent Guides ---------
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_color_change_percent = 3
