@@ -105,10 +105,16 @@ set ruler
 set number
 set diffopt=vertical
 set cursorline
+set cursorcolumn
+set showmatch
 
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap <C-e> :NERDTreeToggle<CR>
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
 
 "------ Misc ------
 set nobackup
@@ -131,9 +137,6 @@ smap <C-k>  <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>  <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
             \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"if has('conceal')
-"    set conceallevel=2 concealcursor=niv
-"endif
 
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 
