@@ -52,7 +52,7 @@ function dirlink(){
     _create_link -sfn "$1" "$2"
 }
 function whichdistro(){
-    if [[ -f /etc/debian_release ]]; then
+    if [[ -f /etc/debian_version ]]; then
         echo debian
         return
     elif [[ -f /etc/arch-release ]]; then
