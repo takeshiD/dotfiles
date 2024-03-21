@@ -74,7 +74,20 @@ nmap <C-n> <Plug>AirlineSelectNextTab
 
 "------ NerdTree ------
 let NERDTreeShowHidden = 1
-"
+
+"------ devicons ------
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scm'] = '󰘧'
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+" after a re-source, fix syntax matching issues (concealing brackets):
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+
 "------ Quickrun ------
 let g:quickrun_config = {}
 let g:quickrun_config.cpp = {
@@ -85,6 +98,7 @@ let g:quickrun_config.cpp = {
 "------ Encode ------
 set fileformat=unix
 set fileencoding=utf-8
+set encoding=utf-8
 
 "------ Format ------
 set smartindent
