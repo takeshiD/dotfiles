@@ -89,13 +89,3 @@ fi
 #=======================================================
 # PATH Configuration --->> see $HOME/.bash_profile
 #=======================================================
-#----- deno -----
-#export DENO_INSTALL="$HOME/.deno"
-#export PATH="$DENO_INSTALL/bin:$PATH"
-
-#----- cargo -----
-#. "$HOME/.cargo/env"
-
-#----- ghcup -----
-#[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
-#export PATH="$HOME/go/bin:$PATH"
