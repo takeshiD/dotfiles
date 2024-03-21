@@ -47,7 +47,4 @@ repo = 'w0ng/vim-hybrid'
 repo = 'Shougo/ddc.vim'
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-
-[[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
