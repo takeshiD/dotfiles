@@ -65,15 +65,31 @@ function checkinstall(){
     local pkgs="$*"
     case $distro in
         debian)
-            sudo apt -y install $pkgs
+            alias pkgmng='apt -y install'
+            sudo apt update
+            sudo apt upgrade
             ;;
         arch)
-            sudo pacman -S --noconfirm --needed $pkgs
+            alias pkgmng='pacman -S --noconfirm --needed'
+            sudo pacman -Syy
+            sudo pacman -Syyu
             ;;
         *)
             error "Your distribution is undefined."
+            exit 1
             ;;
     esac
+    for pkg in $pkgs
+    do
+        sudo pkgmng $pkg &> /dev/null
+        ret=$?
+        if [[ $ret -eq 0 ]];then
+            success "installed '$pkg'"
+        else
+            warning "install failed '$pkg'"
+        fi
+    done
+    unalias pkgmng
 }
 function dryrun(){
     echo -e "${PURPLE}DRYRUN:${CLEAR} $@"
@@ -147,7 +163,9 @@ function main(){
     #---------------- Application Install ---------------------
     title "Application Install"
     title "================================"
+    set +e
     run checkinstall git tmux gcc binutils make cmake vim deno starship
+    set -e
     # tmux:tpm
     if [[ ! -d "$HOME"/.tmux/plugins/tpm ]];then
         run git clone https://github.com/tmux-plugins/tpm "$HOME"/.tmux/plugins/tpm &> /dev/null
