@@ -48,3 +48,14 @@ repo = 'Shougo/ddc.vim'
 
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+
