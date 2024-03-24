@@ -58,4 +58,3 @@ repo = 'Shougo/unite.vim'
 [[plugins]]
 repo = 'tpope/vim-commentary'
 
-
