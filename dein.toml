@@ -58,3 +58,5 @@ repo = 'Shougo/unite.vim'
 [[plugins]]
 repo = 'tpope/vim-commentary'
 
+[[plugins]]
+repo = 'glidenote/memolist.vim'
