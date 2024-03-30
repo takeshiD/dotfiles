@@ -129,6 +129,9 @@ nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
+nnoremap <C-_> :Commentary<CR>
+vnoremap <C-_> :Commentary<CR>
+nnoremap <CR><CR> <C-w>w
 
 "------ Misc ------
 set nobackup
