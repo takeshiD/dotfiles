@@ -113,6 +113,7 @@ set fillchars+=vert:│,fold:-,foldopen:─,foldclose:+
 set hlsearch
 set incsearch
 set ruler
+set number
 set relativenumber
 set diffopt=vertical
 set cursorline
