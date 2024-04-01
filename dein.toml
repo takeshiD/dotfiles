@@ -41,9 +41,6 @@ repo = 'airblade/vim-gitgutter'
 repo = 'morhetz/gruvbox'
 
 [[plugins]]
-repo = 'w0ng/vim-hybrid'
-
-[[plugins]]
 repo = 'Shougo/ddc.vim'
 
 [[plugins]]

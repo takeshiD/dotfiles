@@ -51,24 +51,21 @@ endif
 filetype plugin indent on
 syntax on
 
-
 "====================================================
 " Utility Vim Configurations
 "====================================================
 "------ ColorScheme ------
 syntax enable
-set background=dark
 colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
-autocmd FileType html colorscheme hybrid
-autocmd FileType javascript colorscheme hybrid
+set background=dark
+let g:gruvbox_contrast_dark='medium'
 
 "------ Airline ------
-let g:airline_theme = 'badwolf'
+" let g:airline_theme = 'badwolf'
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set ttimeoutlen=50
-
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
 
@@ -89,11 +86,11 @@ if exists('g:loaded_webdevicons')
 endif
 
 "------ Quickrun ------
-let g:quickrun_config = {}
-let g:quickrun_config.cpp = {
-            \ 'command': 'g++', 
-            \ 'cmdopt' : '-std=c++11'
-            \}
+" let g:quickrun_config = {}
+" let g:quickrun_config.cpp = {
+"             \ 'command': 'g++', 
+"             \ 'cmdopt' : '-std=c++11'
+"             \}
 
 "------ Encode ------
 set fileformat=unix
@@ -108,19 +105,20 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set cursorline
-set number
 
 "------ Look&Feel ------
 set list
-set listchars=tab:\|\ ,eol:$
+set listchars=tab:\|\ ,eol:↲
+set fillchars+=vert:│,fold:-,foldopen:─,foldclose:+
 set hlsearch
 set incsearch
 set ruler
-set number
+set relativenumber
 set diffopt=vertical
 set cursorline
 set cursorcolumn
 set showmatch
+
 
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
@@ -147,15 +145,18 @@ set wildmode=list:longest
 set wildmenu
 set clipboard=unnamedplus
 
-"------ Neosnippet ------
-let g:deoplete#enable_at_startup = 1
-imap <C-k>  <Plug>(neosnippet_expand_or_jump)
-smap <C-k>  <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>  <Plug>(neosnippet_expand_target)
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+""------ Neosnippet ------
+"let g:deoplete#enable_at_startup = 1
+"imap <C-k>  <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>  <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>  <Plug>(neosnippet_expand_target)
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+"let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+
+""------ NeoComplete -----
+"let g:neocomplete#enable_at_startup = 1
 
 "------ Undo Persistent ------
 if has('persistent_undo')
