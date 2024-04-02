@@ -62,7 +62,6 @@ syntax enable
 " let g:gruvbox_contrast_dark='hard'
 
 " tokyonight
-set termguicolors
 let g:tokyonight_style = 'night'
 colorscheme tokyonight
 
