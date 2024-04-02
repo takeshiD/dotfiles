@@ -41,6 +41,15 @@ repo = 'airblade/vim-gitgutter'
 repo = 'morhetz/gruvbox'
 
 [[plugins]]
+repo = 'iibe/gruvbox-high-contrast'
+
+[[plugins]]
+repo = 'ghifarit53/tokyonight-vim'
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
 repo = 'Shougo/ddc.vim'
 
 [[plugins]]

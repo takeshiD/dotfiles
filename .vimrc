@@ -56,13 +56,20 @@ syntax on
 "====================================================
 "------ ColorScheme ------
 syntax enable
-colorscheme gruvbox
-set background=dark
-let g:gruvbox_contrast_dark='medium'
+"  gruvbox
+" colorscheme gruvbox
+" set background=dark
+" let g:gruvbox_contrast_dark='hard'
+
+" tokyonight
+set termguicolors
+let g:tokyonight_style = 'night'
+colorscheme tokyonight
 
 "------ Airline ------
 " let g:airline_theme = 'badwolf'
-let g:airline_theme = 'gruvbox'
+" let g:airline_theme = 'gruvbox'
+let g:airline_theme = 'tokyonight'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set ttimeoutlen=50
