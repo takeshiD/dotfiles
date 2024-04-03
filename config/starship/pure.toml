@@ -19,7 +19,8 @@ error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
 [git_branch]
-format = "[$branch]($style)"
+symbol = ""
+format = "[$symbol $branch]($style)"
 style = "bright-black"
 
 [git_status]
@@ -44,3 +45,10 @@ style = "yellow"
 [python]
 format = "[$virtualenv]($style) "
 style = "bright-black"
+
+[username]
+show_always = true
+style_user = "bright-blue"
+style_root = "bright-red"
+format = '[$user ]($style)'
+

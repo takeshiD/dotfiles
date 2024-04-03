@@ -46,8 +46,11 @@ repo = 'iibe/gruvbox-high-contrast'
 [[plugins]]
 repo = 'ghifarit53/tokyonight-vim'
 
+# [[plugins]]
+# repo = 'sheerun/vim-polyglot'
+
 [[plugins]]
-repo = 'sheerun/vim-polyglot'
+repo = 'junegunn/rainbow_parentheses.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'

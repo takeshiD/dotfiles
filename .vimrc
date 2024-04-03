@@ -91,12 +91,11 @@ if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
 
-"------ Quickrun ------
-" let g:quickrun_config = {}
-" let g:quickrun_config.cpp = {
-"             \ 'command': 'g++', 
-"             \ 'cmdopt' : '-std=c++11'
-"             \}
+"------ rainbow-parentheses -----
+augroup rainbow_lisp
+      autocmd!
+        autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
 
 "------ Encode ------
 set fileformat=unix
