@@ -66,7 +66,6 @@ let g:tokyonight_style = 'night'
 colorscheme tokyonight
 
 "------ Airline ------
-" let g:airline_theme = 'badwolf'
 " let g:airline_theme = 'gruvbox'
 let g:airline_theme = 'tokyonight'
 let g:airline#extensions#tabline#enabled = 1
@@ -77,11 +76,12 @@ nmap <C-n> <Plug>AirlineSelectNextTab
 
 "------ NerdTree ------
 let NERDTreeShowHidden = 1
+let NERDTreeWinSize = 20
 
 "------ devicons ------
 let g:webdevicons_enable_nerdtree = 1
 let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scm'] = '󰘧'
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
@@ -93,8 +93,8 @@ endif
 
 "------ rainbow-parentheses -----
 augroup rainbow_lisp
-      autocmd!
-        autocmd FileType lisp,clojure,scheme RainbowParentheses
+    autocmd!
+    autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
 
 "------ Encode ------
@@ -151,19 +151,6 @@ set wildmode=list:longest
 set wildmenu
 set clipboard=unnamedplus
 
-""------ Neosnippet ------
-"let g:deoplete#enable_at_startup = 1
-"imap <C-k>  <Plug>(neosnippet_expand_or_jump)
-"smap <C-k>  <Plug>(neosnippet_expand_or_jump)
-"xmap <C-k>  <Plug>(neosnippet_expand_target)
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-"let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
-
-""------ NeoComplete -----
-"let g:neocomplete#enable_at_startup = 1
-
 "------ Undo Persistent ------
 if has('persistent_undo')
     let undo_path = expand("~/.vim/.undo")
@@ -173,8 +160,6 @@ endif
 
 "------ Indent Guides ---------
 let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 1
-let g:indent_guides_color_change_percent = 3
-
-"------ memolist ---------
-

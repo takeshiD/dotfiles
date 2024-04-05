@@ -41,13 +41,10 @@ repo = 'airblade/vim-gitgutter'
 repo = 'morhetz/gruvbox'
 
 [[plugins]]
-repo = 'iibe/gruvbox-high-contrast'
-
-[[plugins]]
 repo = 'ghifarit53/tokyonight-vim'
 
-# [[plugins]]
-# repo = 'sheerun/vim-polyglot'
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
 repo = 'junegunn/rainbow_parentheses.vim'
@@ -67,5 +64,3 @@ repo = 'Shougo/unite.vim'
 [[plugins]]
 repo = 'tpope/vim-commentary'
 
-[[plugins]]
-repo = 'glidenote/memolist.vim'
