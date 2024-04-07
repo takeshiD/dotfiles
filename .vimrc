@@ -128,7 +128,13 @@ set diffopt=vertical
 set cursorline
 set cursorcolumn
 set showmatch
-
+if has('win64')
+    set guifont=HackGenNerd\ Console:h14
+    set guifontwide=HackGenNerd\ Console:h14
+else
+    set guifont=HackGenNerd\ Console\ 14
+    set guifontwide=HackGenNerd\ Console\ 14
+endif
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap <C-e> :NERDTreeToggle<CR>
