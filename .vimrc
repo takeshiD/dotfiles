@@ -86,7 +86,6 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scm'] = '󰘧'
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-" after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
@@ -107,9 +106,9 @@ set smartindent
 set autoindent
 set showmatch
 set expandtab
+set smarttab
 set tabstop=4
 set shiftwidth=4
-set cursorline
 
 "------ Look&Feel ------
 set list
@@ -136,6 +135,7 @@ nnoremap gj j
 nnoremap <C-_> :Commentary<CR>
 vnoremap <C-_> :Commentary<CR>
 nnoremap <CR><CR> <C-w>w
+inoremap jj <ESC>
 
 "------ Misc ------
 set nobackup

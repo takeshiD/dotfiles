@@ -71,20 +71,19 @@ case "$TERM" in
 esac
 
 #-------------- Prompt : plugin ---------------
-#------ powerline-shell ------
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-#if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-#    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-#fi
-
 #------ starship ------
 export STARSHIP_CONFIG="$HOME"/.config/starship/starship.toml
 if [[ -x $(which starship) ]];then
     eval "$(starship init bash)"
 fi
 
+#-------------- Scripts load ---------------
+if [[ -d "$HOME"/dotfiles/bash-scripts ]];then
+    script_dir="$HOME"/dotfiles/bash-scripts
+    if [[ -f "$script_dir"/24-bit-color.sh ]];then
+        source "$script_dir"/24-bit-color.sh
+    fi
+fi
 
 #=======================================================
 # PATH Configuration --->> see $HOME/.bash_profile
