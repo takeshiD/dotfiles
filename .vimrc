@@ -66,8 +66,10 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" " 背景色
 " let g:gruvbox_contrast_dark='hard'
 
 " tokyonight
-et g:tokyonight_style = 'night'
+let g:tokyonight_style = 'night'
 let g:tokyonight_enable_italic = 1
+let g:tokyonight_transparent_background = 0
+let g:tokyonight_cursor = 'auto'
 colorscheme tokyonight
 
 "------ Airline ------
@@ -138,9 +140,8 @@ nnoremap <C-_> :Commentary<CR>
 vnoremap <C-_> :Commentary<CR>
 nnoremap <CR><CR> <C-w>w
 inoremap jj <ESC>
-nmap <C-p> <Plug>AirlineSelectPrevTab
-nmap <C-n> <Plug>AirlineSelectNextTab
-
+nnoremap <C-p> :bprev<CR>
+nnoremap <C-n> :bnext<CR>
 
 "------ Misc ------
 set nobackup
