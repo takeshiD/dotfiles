@@ -56,13 +56,18 @@ syntax on
 "====================================================
 "------ ColorScheme ------
 syntax enable
+" True Color
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" " 文字色
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" " 背景色
 "  gruvbox
 " colorscheme gruvbox
 " set background=dark
 " let g:gruvbox_contrast_dark='hard'
 
 " tokyonight
-let g:tokyonight_style = 'night'
+et g:tokyonight_style = 'night'
+let g:tokyonight_enable_italic = 1
 colorscheme tokyonight
 
 "------ Airline ------
@@ -71,9 +76,7 @@ let g:airline_theme = 'tokyonight'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set ttimeoutlen=50
-nmap <C-p> <Plug>AirlineSelectPrevTab
-nmap <C-n> <Plug>AirlineSelectNextTab
-
+"
 "------ NerdTree ------
 let NERDTreeShowHidden = 1
 let NERDTreeWinSize = 20
@@ -124,7 +127,6 @@ set cursorline
 set cursorcolumn
 set showmatch
 
-
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap <C-e> :NERDTreeToggle<CR>
@@ -136,6 +138,9 @@ nnoremap <C-_> :Commentary<CR>
 vnoremap <C-_> :Commentary<CR>
 nnoremap <CR><CR> <C-w>w
 inoremap jj <ESC>
+nmap <C-p> <Plug>AirlineSelectPrevTab
+nmap <C-n> <Plug>AirlineSelectNextTab
+
 
 "------ Misc ------
 set nobackup
