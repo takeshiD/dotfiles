@@ -61,9 +61,9 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" " 文字色
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" " 背景色
 "  gruvbox
-" colorscheme gruvbox
 " set background=dark
 " let g:gruvbox_contrast_dark='hard'
+" colorscheme gruvbox
 
 " tokyonight
 let g:tokyonight_style = 'night'
@@ -72,13 +72,66 @@ let g:tokyonight_transparent_background = 0
 let g:tokyonight_cursor = 'auto'
 colorscheme tokyonight
 
-"------ Airline ------
-" let g:airline_theme = 'gruvbox'
-let g:airline_theme = 'tokyonight'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-set ttimeoutlen=50
-"
+"------ Lightline -----
+let g:lightline = {
+            \ 'colorscheme' : 'tokyonight'
+            \}
+let g:lightline.component_function = {
+            \ 'gitbranch': 'LightlineGitbranch',
+            \ 'filenamestatus': 'LightlineFilenameAndStatus'
+            \}
+
+let g:lightline.active = {
+            \ 'left':[['mode', 'paste'],
+            \         ['gitbranch', 'filenamestatus']],
+            \ 'right':[['lineinfo'],
+            \          ['percent'],
+            \          ['fileformat','fileencoding','filetype']]}
+let g:lightline.inactive = {
+            \ 'left':[['filename']],
+            \ 'right':[['fileformat','fileencoding','filetype']]}
+let g:lightline.tabline = {
+            \ 'left':[['tabs']],
+            \ 'right':[['close']]}
+let g:lightline.separator = {'left': "\<Char-0xe0b0>", 'right': "\<Char-0xe0b2>"}
+let g:lightline.subseparator = {'left': "\<Char-0xe0b1>", 'right': "\<Char-0xe0b3>"}
+let g:lightline.mode_map = {
+            \ 'n' : "\<Char-0xf01be> NORMAL",
+            \ 'i' : "\<Char-0xf03eb> INSERT",
+            \ 'R' : "\<Char-0xf021> REPLACE",
+            \ 'v' : "\<Char-0xf0ad9> VISUAL",
+            \ 'V' : "\<Char-0xf0ad9> V-LINE",
+            \ "\<C-v>": "\<Char-0xf0ad9> V-LINE",
+            \ 'c' : 'COMMAND',
+            \ 's' : 'SELECT',
+            \ 'S' : 'S-LINE',
+            \ "\<C-s>": 'S-BLOCK',
+            \ 't': 'TERMINAL',
+            \ }
+
+let g:lightline.component_function_visible_condition = {
+            \ 'gitbranch': "!empty(FugitiveHead())"} 
+
+function! LightlineGitbranch() abort
+    if exists('*FugitiveHead')
+        let branch = FugitiveHead()
+        if empty(branch)
+            return ''
+        else
+            return "\<Char-0xf062c> " . branch
+    endif
+endfunction
+
+function! LightlineFilenameAndStatus() abort
+    " let filename = expand('%')
+    let filename = @%
+    let filename = empty(filename) ? '[No Name]' : filename
+    let status = &modified ? '[+]' : 
+                \&readonly ? '[RO]':
+                \ ''
+    return l:filename . ' ' . l:status
+endfunction
+
 "------ NerdTree ------
 let NERDTreeShowHidden = 1
 let NERDTreeWinSize = 20
@@ -88,7 +141,6 @@ let g:webdevicons_enable_nerdtree = 1
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scm'] = '󰘧'
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 if exists('g:loaded_webdevicons')
@@ -100,6 +152,14 @@ augroup rainbow_lisp
     autocmd!
     autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
+
+"------ GitGutter -----------------------
+let g:gitgutter_sign_added = "❚"                   " + 
+let g:gitgutter_sign_modified = "❚"                " ~
+let g:gitgutter_sign_removed = "\<Char-0xf44a>"                 " -
+let g:gitgutter_sign_removed_first_line = "\<Char-0xf44b>"
+let g:gitgutter_sign_removed_above_and_below = '{'
+let g:gitgutter_sign_modified_removed = 'ww'
 
 "------ Encode ------
 set fileformat=unix
@@ -135,6 +195,7 @@ else
     set guifont=HackGenNerd\ Console\ 14
     set guifontwide=HackGenNerd\ Console\ 14
 endif
+
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap <C-e> :NERDTreeToggle<CR>
@@ -148,6 +209,9 @@ nnoremap <CR><CR> <C-w>w
 inoremap jj <ESC>
 nnoremap <C-p> :bprev<CR>
 nnoremap <C-n> :bnext<CR>
+nnoremap g] <Plug>(GitGutterNextHunk)
+nnoremap g[ <Plug>(GitGutterPrevHunk)
+nnoremap gp <Plug>(GitGutterPreviewHunk)
 
 "------ Misc ------
 set nobackup
@@ -175,3 +239,13 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 1
+
+"====================================================
+" Functions
+"====================================================
+command! Profile call s:command_profile()
+function! s:command_profile() abort
+    profile start ~/profile.txt
+    profile func *
+    profile file *
+endfunction
