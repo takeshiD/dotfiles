@@ -302,3 +302,4 @@ function! ProfileCursorMove() abort
         call feedkeys('k')
     endfor
 endfunction
+
