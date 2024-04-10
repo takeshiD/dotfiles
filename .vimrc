@@ -80,14 +80,17 @@ let g:lightline.active = {
             \ 'left':[['mode', 'paste'],
             \         ['gitbranch'],
             \         ['filenamestatus']],
-            \ 'right':[['lineinfo', 'percent'],
-            \          ['fileformat','fileencoding','filetype']]}
+            \ 'right':[['lineinfo'],
+            \          ['fileformat','fileencoding','filetype']]
+            \}
 let g:lightline.inactive = {
             \ 'left':[['filename']],
-            \ 'right':[['fileformat','fileencoding','filetype']]}
+            \ 'right':[['fileformat','fileencoding','filetype']]
+            \}
 let g:lightline.tabline = {
-            \ 'left':[['tabs']],
-            \ 'right':[['close']]}
+            \ 'left':[['buffers']],
+            \ 'right':[['close']]
+            \}
 let g:lightline.separator = {'left': "\<Char-0xe0b0>", 'right': "\<Char-0xe0b2>"}
 let g:lightline.subseparator = {'left': "\<Char-0xe0b1>", 'right': "\<Char-0xe0b3>"}
 let g:lightline.mode_map = {
@@ -107,7 +110,21 @@ let g:lightline.mode_map = {
 let g:lightline.component_expand = {
             \ 'gitbranch': 'LightlineGitbranch',
             \ 'filenamestatus': 'LightlineFilenameAndStatus',
+            \ 'lineinfo': 'LightlineLineInfo',
+            \ 'buffers': 'lightline#bufferline#buffers',
             \}
+let g:lightline.component_function = {
+            \ 'filetype': 'LightlineFileType',
+            \}
+let g:lightline.component_type = {
+            \ 'buffers': 'tabsel'
+            \}
+
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#enable_nerdfont = 1
+let g:lightline#bufferline#modified = " [+]"
+let g:lightline#bufferline#read_only = " [RO]"
+
 function! LightlineGitbranch() abort
     if exists('*FugitiveHead')
         let branch = FugitiveHead()
@@ -127,9 +144,17 @@ function! LightlineFilenameAndStatus() abort
     return l:filename . ' ' . l:status
 endfunction
 
+function! LightlineLineInfo() abort
+    return "\<Char-0xe0a1>%l/%L"
+endfunction
+
+function! LightlineFileType() abort
+    return WebDevIconsGetFileTypeSymbol(fnamemodify(@%,':t')) . ' ' . &ft
+endfunction
+
 augroup LightlineUpdate
     autocmd!
-    autocmd TextChanged,TextChangedI * call lightline#update()
+    autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 augroup END
 
 "------ NerdTree ------
@@ -165,7 +190,7 @@ let g:gitgutter_sign_removed = "\<Char-0xf44a>"                 " -
 let g:gitgutter_sign_removed_first_line = "\<Char-0xf44b>"
 let g:gitgutter_sign_removed_above_and_below = '{'
 let g:gitgutter_sign_modified_removed = "\<Char-0xf0dbb>"
-let g:gitgutter_enabled = 0
+let g:gitgutter_enabled = 1
 
 "------ Encode ------
 set fileformat=unix
@@ -191,9 +216,9 @@ set ruler
 set number
 set relativenumber
 set diffopt=vertical
-" set cursorline
-" set cursorcolumn
 set showmatch
+set showtabline=2
+set laststatus=2
 let loaded_matchparen = 1
 if has('win64')
     set guifont=HackGenNerd\ Console:h14
@@ -232,7 +257,6 @@ set showcmd
 
 set virtualedit=onemore
 set visualbell
-set laststatus=2
 set wildmode=list:longest
 set wildmenu
 set clipboard=unnamedplus

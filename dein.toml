@@ -11,6 +11,9 @@ repo = 'roxma/vim-hug-neovim-rpc'
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]
+repo = 'mengelbrecht/lightline-bufferline'
+
+[[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
