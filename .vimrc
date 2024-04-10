@@ -76,16 +76,11 @@ colorscheme tokyonight
 let g:lightline = {
             \ 'colorscheme' : 'tokyonight'
             \}
-let g:lightline.component_function = {
-            \ 'gitbranch': 'LightlineGitbranch',
-            \ 'filenamestatus': 'LightlineFilenameAndStatus'
-            \}
-
 let g:lightline.active = {
             \ 'left':[['mode', 'paste'],
-            \         ['gitbranch', 'filenamestatus']],
-            \ 'right':[['lineinfo'],
-            \          ['percent'],
+            \         ['gitbranch'],
+            \         ['filenamestatus']],
+            \ 'right':[['lineinfo', 'percent'],
             \          ['fileformat','fileencoding','filetype']]}
 let g:lightline.inactive = {
             \ 'left':[['filename']],
@@ -109,9 +104,10 @@ let g:lightline.mode_map = {
             \ 't': 'TERMINAL',
             \ }
 
-let g:lightline.component_function_visible_condition = {
-            \ 'gitbranch': "!empty(FugitiveHead())"} 
-
+let g:lightline.component_expand = {
+            \ 'gitbranch': 'LightlineGitbranch',
+            \ 'filenamestatus': 'LightlineFilenameAndStatus',
+            \}
 function! LightlineGitbranch() abort
     if exists('*FugitiveHead')
         let branch = FugitiveHead()
@@ -123,7 +119,6 @@ function! LightlineGitbranch() abort
 endfunction
 
 function! LightlineFilenameAndStatus() abort
-    " let filename = expand('%')
     let filename = @%
     let filename = empty(filename) ? '[No Name]' : filename
     let status = &modified ? '[+]' : 
@@ -131,6 +126,11 @@ function! LightlineFilenameAndStatus() abort
                 \ ''
     return l:filename . ' ' . l:status
 endfunction
+
+augroup LightlineUpdate
+    autocmd!
+    autocmd TextChanged,TextChangedI * call lightline#update()
+augroup END
 
 "------ NerdTree ------
 let NERDTreeShowHidden = 1
@@ -150,8 +150,13 @@ endif
 "------ rainbow-parentheses -----
 augroup rainbow_lisp
     autocmd!
-    autocmd FileType lisp,clojure,scheme RainbowParentheses
+    autocmd FileType lisp,clojure,scheme call s:paren_config()
 augroup END
+
+function! s:paren_config() abort
+    let g:loaded_matchparen = 0
+    RainbowParentheses
+endfunction
 
 "------ GitGutter -----------------------
 let g:gitgutter_sign_added = "❚"                   " + 
@@ -159,7 +164,8 @@ let g:gitgutter_sign_modified = "❚"                " ~
 let g:gitgutter_sign_removed = "\<Char-0xf44a>"                 " -
 let g:gitgutter_sign_removed_first_line = "\<Char-0xf44b>"
 let g:gitgutter_sign_removed_above_and_below = '{'
-let g:gitgutter_sign_modified_removed = 'ww'
+let g:gitgutter_sign_modified_removed = "\<Char-0xf0dbb>"
+let g:gitgutter_enabled = 0
 
 "------ Encode ------
 set fileformat=unix
@@ -185,9 +191,10 @@ set ruler
 set number
 set relativenumber
 set diffopt=vertical
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 set showmatch
+let loaded_matchparen = 1
 if has('win64')
     set guifont=HackGenNerd\ Console:h14
     set guifontwide=HackGenNerd\ Console:h14
@@ -209,9 +216,12 @@ nnoremap <CR><CR> <C-w>w
 inoremap jj <ESC>
 nnoremap <C-p> :bprev<CR>
 nnoremap <C-n> :bnext<CR>
-nnoremap g] <Plug>(GitGutterNextHunk)
-nnoremap g[ <Plug>(GitGutterPrevHunk)
-nnoremap gp <Plug>(GitGutterPreviewHunk)
+nnoremap g] :GitGutterNextHunk<CR>
+nnoremap g[ :GitGutterPrevHunk<CR>
+nnoremap gp :GitGutterPreviewHunk<CR>
+nnoremap gt :GitGutterToggle<CR>
+nnoremap ghs <Plug>(GitGutterStageHunk)
+nnoremap ghu <Plug>(GitGutterUndoHunk)
 
 "------ Misc ------
 set nobackup
@@ -245,7 +255,26 @@ let g:indent_guides_auto_colors = 1
 "====================================================
 command! Profile call s:command_profile()
 function! s:command_profile() abort
-    profile start ~/profile.txt
+    profile start ~/log/profile.log
     profile func *
     profile file *
+endfunction
+
+function! ProfileCursorMove() abort
+    let profile_file = expand('~/log/profile-cursor.log')
+    if filereadable(profile_file)
+        call delete(profile_file)
+    endif
+    normal! GG
+    normal! zR
+    execute 'profile start ' . profile_file
+    profile func *
+    profile file *
+    augroup ProfileCursorMove
+        autocmd!
+        autocmd CursorHold <buffer> profile pause | q
+    augroup END
+    for i in range(500)
+        call feedkeys('k')
+    endfor
 endfunction
