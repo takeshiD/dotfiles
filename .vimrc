@@ -122,8 +122,12 @@ let g:lightline.component_type = {
 
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#enable_nerdfont = 1
+let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#smart_path  = 0
 let g:lightline#bufferline#modified = " [+]"
 let g:lightline#bufferline#read_only = " [RO]"
+let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#show_number = 1
 
 function! LightlineGitbranch() abort
     if exists('*FugitiveHead')
