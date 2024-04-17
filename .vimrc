@@ -136,6 +136,7 @@ function! LightlineGitbranch() abort
             return ''
         else
             return "\<Char-0xf062c> " . branch
+        endif
     endif
 endfunction
 
@@ -164,6 +165,7 @@ augroup END
 "------ NerdTree ------
 let NERDTreeShowHidden = 1
 let NERDTreeWinSize = 20
+nnoremap <C-e> :NERDTreeToggle<CR>
 
 "------ devicons ------
 let g:webdevicons_enable_nerdtree = 1
@@ -179,22 +181,54 @@ endif
 "------ rainbow-parentheses -----
 augroup rainbow_lisp
     autocmd!
-    autocmd FileType lisp,clojure,scheme call s:paren_config()
+    autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
 
-function! s:paren_config() abort
-    let g:loaded_matchparen = 0
-    RainbowParentheses
-endfunction
-
 "------ GitGutter -----------------------
-let g:gitgutter_sign_added = "❚"                   " + 
-let g:gitgutter_sign_modified = "❚"                " ~
-let g:gitgutter_sign_removed = "\<Char-0xf44a>"                 " -
-let g:gitgutter_sign_removed_first_line = "\<Char-0xf44b>"
+let g:gitgutter_sign_added = "❚"                            " ❚ 
+let g:gitgutter_sign_modified = "❚"                         " ❚
+let g:gitgutter_sign_removed = "\<Char-0xf44a>"             " 
+let g:gitgutter_sign_removed_first_line = "\<Char-0xf44b>"  " 
 let g:gitgutter_sign_removed_above_and_below = '{'
 let g:gitgutter_sign_modified_removed = "\<Char-0xf0dbb>"
 let g:gitgutter_enabled = 1
+nnoremap g] :GitGutterNextHunk<CR>
+nnoremap g[ :GitGutterPrevHunk<CR>
+nnoremap gp :GitGutterPreviewHunk<CR>
+nnoremap gt :GitGutterToggle<CR>
+nnoremap gs <Plug>(GitGutterStageHunk)
+nnoremap gu <Plug>(GitGutterUndoHunk)
+
+"------ Commentary -------
+nnoremap <C-_> :Commentary<CR>
+vnoremap <C-_> :Commentary<CR>
+
+"------ Indent Guides ---------
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_auto_colors = 1
+
+"------ vim-lsp --------
+nnoremap <F1> <plug>(lsp-hover-float)
+nnoremap <F1><F1> <plug>(lsp-hover-preview)
+nnoremap <F2> <plug>(lsp-peek-definition)
+nnoremap <F2><F2> <plug>(lsp-definition)
+nnoremap <F3> <plug>(lsp-peek-declaration)
+nnoremap <F3><F3> <plug>(lsp-declaration)
+let g:lsp_peek_alignment = 'bottom'
+
+"------ Keymaps ------
+nnoremap <ESC><ESC> :noh<CR>
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+noremap <CR><CR> <C-w>w
+inoremap jj <ESC>
+
+nnoremap <C-p> :bprev<CR>
+nnoremap <C-n> :bnext<CR>
 
 "------ Encode ------
 set fileformat=unix
@@ -225,7 +259,7 @@ set showmatch
 set showtabline=2
 set laststatus=2
 set nofoldenable
-let loaded_matchparen = 1
+" let loaded_matchparen = 1
 if has('win64')
     set guifont=HackGenNerd\ Console:h14
     set guifontwide=HackGenNerd\ Console:h14
@@ -233,26 +267,6 @@ else
     set guifont=HackGenNerd\ Console\ 14
     set guifontwide=HackGenNerd\ Console\ 14
 endif
-
-"------ Keymaps ------
-nnoremap <ESC><ESC> :noh<CR>
-nnoremap <C-e> :NERDTreeToggle<CR>
-nnoremap k gk
-nnoremap gk k
-nnoremap j gj
-nnoremap gj j
-nnoremap <C-_> :Commentary<CR>
-vnoremap <C-_> :Commentary<CR>
-nnoremap <CR><CR> <C-w>w
-inoremap jj <ESC>
-nnoremap <C-p> :bprev<CR>
-nnoremap <C-n> :bnext<CR>
-nnoremap g] :GitGutterNextHunk<CR>
-nnoremap g[ :GitGutterPrevHunk<CR>
-nnoremap gp :GitGutterPreviewHunk<CR>
-nnoremap gt :GitGutterToggle<CR>
-nnoremap ghs <Plug>(GitGutterStageHunk)
-nnoremap ghu <Plug>(GitGutterUndoHunk)
 
 "------ Misc ------
 set nobackup
@@ -275,7 +289,7 @@ if has('persistent_undo')
 endif
 
 "------ Indent Guides ---------
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 1
@@ -284,6 +298,7 @@ let g:indent_guides_auto_colors = 1
 " Functions
 "====================================================
 command! Profile call s:command_profile()
+command! -nargs=1 -complete=help Vhelp :vertical belowright help <args>
 function! s:command_profile() abort
     profile start ~/log/profile.log
     profile func *
@@ -309,3 +324,4 @@ function! ProfileCursorMove() abort
     endfor
 endfunction
 
+set modeline
