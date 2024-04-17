@@ -209,10 +209,11 @@ set expandtab
 set smarttab
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 
 "------ Look&Feel ------
 set list
-set listchars=tab:\|\ ,eol:↲
+set listchars=tab:›—,eol:↲,nbsp:*,
 set fillchars+=vert:│,fold:-,foldopen:─,foldclose:+
 set hlsearch
 set incsearch
