@@ -224,6 +224,7 @@ set diffopt=vertical
 set showmatch
 set showtabline=2
 set laststatus=2
+set nofoldable
 let loaded_matchparen = 1
 if has('win64')
     set guifont=HackGenNerd\ Console:h14
