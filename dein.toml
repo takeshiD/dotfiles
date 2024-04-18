@@ -19,15 +19,6 @@ repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
-# [[plugins]]
-# repo = 'Shougo/neosnippet.vim'
-
-# [[plugins]]
-# repo = 'Shougo/neosnippet-snippets'
-
-# [[plugins]]
-# repo = 'Shougo/neocomplete.vim'
-
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
@@ -46,9 +37,6 @@ repo = 'sheerun/vim-polyglot'
 [[plugins]]
 repo = 'junegunn/rainbow_parentheses.vim'
 
-# [[plugins]]
-# repo = 'Shougo/ddc.vim'
-
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 
@@ -60,9 +48,6 @@ repo = 'Shougo/unite.vim'
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
-
-[[plugins]]
-repo = 'Yggdroot/indentLine'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'

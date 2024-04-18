@@ -216,6 +216,9 @@ nnoremap <F2> <plug>(lsp-peek-definition)
 nnoremap <F2><F2> <plug>(lsp-definition)
 nnoremap <F3> <plug>(lsp-peek-declaration)
 nnoremap <F3><F3> <plug>(lsp-declaration)
+nnoremap <F4> <plug>(lsp-references)
+nnoremap <C-j> <plug>(lsp-next-reference)
+nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_peek_alignment = 'bottom'
 
 "------ Keymaps ------
@@ -289,7 +292,7 @@ if has('persistent_undo')
 endif
 
 "------ Indent Guides ---------
-let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 1
