@@ -112,8 +112,6 @@ let g:lightline.component_expand = {
             \ 'filenamestatus': 'LightlineFilenameAndStatus',
             \ 'lineinfo': 'LightlineLineInfo',
             \ 'buffers': 'lightline#bufferline#buffers',
-            \}
-let g:lightline.component_function = {
             \ 'filetype': 'LightlineFileType',
             \}
 let g:lightline.component_type = {
@@ -150,7 +148,7 @@ function! LightlineFilenameAndStatus() abort
 endfunction
 
 function! LightlineLineInfo() abort
-    return "\<Char-0xe0a1>%l/%L"
+    return "\<Char-0xe0a1>%l/%L \<Char-0xe0a3>%c"
 endfunction
 
 function! LightlineFileType() abort
@@ -220,6 +218,7 @@ nnoremap <F4> <plug>(lsp-references)
 nnoremap <C-j> <plug>(lsp-next-reference)
 nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_peek_alignment = 'bottom'
+let g:lsp_auto_enable = 0
 
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
@@ -262,7 +261,8 @@ set showmatch
 set showtabline=2
 set laststatus=2
 set nofoldenable
-" let loaded_matchparen = 1
+" set cursorline
+" set cursorcolumn
 if has('win64')
     set guifont=HackGenNerd\ Console:h14
     set guifontwide=HackGenNerd\ Console:h14
@@ -308,12 +308,13 @@ function! s:command_profile() abort
     profile file *
 endfunction
 
+" Usage: $ vim +'call ProfileCursorMove()' <カーソルを動かすのが重いファイル>
 function! ProfileCursorMove() abort
     let profile_file = expand('~/log/profile-cursor.log')
     if filereadable(profile_file)
         call delete(profile_file)
     endif
-    normal! GG
+    normal! gg
     normal! zR
     execute 'profile start ' . profile_file
     profile func *
@@ -323,7 +324,7 @@ function! ProfileCursorMove() abort
         autocmd CursorHold <buffer> profile pause | q
     augroup END
     for i in range(500)
-        call feedkeys('k')
+        call feedkeys('j')
     endfor
 endfunction
 
