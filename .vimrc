@@ -60,7 +60,8 @@ syntax enable
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" " 文字色
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" " 背景色
-"  gruvbox
+
+" gruvbox
 " set background=dark
 " let g:gruvbox_contrast_dark='hard'
 " colorscheme gruvbox
@@ -73,9 +74,8 @@ let g:tokyonight_cursor = 'auto'
 colorscheme tokyonight
 
 "------ Lightline -----
-let g:lightline = {
-            \ 'colorscheme' : 'tokyonight'
-            \}
+let g:lightline = { 'colorscheme' : 'tokyonight'}
+" let g:lightline = { 'colorscheme' : 'gruvbox'}
 let g:lightline.active = {
             \ 'left':[['mode', 'paste'],
             \         ['gitbranch'],
