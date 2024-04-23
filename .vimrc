@@ -228,9 +228,9 @@ nnoremap j gj
 nnoremap gj j
 noremap <CR><CR> <C-w>w
 inoremap jj <ESC>
-
 nnoremap <C-p> :bprev<CR>
 nnoremap <C-n> :bnext<CR>
+nnoremap <C-w>w :bdelete %<CR>
 
 "------ Encode ------
 set fileformat=unix
