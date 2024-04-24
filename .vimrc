@@ -220,6 +220,13 @@ nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_peek_alignment = 'bottom'
 let g:lsp_auto_enable = 0
 
+"------- colortips.vim -------
+let g:colortips_left_visible = 1
+let g:colortips_left_char = "\<Char-0xe22b> " ":
+let g:colortips_right_visible = 0
+let g:colortips_right_char = "\<Char-0xe22b>" ":
+let g:colortips_fill_visible = 1
+
 "------ Keymaps ------
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap k gk
