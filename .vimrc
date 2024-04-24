@@ -284,13 +284,12 @@ set noswapfile
 set autoread
 set hidden
 set showcmd
-
 set virtualedit=onemore
 set visualbell
 set wildmode=list:longest
 set wildmenu
 set clipboard=unnamedplus
-
+set symaxcol=200
 "------ Undo Persistent ------
 if has('persistent_undo')
     let undo_path = expand("~/.vim/.undo")
