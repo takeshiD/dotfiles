@@ -228,6 +228,7 @@ let g:colortips_right_char = "\<Char-0xe22b>" ":
 let g:colortips_fill_visible = 1
 
 "------ Keymaps ------
+let mapleader = "\<Space>"
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap k gk
 nnoremap gk k
