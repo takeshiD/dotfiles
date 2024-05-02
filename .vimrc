@@ -218,7 +218,7 @@ nnoremap <F4> <plug>(lsp-references)
 nnoremap <C-j> <plug>(lsp-next-reference)
 nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_peek_alignment = 'bottom'
-let g:lsp_auto_enable = 0
+let g:lsp_auto_enable = 1
 
 "------- colortips.vim -------
 let g:colortips_left_visible = 1
@@ -291,6 +291,7 @@ set wildmode=list:longest
 set wildmenu
 set clipboard=unnamedplus
 set synmaxcol=200
+set helplang=ja,en
 "------ Undo Persistent ------
 if has('persistent_undo')
     let undo_path = expand("~/.vim/.undo")

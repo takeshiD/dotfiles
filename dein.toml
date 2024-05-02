@@ -1,36 +1,31 @@
+#=========================================
+# Package manager
+#=========================================
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-
-[[plugins]]
-repo = 'mengelbrecht/lightline-bufferline'
-
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-
+#=========================================
+# Look and Feel
+#=========================================
+#------- Colorscheme ------- 
 [[plugins]]
 repo = 'morhetz/gruvbox'
 
 [[plugins]]
 repo = 'ghifarit53/tokyonight-vim'
 
+#------- Statusline, BUfferline ------- 
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'mengelbrecht/lightline-bufferline'
+
+#------- Icons -------
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+#------- No category -------
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 
@@ -41,20 +36,38 @@ repo = 'junegunn/rainbow_parentheses.vim'
 repo = 'nathanaelkane/vim-indent-guides'
 
 [[plugins]]
-repo = 'tpope/vim-surround'
+repo = 'takeshid/colortips.vim'
 
+#=========================================
+# User Interface
+#=========================================
+#------- Filer -------
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+#------- FuzzyFinder -------
 [[plugins]]
 repo = 'Shougo/unite.vim'
 
+#------- Git -------
 [[plugins]]
-repo = 'tpope/vim-commentary'
+repo = 'tpope/vim-fugitive'
 
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+
+#=========================================
+# AutoComplete and LanguageServer
+#=========================================
+#------- LSP -------
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 
+#------- complete-------
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
 
@@ -64,11 +77,21 @@ repo = 'prabirshrestha/asyncomplete.vim'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
+
+#=========================================
+# Misc
+#=========================================
 [[plugins]]
-repo = 'takeshid/colortips.vim'
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
 
 [[plugins]]
 repo = 'mattn/vim-maketable'
 
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
