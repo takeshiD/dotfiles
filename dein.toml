@@ -69,14 +69,14 @@ repo = 'mattn/vim-lsp-settings'
 
 #------- complete-------
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
+#------- symbol-list ------
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
 
 #=========================================
 # Misc
@@ -95,3 +95,6 @@ repo = 'dhruvasagar/vim-table-mode'
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'

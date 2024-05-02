@@ -220,6 +220,12 @@ nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_peek_alignment = 'bottom'
 let g:lsp_auto_enable = 1
 
+"------ asyncomplete --------
+let g:asyncomplete_auto_popup = 1
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
 "------- colortips.vim -------
 let g:colortips_left_visible = 1
 let g:colortips_left_char = "\<Char-0xe22b> " ":
