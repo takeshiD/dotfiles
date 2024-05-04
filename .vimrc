@@ -208,23 +208,78 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 1
 
 "------ vim-lsp --------
-nnoremap <F1> <plug>(lsp-hover-float)
-nnoremap <F1><F1> <plug>(lsp-hover-preview)
 nnoremap <F2> <plug>(lsp-peek-definition)
-nnoremap <F2><F2> <plug>(lsp-definition)
 nnoremap <F3> <plug>(lsp-peek-declaration)
-nnoremap <F3><F3> <plug>(lsp-declaration)
 nnoremap <F4> <plug>(lsp-references)
 nnoremap <C-j> <plug>(lsp-next-reference)
 nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_peek_alignment = 'bottom'
 let g:lsp_auto_enable = 1
+let g:lsp_use_native_client = 1
+let g:lsp_document_symbol_detail = 1
+
+"------ vim-lsp-settings --------
+let g:lsp_settings = {
+            \ 'clangs': {'cmd': ['clangd-14']}
+            \}
 
 "------ asyncomplete --------
 let g:asyncomplete_auto_popup = 1
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+"------ vista.vim ------
+let g:vista_default_executive = 'ctags'
+let g:vista_icon_indent = ["▶ ", ""]
+let g:vista_sidebar_position = 'vertical topleft'
+let g:vista_sidebar_width = 30
+let g:vista_sidebar_keepalt = 1
+let g:vista_echo_cursor_strategy = 'scroll'
+let g:vista_cursor_delay = '100'
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+            \ 'func'            : "󰡱 ",
+            \ 'function'        : "󰡱 ",
+            \ 'functions'       : "󰡱 ",
+            \ 'var'             : "󰫧 ",
+            \ 'variable'        : "󰫧 ",
+            \ 'variables'       : "󰫧 ",
+            \ 'const'           : "\ueb5d",
+            \ 'constant'        : "\ueb5d",
+            \ 'constructor'     : "\uf976",
+            \ 'method'          : "󰡱 ",
+            \ 'package'         : "󱏒 ",
+            \ 'packages'        : "󱏒 ",
+            \ 'enum'            : "󰴍 ",
+            \ 'enummember'      : "\ueb5e",
+            \ 'enumerator'      : "\uea95",
+            \ 'module'          : "󱏒 ",
+            \ 'modules'         : "󱏒 ",
+            \ 'type'            : "\uebb9",
+            \ 'typedef'         : "\uebb9",
+            \ 'types'           : "\uebb9",
+            \ 'field'           : "\ueb5f",
+            \ 'fields'          : "\ueb5f",
+            \ 'macro'           : "\Uf03a4",
+            \ 'macros'          : "\Uf03a4",
+            \ 'map'             : "\Uf0645",
+            \ 'class'           : "󱏒 ",
+            \ 'augroup'         : "\Uf0645",
+            \ 'struct'          : "󱏒 ",
+            \ 'union'           : "\Uf0564",
+            \ 'member'          : "\uf02b",
+            \ 'target'          : "\Uf0394",
+            \ 'property'        : "\ueb65",
+            \ 'interface'       : "\ueb61",
+            \ 'namespace'       : "\uea8b",
+            \ 'subroutine'      : "\Uf04b0",
+            \ 'implementation'  : "\uebba",
+            \ 'typeParameter'   : "\uea92",
+            \ 'default'         : "\uf29c",
+            \}
+nnoremap <C-f> :<C-u>Vista!!<CR>
+nnoremap <F1> :<C-u>Vista finder<CR>
 
 "------- colortips.vim -------
 let g:colortips_left_visible = 1
@@ -244,9 +299,10 @@ noremap <CR><CR> <C-w>w
 inoremap jj <ESC>
 nnoremap <C-p> :bprev<CR>
 nnoremap <C-n> :bnext<CR>
-nnoremap <C-w>w :bdelete %<CR>
+nnoremap <C-w><C-w> :bdelete %<cr>
+noremap L $
 
-"------ Encode ------
+"------ encode ------
 set fileformat=unix
 set fileencoding=utf-8
 set encoding=utf-8

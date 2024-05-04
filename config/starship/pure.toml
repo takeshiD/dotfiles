@@ -62,7 +62,7 @@ style = 'bold bright-red'
 format = '[${symbol}${version} ]($style)'
 symbol = ' '
 version_format = 'v${major}.${minor}'
-style = 'bold bright-blue'
+style = 'bold bright-green'
 
 [cmake]
 format = '[${symbol}${version} ]($style)'

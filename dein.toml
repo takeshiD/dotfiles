@@ -45,9 +45,18 @@ repo = 'takeshid/colortips.vim'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+
 #------- FuzzyFinder -------
 [[plugins]]
 repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
 
 #------- Git -------
 [[plugins]]
@@ -67,6 +76,9 @@ repo = 'prabirshrestha/vim-lsp'
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
 #------- complete-------
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
@@ -74,7 +86,7 @@ repo = 'prabirshrestha/asyncomplete.vim'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
-#------- symbol-list ------
+#------- symbol-viewer ------
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
 
