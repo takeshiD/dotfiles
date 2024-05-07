@@ -25,6 +25,15 @@ repo = 'mengelbrecht/lightline-bufferline'
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim'
+
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+
 #------- No category -------
 [[plugins]]
 repo = 'sheerun/vim-polyglot'

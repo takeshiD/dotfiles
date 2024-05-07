@@ -161,9 +161,15 @@ augroup LightlineUpdate
 augroup END
 
 "------ NerdTree ------
-let NERDTreeShowHidden = 1
-let NERDTreeWinSize = 20
-nnoremap <C-e> :NERDTreeToggle<CR>
+" let NERDTreeShowHidden = 1
+" let NERDTreeWinSize = 20
+" nnoremap <C-e> :NERDTreeToggle<CR>
+
+"------ fern ------
+let g:fern#renderer = "nerdfont"
+let g:fern#default_hidden = 1
+
+nnoremap <C-e> :Fern . -drawer -width=30 -toggle -reveal=%<CR>
 
 "------ devicons ------
 let g:webdevicons_enable_nerdtree = 1
@@ -216,13 +222,147 @@ nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_peek_alignment = 'bottom'
 let g:lsp_auto_enable = 1
 let g:lsp_use_native_client = 1
-let g:lsp_document_symbol_detail = 1
+let g:lsp_document_symbol_detail = v:true
+function! My_supported_capabilities(server_info) abort
+    return {
+    \   'textDocument': {
+    \       'callHierarchy': {
+    \           'dynamicRegistration': v:false,
+    \       },
+    \       'codeAction': {
+    \         'dynamicRegistration': v:false,
+    \         'codeActionLiteralSupport': {
+    \           'codeActionKind': {
+    \             'valueSet': ['', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeImports'],
+    \           }
+    \         },
+    \         'isPreferredSupport': v:true,
+    \         'disabledSupport': v:true,
+    \       },
+    \       'codeLens': {
+    \           'dynamicRegistration': v:false,
+    \       },
+    \       'completion': {
+    \           'dynamicRegistration': v:true,
+    \           'completionItem': {
+    \              'documentationFormat': ['markdown', 'plaintext'],
+    \              'snippetSupport': v:true,
+    \              'resolveSupport': {
+    \                  'properties': ['additionalTextEdits']
+    \              }
+    \           },
+    \           'completionItemKind': {
+    \              'valueSet': lsp#omni#get_completion_item_kinds()
+    \           }
+    \       },
+    \       'declaration': {
+    \           'dynamicRegistration': v:true,
+    \           'linkSupport' : v:true
+    \       },
+    \       'definition': {
+    \           'dynamicRegistration': v:true,
+    \           'linkSupport' : v:true
+    \       },
+    \       'documentHighlight': {
+    \           'dynamicRegistration': v:false,
+    \       },
+    \       'documentSymbol': {
+    \           'dynamicRegistration': v:true,
+    \           'symbolKind': {
+    \              'valueSet': lsp#ui#vim#utils#get_symbol_kinds()
+    \           },
+    \           'hierarchicalDocumentSymbolSupport': v:true,
+    \           'labelSupport': v:true
+    \       },
+    \       'foldingRange': {
+    \           'dynamicRegistration': v:false,
+    \           'lineFoldingOnly': v:true,
+    \           'rangeLimit': 5000,
+    \       },
+    \       'formatting': {
+    \           'dynamicRegistration': v:false,
+    \       },
+    \       'hover': {
+    \           'dynamicRegistration': v:false,
+    \           'contentFormat': ['markdown', 'plaintext'],
+    \       },
+    \       'inlayHint': {
+    \           'dynamicRegistration': v:true,
+    \       },
+    \       'implementation': {
+    \           'dynamicRegistration': v:false,
+    \           'linkSupport' : v:true
+    \       },
+    \       'publishDiagnostics': {
+    \           'relatedInformation': v:true,
+    \       },
+    \       'rangeFormatting': {
+    \           'dynamicRegistration': v:false,
+    \       },
+    \       'references': {
+    \           'dynamicRegistration': v:true
+    \       },
+    \       'rename': {
+    \           'dynamicRegistration': v:false,
+    \           'prepareSupport': v:true,
+    \           'prepareSupportDefaultBehavior': 1
+    \       },
+    \       'semanticTokens': {
+    \           'dynamicRegistration': v:false,
+    \           'requests': {
+    \               'range': v:false,
+    \               'full': lsp#internal#semantic#is_enabled()
+    \                     ? {'delta': v:true}
+    \                     : v:false
+    \
+    \           },
+    \           'tokenTypes': [
+    \               'type', 'class', 'enum', 'interface', 'struct',
+    \               'typeParameter', 'parameter', 'variable', 'property',
+    \               'enumMember', 'event', 'function', 'method', 'macro',
+    \               'keyword', 'modifier', 'comment', 'string', 'number',
+    \               'regexp', 'operator'
+    \           ],
+    \           'tokenModifiers': [],
+    \           'formats': ['relative'],
+    \           'overlappingTokenSupport': v:false,
+    \           'multilineTokenSupport': v:false,
+    \           'serverCancelSupport': v:false
+    \       },
+    \       'signatureHelp': {
+    \           'dynamicRegistration': v:true,
+    \       },
+    \       'synchronization': {
+    \           'didSave': v:true,
+    \           'dynamicRegistration': v:false,
+    \           'willSave': v:false,
+    \           'willSaveWaitUntil': v:false,
+    \       },
+    \       'typeDefinition': {
+    \           'dynamicRegistration': v:true,
+    \           'linkSupport' : v:true
+    \       },
+    \       'typeHierarchy': {
+    \           'dynamicRegistration': v:true
+    \       },
+    \   },
+    \   'window': {
+    \       'workDoneProgress': g:lsp_work_done_progress_enabled ? v:true : v:false,
+    \   },
+    \   'workspace': {
+    \       'applyEdit': v:true,
+    \       'configuration': v:true,
+    \       'symbol': {
+    \           'dynamicRegistration': v:true,
+    \       },
+    \       'workspaceFolders': g:lsp_experimental_workspace_folders ? v:true : v:false,
+    \   },
+    \ }
+endfunction
+let g:lsp_get_supported_capabilities = [function('My_supported_capabilities')]
 
 "------ vim-lsp-settings --------
-let g:lsp_settings = {
-            \ 'clangs': {'cmd': ['clangd-14']}
-            \}
-
+" none
 "------ asyncomplete --------
 let g:asyncomplete_auto_popup = 1
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -237,47 +377,8 @@ let g:vista_sidebar_width = 30
 let g:vista_sidebar_keepalt = 1
 let g:vista_echo_cursor_strategy = 'scroll'
 let g:vista_cursor_delay = '100'
+let g:vista_log_file = expand('~/vista.log')
 let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
-            \ 'func'            : "󰡱 ",
-            \ 'function'        : "󰡱 ",
-            \ 'functions'       : "󰡱 ",
-            \ 'var'             : "󰫧 ",
-            \ 'variable'        : "󰫧 ",
-            \ 'variables'       : "󰫧 ",
-            \ 'const'           : "\ueb5d",
-            \ 'constant'        : "\ueb5d",
-            \ 'constructor'     : "\uf976",
-            \ 'method'          : "󰡱 ",
-            \ 'package'         : "󱏒 ",
-            \ 'packages'        : "󱏒 ",
-            \ 'enum'            : "󰴍 ",
-            \ 'enummember'      : "\ueb5e",
-            \ 'enumerator'      : "\uea95",
-            \ 'module'          : "󱏒 ",
-            \ 'modules'         : "󱏒 ",
-            \ 'type'            : "\uebb9",
-            \ 'typedef'         : "\uebb9",
-            \ 'types'           : "\uebb9",
-            \ 'field'           : "\ueb5f",
-            \ 'fields'          : "\ueb5f",
-            \ 'macro'           : "\Uf03a4",
-            \ 'macros'          : "\Uf03a4",
-            \ 'map'             : "\Uf0645",
-            \ 'class'           : "󱏒 ",
-            \ 'augroup'         : "\Uf0645",
-            \ 'struct'          : "󱏒 ",
-            \ 'union'           : "\Uf0564",
-            \ 'member'          : "\uf02b",
-            \ 'target'          : "\Uf0394",
-            \ 'property'        : "\ueb65",
-            \ 'interface'       : "\ueb61",
-            \ 'namespace'       : "\uea8b",
-            \ 'subroutine'      : "\Uf04b0",
-            \ 'implementation'  : "\uebba",
-            \ 'typeParameter'   : "\uea92",
-            \ 'default'         : "\uf29c",
-            \}
 nnoremap <C-f> :<C-u>Vista!!<CR>
 nnoremap <F1> :<C-u>Vista finder<CR>
 
