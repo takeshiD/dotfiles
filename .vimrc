@@ -160,27 +160,55 @@ augroup LightlineUpdate
     autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 augroup END
 
-"------ NerdTree ------
-" let NERDTreeShowHidden = 1
-" let NERDTreeWinSize = 20
-" nnoremap <C-e> :NERDTreeToggle<CR>
-
 "------ fern ------
 let g:fern#renderer = "nerdfont"
 let g:fern#default_hidden = 1
-
+" let g:fern#logfile = expand('~/fern.log')
+" let g:fern#loglevel = g:fern#DEBUG
 nnoremap <C-e> :Fern . -drawer -width=30 -toggle -reveal=%<CR>
+" nmap <Plug>(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa) :bnext
+" <Plug>のマッピングの文字数が46文字以上になるとエラーが出る
+function! s:init_fern() abort
+    nmap <buffer> <C-f> <Plug>(fern-action-grep)
+    nmap <buffer> r <Plug>(fern-action-reload:cursor)
+    nmap <buffer> R <Plug>(fern-action-reload:all)
+    nmap <buffer> v <Plug>(fern-action-open:vsplit)
+    nmap <buffer> s <Plug>(fern-action-open:split)
+    nmap <buffer> f <Plug>(fern-action-focus:parent)
+    nmap <buffer><expr>
+                \ <Plug>(fern-my-recursive-collapse)
+                \ fern#smart#leaf(
+                \   "\<Plug>(fern-action-collapse)",
+                \   "\<Plug>(fern-action-expand-tree:stay)",
+                \   "\<Plug>(fern-action-collapse)",
+                \ )
+    nmap <buffer><nowait> O <Plug>(fern-my-recursive-collapse)
+    nmap <buffer><expr>
+                \ <Plug>(fern-my-open-or-expand-or-collapse)
+                \ fern#smart#leaf(
+                \   "\<Plug>(fern-action-open)",
+                \   "\<Plug>(fern-action-expand:stay)",
+                \   "\<Plug>(fern-action-collapse)",
+                \ )
+
+    nmap <buffer><nowait> o <Plug>(fern-my-open-or-expand-or-collapse)
+endfunction
+
+augroup fern-custom
+    autocmd! *
+    autocmd FileType fern call s:init_fern()
+augroup END
 
 "------ devicons ------
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scm'] = '󰘧'
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
-let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
+"let g:webdevicons_enable_nerdtree = 1
+"let g:webdevicons_conceal_nerdtree_brackets = 1
+"let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+"let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scm'] = '󰘧'
+"let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+"let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+"if exists('g:loaded_webdevicons')
+    " call webdevicons#refresh()
+" endif
 
 "------ rainbow-parentheses -----
 augroup rainbow_lisp
@@ -219,10 +247,28 @@ nnoremap <F3> <plug>(lsp-peek-declaration)
 nnoremap <F4> <plug>(lsp-references)
 nnoremap <C-j> <plug>(lsp-next-reference)
 nnoremap <C-k> <plug>(lsp-previous-reference)
-let g:lsp_peek_alignment = 'bottom'
 let g:lsp_auto_enable = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_curosr = 0
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_float_delay = 500
+let g:lsp_diagnostics_highlights_enabled = 1
+let g:lsp_diagnostics_highlights_delay = 200
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_signs_delay = 500
+let g:lsp_diagnostics_virtual_text_enabled = 1
+let g:lsp_diagnostics_virtual_text_delay = 100
+let g:lsp_document_code_action_signs_enabled = 1
+let g:lsp_document_code_action_signs_delay = 200
+let g:lsp_inlay_hints_enabled = 1
+let g:lsp_inlay_hints_delay = 200
+" let g:lsp_inlay_hints_mode = {'normal': ['curline']}
+highlight link lspInlayHintsType Grey
+highlight link lspInlayHintsParameter Grey
+let g:lsp_peek_alignment = 'bottom'
 let g:lsp_use_native_client = 1
-let g:lsp_document_symbol_detail = v:true
+let g:lsp_document_symbol_detail = 1
+
 function! My_supported_capabilities(server_info) abort
     return {
     \   'textDocument': {

@@ -22,8 +22,8 @@ repo = 'itchyny/lightline.vim'
 repo = 'mengelbrecht/lightline-bufferline'
 
 #------- Icons -------
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
+# [[plugins]]
+# repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
 repo = 'lambdalisue/nerdfont.vim'
@@ -52,15 +52,9 @@ repo = 'takeshid/colortips.vim'
 #=========================================
 #------- Filer -------
 [[plugins]]
-repo = 'scrooloose/nerdtree'
-
-[[plugins]]
 repo = 'lambdalisue/fern.vim'
 
 #------- FuzzyFinder -------
-[[plugins]]
-repo = 'Shougo/unite.vim'
-
 [[plugins]]
 repo = 'junegunn/fzf'
 
@@ -73,7 +67,6 @@ repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
-
 
 #=========================================
 # AutoComplete and LanguageServer
