@@ -198,17 +198,6 @@ augroup fern-custom
     autocmd FileType fern call s:init_fern()
 augroup END
 
-"------ devicons ------
-"let g:webdevicons_enable_nerdtree = 1
-"let g:webdevicons_conceal_nerdtree_brackets = 1
-"let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-"let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scm'] = '󰘧'
-"let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
-"let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-"if exists('g:loaded_webdevicons')
-    " call webdevicons#refresh()
-" endif
-
 "------ rainbow-parentheses -----
 augroup rainbow_lisp
     autocmd!
@@ -260,8 +249,7 @@ let g:lsp_diagnostics_virtual_text_delay = 100
 let g:lsp_document_code_action_signs_enabled = 1
 let g:lsp_document_code_action_signs_delay = 200
 let g:lsp_inlay_hints_enabled = 1
-let g:lsp_inlay_hints_delay = 200
-" let g:lsp_inlay_hints_mode = {'normal': ['curline']}
+let g:lsp_inlay_hints_delay = 100
 highlight link lspInlayHintsType Grey
 highlight link lspInlayHintsParameter Grey
 let g:lsp_peek_alignment = 'bottom'
@@ -428,12 +416,18 @@ nnoremap <C-f> :<C-u>Vista!!<CR>
 nnoremap <F1> :<C-u>Vista finder<CR>
 
 "------- colortips.vim -------
-let g:colortips_left_visible = 1
-let g:colortips_left_char = "\<Char-0xe22b> " ":
-let g:colortips_right_visible = 0
-let g:colortips_right_char = "\<Char-0xe22b>" ":
-let g:colortips_fill_visible = 1
+let g:colortips_left_char = " "
+let g:colortips_right_char = " "
+let g:colortips_left_visible = v:true
+let g:colortips_right_visible = v:false
+let g:colortips_fill_visible = v:true
 
+"------- vim-anzu -------
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 "------ Keymaps ------
 let mapleader = "\<Space>"
 nnoremap <ESC><ESC> :noh<CR>
@@ -477,8 +471,8 @@ set showmatch
 set showtabline=2
 set laststatus=2
 set nofoldenable
-" set cursorline
-" set cursorcolumn
+set cursorline
+set cursorcolumn
 if has('win64')
     set guifont=HackGenNerd\ Console:h14
     set guifontwide=HackGenNerd\ Console:h14

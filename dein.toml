@@ -112,3 +112,6 @@ repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
