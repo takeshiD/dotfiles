@@ -169,7 +169,6 @@ nnoremap <C-e> :Fern . -drawer -width=30 -toggle -reveal=%<CR>
 " nmap <Plug>(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa) :bnext
 " <Plug>のマッピングの文字数が46文字以上になるとエラーが出る
 function! s:init_fern() abort
-    nmap <buffer> <C-f> <Plug>(fern-action-grep)
     nmap <buffer> r <Plug>(fern-action-reload:cursor)
     nmap <buffer> R <Plug>(fern-action-reload:all)
     nmap <buffer> v <Plug>(fern-action-open:vsplit)
