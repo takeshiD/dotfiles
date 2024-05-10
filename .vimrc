@@ -233,62 +233,83 @@ nnoremap <F3> <plug>(lsp-peek-declaration)
 nnoremap <F4> <plug>(lsp-references)
 nnoremap <C-j> <plug>(lsp-next-reference)
 nnoremap <C-k> <plug>(lsp-previous-reference)
-let g:lsp_auto_enable = 1
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_curosr = 0
-let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_auto_enable = v:true
+let g:lsp_diagnostics_enabled = v:true
+let g:lsp_diagnostics_echo_curosr = v:false
+let g:lsp_diagnostics_float_cursor = v:true
 let g:lsp_diagnostics_float_delay = 500
-let g:lsp_diagnostics_highlights_enabled = 1
+let g:lsp_diagnostics_highlights_enabled = v:true
 let g:lsp_diagnostics_highlights_delay = 200
-let g:lsp_diagnostics_signs_enabled = 1
-let g:lsp_diagnostics_signs_delay = 500
-let g:lsp_diagnostics_virtual_text_enabled = 1
+let g:lsp_diagnostics_signs_enabled = v:true
+let g:lsp_diagnostics_signs_insert_mode_enabled = v:true
+let g:lsp_diagnostics_signs_delay = 200
+let g:lsp_diagnostics_signs_priority_map = {
+            \'LspError': 11,
+            \'LspWarning': 10,
+            \'LspHint': 9,
+            \'LspInformation':8,
+            \}
+let g:lsp_diagnostics_signs_error = {'text': ' '}
+highlight LspErrorText guifg=#ff0000
+highlight LspErrorVirtualText guifg=#ff0000 guibg=#47151e
+let g:lsp_diagnostics_signs_warning = {'text': ' '}
+highlight LspWarningText guifg=#f8e71c
+highlight LspWarningVirtualText guifg=#f8e71c guibg=#5c5823
+let g:lsp_diagnostics_signs_hint = {'text': '󰛨 '}
+highlight LspHintText guifg=#7AA2F7
+highlight LspHintVirtualText guifg=#7AA2F7 cterm=underline
+let g:lsp_diagnostics_signs_information = {'text': ' '}
+highlight link LspInformationHighlight Normal
+let g:lsp_diagnostics_virtual_text_enabled = v:true
 let g:lsp_diagnostics_virtual_text_delay = 100
-let g:lsp_document_code_action_signs_enabled = 1
-let g:lsp_document_code_action_signs_delay = 200
-let g:lsp_inlay_hints_enabled = 1
+let g:lsp_diagnostics_virtual_text_align = 'after'
+let g:lsp_diagnostics_virtual_text_prefix = ''
+let g:lsp_document_code_action_signs_enabled = v:true
+let g:lsp_document_code_action_signs_delay = 100
+let g:lsp_document_code_action_signs_hint = {'text': '󰁕'}
+let g:lsp_inlay_hints_enabled = v:true
 let g:lsp_inlay_hints_delay = 100
-highlight link lspInlayHintsType Grey
-highlight link lspInlayHintsParameter Grey
+highlight link LspInlayHintsType Grey
+highlight link LspInlayHintsParameter Grey
 let g:lsp_peek_alignment = 'bottom'
-let g:lsp_use_native_client = 1
-let g:lsp_document_symbol_detail = 1
+let g:lsp_use_native_client = v:true
+let g:lsp_document_symbol_detail = v:true
 
 function! My_supported_capabilities(server_info) abort
     return {
-    \   'textDocument': {
-    \       'callHierarchy': {
-    \           'dynamicRegistration': v:false,
+    \   'textdocument': {
+    \       'callhierarchy': {
+    \           'dynamicregistration': v:false,
     \       },
-    \       'codeAction': {
-    \         'dynamicRegistration': v:false,
-    \         'codeActionLiteralSupport': {
-    \           'codeActionKind': {
-    \             'valueSet': ['', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeImports'],
+    \       'codeaction': {
+    \         'dynamicregistration': v:false,
+    \         'codeactionliteralsupport': {
+    \           'codeactionkind': {
+    \             'valueset': ['', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeimports'],
     \           }
     \         },
-    \         'isPreferredSupport': v:true,
-    \         'disabledSupport': v:true,
+    \         'ispreferredsupport': v:true,
+    \         'disabledsupport': v:true,
     \       },
-    \       'codeLens': {
-    \           'dynamicRegistration': v:false,
+    \       'codelens': {
+    \           'dynamicregistration': v:false,
     \       },
     \       'completion': {
-    \           'dynamicRegistration': v:true,
-    \           'completionItem': {
-    \              'documentationFormat': ['markdown', 'plaintext'],
-    \              'snippetSupport': v:true,
-    \              'resolveSupport': {
-    \                  'properties': ['additionalTextEdits']
+    \           'dynamicregistration': v:true,
+    \           'completionitem': {
+    \              'documentationformat': ['markdown', 'plaintext'],
+    \              'snippetsupport': v:true,
+    \              'resolvesupport': {
+    \                  'properties': ['additionaltextedits']
     \              }
     \           },
-    \           'completionItemKind': {
-    \              'valueSet': lsp#omni#get_completion_item_kinds()
+    \           'completionitemkind': {
+    \              'valueset': lsp#omni#get_completion_item_kinds()
     \           }
     \       },
     \       'declaration': {
-    \           'dynamicRegistration': v:true,
-    \           'linkSupport' : v:true
+    \           'dynamicregistration': v:true,
+    \           'linksupport' : v:true
     \       },
     \       'definition': {
     \           'dynamicRegistration': v:true,
