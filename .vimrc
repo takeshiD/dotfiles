@@ -165,7 +165,7 @@ let g:fern#renderer = "nerdfont"
 let g:fern#default_hidden = 1
 " let g:fern#logfile = expand('~/fern.log')
 " let g:fern#loglevel = g:fern#DEBUG
-nnoremap <C-e> :Fern . -drawer -width=30 -toggle -reveal=%<CR>
+nnoremap <C-e> :Fern . -drawer -toggle -reveal=%<CR>
 function! s:init_fern() abort
     nmap <buffer> r <Plug>(fern-action-reload:cursor)
     nmap <buffer> R <Plug>(fern-action-reload:all)
@@ -188,7 +188,6 @@ function! s:init_fern() abort
                 \   "\<Plug>(fern-action-collapse)",
                 \ )
     nmap <buffer><nowait> o <Plug>(fern-my-open-or-expand-or-collapse)
-    unmap <buffer> l
 endfunction
 
 augroup fern-custom
