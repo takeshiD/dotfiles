@@ -187,8 +187,8 @@ function! s:init_fern() abort
                 \   "\<Plug>(fern-action-expand:stay)",
                 \   "\<Plug>(fern-action-collapse)",
                 \ )
-
     nmap <buffer><nowait> o <Plug>(fern-my-open-or-expand-or-collapse)
+    unmap <buffer> l
 endfunction
 
 augroup fern-custom
