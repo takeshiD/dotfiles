@@ -248,15 +248,51 @@ let g:lsp_diagnostics_signs_priority_map = {
             \'LspHint': 9,
             \'LspInformation':8,
             \}
+" Input:
+"   fg: string      fore-ground color, Hex-Triplex format 
+"   bg: string      back-ground color, Hex-Triplex format 
+"   alpha: float    transparent value, between 0.0-1.0
+" Output: string
+"   Hex-Triplex format
+" Example:
+"   ComposeColor("#FF0000", "#1a1b26", 0.3)
+"   >> "#5e121a"
+def ComposeColor(fg: string, bg: string, alpha: float): string
+    def Hex2List(hexcolor: string): list<number>
+        var _r: number = str2nr(hexcolor[1 : 2], 16)
+        var _g: number = str2nr(hexcolor[3 : 4], 16)
+        var _b: number = str2nr(hexcolor[5 : 6], 16)
+        return [_r, _g, _b]
+    enddef
+    var fg_norm: list<float> = mapnew(Hex2List(fg), (_: number, x: number): float => x / 256.0)
+    var bg_norm: list<float> = mapnew(Hex2List(bg), (_: number, x: number): float => x / 256.0)
+    var composed: list<float> = [
+                 (bg_norm[0] * (1 - alpha) + fg_norm[0] * alpha) * 255,
+                 (bg_norm[1] * (1 - alpha) + fg_norm[1] * alpha) * 255,
+                 (bg_norm[2] * (1 - alpha) + fg_norm[2] * alpha) * 255,
+                ]
+    var [r, g, b] = mapnew(composed, (_, x): number => float2nr(x))
+    return printf("#%02x%02x%02x", r, g, b)
+enddef
+
+let NormalBG = hlget('Normal')[0]['guibg']
+let LspErrorFG = "#FF0000"
+let LspErrorBG = ComposeColor(LspErrorFG, NormalBG, 0.3)
+let LspWarningFG = "#F8E71C"
+let LspWarningBG = ComposeColor(LspWarningFG, NormalBG, 0.3)
+let LspHintFG = "#7AA2F7"
+let LspHintBG = ComposeColor(LspHintFG, NormalBG, 0.3)
+let LspInlayHintsFG = hlget('Comment')[0]['guifg']
+
 let g:lsp_diagnostics_signs_error = {'text': ' '}
-highlight LspErrorText guifg=#ff0000
-highlight LspErrorVirtualText guifg=#ff0000 guibg=#47151e
+execute $'highlight LspErrorText guifg={LspErrorFG}'
+execute $'highlight LspErrorVirtualText guifg={LspErrorFG} guibg={LspErrorBG}'
 let g:lsp_diagnostics_signs_warning = {'text': ' '}
-highlight LspWarningText guifg=#f8e71c
-highlight LspWarningVirtualText guifg=#f8e71c guibg=#5c5823
+execute $'highlight LspWarningText guifg={LspWarningFG}'
+execute $'highlight LspWarningVirtualText guifg={LspWarningFG} guibg={LspWarningBG}'
 let g:lsp_diagnostics_signs_hint = {'text': '󰛨 '}
-highlight LspHintText guifg=#7AA2F7
-highlight LspHintVirtualText guifg=#7AA2F7 cterm=underline
+execute $'highlight LspHintText guifg={LspHintFG}'
+execute $'highlight LspHintVirtualText guifg={LspHintFG} guibg={LspHintBG} cterm=underline'
 let g:lsp_diagnostics_signs_information = {'text': ' '}
 highlight link LspInformationHighlight Normal
 let g:lsp_diagnostics_virtual_text_enabled = v:true
@@ -268,8 +304,8 @@ let g:lsp_document_code_action_signs_delay = 100
 let g:lsp_document_code_action_signs_hint = {'text': '󰁕'}
 let g:lsp_inlay_hints_enabled = v:true
 let g:lsp_inlay_hints_delay = 100
-highlight link LspInlayHintsType Grey
-highlight link LspInlayHintsParameter Grey
+execute $'highlight LspInlayHintsType guifg={LspInlayHintsFG}'
+execute $'highlight LspInlayHintsParameter guifg={LspInlayHintsFG}'
 let g:lsp_peek_alignment = 'bottom'
 let g:lsp_use_native_client = v:true
 let g:lsp_document_symbol_detail = v:true
