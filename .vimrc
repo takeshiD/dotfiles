@@ -202,8 +202,8 @@ augroup rainbow_lisp
 augroup END
 
 "------ GitGutter -----------------------
-let g:gitgutter_sign_added = "❚"                            " ❚ 
-let g:gitgutter_sign_modified = "❚"                         " ❚
+let g:gitgutter_sign_added = "▐"                            " ❚ 
+let g:gitgutter_sign_modified = "▐"                         " ❚
 let g:gitgutter_sign_removed = "\<Char-0xf44a>"             " 
 let g:gitgutter_sign_removed_first_line = "\<Char-0xf44b>"  " 
 let g:gitgutter_sign_removed_above_and_below = '{'
@@ -233,6 +233,8 @@ nnoremap <F4> <plug>(lsp-references)
 nnoremap <C-j> <plug>(lsp-next-reference)
 nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_auto_enable = v:true
+let g:lsp_text_edit_enabled = v:true
+let g:lsp_insert_text_enabled = v:true
 let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_echo_curosr = v:false
 let g:lsp_diagnostics_float_cursor = v:true
@@ -292,13 +294,15 @@ execute $'highlight LspWarningText guifg={LspWarningFG}'
 execute $'highlight LspWarningVirtualText guifg={LspWarningFG} guibg={LspWarningBG}'
 let g:lsp_diagnostics_signs_hint = {'text': '󰛨 '}
 execute $'highlight LspHintText guifg={LspHintFG}'
-execute $'highlight LspHintVirtualText guifg={LspHintFG} guibg={LspHintBG} cterm=underline'
+execute $'highlight LspHintVirtualText guifg={LspHintFG} guibg={LspHintBG}'
 let g:lsp_diagnostics_signs_information = {'text': ' '}
 highlight link LspInformationHighlight Normal
 let g:lsp_diagnostics_virtual_text_enabled = v:true
+let g:lsp_diagnostics_virtual_text_insert_mode_enabled = v:true
 let g:lsp_diagnostics_virtual_text_delay = 100
 let g:lsp_diagnostics_virtual_text_align = 'after'
 let g:lsp_diagnostics_virtual_text_prefix = ''
+let g:lsp_diagnostics_virtual_text_padding_left = 1
 let g:lsp_document_code_action_signs_enabled = v:true
 let g:lsp_document_code_action_signs_delay = 100
 let g:lsp_document_code_action_signs_hint = {'text': '󰁕'}
@@ -449,7 +453,13 @@ endfunction
 let g:lsp_get_supported_capabilities = [function('My_supported_capabilities')]
 
 "------ vim-lsp-settings --------
-" none
+let g:lsp_settings = {
+            \ 'clangd': {
+            \   'cmd': ['clangd', '--enable-config'],
+            \ }
+            \}
+" for clangd
+autocmd BufRead,BufNewFile .clangd setfiletype yaml
 "------ asyncomplete --------
 let g:asyncomplete_auto_popup = 1
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
