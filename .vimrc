@@ -84,7 +84,7 @@ let g:lightline.active = {
             \          ['fileformat','fileencoding','filetype']]
             \}
 let g:lightline.inactive = {
-            \ 'left':[['filename']],
+            \ 'left':[['filenamestatus']],
             \ 'right':[['fileformat','fileencoding','filetype']]
             \}
 let g:lightline.tabline = {
@@ -144,7 +144,7 @@ function! LightlineFilenameAndStatus() abort
     let status = &modified ? '[+]' : 
                 \&readonly ? '[RO]':
                 \ ''
-    return l:filename . ' ' . l:status
+    return nerdfont#find(fnamemodify(@%, ':t'), 0) .. ' ' .. l:filename .. ' ' .. l:status
 endfunction
 
 function! LightlineLineInfo() abort
@@ -152,7 +152,7 @@ function! LightlineLineInfo() abort
 endfunction
 
 function! LightlineFileType() abort
-    return WebDevIconsGetFileTypeSymbol(fnamemodify(@%,':t')) . ' ' . &ft
+    return nerdfont#find(fnamemodify(@%, ':t'), 0) .. ' ' . &ft
 endfunction
 
 augroup LightlineUpdate
@@ -227,14 +227,17 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 1
 
 "------ vim-lsp --------
+nnoremap <F1> <plug>(lsp-hover-float)
 nnoremap <F2> <plug>(lsp-peek-definition)
 nnoremap <F3> <plug>(lsp-peek-declaration)
 nnoremap <F4> <plug>(lsp-references)
 nnoremap <C-j> <plug>(lsp-next-reference)
 nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_auto_enable = v:true
-let g:lsp_text_edit_enabled = v:true
-let g:lsp_insert_text_enabled = v:true
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:lsp_log_verbose = 1
+" let g:lsp_text_edit_enabled = v:true
+" let g:lsp_insert_text_enabled = v:true
 let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_echo_curosr = v:false
 let g:lsp_diagnostics_float_cursor = v:true
@@ -455,7 +458,7 @@ let g:lsp_get_supported_capabilities = [function('My_supported_capabilities')]
 "------ vim-lsp-settings --------
 let g:lsp_settings = {
             \ 'clangd': {
-            \   'cmd': ['clangd', '--enable-config'],
+            \   'cmd': ['clangd-15', '--enable-config'],
             \ }
             \}
 " for clangd
@@ -477,7 +480,7 @@ let g:vista_cursor_delay = '100'
 let g:vista_log_file = expand('~/vista.log')
 let g:vista#renderer#enable_icon = 1
 nnoremap <C-f> :<C-u>Vista!!<CR>
-nnoremap <F1> :<C-u>Vista finder<CR>
+" nnoremap <F1> :<C-u>Vista finder<CR>
 
 "------- colortips.vim -------
 let g:colortips_left_char = " "
