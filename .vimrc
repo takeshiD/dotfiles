@@ -458,7 +458,7 @@ let g:lsp_get_supported_capabilities = [function('My_supported_capabilities')]
 "------ vim-lsp-settings --------
 let g:lsp_settings = {
             \ 'clangd': {
-            \   'cmd': ['clangd-15', '--enable-config'],
+            \   'cmd': ['/opt/llvm/bin/clangd', '--enable-config'],
             \ }
             \}
 " for clangd
