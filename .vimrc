@@ -262,7 +262,7 @@ let g:lsp_diagnostics_signs_priority_map = {
 " Example:
 "   ComposeColor("#FF0000", "#1a1b26", 0.3)
 "   >> "#5e121a"
-def ComposeColor(fg: string, bg: string, alpha: float): string
+def! ComposeColor(fg: string, bg: string, alpha: float): string
     def Hex2List(hexcolor: string): list<number>
         var _r: number = str2nr(hexcolor[1 : 2], 16)
         var _g: number = str2nr(hexcolor[3 : 4], 16)
@@ -481,6 +481,23 @@ let g:vista_log_file = expand('~/vista.log')
 let g:vista#renderer#enable_icon = 1
 nnoremap <C-f> :<C-u>Vista!!<CR>
 " nnoremap <F1> :<C-u>Vista finder<CR>
+"
+"------- fzf.vim -------
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+command! -bang -nargs=? -complete=dir Files
+            \ call fzf#vim#files(
+            \   <q-args>, 
+            \   fzf#vim#with_preview({'options':['--layout=reverse']}), 
+            \   <bang>0)
+command! -bang -nargs=* Rg
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.fzf#shellescape(<q-args>),
+            \   1,
+            \   fzf#vim#with_preview({'options':['--layout=reverse']}),
+            \   <bang>0)
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>r :Rg<CR>
 
 "------- colortips.vim -------
 let g:colortips_left_char = " "
@@ -490,18 +507,19 @@ let g:colortips_right_visible = v:false
 let g:colortips_fill_visible = v:true
 
 "------- memolist.vim -------
-nnoremap mn :MemoNew<CR>
-nnoremap ml :MemoList<CR>
-nnoremap mg :MemoGrep<CR>
+nnoremap <Leader>mn :MemoNew<CR>
+nnoremap <Leader>ml :MemoList<CR>
+nnoremap <Leader>mg :MemoGrep<CR>
 let g:memolist_path = expand("~/memo")
 let g:memolist_memo_suffix = "md"
 let g:memolist_memo_date = "%Y-%m-%d %T"
-let g:memolist_prompt_tags = 1
-let g:memolist_prompt_categories = 1
+let g:memolist_prompt_tags = v:false
+let g:memolist_prompt_categories = v:false
 let g:memolist_qfixgrep = 1
 let g:memolist_fzf = 1
 let g:memolist_delimiter_yaml_start = '=========='
 let g:memolist_delimiter_yaml_end = '=========='
+
 
 "------- vim-anzu -------
 nmap n <Plug>(anzu-n-with-echo)
