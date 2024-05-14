@@ -22,9 +22,6 @@ repo = 'itchyny/lightline.vim'
 repo = 'mengelbrecht/lightline-bufferline'
 
 #------- Icons -------
-# [[plugins]]
-# repo = 'ryanoasis/vim-devicons'
-
 [[plugins]]
 repo = 'lambdalisue/nerdfont.vim'
 
@@ -115,3 +112,9 @@ repo = 'cohama/lexima.vim'
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
+
+[[plugins]]
+repo = 'thinca/vim-themis'
+
+[[plugins]]
+repo = 'glidenote/memolist.vim'

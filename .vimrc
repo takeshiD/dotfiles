@@ -489,6 +489,20 @@ let g:colortips_left_visible = v:true
 let g:colortips_right_visible = v:false
 let g:colortips_fill_visible = v:true
 
+"------- memolist.vim -------
+nnoremap mn :MemoNew<CR>
+nnoremap ml :MemoList<CR>
+nnoremap mg :MemoGrep<CR>
+let g:memolist_path = expand("~/memo")
+let g:memolist_memo_suffix = "md"
+let g:memolist_memo_date = "%Y-%m-%d %T"
+let g:memolist_prompt_tags = 1
+let g:memolist_prompt_categories = 1
+let g:memolist_qfixgrep = 1
+let g:memolist_fzf = 1
+let g:memolist_delimiter_yaml_start = '=========='
+let g:memolist_delimiter_yaml_end = '=========='
+
 "------- vim-anzu -------
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
