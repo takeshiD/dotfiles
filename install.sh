@@ -164,7 +164,7 @@ function main(){
     title "Application Install"
     title "================================"
     set +e
-    run checkinstall git tmux gcc binutils make cmake vim deno starship powerline acpi
+    run checkinstall git tmux gcc binutils make cmake vim starship powerline acpi clangd skktools fzf ripgrep ruby
     set -e
     # tmux:tpm
     if [[ ! -d "$HOME"/.tmux/plugins/tpm ]];then
@@ -178,6 +178,8 @@ function main(){
         warning "'tpm' is already installed to ${HOME}/.tmux/plugins/tpm"
     fi
     echo
+    # deno latest: install to ~/.deno/bin
+    curl -fsSL https://deno.land/install.sh | sh
     #---------------- Utils -------------------------
     title "Utils"
     title "================================"
@@ -205,6 +207,7 @@ function main(){
     run symlink "$currentdir"/config/powerline-shell/config.json "$HOME"/.config/powerline-shell/config.json
     run symlink "$currentdir"/config/starship/starship.toml "$HOME"/.config/starship/starship.toml
     run mymkdir "$HOME"/.tmux/resurrect
+    run mymkdir "$HOME"/.skk
     echo
 
     title "done"

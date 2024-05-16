@@ -1,4 +1,80 @@
 "====================================================
+" Vim Configurations
+"====================================================
+"------ Keymaps ------
+let mapleader = "\<SPACE>"
+nnoremap <ESC><ESC> :noh<CR>
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+noremap <CR><CR> <C-w>w
+inoremap jj <ESC>
+nnoremap <C-p> :bprev<CR>
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-w><C-w> :bdelete %<cr>
+noremap L $
+
+"------ encode ------
+set fileformat=unix
+set fileencoding=utf-8
+set encoding=utf-8
+
+"------ Format ------
+set smartindent
+set autoindent
+set showmatch
+set expandtab
+set smarttab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+"------ Look&Feel ------
+set list
+set listchars=tab:›—,eol:↲,nbsp:*,
+set fillchars+=vert:│,fold:-,foldopen:─,foldclose:+
+set hlsearch
+set incsearch
+set ruler
+set number
+set relativenumber
+set diffopt=vertical
+set showmatch
+set showtabline=2
+set laststatus=2
+set nofoldenable
+" set cursorline
+" set cursorcolumn
+if has('win64')
+    set guifont=HackGenNerd\ Console:h14
+    set guifontwide=HackGenNerd\ Console:h14
+else
+    set guifont=HackGenNerd\ Console\ 14
+    set guifontwide=HackGenNerd\ Console\ 14
+endif
+
+"------ Misc ------
+set nobackup
+set noswapfile
+set autoread
+set hidden
+set showcmd
+set virtualedit=onemore
+set visualbell
+set wildmode=list:longest
+set wildmenu
+set clipboard=unnamedplus
+set synmaxcol=200
+set helplang=ja,en
+"------ Undo Persistent ------
+if has('persistent_undo')
+    let undo_path = expand("~/.vim/.undo")
+    exe 'set undodir=' .. undo_path
+    set undofile
+endif
+
+"====================================================
 " Configuration dein.vim
 "====================================================
 if &compatible
@@ -52,7 +128,7 @@ filetype plugin indent on
 syntax on
 
 "====================================================
-" Utility Vim Configurations
+" Plugin Configurations
 "====================================================
 "------ ColorScheme ------
 syntax enable
@@ -236,8 +312,6 @@ nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_auto_enable = v:true
 " let g:lsp_log_file = expand('~/vim-lsp.log')
 " let g:lsp_log_verbose = 1
-" let g:lsp_text_edit_enabled = v:true
-" let g:lsp_insert_text_enabled = v:true
 let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_echo_curosr = v:false
 let g:lsp_diagnostics_float_cursor = v:true
@@ -463,6 +537,7 @@ let g:lsp_settings = {
             \}
 " for clangd
 autocmd BufRead,BufNewFile .clangd setfiletype yaml
+
 "------ asyncomplete --------
 let g:asyncomplete_auto_popup = 1
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -480,8 +555,7 @@ let g:vista_cursor_delay = '100'
 let g:vista_log_file = expand('~/vista.log')
 let g:vista#renderer#enable_icon = 1
 nnoremap <C-f> :<C-u>Vista!!<CR>
-" nnoremap <F1> :<C-u>Vista finder<CR>
-"
+
 "------- fzf.vim -------
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
@@ -520,91 +594,36 @@ let g:memolist_fzf = 1
 let g:memolist_delimiter_yaml_start = '=========='
 let g:memolist_delimiter_yaml_end = '=========='
 
-
 "------- vim-anzu -------
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
-"------ Keymaps ------
-let mapleader = "\<Space>"
-nnoremap <ESC><ESC> :noh<CR>
-nnoremap k gk
-nnoremap gk k
-nnoremap j gj
-nnoremap gj j
-noremap <CR><CR> <C-w>w
-inoremap jj <ESC>
-nnoremap <C-p> :bprev<CR>
-nnoremap <C-n> :bnext<CR>
-nnoremap <C-w><C-w> :bdelete %<cr>
-noremap L $
-
-"------ encode ------
-set fileformat=unix
-set fileencoding=utf-8
-set encoding=utf-8
-
-"------ Format ------
-set smartindent
-set autoindent
-set showmatch
-set expandtab
-set smarttab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-
-"------ Look&Feel ------
-set list
-set listchars=tab:›—,eol:↲,nbsp:*,
-set fillchars+=vert:│,fold:-,foldopen:─,foldclose:+
-set hlsearch
-set incsearch
-set ruler
-set number
-set relativenumber
-set diffopt=vertical
-set showmatch
-set showtabline=2
-set laststatus=2
-set nofoldenable
-" set cursorline
-" set cursorcolumn
-if has('win64')
-    set guifont=HackGenNerd\ Console:h14
-    set guifontwide=HackGenNerd\ Console:h14
-else
-    set guifont=HackGenNerd\ Console\ 14
-    set guifontwide=HackGenNerd\ Console\ 14
-endif
-
-"------ Misc ------
-set nobackup
-set noswapfile
-set autoread
-set hidden
-set showcmd
-set virtualedit=onemore
-set visualbell
-set wildmode=list:longest
-set wildmenu
-set clipboard=unnamedplus
-set synmaxcol=200
-set helplang=ja,en
-"------ Undo Persistent ------
-if has('persistent_undo')
-    let undo_path = expand("~/.vim/.undo")
-    exe 'set undodir=' .. undo_path
-    set undofile
-endif
 
 "------ Indent Guides ---------
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 1
+
+"------ denops ------
+let g:denops#deno = expand('~/.deno/bin/deno')
+
+"------ skkeleton ------
+function! s:skkeleton_init() abort
+    call skkeleton#config({
+          \ 'globalDictionaries': [expand("~/.skk/SKK-JISYO.L")],
+          \ 'completionRankFile': expand('~/.skk/rank.json'),
+          \ 'eggLikeNewline': v:true,
+          \})
+endfunction
+augroup skkeleton-initialize-pre
+  autocmd!
+  autocmd User skkeleton-initialize-pre call s:skkeleton_init()
+augroup END
+imap <C-j> <Plug>(skkeleton-toggle)
+cmap <C-j> <Plug>(skkeleton-toggle)
 
 "====================================================
 " Functions
