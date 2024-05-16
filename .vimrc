@@ -628,6 +628,17 @@ augroup END
 imap <C-j> <Plug>(skkeleton-toggle)
 cmap <C-j> <Plug>(skkeleton-toggle)
 
+"------ gtd.vim ------
+let g:gtd#dir = expand('~/.gtd')
+let g:gtd#default_context = 'home'
+let g:gtd#default_action = 'inbox'
+let g:gtd#review = [
+      \ '!inbox',
+      \ '!todo',
+      \ '!someday',
+      \]
+nmap <Leader>gf <Plug>GtdFiles
+nmap <Leader>ge <Plug>GtdExplore
 "====================================================
 " Functions
 "====================================================
