@@ -207,7 +207,7 @@ function main(){
     run symlink "$currentdir"/config/powerline-shell/config.json "$HOME"/.config/powerline-shell/config.json
     run symlink "$currentdir"/config/starship/starship.toml "$HOME"/.config/starship/starship.toml
     run mymkdir "$HOME"/.tmux/resurrect
-    run mymkdir "$HOME"/.skk
+    run symlink "$currentdir"/skk "$HOME"/.skk
     echo
 
     title "done"

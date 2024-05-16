@@ -16,8 +16,8 @@ nnoremap <C-w><C-w> :bdelete %<cr>
 noremap L $
 
 "------ encode ------
-set fileformat=unix
-set fileencoding=utf-8
+set fileformats=unix,dos,mac
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set encoding=utf-8
 
 "------ Format ------
@@ -613,8 +613,11 @@ let g:denops#deno = expand('~/.deno/bin/deno')
 "------ skkeleton ------
 function! s:skkeleton_init() abort
     call skkeleton#config({
-          \ 'globalDictionaries': [expand("~/.skk/SKK-JISYO.L")],
-          \ 'completionRankFile': expand('~/.skk/rank.json'),
+          \ 'globalDictionaries': ['~/.skk/dict/SKK-JISYO.L',
+          \                        '~/.skk/dict/SKK-JISYO.geo',
+          \                        '~/.skk/dict/SKK-JISYO.fullname',
+          \                        '~/.skk/dict/SKK-JISYO.emoji'],
+          \ 'completionRankFile': '~/.skk/rank.json',
           \ 'eggLikeNewline': v:true,
           \})
 endfunction
