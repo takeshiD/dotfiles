@@ -126,8 +126,8 @@ Options:
 
 function main(){
     ################# Argument Parser ###############
-    while [ $# -gt 0 ];do
-        case ${1} in
+    while [[ "$#" -gt 0 ]];do
+        case "$1" in
             --help|-h)
                 helpmsg
                 exit 1
@@ -138,13 +138,25 @@ function main(){
             --dryrun)
                 DRYRUN=true
                 ;;
+            --)
+                shift
+                break
+                ;;
+            -*|--*=)
+                echo "Error: Unsupported flag $1" >&2
+                helpmsg
+                exit 1
+                ;;
            *)
+                echo "Error: Unsupported positional argument $1"
+                helpmsg
+                exit 1
                 ;;
         esac
         shift
     done
     
-    if ! yes_no "Start setup.OK? [Y/n] ";then
+    if ! yes_no "Start setup? [Y/n] ";then
         exit 1
     fi
     echo

@@ -17,7 +17,7 @@ noremap L $
 
 "------ encode ------
 set fileformats=unix,dos,mac
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,euc-jp,sjis
 set encoding=utf-8
 
 "------ Format ------
@@ -535,6 +535,7 @@ let g:lsp_settings = {
             \   'cmd': ['/opt/llvm/bin/clangd', '--enable-config'],
             \ }
             \}
+let g:lsp_settings_filetype_python = ['ruff-lsp', 'pylsp-all']
 " for clangd
 autocmd BufRead,BufNewFile .clangd setfiletype yaml
 
