@@ -2,7 +2,6 @@
 " Vim Configurations
 "====================================================
 "------ Keymaps ------
-let mapleader = "\<SPACE>"
 nnoremap <ESC><ESC> :noh<CR>
 nnoremap k gk
 nnoremap gk k
@@ -130,6 +129,7 @@ syntax on
 "====================================================
 " Plugin Configurations
 "====================================================
+let mapleader = "\<SPACE>"
 "------ ColorScheme ------
 syntax enable
 " True Color
@@ -672,3 +672,5 @@ function! ProfileCursorMove() abort
 endfunction
 
 set modeline
+
+
