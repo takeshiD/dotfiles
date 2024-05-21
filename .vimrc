@@ -157,11 +157,11 @@ let g:lightline.active = {
             \         ['gitbranch'],
             \         ['filenamestatus']],
             \ 'right':[['lineinfo'],
-            \          ['fileformat','fileencoding','filetype']]
+            \          ['skkmode','fileencoding','filetype']]
             \}
 let g:lightline.inactive = {
             \ 'left':[['filenamestatus']],
-            \ 'right':[['fileformat','fileencoding','filetype']]
+            \ 'right':[['skkmode','fileencoding','filetype']]
             \}
 let g:lightline.tabline = {
             \ 'left':[['buffers']],
@@ -189,6 +189,7 @@ let g:lightline.component_expand = {
             \ 'lineinfo': 'LightlineLineInfo',
             \ 'buffers': 'lightline#bufferline#buffers',
             \ 'filetype': 'LightlineFileType',
+            \ 'skkmode': 'LightlineSKKMode',
             \}
 let g:lightline.component_type = {
             \ 'buffers': 'tabsel'
@@ -229,6 +230,27 @@ endfunction
 
 function! LightlineFileType() abort
     return nerdfont#find(fnamemodify(@%, ':t'), 0) .. ' ' . &ft
+endfunction
+
+function! LightlineSKKMode() abort
+    if exists('*skkeleton#is_enabled()') && skkeleton#is_enabled()
+      let l:_mode = skkeleton#mode()
+      if l:_mode ==# 'hira'
+        let l:mode = 'あ'
+      elseif l:_mode ==# 'kata'
+        let l:mode = 'ア'
+      elseif l:_mode ==# 'hankata'
+        let l:mode = '󱌶'
+      elseif l:_mode ==# 'zenkaku'
+        let l:mode = 'Ａ'
+      elseif l:_mode ==# 'abbrev'
+        let l:mode = 'abb'
+      else
+        let l:mode = '?'
+      endif
+      return '󰗊 ' .. l:mode
+    endif
+    return '󰸆 '
 endfunction
 
 augroup LightlineUpdate
@@ -545,6 +567,28 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
+" function s:completor(opt, ctx)
+"     let l:col = a:ctx['col']
+"     let l:typed = a:ctx['typed']
+"     let l:kw = matchstr(l:typed, '\v\S+$')
+"     let l:kwlen = len(l:kw)
+"     let l:startcol = l:col - l:kwlen
+"     let l:matches = [
+"         \ "do", "if", "in", "for", "let", "new", "try", "var", "case", "else", "enum", "eval", "null", "this", "true",
+"         \ "void", "with", "await", "break", "catch", "class", "const", "false", "super", "throw", "while", "yield",
+"         \ "delete", "export", "import", "public", "return", "static", "switch", "typeof", "default", "extends",
+"         \ "finally", "package", "private", "continue", "debugger", "function", "arguments", "interface", "protected",
+"         \ "implements", "instanceof"
+"         \ ]
+"     call asyncomplete#complete(a:opt['name'], a:ctx, l:startcol, l:matches)
+" endfunction
+
+" au User asyncomplete_setup call asyncomplete#register_source({
+"     \ 'name': 'mylanguage',
+"     \ 'allowlist': ['*'],
+"     \ 'completor': function('s:completor'),
+"     \ })
+
 "------ vista.vim ------
 let g:vista_default_executive = 'ctags'
 let g:vista_icon_indent = ["▶ ", ""]
@@ -620,11 +664,16 @@ function! s:skkeleton_init() abort
           \                        '~/.skk/dict/SKK-JISYO.emoji'],
           \ 'completionRankFile': '~/.skk/rank.json',
           \ 'eggLikeNewline': v:true,
+          \ 'keepMode': v:true,
+          \ 'keepState': v:true,
           \})
 endfunction
 augroup skkeleton-initialize-pre
   autocmd!
   autocmd User skkeleton-initialize-pre call s:skkeleton_init()
+  autocmd User skkeleton-enable-post call lightline#update()
+  autocmd User skkeleton-mode-changed call lightline#update()
+  autocmd User skkeleton-disable-post call lightline#update()
 augroup END
 imap <C-j> <Plug>(skkeleton-toggle)
 cmap <C-j> <Plug>(skkeleton-toggle)
