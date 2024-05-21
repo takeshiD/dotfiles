@@ -567,28 +567,6 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-" function s:completor(opt, ctx)
-"     let l:col = a:ctx['col']
-"     let l:typed = a:ctx['typed']
-"     let l:kw = matchstr(l:typed, '\v\S+$')
-"     let l:kwlen = len(l:kw)
-"     let l:startcol = l:col - l:kwlen
-"     let l:matches = [
-"         \ "do", "if", "in", "for", "let", "new", "try", "var", "case", "else", "enum", "eval", "null", "this", "true",
-"         \ "void", "with", "await", "break", "catch", "class", "const", "false", "super", "throw", "while", "yield",
-"         \ "delete", "export", "import", "public", "return", "static", "switch", "typeof", "default", "extends",
-"         \ "finally", "package", "private", "continue", "debugger", "function", "arguments", "interface", "protected",
-"         \ "implements", "instanceof"
-"         \ ]
-"     call asyncomplete#complete(a:opt['name'], a:ctx, l:startcol, l:matches)
-" endfunction
-
-" au User asyncomplete_setup call asyncomplete#register_source({
-"     \ 'name': 'mylanguage',
-"     \ 'allowlist': ['*'],
-"     \ 'completor': function('s:completor'),
-"     \ })
-
 "------ vista.vim ------
 let g:vista_default_executive = 'ctags'
 let g:vista_icon_indent = ["▶ ", ""]
@@ -616,7 +594,7 @@ command! -bang -nargs=* Rg
             \   fzf#vim#with_preview({'options':['--layout=reverse']}),
             \   <bang>0)
 nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>r :Rg<CR>
+nnoremap <C-g> :Rg<CR>
 
 "------- colortips.vim -------
 let g:colortips_left_char = " "
@@ -664,9 +642,13 @@ function! s:skkeleton_init() abort
           \                        '~/.skk/dict/SKK-JISYO.emoji'],
           \ 'completionRankFile': '~/.skk/rank.json',
           \ 'eggLikeNewline': v:true,
-          \ 'keepMode': v:true,
-          \ 'keepState': v:true,
+          \ 'keepMode': v:false,
+          \ 'keepState': v:false,
           \})
+    call add(g:skkeleton#mapped_keys, '<C-k>')
+    call add(g:skkeleton#mapped_keys, '<C-l>')
+    call skkeleton#register_keymap('input', '<C-k>', 'katakana')
+    call skkeleton#register_keymap('input', '<C-l>', 'hirakana')
 endfunction
 augroup skkeleton-initialize-pre
   autocmd!
