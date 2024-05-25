@@ -594,7 +594,7 @@ command! -bang -nargs=* Rg
             \   fzf#vim#with_preview({'options':['--layout=reverse']}),
             \   <bang>0)
 nnoremap <Leader>f :Files<CR>
-nnoremap <C-g> :Rg<CR>
+nnoremap <Leader>g :Rg<CR>
 
 "------- colortips.vim -------
 let g:colortips_left_char = " "
