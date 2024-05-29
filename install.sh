@@ -220,8 +220,7 @@ function main(){
     run symlink "$currentdir"/config/starship/starship.toml "$HOME"/.config/starship/starship.toml
     run mymkdir "$HOME"/.tmux/resurrect
     run symlink "$currentdir"/skk "$HOME"/.skk
-    echo
-
+    run symlink "$currentdir"/clangd "$HOME"/.local
     title "done"
 }
 
