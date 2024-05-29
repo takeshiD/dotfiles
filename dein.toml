@@ -132,3 +132,4 @@ repo = 'vim-denops/denops.vim'
 [[plugins]]
 repo = 'vim-skk/skkeleton'
 depends = ['vim-denops/denops.vim']
+
