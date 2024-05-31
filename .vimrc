@@ -185,11 +185,13 @@ let g:lightline.mode_map = {
 
 let g:lightline.component_expand = {
             \ 'gitbranch': 'LightlineGitbranch',
-            \ 'filenamestatus': 'LightlineFilenameAndStatus',
             \ 'lineinfo': 'LightlineLineInfo',
             \ 'buffers': 'lightline#bufferline#buffers',
             \ 'filetype': 'LightlineFileType',
             \ 'skkmode': 'LightlineSKKMode',
+            \}
+let g:lightline.component_function = {
+            \ 'filenamestatus': 'LightlineFilenameAndStatus',
             \}
 let g:lightline.component_type = {
             \ 'buffers': 'tabsel'
@@ -216,8 +218,7 @@ function! LightlineGitbranch() abort
 endfunction
 
 function! LightlineFilenameAndStatus() abort
-    let filename = @%
-    let filename = empty(filename) ? '[No Name]' : filename
+    let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
     let status = &modified ? '[+]' : 
                 \&readonly ? '[RO]':
                 \ ''
