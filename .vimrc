@@ -328,8 +328,9 @@ let g:indent_guides_auto_colors = 1
 "------ vim-lsp --------
 nnoremap <F1> <plug>(lsp-hover-float)
 nnoremap <F2> <plug>(lsp-peek-definition)
-nnoremap <F3> <plug>(lsp-peek-declaration)
-nnoremap <F4> <plug>(lsp-references)
+nnoremap <F3> <plug>(lsp-definition)
+nnoremap <F4> <plug>(lsp-implementation)
+nnoremap <F5> <plug>(lsp-references)
 nnoremap <C-j> <plug>(lsp-next-reference)
 nnoremap <C-k> <plug>(lsp-previous-reference)
 let g:lsp_auto_enable = v:true
@@ -556,7 +557,10 @@ let g:lsp_get_supported_capabilities = [function('My_supported_capabilities')]
 let g:lsp_settings = {
             \ 'clangd': {
             \   'cmd': ['/opt/llvm/bin/clangd', '--enable-config'],
-            \ }
+            \ },
+            \ 'taplo-lsp': {
+            \   'cmd': ['/opt/taplo/taplo', 'lsp', 'stdio'],
+            \ },
             \}
 let g:lsp_settings_filetype_python = ['ruff-lsp', 'pylsp-all']
 " for clangd
@@ -672,7 +676,12 @@ let g:gtd#review = [
       \]
 nmap <Leader>gf <Plug>GtdFiles
 nmap <Leader>ge <Plug>GtdExplore
-"====================================================
+
+"------- vim-maketable ------
+" :<,>MakeTable
+" <Leader>tm => TableModeToggle
+" <Leader>tt => Tablize
+
 " Functions
 "====================================================
 command! Profile call s:command_profile()

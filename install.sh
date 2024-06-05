@@ -221,6 +221,7 @@ function main(){
     run mymkdir "$HOME"/.tmux/resurrect
     run symlink "$currentdir"/skk "$HOME"/.skk
     run symlink "$currentdir"/clangd "$HOME"/.local
+    run symlink "$currentdir"/memo "$HOME"/memo
     title "done"
 }
 
