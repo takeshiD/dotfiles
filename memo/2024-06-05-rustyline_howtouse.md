@@ -4,6 +4,10 @@ date: 2024-06-05 16:08:46
 tags: ["rust", "rustyline"]
 categories: []
 ==========
+# reference
+* SourceCode: https://github.com/kkawakam/rustyline.git
+* Document: https://docs.rs/rustyline/14.0.0/rustyline/index.html
+
 # simple
 ```rust
 use rustyline::{DefaultEditor, Result};
@@ -54,7 +58,7 @@ fn main() -> Result<()> {
 }
 ```
 
-# diy-hints
+# Hints
 
 ```rust
 use std::collections::HashSet;
@@ -179,3 +183,67 @@ rustyline = {version = "14.0.0", features = ["derive"]}
 rustylineのCargo.tomlは以下リンク
 
 https://github.com/kkawakam/rustyline/blob/master/Cargo.toml
+
+## 解説
+大きく`Hiter`と`Hint`に分けられる。
+```rust
+pub trait Hint {
+    // Hintsがアクティブな時に表示される文字列
+    fn display(&self) -> &str;
+    // デフォルトでは右矢印キーで補完する文字列
+    fn completion(&self) -> Option<&str>;
+}
+
+pub trait Hinter {
+    type Hint: Hint + 'static;
+    // 
+    fn hint(
+        &self,
+        line: &str,
+        pos: usize,
+        ctx: &Context<'_>
+    ) -> Option<Self::Hint> { ... }
+}
+```
+
+### 実装部
+実装部だけ抜きだすと以下。`CommandHint`と`DIYHinter`が自身の実装struct
+
+```rust
+// Hintは表示と補完だけなのでノー解説
+impl Hint for CommandHint {
+    fn display(&self) -> &str {
+        &self.display
+    }
+
+    fn completion(&self) -> Option<&str> {
+        if self.complete_up_to > 0 {
+            Some(&self.display[..self.complete_up_to])
+        } else {
+            None
+        }
+    }
+}
+
+impl Hinter for DIYHinter {
+    type Hint = CommandHint;
+    fn hint(&self, line: &str, pos: usize, _ctx: &Context<'_>) -> Option<CommandHint> {
+        if line.is_empty() || pos < line.len() {
+            return None;
+        }
+        // self.hints: HashSet<CommandHint>
+        self.hints
+            .iter()
+            .filter_map(|hint| {
+                // expect hint after word complete, like redis cli, add condition:
+                // line.ends_with(" ")
+                if hint.display.starts_with(line) {
+                    Some(hint.suffix(pos))
+                } else {
+                    None
+                }
+            })
+            .next()
+    }
+}
+```
