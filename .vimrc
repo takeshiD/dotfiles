@@ -622,6 +622,17 @@ let g:memolist_fzf = 1
 let g:memolist_delimiter_yaml_start = '=========='
 let g:memolist_delimiter_yaml_end = '=========='
 
+function! s:memolist_autocommit() abort
+  :Git add $HOME/dotfiles/memo
+  :Git commit -m "auto update"
+  :Git push
+  echomsg "Auto commited"
+endfunction
+augroup MemoAutoCommit
+  autocmd!
+  autocmd BufWritePost,FileWritePost $HOME/dotfiles/memo/* call s:memolist_autocommit()
+augroup END
+
 "------- vim-anzu -------
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
