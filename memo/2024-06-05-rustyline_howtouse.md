@@ -8,6 +8,9 @@ categories: []
 * SourceCode: https://github.com/kkawakam/rustyline.git
 * Document: https://docs.rs/rustyline/14.0.0/rustyline/index.html
 
+# 主なtrait
+
+
 # simple
 ```rust
 use rustyline::{DefaultEditor, Result};
@@ -185,7 +188,7 @@ rustylineのCargo.tomlは以下リンク
 https://github.com/kkawakam/rustyline/blob/master/Cargo.toml
 
 ## 解説
-大きく`Hiter`と`Hint`に分けられる。
+大きく`Hinter`と`Hint`に分けられる。
 ```rust
 pub trait Hint {
     // Hintsがアクティブな時に表示される文字列
@@ -235,8 +238,6 @@ impl Hinter for DIYHinter {
         self.hints
             .iter()
             .filter_map(|hint| {
-                // expect hint after word complete, like redis cli, add condition:
-                // line.ends_with(" ")
                 if hint.display.starts_with(line) {
                     Some(hint.suffix(pos))
                 } else {
@@ -247,3 +248,42 @@ impl Hinter for DIYHinter {
     }
 }
 ```
+
+# EventHandler
+```rust
+use rustyline::{
+    Cmd, ConditionalEventHandler, DefaultEditor, Event, EventContext, EventHandler, KeyCode,
+    KeyEvent, Modifiers, RepeatCount, Result,
+};
+
+struct FilteringEventHandler;
+impl ConditionalEventHandler for FilteringEventHandler {
+    fn handle(&self, evt: &Event, _: RepeatCount, _: bool, _: &EventContext) -> Option<Cmd> {
+        if let Some(KeyEvent(KeyCode::Char(c), m)) = evt.get(0) {
+            if m.contains(Modifiers::CTRL) || m.contains(Modifiers::ALT) || c.is_ascii_digit() {
+                None
+            } else {
+                Some(Cmd::Noop) // filter out invalid input
+            }
+        } else {
+            None
+        }
+    }
+}
+
+fn main() -> Result<()> {
+    let mut rl = DefaultEditor::new()?;
+
+    rl.bind_sequence(
+        Event::Any,
+        EventHandler::Conditional(Box::new(FilteringEventHandler)),
+    );
+
+    loop {
+        let line = rl.readline("> ")?;
+        println!("Num: {line}");
+    }
+}
+```
+
+
