@@ -623,14 +623,14 @@ let g:memolist_delimiter_yaml_start = '=========='
 let g:memolist_delimiter_yaml_end = '=========='
 
 function! s:memolist_autocommit() abort
-  :Git add $HOME/dotfiles/memo
-  :Git commit -m "auto update"
-  :Git push
-  echomsg "Auto commited"
+  :silent Git add $HOME/dotfiles/memo
+  :silent Git commit -m "auto update"
+  :silent Git push
+  echomsg "[INFO] Auto commited ~/memo"
 endfunction
 augroup MemoAutoCommit
   autocmd!
-  autocmd BufWritePost,FileWritePost $HOME/dotfiles/memo/* call s:memolist_autocommit()
+  autocmd BufDelete $HOME/dotfiles/memo/* call s:memolist_autocommit()
 augroup END
 
 "------- vim-anzu -------
