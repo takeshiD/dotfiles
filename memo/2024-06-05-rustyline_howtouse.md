@@ -196,7 +196,7 @@ pub trait Hint {
 
 pub trait Hinter {
     type Hint: Hint + 'static;
-    // 
+    // 補完のたびに呼ばれるメイン関数
     fn hint(
         &self,
         line: &str,
