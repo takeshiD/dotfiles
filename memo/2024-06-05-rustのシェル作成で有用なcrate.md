@@ -14,5 +14,5 @@ categories: ["rust", "shell", "crate"]
 | crates    | category       | description                           |
 |-----------|----------------|---------------------------------------|
 | rustyline | line-edit, cli | 行編集ライブラリ、reedlineqより新しい |
-| reedline  | line-edit, cli | 行編集ライブラリ |
+| reedline  | line-edit| cli | 行編集ライブラリ ||
 
