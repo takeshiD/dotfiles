@@ -178,4 +178,4 @@ rustyline = {version = "14.0.0", features = ["derive"]}
 
 rustylineのCargo.tomlは以下リンク
 
-https://github.com/kkawakam/rustyline/blob/master/Cargo.tom://github.com/kkawakam/rustyline/blob/master/Cargo.toml
+https://github.com/kkawakam/rustyline/blob/master/Cargo.toml
