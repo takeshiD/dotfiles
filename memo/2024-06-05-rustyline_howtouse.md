@@ -55,13 +55,7 @@ fn main() -> Result<()> {
 ```
 
 # diy-hints
-ヒント機能の利用。
-Rustのworkspaceをよくわかっておらず若干はまる。
-RustのライブラリはCargo.tomlの`[features]`で機能の有効化/無効化をするらしい。
-rootのCargo.tomlは以下
-```toml:Cargo.toml
 
-```
 ```rust
 use std::collections::HashSet;
 use rustyline::hint::{Hint, Hinter};
@@ -159,3 +153,29 @@ fn main() -> Result<()> {
     }
 }
 ```
+
+
+ヒント機能の利用。Rustのworkspaceをよくわかっておらず若干はまる。
+RustのライブラリはCargo.tomlの`[features]`で機能の有効化/無効化をするらしい。
+rootのCargo.tomlは以下
+
+
+```toml:Cargo.toml
+[package]
+name = "ex_rustyline"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rand = "0.8.5"
+rustyline = {version = "14.0.0", features = ["derive"]}
+```
+
+
+このページが参考になった。
+* Rust フィーチャーフラグの使い方 : https://qiita.com/osanshouo/items/43271813b5d62e89d598
+
+
+rustylineのCargo.tomlは以下リンク
+
+https://github.com/kkawakam/rustyline/blob/master/Cargo.tom://github.com/kkawakam/rustyline/blob/master/Cargo.toml
