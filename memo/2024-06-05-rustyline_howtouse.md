@@ -8,8 +8,32 @@ categories: []
 * SourceCode: https://github.com/kkawakam/rustyline.git
 * Document: https://docs.rs/rustyline/14.0.0/rustyline/index.html
 
-# 主なtrait
+# trait
 
+* completion
+    * Candidate
+    * Completer
+* config
+    * Builder
+    * Config
+* error
+    * ReadlineError::Io(Error)
+    * ReadlineError::Eof
+    * ReadlineError::Interrupterd
+    * ReadlineError::Errno(Error)
+    * ReadlineError::WindowResized
+* highlight
+    * Highliter
+* hint
+    * Hint
+    * Hinter
+* history
+    * History
+* line_buffer
+    * ChangeListener
+    * DeleteListener
+* validate
+    * Validator
 
 # simple
 ```rust
