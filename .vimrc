@@ -623,9 +623,9 @@ let g:memolist_delimiter_yaml_start = '=========='
 let g:memolist_delimiter_yaml_end = '=========='
 
 function! s:memolist_autocommit() abort
-  :silent Git add $HOME/dotfiles/memo
-  :silent Git commit -m "auto update"
-  :silent Git push
+  :Git add $HOME/dotfiles/memo
+  :Git commit -m "auto update"
+  :Git push
   echomsg "[INFO] Auto commited ~/memo"
 endfunction
 augroup MemoAutoCommit
