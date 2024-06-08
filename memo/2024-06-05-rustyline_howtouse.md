@@ -311,3 +311,17 @@ fn main() -> Result<()> {
 ```
 
 
+# Editor
+エントリーポイントとなるstruct
+```rust
+pub struct Editor<H: Helper, I: History> {
+    term: Terminal,
+    buffer: Option<Buffer>,
+    history: I,
+    helper: Option<H>,
+    kill_ring: KillRing,
+    config: Config,
+    custom_bindings: Bindings,
+}
+```
+よく例題に現れる`DefaultEditor`はHistoryがDefaultHistoryとなっている構造体。
