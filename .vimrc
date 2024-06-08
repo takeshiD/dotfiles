@@ -613,9 +613,6 @@ let g:colortips_right_visible = v:false
 let g:colortips_fill_visible = v:true
 
 "------- memolist.vim -------
-nnoremap <Leader>mn :MemoNew<CR>
-nnoremap <Leader>ml :MemoList<CR>
-nnoremap <Leader>mg :MemoGrep<CR>
 let g:memolist_path = expand("~/memo")
 let g:memolist_memo_suffix = "md"
 let g:memolist_memo_date = "%Y-%m-%d %T"
@@ -623,8 +620,11 @@ let g:memolist_prompt_tags = v:false
 let g:memolist_prompt_categories = v:false
 let g:memolist_qfixgrep = 1
 let g:memolist_fzf = 1
-let g:memolist_delimiter_yaml_start = '=========='
-let g:memolist_delimiter_yaml_end = '=========='
+let g:memolist_memo_suffix = "memolist-template"
+let g:memolist_template_dir_path = expand('~/.vim')
+nnoremap <Leader>mn :MemoNew<CR>
+nnoremap <Leader>ml :MemoList<CR>
+nnoremap <Leader>mg :MemoGrep<CR>
 
 function! s:memolist_autocommit() abort
   :Git add $HOME/dotfiles/memo
