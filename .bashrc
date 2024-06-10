@@ -82,6 +82,8 @@ if [[ -d "$HOME"/dotfiles/bash-scripts ]];then
     if [[ -f "$script_dir"/24-bit-color.sh ]];then
         source "$script_dir"/24-bit-color.sh
     fi
+    #------ tmux command alias ------
+    alias assist='$script_dir/assist.sh'
 fi
 
 #=======================================================
