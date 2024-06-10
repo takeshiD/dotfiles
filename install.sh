@@ -176,7 +176,7 @@ function main(){
     title "Application Install"
     title "================================"
     set +e
-    run checkinstall git tmux gcc binutils make cmake vim starship powerline acpi clangd skktools fzf ripgrep ruby
+    run checkinstall git tmux gcc binutils make cmake vim starship powerline acpi clangd skktools fzf ripgrep ruby trans rlwrap
     set -e
     # tmux:tpm
     if [[ ! -d "$HOME"/.tmux/plugins/tpm ]];then

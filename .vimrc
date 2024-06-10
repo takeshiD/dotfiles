@@ -77,6 +77,30 @@ if has('persistent_undo')
     set undofile
 endif
 
+"------- binary editing -------
+let g:binary_edit_width = 16
+augroup binary
+  autocmd!
+  autocmd bufreadpre  *.bin set binary
+  autocmd bufreadpost *.bin
+    \ if &binary
+    \ |   execute "silent %!xxd -c " .. g:binary_edit_width
+    \ |   set filetype=xxd
+    \ |   redraw
+    \ | endif
+  autocmd BufWritePre *.bin
+    \ if &binary
+    \ |   let s:view = winsaveview()
+    \ |   execute "silent %!xxd -r -c " .. g:binary_edit_width
+    \ | endif
+  autocmd BufWritePost *.bin
+    \ if &binary
+    \ |   execute "silent %!xxd -c " .. g:binary_edit_width
+    \ |   set nomodified
+    \ |   call winrestview(s:view)
+    \ |   redraw
+    \ | endif
+augroup END
 "====================================================
 " Configuration dein.vim
 "====================================================
