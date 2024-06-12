@@ -752,5 +752,4 @@ function! ProfileCursorMove() abort
 endfunction
 
 set modeline
-
-
+set expandtab
