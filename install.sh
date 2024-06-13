@@ -11,21 +11,22 @@ PURPLE='\e[1;35m'
 CYAN='\e[1;36m'
 WHITE='\e[1;37m'
 CLEAR='\e[0m'
+BOLD='\e[1m'
 
 function success(){
-    echo -e "${GREEN}SUCCESS:${CLEAR} ${1}"
+    echo -e "${GREEN}${BOLD}SUCCESS:${CLEAR} ${1}"
 }
 function warning(){
-    echo -e "${YELLOW}WARNING:${CLEAR} ${1}"
+    echo -e "${YELLOW}${BOLD}WARNING:${CLEAR} ${1}"
 }
 function error(){
-    echo -e "${RED}ERROR:${CLEAR} ${1}"
+    echo -e "${RED}${BOLD}ERROR:${CLEAR} ${1}"
 }
 function info(){
-    echo -e "${BLUE}INFO:${CLEAR} ${1}"
+    echo -e "${BLUE}${BOLD}INFO:${CLEAR} ${1}"
 }
 function title(){
-    echo -e "${WHITE}$1${CLEAR}"
+    echo -e "${BOLD}${WHITE}$1${CLEAR}"
 }
 function mymkdir(){
     mkdir -p $1 2> /dev/null || true
@@ -124,6 +125,12 @@ Options:
     --dryrun           Enable dry run"
 }
 
+function is_exist_service(){
+    local service="$1"
+    systemctl list-unit-files -t service | grep "$service"
+    return "$?"
+}
+
 function main(){
     ################# Argument Parser ###############
     while [[ "$#" -gt 0 ]];do
@@ -173,10 +180,11 @@ function main(){
     fi
     echo
     #---------------- Application Install ---------------------
+    echo
     title "Application Install"
     title "================================"
     set +e
-    run checkinstall git tmux gcc binutils make cmake vim starship powerline acpi clangd skktools fzf ripgrep ruby trans rlwrap
+    run checkinstall git tmux gcc binutils make cmake vim starship powerline acpi clangd skktools fzf ripgrep ruby trans rlwrap unzip zip less
     set -e
     # tmux:tpm
     if [[ ! -d "$HOME"/.tmux/plugins/tpm ]];then
@@ -193,18 +201,24 @@ function main(){
     # deno latest: install to ~/.deno/bin
     curl -fsSL https://deno.land/install.sh | sh
     #---------------- Utils -------------------------
+    echo
     title "Utils"
     title "================================"
     # bluetooth
-    run sudo systemctl start bluetooth.service
-    run sudo systemctl enable bluetooth.service
-    if [[ $? -eq 0 ]];then
-        success "enable bluetooth.service"
+    if is_exist_service "bluetooth";then
+       run sudo systemctl start bluetooth.service
+       run sudo systemctl enable bluetooth.service
+       if [[ $? -eq 0 ]];then
+           success "enable 'bluetooth.service'"
+       else
+           error "disable 'bluetooth.service'"
+       fi
+       echo
     else
-        error "disable bluetooth.service"
+        warning "'bluetooth.service is not running on systemd.'"
     fi
-    echo
     #---------------- Create symlinks -------------------------
+    echo
     title "Create symlinks"
     title "================================"
     local currentdir=$(dirname $(readlink -f "${BASH_SOURCE[0]:-$0}"))
@@ -219,9 +233,12 @@ function main(){
     run symlink "$currentdir"/config/powerline-shell/config.json "$HOME"/.config/powerline-shell/config.json
     run symlink "$currentdir"/config/starship/starship.toml "$HOME"/.config/starship/starship.toml
     run mymkdir "$HOME"/.tmux/resurrect
-    run symlink "$currentdir"/skk "$HOME"/.skk
-    run symlink "$currentdir"/clangd "$HOME"/.local
-    run symlink "$currentdir"/memo "$HOME"/memo
+    run dirlink "$currentdir"/skk "$HOME"/.skk
+    run mymkdir "$HOME"/.local
+    run dirlink "$currentdir"/clangd "$HOME"/.local/clangd
+    run dirlink "$currentdir"/memo "$HOME"/memo
+    run cp "$currentdir"/.gitconfig "$HOME"/.gitconfig
+    # run git config --global credential.helper store --file ~/.git-credentials
     title "done"
 }
 
