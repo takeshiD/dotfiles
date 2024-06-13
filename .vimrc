@@ -1,107 +1,4 @@
 "====================================================
-" Vim Configurations
-"====================================================
-"------ Keymaps ------
-nnoremap <ESC><ESC> :noh<CR>
-nnoremap k gk
-nnoremap gk k
-nnoremap j gj
-nnoremap gj j
-noremap <CR><CR> <C-w>w
-inoremap jj <ESC>
-nnoremap <C-p> :bprev<CR>
-nnoremap <C-n> :bnext<CR>
-nnoremap <C-w><C-w> :bdelete %<cr>
-noremap L $
-
-"------ encode ------
-set fileformats=unix,dos,mac
-set fileencodings=utf-8,euc-jp,sjis
-set encoding=utf-8
-
-"------ Format ------
-set smartindent
-set autoindent
-set showmatch
-set expandtab
-set smarttab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-
-"------ Look&Feel ------
-set list
-set listchars=tab:›—,eol:↲,nbsp:*,
-set fillchars+=vert:│,fold:-,foldopen:─,foldclose:+
-set hlsearch
-set incsearch
-set ruler
-set number
-set relativenumber
-set diffopt=vertical
-set showmatch
-set showtabline=2
-set laststatus=2
-set nofoldenable
-" set cursorline
-" set cursorcolumn
-if has('win64')
-    set guifont=HackGenNerd\ Console:h14
-    set guifontwide=HackGenNerd\ Console:h14
-else
-    set guifont=HackGenNerd\ Console\ 14
-    set guifontwide=HackGenNerd\ Console\ 14
-endif
-" Save fold settings.
-autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
-autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
-" Don't save options.
-set viewoptions-=options
-"------ Misc ------
-set nobackup
-set noswapfile
-set autoread
-set hidden
-set showcmd
-set virtualedit=onemore
-set visualbell
-set wildmode=list:longest
-set wildmenu
-set clipboard=unnamedplus
-set synmaxcol=200
-set helplang=ja,en
-"------ Undo Persistent ------
-if has('persistent_undo')
-    let undo_path = expand("~/.vim/.undo")
-    exe 'set undodir=' .. undo_path
-    set undofile
-endif
-
-"------- binary editing -------
-let g:binary_edit_width = 16
-augroup binary
-  autocmd!
-  autocmd bufreadpre  *.bin set binary
-  autocmd bufreadpost *.bin
-    \ if &binary
-    \ |   execute "silent %!xxd -u -c " .. g:binary_edit_width
-    \ |   set filetype=xxd
-    \ |   redraw
-    \ | endif
-  autocmd BufWritePre *.bin
-    \ if &binary
-    \ |   let s:view = winsaveview()
-    \ |   execute "silent %!xxd -r -u -c " .. g:binary_edit_width
-    \ | endif
-  autocmd BufWritePost *.bin
-    \ if &binary
-    \ |   execute "silent %!xxd -u -c " .. g:binary_edit_width
-    \ |   set nomodified
-    \ |   call winrestview(s:view)
-    \ |   redraw
-    \ | endif
-augroup END
-"====================================================
 " Configuration dein.vim
 "====================================================
 if &compatible
@@ -753,3 +650,106 @@ endfunction
 
 set modeline
 set expandtab
+"====================================================
+" Vim Configurations
+"====================================================
+"------ Keymaps ------
+nnoremap <ESC><ESC> :noh<CR>
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+noremap <CR><CR> <C-w>w
+inoremap jj <ESC>
+nnoremap <C-p> :bprev<CR>
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-w><C-w> :bdelete %<cr>
+noremap L $
+
+"------ encode ------
+set fileformats=unix,dos,mac
+set fileencodings=utf-8,euc-jp,sjis
+set encoding=utf-8
+
+"------ Format ------
+set smartindent
+set autoindent
+set showmatch
+set expandtab
+set smarttab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+"------ Look&Feel ------
+set list
+set listchars=tab:›—,eol:↲,nbsp:*,
+set fillchars+=vert:│,fold:-,foldopen:─,foldclose:+
+set hlsearch
+set incsearch
+set ruler
+set number
+set relativenumber
+set diffopt=vertical
+set showmatch
+set showtabline=2
+set laststatus=2
+set nofoldenable
+" set cursorline
+" set cursorcolumn
+if has('win64')
+    set guifont=HackGenNerd\ Console:h14
+    set guifontwide=HackGenNerd\ Console:h14
+else
+    set guifont=HackGenNerd\ Console\ 14
+    set guifontwide=HackGenNerd\ Console\ 14
+endif
+" Save fold settings.
+autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
+autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+" Don't save options.
+set viewoptions-=options
+"------ Misc ------
+set nobackup
+set noswapfile
+set autoread
+set hidden
+set showcmd
+set virtualedit=onemore
+set visualbell
+set wildmode=list:longest
+set wildmenu
+set clipboard=unnamedplus
+set synmaxcol=200
+set helplang=ja,en
+"------ Undo Persistent ------
+if has('persistent_undo')
+    let undo_path = expand("~/.vim/.undo")
+    exe 'set undodir=' .. undo_path
+    set undofile
+endif
+
+"------- binary editing -------
+let g:binary_edit_width = 16
+augroup binary
+  autocmd!
+  autocmd bufreadpre  *.bin,*.o set binary
+  autocmd bufreadpost *.bin,*.o
+    \ if &binary
+    \ |   execute "silent %!xxd -u -c " .. g:binary_edit_width
+    \ |   set filetype=xxd
+    \ |   redraw
+    \ | endif
+  autocmd BufWritePre *.bin,*.o
+    \ if &binary
+    \ |   let s:view = winsaveview()
+    \ |   execute "silent %!xxd -r -u -c " .. g:binary_edit_width
+    \ | endif
+  autocmd BufWritePost *.bin,*.o
+    \ if &binary
+    \ |   execute "silent %!xxd -u -c " .. g:binary_edit_width
+    \ |   set nomodified
+    \ |   call winrestview(s:view)
+    \ |   redraw
+    \ | endif
+augroup END
