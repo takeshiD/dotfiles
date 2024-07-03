@@ -79,8 +79,11 @@ fi
 #-------------- Scripts load ---------------
 if [[ -d "$HOME"/dotfiles/bash-scripts ]];then
     script_dir="$HOME"/dotfiles/bash-scripts
-    if [[ -f "$script_dir"/24-bit-color.sh ]];then
-        source "$script_dir"/24-bit-color.sh
+    if [[ -f "$script_dir/24-bit-color.sh" ]];then
+        source "$script_dir/24-bit-color.sh"
+    fi
+    if [[ -f "$script_dir/yy.sh" ]];then
+        source "$script_dir/yy.sh"
     fi
     #------ tmux command alias ------
     alias assist='$script_dir/assist.sh'
