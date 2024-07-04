@@ -237,6 +237,8 @@ function main(){
     run mymkdir "$HOME"/.local
     run dirlink "$currentdir"/clangd "$HOME"/.local/clangd
     run dirlink "$currentdir"/memo "$HOME"/memo
+    run mymkdir "$HOME"/.config/wezterm
+    run symlink "$currentdir"/config/wezterm/wezterm.lua "$HOME"/.config/wezterm/wezterm.lua
     run cp "$currentdir"/.gitconfig "$HOME"/.gitconfig
     # run git config --global credential.helper store --file ~/.git-credentials
     title "done"

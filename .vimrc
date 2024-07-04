@@ -241,9 +241,8 @@ nnoremap gs <Plug>(GitGutterStageHunk)
 nnoremap gu <Plug>(GitGutterUndoHunk)
 
 "------ Commentary -------
-nnoremap <C-_> :Commentary<CR>
-vnoremap <C-_> :Commentary<CR>
-
+nnoremap <C-\> :Commentary<CR>
+vnoremap <C-\> :Commentary<CR>
 "------ Indent Guides ---------
 let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_guide_size = 1
