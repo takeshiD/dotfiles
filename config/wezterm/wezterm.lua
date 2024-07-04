@@ -13,10 +13,11 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 
--- For example, changing the color scheme:
 config.color_scheme = 'Tokyo Night Storm'
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = false
 config.font = wezterm.font("HackGen Console NF", {weight="Regular", stretch="Normal"})
-config.font_size = 14
+config.font_size = 16
 config.enable_tab_bar = false
 config.window_padding = {
     left = 0,
@@ -24,17 +25,17 @@ config.window_padding = {
     top = 0,
     bottom = 0,
 }
-config.window_frame = {
-  border_left_width     = '0.5cell',
-  border_right_width    = '0.5cell',
-  border_bottom_height  = '0.25cell',
-  border_top_height     = '0.25cell',
+-- config.window_frame = {
+--   border_left_width     = '0.5cell',
+--   border_right_width    = '0.5cell',
+--   border_bottom_height  = '0.25cell',
+--   border_top_height     = '0.25cell',
 
-  border_left_color     = 'yellow',
-  border_right_color    = 'yellow',
-  border_bottom_color   = 'yellow',
-  border_top_color      = 'yellow',
-}
+--   border_left_color     = 'yellow',
+--   border_right_color    = 'yellow',
+--   border_bottom_color   = 'yellow',
+--   border_top_color      = 'yellow',
+-- }
 config.window_close_confirmation = 'NeverPrompt'
 config.keys = {  
     {    
