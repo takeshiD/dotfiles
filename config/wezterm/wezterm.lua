@@ -48,8 +48,9 @@ config.automatically_reload_config = true
 wezterm.on('window-config-reloaded', function(window, pane)
     wezterm.log_info 'the config was reloaded for this window!'
 end)
-config.use_ime = false
+config.use_ime = true
 config.exit_behavior = 'CloseOnCleanExit'
+config.window_background_opacity = 0.9
 config.window_decorations = "TITLE | RESIZE"
 config.audible_bell = "SystemBeep"
 config.visual_bell = {
