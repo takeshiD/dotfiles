@@ -152,4 +152,82 @@ $ cd ex_input
 $ cargo add input
 ```
 
+# Memo
+## /dev/input/event{n}へのアクセスパーミッション
+/dev/input/event{n}はパーミッションが`crw-rw---- root input`であるため一般ユーザーで上記のプログラムを実行しようとするとPermission Deniedで読み取り時点で弾かれる。
+これを解消するために最も簡単なのは、プログラムを実行する際sudoしてもらうこと。とはいえそれは面倒だしセキュリティ的に問題があるので以下の方法がよいと思われる。
 
+1. 実行する一般ユーザーを`input`グループに追加する
+2. 実行するプログラムのパーミッションを`input`グループの実効グループに変更する
+
+sudoで実行すると権限が強力すぎるのでハックされたときのリスクが高い。
+一方でinputグループでの実効に絞ればsudoよりは安全だと思う。
+
+### 1. 一般ユーザーの`input`グループへの追加
+これはとても簡単で、以下のコマンドを実行する。
+
+```bash
+$ sudo usermod -aG $USER input
+```
+
+いろいろなところで書かれていますが、`-a`を忘れるとユーザーの所属サブグループがinputだけになってしまうので絶対に忘れないようにしましょう。
+
+### 2. プログラムのパーミッションを`input`グループの実効グループに変更する
+実効グループとは何かというのは[Linuxの実ユーザIDと実効ユーザIDについて](https://www.khstasaba.com/?p=454)を参照ください。とても詳しく分かりやすいです。
+
+作成したプログラム名を`ex_libinput`とします。
+このプログラムのパーミッションは一般ユーザーを`myuser`とすると
+
+```bash
+$ ls -la ./ex_libinput
+-rwxrwxr-x   2 myuser myuser 5196456  7月 12 15:49 ex_libinput*
+```
+
+となり、所有者、グループともにmyuserです。
+
+まずはプログラムのグループをinputに変更します。
+```bash
+$ sudo chown myuser:input ./ex_libinput
+$ ls -la ./ex_libinput
+-rwxrwxr-x   2 myuser input 5196456  7月 12 15:49 ex_libinput*
+```
+
+次に実効グループを設定します。
+```bash
+$ sudo chmod g+s ./ex_libinput
+$ ls -la ./ex_libinput
+-rwxrwsr-x   2 myuser input 5196456  7月 12 15:49 ex_libinput*
+```
+
+パーミッションのうちグループに該当するところが`rws`になっています。これでこのプログラムを実行するとき、まるでinputグループが実行しているように振る舞えます。/dev/input/event{n}はinputグループなのでパーミッションは満たしていることになります。
+
+```bash
+$ ./ex_libinput
+open_restricted /dev/input/event2, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event7, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event1, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event0, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event13, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event14, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event15, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event16, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event8, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event9, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event10, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event11, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event12, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event4, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event6, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event3, flag=0o2004002, RDONLY:0, RDWR:2
+open_restricted /dev/input/event5, flag=0o2004002, RDONLY:0, RDWR:2
+Key: 0x26, State: Pressed, Sym: "a"(0x61), Repeat: true
+aKey: 0x26, State: Released, Sym: "a"(0x61), Repeat: true
+Key: 0x37, State: Pressed, Sym: "v"(0x76), Repeat: true
+vKey: 0x37, State: Released, Sym: "v"(0x76), Repeat: true
+Key: 0x42, State: Pressed, Sym: "Eisu_toggle"(0xff30), Repeat: false
+Key: 0x26, State: Pressed, Sym: "a"(0x61), Repeat: true
+Key: 0x42, State: Released, Sym: "Eisu_toggle"(0xff30), Repeat: false
+Key: 0x26, State: Released, Sym: "a"(0x61), Repeat: true
+Key: 0x23, State: Pressed, Sym: "bracketleft"(0x5b), Repeat: true
+```
+こんな感じです。
