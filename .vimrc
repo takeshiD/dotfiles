@@ -753,5 +753,5 @@ augroup binary
     \ | endif
 augroup END
 
-set runtimepath^=$HOME/ex_prog/ex_vimscript/dps-helloworld
-let g:denops#debug = 1
+" set runtimepath^=$HOME/ex_prog/ex_vimscript/miew.vim
+" let g:denops#debug = 1

@@ -53,7 +53,6 @@ config.font_size = 16
 -- #########################################
 config.keys = {  
     { key = 'F11',  mods = '',      action = wezterm.action.ToggleFullScreen},
-    { key = 'v',    mods = 'CTRL',  action = wezterm.action.PasteFrom 'Clipboard'},
     { key = '-',    mods = 'CTRL',  action = wezterm.action.DecreaseFontSize},
     { key = '=',    mods = 'CTRL',  action = wezterm.action.IncreaseFontSize},
 }
@@ -74,7 +73,7 @@ config.visual_bell = {
   fade_out_duration_ms = 75,
   target = 'CursorColor',
 }
-config.enable_wayland = false
+config.enable_wayland = true
 
 
 
