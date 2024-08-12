@@ -487,6 +487,8 @@ let g:lsp_settings = {
             \ },
             \}
 let g:lsp_settings_filetype_python = ['ruff-lsp', 'pylsp-all']
+let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server', 'deno']
+let g:lsp_settings_filetype_typescriptreact = ['typescript-language-server', 'eslint-language-server', 'deno']
 " for clangd
 autocmd BufRead,BufNewFile .clangd setfiletype yaml
 
