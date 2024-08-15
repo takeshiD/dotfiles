@@ -1,0 +1,34 @@
+// Zed keymap // // For information on binding keys, see the Zed // documentation: https://zed.dev/docs/key-bindings //
+// To see the default key bindings run `zed: Open Default Keymap`
+// from the command palette.
+[
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "ctrl-e": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-p": "pane::ActivatePrevItem",
+      "ctrl-n": "pane::ActivateNextItem",
+      "ctrl-w ctrl-w": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-e": [
+        "project_panel::ToggleFocus",
+        "workspace::ToggleLeftDock"
+      ]
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "shift-n": "project_panel::NewFile",
+    }
+  }
+]
