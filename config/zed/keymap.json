@@ -5,7 +5,16 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "ctrl-e": "workspace::ToggleLeftDock"
+      "ctrl-e": "workspace::ToggleLeftDock",
+      "ctrl-t": "workspace::ToggleBottomDock",
+      "ctrl-j": null
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-j": null,
+      "ctrl-b": null
     }
   },
   {
@@ -17,18 +26,45 @@
     }
   },
   {
-    "context": "Dock",
+    "context": "ProjectPanel",
     "bindings": {
-      "ctrl-e": [
-        "project_panel::ToggleFocus",
-        "workspace::ToggleLeftDock"
+      "shift-n": "project_panel::NewFile",
+      "ctrl-e": "workspace::ToggleLeftDock",
+      "ctrl-w l": [
+        "workspace::ActivatePaneInDirection",
+        "Right"
       ]
     }
   },
   {
-    "context": "ProjectPanel",
+    "context": "Terminal",
     "bindings": {
-      "shift-n": "project_panel::NewFile",
+      "ctrl-t": "workspace::ToggleBottomDock",
+      "ctrl-w k": [
+        "workspace::ActivatePaneInDirection",
+        "Up"
+      ]
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": [
+        "vim::PushOperator",
+        {
+          "AddSurrounds": {}
+        }
+      ]
+    }
+  },
+  {
+    "context": "Editor && (showing_completions || showing_code_actions)",
+    "bindings": {
+      "enter": "editor::ConfirmCompletion",
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrev",
+      "ctrl-p": "editor::ContextMenuPrev",
+      "ctrl-n": "editor::ContextMenuNext"
     }
   }
 ]
