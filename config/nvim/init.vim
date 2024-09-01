@@ -6,7 +6,7 @@ if &compatible
 endif
 
 "------ install dir ------
-let s:dein_dir = expand('~/.cache/dein')
+let s:dein_dir = expand('~/.cache/dein/nvim')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 "------ dein installation check -------
@@ -22,7 +22,7 @@ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   "--- toml file ---
-  let s:rc_dir = expand('~/.vim')
+  let s:rc_dir = expand('~/.nvim')
   if !isdirectory(s:rc_dir)
     call mkdir(s:rc_dir, 'p')
   endif
@@ -62,16 +62,6 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" " 文字色
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" " 背景色
 
-" gruvbox
-" set background=dark
-" let g:gruvbox_contrast_dark='hard'
-" colorscheme gruvbox
-
-" tokyonight
-let g:tokyonight_style = 'night'
-let g:tokyonight_enable_italic = 1
-let g:tokyonight_transparent_background = 0
-let g:tokyonight_cursor = 'auto'
 colorscheme tokyonight
 
 "------ Lightline -----
@@ -284,44 +274,44 @@ let g:lsp_diagnostics_signs_priority_map = {
 " Example:
 "   ComposeColor("#FF0000", "#1a1b26", 0.3)
 "   >> "#5e121a"
-def! ComposeColor(fg: string, bg: string, alpha: float): string
-    def Hex2List(hexcolor: string): list<number>
-        var _r: number = str2nr(hexcolor[1 : 2], 16)
-        var _g: number = str2nr(hexcolor[3 : 4], 16)
-        var _b: number = str2nr(hexcolor[5 : 6], 16)
-        return [_r, _g, _b]
-    enddef
-    var fg_norm: list<float> = mapnew(Hex2List(fg), (_: number, x: number): float => x / 256.0)
-    var bg_norm: list<float> = mapnew(Hex2List(bg), (_: number, x: number): float => x / 256.0)
-    var composed: list<float> = [
-                 (bg_norm[0] * (1 - alpha) + fg_norm[0] * alpha) * 255,
-                 (bg_norm[1] * (1 - alpha) + fg_norm[1] * alpha) * 255,
-                 (bg_norm[2] * (1 - alpha) + fg_norm[2] * alpha) * 255,
-                ]
-    var [r, g, b] = mapnew(composed, (_, x): number => float2nr(x))
-    return printf("#%02x%02x%02x", r, g, b)
-enddef
+"def! ComposeColor(fg: string, bg: string, alpha: float): string
+"    def Hex2List(hexcolor: string): list<number>
+"        var _r: number = str2nr(hexcolor[1 : 2], 16)
+"        var _g: number = str2nr(hexcolor[3 : 4], 16)
+"        var _b: number = str2nr(hexcolor[5 : 6], 16)
+"        return [_r, _g, _b]
+"    enddef
+"    var fg_norm: list<float> = mapnew(Hex2List(fg), (_: number, x: number): float => x / 256.0)
+"    var bg_norm: list<float> = mapnew(Hex2List(bg), (_: number, x: number): float => x / 256.0)
+"    var composed: list<float> = [
+"                 (bg_norm[0] * (1 - alpha) + fg_norm[0] * alpha) * 255,
+"                 (bg_norm[1] * (1 - alpha) + fg_norm[1] * alpha) * 255,
+"                 (bg_norm[2] * (1 - alpha) + fg_norm[2] * alpha) * 255,
+"                ]
+"    var [r, g, b] = mapnew(composed, (_, x): number => float2nr(x))
+"    return printf("#%02x%02x%02x", r, g, b)
+"enddef
 
-let NormalBG = hlget('Normal')[0]['guibg']
-let LspErrorFG = "#FF0000"
-let LspErrorBG = ComposeColor(LspErrorFG, NormalBG, 0.3)
-let LspWarningFG = "#F8E71C"
-let LspWarningBG = ComposeColor(LspWarningFG, NormalBG, 0.3)
-let LspHintFG = "#7AA2F7"
-let LspHintBG = ComposeColor(LspHintFG, NormalBG, 0.3)
-let LspInlayHintsFG = hlget('Comment')[0]['guifg']
+"let NormalBG = hlget('Normal')[0]['guibg']
+"let LspErrorFG = "#FF0000"
+"let LspErrorBG = ComposeColor(LspErrorFG, NormalBG, 0.3)
+"let LspWarningFG = "#F8E71C"
+"let LspWarningBG = ComposeColor(LspWarningFG, NormalBG, 0.3)
+"let LspHintFG = "#7AA2F7"
+"let LspHintBG = ComposeColor(LspHintFG, NormalBG, 0.3)
+"let LspInlayHintsFG = hlget('Comment')[0]['guifg']
 
 let g:lsp_diagnostics_signs_error = {'text': ' '}
-execute $'highlight LspErrorText guifg={LspErrorFG}'
-execute $'highlight LspErrorVirtualText guifg={LspErrorFG} guibg={LspErrorBG}'
+"execute $'highlight LspErrorText guifg={LspErrorFG}'
+"execute $'highlight LspErrorVirtualText guifg={LspErrorFG} guibg={LspErrorBG}'
 let g:lsp_diagnostics_signs_warning = {'text': ' '}
-execute $'highlight LspWarningText guifg={LspWarningFG}'
-execute $'highlight LspWarningVirtualText guifg={LspWarningFG} guibg={LspWarningBG}'
+"execute $'highlight LspWarningText guifg={LspWarningFG}'
+"execute $'highlight LspWarningVirtualText guifg={LspWarningFG} guibg={LspWarningBG}'
 let g:lsp_diagnostics_signs_hint = {'text': '󰛨 '}
-execute $'highlight LspHintText guifg={LspHintFG}'
-execute $'highlight LspHintVirtualText guifg={LspHintFG} guibg={LspHintBG}'
+"execute $'highlight LspHintText guifg={LspHintFG}'
+"execute $'highlight LspHintVirtualText guifg={LspHintFG} guibg={LspHintBG}'
 let g:lsp_diagnostics_signs_information = {'text': ' '}
-highlight link LspInformationHighlight Normal
+"highlight link LspInformationHighlight Normal
 let g:lsp_diagnostics_virtual_text_enabled = v:true
 let g:lsp_diagnostics_virtual_text_insert_mode_enabled = v:true
 let g:lsp_diagnostics_virtual_text_delay = 100
@@ -333,8 +323,8 @@ let g:lsp_document_code_action_signs_delay = 100
 let g:lsp_document_code_action_signs_hint = {'text': '󰁕'}
 let g:lsp_inlay_hints_enabled = v:true
 let g:lsp_inlay_hints_delay = 100
-execute $'highlight LspInlayHintsType guifg={LspInlayHintsFG}'
-execute $'highlight LspInlayHintsParameter guifg={LspInlayHintsFG}'
+"execute $'highlight LspInlayHintsType guifg={LspInlayHintsFG}'
+"execute $'highlight LspInlayHintsParameter guifg={LspInlayHintsFG}'
 let g:lsp_peek_alignment = 'bottom'
 let g:lsp_use_native_client = v:true
 let g:lsp_document_symbol_detail = v:true
@@ -490,7 +480,7 @@ let g:lsp_settings_filetype_python = ['ruff-lsp', 'pylsp-all']
 let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server', 'deno', 'tailwindcss-intellisense']
 let g:lsp_settings_filetype_typescriptreact = ['typescript-language-server', 'eslint-language-server', 'deno', 'tailwindcss-intellisense']
 " for clangd
-autocmd BufRead,BufNewFile .clangd setfiletype yaml
+"autocmd BufRead,BufNewFile .clangd setfiletype yaml
 
 "------ asyncomplete --------
 let g:asyncomplete_auto_popup = 1
@@ -725,7 +715,7 @@ set synmaxcol=200
 set helplang=ja,en
 "------ Undo Persistent ------
 if has('persistent_undo')
-    let undo_path = expand("~/.vim/.undo")
+    let undo_path = expand("~/.nvim/.undo")
     exe 'set undodir=' .. undo_path
     set undofile
 endif

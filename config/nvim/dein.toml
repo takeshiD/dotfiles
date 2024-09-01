@@ -14,6 +14,9 @@ repo = 'morhetz/gruvbox'
 [[plugins]]
 repo = 'ghifarit53/tokyonight-vim'
 
+[[plugins]]
+repo = 'folke/tokyonight.nvim'
+
 #------- Statusline, BUfferline ------- 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -41,8 +44,8 @@ repo = 'junegunn/rainbow_parentheses.vim'
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 
-[[plugins]]
-repo = 'takeshid/colortips.vim'
+# [[plugins]]
+# repo = 'takeshid/colortips.vim'
 
 #=========================================
 # User Interface
@@ -128,6 +131,7 @@ repo = 'fifi2/gtd.vim'
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
+rev = '09e64956c2946bba0a060d0a0aaddde106753bd9'
 
 [[plugins]]
 repo = 'vim-skk/skkeleton'
