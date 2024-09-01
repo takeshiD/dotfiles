@@ -82,9 +82,9 @@ function checkinstall(){
     esac
     for pkg in $pkgs
     do
-        which $pkg &> /dev/null
-        ret=$?
-        if [[ $ret -eq 0 ]];then
+        # which $pkg &> /dev/null
+        # ret=$?
+        if [[ -x $(which $pkg) ]];then
             info "Already installed: $pkg"
             continue;
         fi
@@ -138,11 +138,11 @@ function is_exist_service(){
 }
 
 function is_wls(){
-	case "$(uname -r)" in
-		*microsoft* ) return 0;;
-		*Microsoft* ) return 0;;
-		* ) return 1;;
-	esac
+    case "$(uname -r)" in
+        *microsoft* ) return 0;;
+        *Microsoft* ) return 0;;
+        * ) return 1;;
+    esac
 }
 
 function main(){
@@ -187,14 +187,14 @@ function main(){
     title "================================"
     # capslock -> ctrl
     if is_wls; then
-	info "This current system is running on WLS. keymap setting is skipped"
+    info "This current system is running on WLS. keymap setting is skipped"
     else
-	run sudo localectl set-x11-keymap jp pc105 "" ctrl:nocaps
-	if [[ $? -eq 0 ]];then
-	    success "key change 'capslock' to 'ctrl'"
-	else
-	    error "key change 'capslock' to 'ctrl'"
-	fi
+    run sudo localectl set-x11-keymap jp pc105 "" ctrl:nocaps
+    if [[ $? -eq 0 ]];then
+        success "key change 'capslock' to 'ctrl'"
+    else
+        error "key change 'capslock' to 'ctrl'"
+    fi
     fi
     echo
     #---------------- Application Install ---------------------
@@ -202,7 +202,7 @@ function main(){
     title "Application Install"
     title "================================"
     set +e
-    run checkinstall zip less git tmux gcc binutils make cmake vim neovim powerline acpi clangd skktools fzf ripgrep ruby trans rlwrap 
+    run checkinstall zip less git tmux gcc binutils make cmake vim neovim powerline acpi clangd skktools fzf ripgrep ruby trans rlwrapp pkg-config
     set -e
     # tmux:tpm
     if [[ ! -d "$HOME"/.tmux/plugins/tpm ]];then
@@ -237,21 +237,18 @@ function main(){
             warning "'bluetooth.service is not running on systemd.'"
         fi
     fi
-    which rustup &> /dev/null
-    if [ $? -eq 0 ]; then
+    if [[ -x $(which rustup) ]]; then
         info "Already installed rustup"
     else
         run curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-        if [ $? -eq 0 ];then
+        if [[ $? -eq 0 ]];then
             success "installed rustup"
         else
             error "install failed rustup"
         fi
     fi
-    which cargo &> /dev/null
-    if [ $? -eq 0 ]; then
-        which starship &> /dev/null
-        if [[ $? -eq 0 ]]; then
+    if [[ -x $(which cargo) ]]; then
+        if [[ -x $(which starship) ]]; then
             info "Already installed starship"
         else
             run cargo install starship --locked &> /dev/null
@@ -264,9 +261,18 @@ function main(){
     else
         error "cargo is not installed yet"
     fi
+    if [[ -x $(which nvm) ]]; then
+        info "Already installed nvm"
+    else
+        run curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+        if [[ $? -eq 0 ]]; then
+            success "installed nvm"
+        else
+            error "install failed nvm"
+        fi
+    fi
     # deno latest: install to ~/.deno/bin
-    which deno &> /dev/null
-    if [[ $? -eq 0 ]]; then
+    if [[ -x $(which deno) ]]; then
         info "Already installed deno"
     else
         run curl -fsSL https://deno.land/install.sh | sh

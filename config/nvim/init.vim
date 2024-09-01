@@ -274,23 +274,6 @@ let g:lsp_diagnostics_signs_priority_map = {
 " Example:
 "   ComposeColor("#FF0000", "#1a1b26", 0.3)
 "   >> "#5e121a"
-"def! ComposeColor(fg: string, bg: string, alpha: float): string
-"    def Hex2List(hexcolor: string): list<number>
-"        var _r: number = str2nr(hexcolor[1 : 2], 16)
-"        var _g: number = str2nr(hexcolor[3 : 4], 16)
-"        var _b: number = str2nr(hexcolor[5 : 6], 16)
-"        return [_r, _g, _b]
-"    enddef
-"    var fg_norm: list<float> = mapnew(Hex2List(fg), (_: number, x: number): float => x / 256.0)
-"    var bg_norm: list<float> = mapnew(Hex2List(bg), (_: number, x: number): float => x / 256.0)
-"    var composed: list<float> = [
-"                 (bg_norm[0] * (1 - alpha) + fg_norm[0] * alpha) * 255,
-"                 (bg_norm[1] * (1 - alpha) + fg_norm[1] * alpha) * 255,
-"                 (bg_norm[2] * (1 - alpha) + fg_norm[2] * alpha) * 255,
-"                ]
-"    var [r, g, b] = mapnew(composed, (_, x): number => float2nr(x))
-"    return printf("#%02x%02x%02x", r, g, b)
-"enddef
 
 "let NormalBG = hlget('Normal')[0]['guibg']
 "let LspErrorFG = "#FF0000"
@@ -302,8 +285,8 @@ let g:lsp_diagnostics_signs_priority_map = {
 "let LspInlayHintsFG = hlget('Comment')[0]['guifg']
 
 let g:lsp_diagnostics_signs_error = {'text': ' '}
-"execute $'highlight LspErrorText guifg={LspErrorFG}'
-"execute $'highlight LspErrorVirtualText guifg={LspErrorFG} guibg={LspErrorBG}'
+" execute $'highlight LspErrorText guifg={LspErrorFG}'
+" execute $'highlight LspErrorVirtualText guifg={LspErrorFG} guibg={LspErrorBG}'
 let g:lsp_diagnostics_signs_warning = {'text': ' '}
 "execute $'highlight LspWarningText guifg={LspWarningFG}'
 "execute $'highlight LspWarningVirtualText guifg={LspWarningFG} guibg={LspWarningBG}'
