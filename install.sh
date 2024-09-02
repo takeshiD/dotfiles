@@ -247,21 +247,17 @@ function main(){
             error "install failed rustup"
         fi
     fi
-    if [[ -x $(which cargo) ]]; then
-        if [[ -x $(which starship) ]]; then
-            info "Already installed starship"
-        else
-            run cargo install starship --locked &> /dev/null
-            if [[ $? -eq 0 ]]; then
-                success "installed starship"
-            else
-                error "install failed starship"
-            fi
-        fi
+    if [[ -x $(which starship) ]]; then
+        info "Already installed starship"
     else
-        error "cargo is not installed yet"
+        run cargo install starship --locked &> /dev/null
+        if [[ $? -eq 0 ]]; then
+    	success "installed starship"
+        else
+    	error "install failed starship"
+        fi
     fi
-    if [[ -x $(which nvm) ]]; then
+    if [[ -s "$NVM_DIR/nvm.sh" ]]; then
         info "Already installed nvm"
     else
         run curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
@@ -297,6 +293,7 @@ function main(){
     run mymkdir "$HOME"/.local
 
     run symlink "$currentdir"/config/vim/.vimrc "$HOME"/.vimrc
+    run symlink "$currentdir"/config/nvim/init.vim "$HOME"/.config/nvim/init.vim
     run symlink "$currentdir"/.bashrc "$HOME"/.bashrc
     run symlink "$currentdir"/.inputrc "$HOME"/.inputrc
     run symlink "$currentdir"/.tmux.conf "$HOME"/.tmux.conf
