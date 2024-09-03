@@ -67,13 +67,13 @@ function checkinstall(){
     case $distro in
         debian)
             alias pkgmng='apt -y install'
-            sudo apt update &> /dev/null
-            sudo apt upgrade &> /dev/null
+            sudo apt update
+            sudo apt upgrade
             ;;
         arch)
             alias pkgmng='pacman -S --noconfirm --needed'
-            sudo pacman -Syy &> /dev/null
-            sudo pacman -Syyu &> /dev/null
+            sudo pacman -Syy
+            sudo pacman -Syyu
             ;;
         *)
             error "Your distribution is undefined."
