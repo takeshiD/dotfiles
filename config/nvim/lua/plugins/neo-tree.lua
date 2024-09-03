@@ -9,10 +9,10 @@ return {
     lazy = false,
     keys = {
         { '<C-e>', '<cmd>Neotree toggle<cr>', desc = 'NeoTree Toggle'},
-        { '<leader>s', '<cmd>Neotree float git_status<cr>', desc = 'NeoTree Git'},
+        { '<leader>g', '<cmd>Neotree float git_status<cr>', desc = 'NeoTree Git'},
         { '<leader>b', '<cmd>Neotree toggle show buffers right<cr>', desc = 'NeoTree Buffers'}
     },
-    config = function ()
+    config = function()
       -- If you want icons for diagnostic errors, you'll need to define them somewhere:
       vim.fn.sign_define("DiagnosticSignError",
         {text = " ", texthl = "DiagnosticSignError"})
@@ -176,6 +176,21 @@ return {
             ["<"] = "prev_source",
             [">"] = "next_source",
             ["i"] = "show_file_details",
+            ["?"] = { "show_help", nowait=false, config = { title = "Order by", prefix_key = "?"}},
+            ["?c"] = { "order_by_created", nowait = false },
+            ["?d"] = { "order_by_diagnostics", nowait = false },
+            ["?g"] = { "order_by_git_status", nowait = false },
+            ["?m"] = { "order_by_modified", nowait = false },
+            ["?n"] = { "order_by_name", nowait = false },
+            ["?s"] = { "order_by_size", nowait = false },
+            ["?t"] = { "order_by_type", nowait = false },
+            ["oc"] = "noop", 
+            ["od"] = "noop", 
+            ["og"] = "noop", 
+            ["om"] = "noop", 
+            ["on"] = "noop", 
+            ["os"] = "noop", 
+            ["ot"] = "noop", 
           }
         },
         nesting_rules = {},
@@ -240,7 +255,13 @@ return {
               ["?n"] = { "order_by_name", nowait = false },
               ["?s"] = { "order_by_size", nowait = false },
               ["?t"] = { "order_by_type", nowait = false },
-              -- ['<key>'] = function(state) ... end,
+              ["oc"] = "noop", 
+              ["od"] = "noop", 
+              ["og"] = "noop", 
+              ["om"] = "noop", 
+              ["on"] = "noop", 
+              ["os"] = "noop", 
+              ["ot"] = "noop", 
             },
             fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
               ["<down>"] = "move_cursor_down",
@@ -265,13 +286,21 @@ return {
               ["bd"] = "buffer_delete",
               ["<bs>"] = "navigate_up",
               ["."] = "set_root",
-              ["?"] = { "show_help", nowait=false, config = { title = "Order by", prefix_key = "?" }},
+              ["?"] = { "show_help", nowait=false, config = { title = "Order by", prefix_key = "?"}},
               ["?c"] = { "order_by_created", nowait = false },
               ["?d"] = { "order_by_diagnostics", nowait = false },
+              ["?g"] = { "order_by_git_status", nowait = false },
               ["?m"] = { "order_by_modified", nowait = false },
               ["?n"] = { "order_by_name", nowait = false },
               ["?s"] = { "order_by_size", nowait = false },
               ["?t"] = { "order_by_type", nowait = false },
+              ["oc"] = "noop", 
+              ["od"] = "noop", 
+              ["og"] = "noop", 
+              ["om"] = "noop", 
+              ["on"] = "noop", 
+              ["os"] = "noop", 
+              ["ot"] = "noop", 
             }
           },
         },
@@ -296,8 +325,7 @@ return {
             }
           }
         }
-      })
-
-      vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-    end
+    })
+      -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+    end,
 }
