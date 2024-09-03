@@ -50,7 +50,7 @@ function symlink(){
     _create_link -sb "$1" "$2"
 }
 function dirlink(){
-    _create_link -sfn "$1" "$2"
+    _create_link -sfbn "$1" "$2"
 }
 function whichdistro(){
     if [[ -f /etc/debian_version ]]; then
@@ -304,7 +304,9 @@ function main(){
     run dirlink "$currentdir"/memo "$HOME"/memo
     run symlink "$currentdir"/config/wezterm/wezterm.lua "$HOME"/.config/wezterm/wezterm.lua
     run symlink "$currentdir"/config/vim/dein.toml "$HOME"/.vim/dein.toml
-    run symlink "$currentdir"/config/nvim/dein.toml "$HOME"/.nvim/dein.toml
+    run symlink "$currentdir"/config/nvim/init.lua "$HOME"/.config/nvim/init.lua
+    run symlink "$currentdir"/config/nvim/lazy-lock.json "$HOME"/.config/nvim/lazy-lock.json
+    run dirlink "$currentdir"/config/nvim/lua "$HOME"/.config/nvim/lua
     run cp "$currentdir"/.gitconfig "$HOME"/.gitconfig
     # run git config --global credential.helper store --file ~/.git-credentials
     title "done"
