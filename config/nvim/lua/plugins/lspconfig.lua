@@ -2,6 +2,11 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
         local lspconfig = require("lspconfig")
+        lspconfig.rust_analyzer.setup{}
+        lspconfig.tsserver.setup{}
+        lspconfig.eslint.setup{}
+        lspconfig.tailwindcss.setup{}
+        lspconfig.ruff.setup{}
         lspconfig.lua_ls.setup({
             Lua = {
                 runtime = {

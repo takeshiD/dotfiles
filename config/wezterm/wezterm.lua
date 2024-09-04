@@ -75,6 +75,4 @@ config.visual_bell = {
 }
 config.enable_wayland = true
 
-
-
 return config
