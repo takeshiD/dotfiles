@@ -7,19 +7,25 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "neovim/nvim-lspconfig",
     },
-    opts = function(_, opts)
-        local cmp = require('cmp')
-        -- opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        --     ["<Tab>"] = cmp.mapping(function(fallback)
-        --         if cmp.visible() then
-        --             cmp.select_next_item()
-        --         elseif vim.snippet.active({direction = 1}) then
-        --             vim.schedule(function()
-        --                 vim.snippet.jump(1)
-        --             end)
-        --         end
-        --     end, {"i", "s"})
-        -- })
-        cmp.setup()
-    end,
+    config = function()
+        local cmp = require("cmp")
+        cmp.setup({
+            mapping = {
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+            }
+        })
+    end
 }

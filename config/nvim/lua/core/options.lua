@@ -47,11 +47,16 @@ opt.laststatus = 2
 
 --====== MISC =====
 opt.title = true
--- opt.scrolloff = 10
+opt.scrolloff = 10
 opt.shell = 'bash'
 opt.inccommand = 'split'
 opt.ignorecase = true
 opt.wrap = true
-opt.helplang = 'ja', 'en'
+opt.helplang = 'ja','en'
 opt.hidden = true
 opt.wrap = true --端までコードが届いた際に折り返す
+
+
+--############ Persistent ###########
+opt.undodir = vim.fn.expand("$HOME") .. "/.nvim/.undo"
+opt.undofile = true
