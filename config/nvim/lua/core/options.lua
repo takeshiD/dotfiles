@@ -52,7 +52,7 @@ opt.shell = 'bash'
 opt.inccommand = 'split'
 opt.ignorecase = true
 opt.wrap = true
-opt.helplang = 'ja','en'
+opt.helplang = { 'ja', 'en' }
 opt.hidden = true
 opt.wrap = true --端までコードが届いた際に折り返す
 
