@@ -9,6 +9,13 @@ return {
         lspconfig.ruff.setup{}
         lspconfig.lua_ls.setup({
             Lua = {
+                format = {
+                    enbale = true,
+                    defaultConfig = {
+                        indent_style = "space",
+                        indent_size = 4,
+                    }
+                },
                 runtime = {
                     version = "LuaJIT",
                     pathStrict = true,

@@ -4,12 +4,12 @@ local config = wezterm.config_builder()
 
 -- Logger
 wezterm.on('window-focus-changed', function(window, pane)
-  wezterm.log_info(
-    'the focus state of ',
-    window:window_id(),
-    ' changed to ',
-    window:is_focused()
-  )
+    wezterm.log_info(
+        'the focus state of ',
+        window:window_id(),
+        ' changed to ',
+        window:is_focused()
+    )
 end)
 
 -- #########################################
@@ -44,17 +44,17 @@ config.window_padding = {
 -- config.color_scheme = 'Tokyo Night Storm'
 config.color_scheme = 'Espresso Libre'
 config.window_background_opacity = 1
-config.font = wezterm.font("HackGen Console NF", {weight="Regular", stretch="Normal"})
+config.font = wezterm.font("HackGen Console NF", { weight = "Regular", stretch = "Normal" })
 config.font_size = 16
 
 
 -- #########################################
 -- ######         Key Binding         ######
 -- #########################################
-config.keys = {  
-    { key = 'F11',  mods = '',      action = wezterm.action.ToggleFullScreen},
-    { key = '-',    mods = 'CTRL',  action = wezterm.action.DecreaseFontSize},
-    { key = '=',    mods = 'CTRL',  action = wezterm.action.IncreaseFontSize},
+config.keys = {
+    { key = 'F11', mods = '',     action = wezterm.action.ToggleFullScreen },
+    { key = '-',   mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
+    { key = '=',   mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
 }
 
 
@@ -69,9 +69,9 @@ config.use_ime = true
 config.exit_behavior = 'CloseOnCleanExit'
 config.audible_bell = "Disabled"
 config.visual_bell = {
-  fade_in_duration_ms = 75,
-  fade_out_duration_ms = 75,
-  target = 'CursorColor',
+    fade_in_duration_ms = 75,
+    fade_out_duration_ms = 75,
+    target = 'CursorColor',
 }
 config.enable_wayland = true
 
