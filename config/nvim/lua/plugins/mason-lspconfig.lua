@@ -7,6 +7,24 @@ return {
     config = function()
         local lspconfig = require("lspconfig")
         require("mason").setup()
+        require("mason-lspconfig").setup({
+            ensure_installed = {
+                "lua_ls",
+                "rust_analyzer",
+                "clangd",
+                "ruff",
+                "bashls",
+                "cmake",
+                "cssls",
+                "html",
+                "jsonls",
+                "eslint",
+                "marksman",
+                "tailwindcss",
+                "taplo",
+                "vimls",
+            }
+        })
         require("mason-lspconfig").setup_handlers({
             function(server_name)
                 if server_name == "tsserver" then
