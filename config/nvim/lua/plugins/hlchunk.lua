@@ -5,6 +5,7 @@ return {
         require("hlchunk").setup({
             chunk = {
                 enable = true,
+                use_treesitter = true,
                 duration = 100,
                 delay = 100,
             },
