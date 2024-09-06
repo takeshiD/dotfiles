@@ -116,10 +116,10 @@ vim.diagnostic.config({
             "DiagnosticSignHint",
         },
         linehl = {
-            "DiagnosticUnderlineError",
-            "DiagnosticUnderlineWarn",
-            "DiagnosticUnderlineInfo",
-            "DiagnosticUnderlineHint",
+            "DiagnosticSignError",
+            "DiagnosticSignWarn",
+            "DiagnosticSignInfo",
+            "DiagnosticSignHint",
         },
     },
     float = {
