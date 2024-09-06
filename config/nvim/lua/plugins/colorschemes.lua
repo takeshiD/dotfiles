@@ -1,3 +1,4 @@
+-- Note: Color scheme is specified in init.lua
 return {
     {
        "scottmckendry/cyberdream.nvim",
@@ -8,5 +9,8 @@ return {
         "sainnhe/everforest",
         lazy = false,
         priority = 1000,
-    }
+    },
+    {
+        "tinted-theming/base16-vim"
+    },
 }

@@ -13,9 +13,9 @@ return {
         require("aerial").setup({
             backends = {"lsp", "treesitter"},
             layout = {
-                max_width = {50, 0.5},
+                max_width = {100, 0.5},
                 width = nil,
-                min_width = 20,
+                min_width = 40,
                 resize_to_content = true,
             },
             attach_mode = "global",
