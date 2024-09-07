@@ -1,16 +1,3 @@
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-        border = "rounded",
-    }
-)
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help, {
-        border = "rounded",
-        focusable = false,
-    }
-)
-
 --@param fg number foreground color
 --@param bg number background color
 --@param alpha number between 0.0 to 1.0. if aplha is out of range, this would be rounded between 0.0 to 1.0.
@@ -64,26 +51,26 @@ local function dec2triplex(dec)
 end
 
 local NormalBG = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
-local VirtualErrorFG = vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg
-local VirtualWarnFG = vim.api.nvim_get_hl(0, { name = "DiagnosticWarn" }).fg
-local VirtualInfoFG = vim.api.nvim_get_hl(0, { name = "DiagnosticInfo" }).fg
-local VirtualHintFG = vim.api.nvim_get_hl(0, { name = "DiagnosticHint" }).fg
+local VirtualErrorFG = vim.api.nvim_get_hl(0, { name = "ErrorSign" }).fg
+local VirtualWarnFG = vim.api.nvim_get_hl(0, { name = "WarningSign" }).fg
+local VirtualInfoFG = vim.api.nvim_get_hl(0, { name = "InfoSign" }).fg
+local VirtualHintFG = vim.api.nvim_get_hl(0, { name = "HintSign" }).fg
 
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", {
-    bg = dec2triplex(composeColor(NormalBG, VirtualErrorFG, 0.7)),
-    fg = dec2triplex(VirtualErrorFG)
+    bg = composeColor(NormalBG, VirtualErrorFG, 0.7),
+    fg = VirtualErrorFG,
 })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", {
-    bg = dec2triplex(composeColor(NormalBG, VirtualWarnFG, 0.7)),
-    fg = dec2triplex(VirtualWarnFG)
+    bg = composeColor(NormalBG, VirtualWarnFG, 0.7),
+    fg = VirtualWarnFG,
 })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", {
-    bg = dec2triplex(composeColor(NormalBG, VirtualInfoFG, 0.7)),
-    fg = dec2triplex(VirtualInfoFG)
+    bg = composeColor(NormalBG, VirtualInfoFG, 0.7),
+    fg = VirtualInfoFG,
 })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", {
-    bg = dec2triplex(composeColor(NormalBG, VirtualHintFG, 0.7)),
-    fg = dec2triplex(VirtualHintFG)
+    bg = composeColor(NormalBG, VirtualHintFG, 0.7),
+    fg = VirtualHintFG,
 })
 
 vim.diagnostic.config({
@@ -105,7 +92,7 @@ vim.diagnostic.config({
         end,
         suffix = "",
         virt_text_pos = "eol",
-        hl_mode = "replace",
+        hl_mode = "combine",
     },
     signs = {
         text = { "", "", "", "" },

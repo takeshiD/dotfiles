@@ -1,8 +1,9 @@
--- Note: Color scheme is specified in init.lua
+-- Color scheme is specified in init.lua
 return {
     {
        "scottmckendry/cyberdream.nvim",
         lazy = false,
+        enabled = false,
         priority = 1000,
     },
     {
@@ -11,6 +12,11 @@ return {
         priority = 1000,
     },
     {
-        "tinted-theming/base16-vim"
+        "tinted-theming/base16-vim",
+        lazy = false,
+        priority = 1000,
+        -- config = function()
+        --     vim.cmd[[colorscheme base16-espresso]]
+        -- end
     },
 }

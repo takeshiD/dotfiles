@@ -60,3 +60,4 @@ opt.wrap = true --端までコードが届いた際に折り返す
 --############ Persistent ###########
 opt.undodir = vim.fn.expand("$HOME") .. "/.nvim/.undo"
 opt.undofile = true
+
