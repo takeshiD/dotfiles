@@ -5,12 +5,7 @@ vim.api.nvim_create_autocmd("User", {
         -- require("core.lsp")
     end,
 })
--- vim.api.nvim_create_autocmd("ColorScheme", {
---     pattern = "*",
---     callback = function()
---         require("core.lsp")
---     end
--- })
+
 vim.api.nvim_create_autocmd("LspAttach", {
     pattern = "*",
     callback = function()
