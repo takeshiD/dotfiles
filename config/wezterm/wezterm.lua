@@ -29,23 +29,12 @@ config.window_padding = {
     top = 0,
     bottom = 0,
 }
--- config.window_frame = {
---   border_left_width     = '0.5cell',
---   border_right_width    = '0.5cell',
---   border_bottom_height  = '0.25cell',
---   border_top_height     = '0.25cell',
---   border_left_color     = 'yellow',
---   border_right_color    = 'yellow',
---   border_bottom_color   = 'yellow',
---   border_top_color      = 'yellow',
--- }
 
 -- ============ Color and Font  ===========
--- config.color_scheme = 'Tokyo Night Storm'
 config.color_scheme = 'Espresso Libre'
 config.window_background_opacity = 1
 config.font = wezterm.font("HackGen Console NF", { weight = "Regular", stretch = "Normal" })
-config.font_size = 16
+config.font_size = 12
 
 
 -- #########################################
@@ -73,6 +62,50 @@ config.visual_bell = {
     fade_out_duration_ms = 75,
     target = 'CursorColor',
 }
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+    config.default_prog = { 'powershell' }
+    config.use_fancy_tab_bar = false
+    config.enable_tab_bar = true
+    config.keys = {
+        {
+            key = 'a',
+            mods = 'CTRL',
+            action = wezterm.action.ActivateKeyTable {
+                name = 'operate_pane',
+                timeout_milliseconds = 1000,
+            },
+        },
+    }
+    config.key_tables = {
+        operate_pane = {
+            { key = 'h', action = wezterm.action.ActivatePaneDirection 'Left' },
+            { key = 'l', action = wezterm.action.ActivatePaneDirection 'Right' },
+            { key = 'k', action = wezterm.action.ActivatePaneDirection 'Up' },
+            { key = 'j', action = wezterm.action.ActivatePaneDirection 'Down' },
+            { key = 'H', action = wezterm.action.AdjustPaneSize { 'Left', 5 } },
+            { key = 'L', action = wezterm.action.AdjustPaneSize { 'Right', 5 } },
+            { key = 'K', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
+            { key = 'J', action = wezterm.action.AdjustPaneSize { 'Down', 5 } },
+            {
+                key = "v",
+                action = wezterm.action.SplitPane {
+                    direction = "Right",
+                    size = { Percent = 50 },
+                },
+            },
+            {
+                key = "s",
+                action = wezterm.action.SplitPane {
+                    direction = "Down",
+                    size = { Percent = 50 },
+                }
+            },
+            { key = 'c', action = wezterm.action.SpawnTab "CurrentPaneDomain" },
+            { key = 'n', action = wezterm.action.ActivateTabRelative(1) },
+            { key = 'p', action = wezterm.action.ActivateTabRelative(-1) },
+        },
+    }
+end
 config.enable_wayland = true
 
 return config
