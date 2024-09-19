@@ -5,7 +5,7 @@ return {
         "nvim-tree/nvim-web-devicons"
     },
     keys = {
-        {"<C-t>", "<cmd>RenderMarkdown toggle<CR>", mode = {"n"}},
+        {"<leader>t", "<cmd>RenderMarkdown toggle<CR>", mode = {"n"}},
     },
     config = function()
         require("render-markdown").setup({
