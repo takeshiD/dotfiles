@@ -4,6 +4,9 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons"
     },
+    keys = {
+        {"<C-t>", "<cmd>RenderMarkdown toggle<CR>", mode = {"n"}},
+    },
     config = function()
         require("render-markdown").setup({
             enabled = true,
@@ -11,11 +14,11 @@ return {
                 enabled = true,
                 position = "inline",
                 unchecked = {
-                    icon = "󰄱 ",
-                    highlight = "RenderMarkdownChecked",
+                    icon = "⬜ ",
+                    highlight = "RenderMarkdownUnchecked",
                 },
                 checked = {
-                    icon = "󰱒 ",
+                    icon = "✅ ",
                     highlight = "RenderMarkdownChecked",
                 }
             }
