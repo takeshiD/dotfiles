@@ -1,9 +1,11 @@
 return {
     "MeanderingProgrammer/render-markdown.nvim",
+    lazy = false,
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons"
     },
+    ft = {"markdown"},
     keys = {
         {"<leader>t", "<cmd>RenderMarkdown toggle<CR>", mode = {"n"}},
     },
@@ -14,12 +16,12 @@ return {
                 enabled = true,
                 position = "inline",
                 unchecked = {
-                    icon = "⬜ ",
-                    highlight = "RenderMarkdownUnchecked",
+                    icon = "󰄱 ",
+                    highlight = "HintSign",
                 },
                 checked = {
-                    icon = "✅ ",
-                    highlight = "RenderMarkdownChecked",
+                    icon = "󰄲 ",
+                    highlight = "OkSign",
                 }
             }
         })
