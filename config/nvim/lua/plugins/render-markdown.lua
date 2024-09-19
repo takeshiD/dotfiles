@@ -5,9 +5,9 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons"
     },
-    ft = {"markdown"},
+    ft = { "markdown" },
     keys = {
-        {"<leader>t", "<cmd>RenderMarkdown toggle<CR>", mode = {"n"}},
+        { "<leader>t", "<cmd>RenderMarkdown toggle<CR>", mode = { "n" } },
     },
     config = function()
         require("render-markdown").setup({
@@ -17,11 +17,14 @@ return {
                 position = "inline",
                 unchecked = {
                     icon = "󰄱 ",
-                    highlight = "HintSign",
+                    highlight = "RenderMarkdownUnchecked",
                 },
                 checked = {
-                    icon = "󰄲 ",
+                    icon = "󰄵 ",
                     highlight = "OkSign",
+                },
+                custom = {
+                    pending = { raw = "[-]", rendered = " ", highlight = "NonText" },
                 }
             }
         })
