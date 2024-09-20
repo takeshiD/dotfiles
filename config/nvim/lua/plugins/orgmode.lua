@@ -9,8 +9,10 @@ return {
                 command = "language en_US.utf8",
             })
             require("orgmode").setup({
-                org_agenda_files = "~/notes/agenda/**",
+                org_agenda_files = "~/notes/agenda/**/*",
                 org_default_notes_file = "~/notes/org/inbox.org",
+                org_startup_folded = "showeverything",
+                org_agenda_skip_scheduled_if_done = true,
                 mappings = {
                     org = {
                         org_todo = "ct",
@@ -18,13 +20,13 @@ return {
                 },
                 org_todo_keywords = {
                     "TODO(t)",
-                    "DONE(d)",
                     "WAITING(w)",
+                    "DONE(d)",
                 },
                 org_todo_keyword_faces = {
                     TODO = "ErrorSign",
-                    DONE = "OkSign",
                     WAITING = "WarningSign",
+                    DONE = "OkSign",
                 }
             })
         end,
