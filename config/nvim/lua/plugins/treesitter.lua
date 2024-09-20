@@ -26,6 +26,9 @@ return {
                 "yaml",
                 "toml"
             },
+            ignore_install = {
+                "org",
+            },
             auto_install = true,
             highlight = {
                 enable = true,

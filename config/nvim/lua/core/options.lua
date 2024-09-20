@@ -2,6 +2,8 @@ local opt = vim.opt
 
 --############ Encode&Format ###########
 vim.scriptencoding = "utf-8"
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 
 --############ OperationBehavior ###########
 opt.updatetime = 100
