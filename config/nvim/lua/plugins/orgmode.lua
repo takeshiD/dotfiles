@@ -12,21 +12,23 @@ return {
                 org_agenda_files = "~/notes/agenda/**/*",
                 org_default_notes_file = "~/notes/org/inbox.org",
                 org_startup_folded = "showeverything",
-                org_agenda_skip_scheduled_if_done = true,
+                -- org_agenda_skip_scheduled_if_done = true,
+                win_split_mode = "float",
+                win_border = "single",
                 mappings = {
+                    global = {
+                        org_agenda = "<leader>a",
+                        org_capture = "<leader>c",
+                    },
                     org = {
-                        org_todo = "ct",
+                        org_todo = "<C-c>",
                     },
                 },
-                org_todo_keywords = {
-                    "TODO(t)",
-                    "WAITING(w)",
-                    "DONE(d)",
-                },
+                org_todo_keywords = { "TODO", "WAITING", "|", "DONE" },
                 org_todo_keyword_faces = {
-                    TODO = "ErrorSign",
-                    WAITING = "WarningSign",
-                    DONE = "OkSign",
+                    TODO    = ":foreground white :background red",
+                    WAITING = ":foreground white :background darkmagenta",
+                    DONE    = ":foreground white :background green",
                 }
             })
         end,
@@ -47,6 +49,7 @@ return {
     },
     {
         "akinsho/org-bullets.nvim",
+        enabled = false,
         config = function()
             require("org-bullets").setup {
                 concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible

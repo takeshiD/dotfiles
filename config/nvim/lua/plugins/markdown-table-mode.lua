@@ -1,8 +1,7 @@
 return {
-    {
-        'Kicamon/markdown-table-mode.nvim',
-        config = function()
-            require('markdown-table-mode').setup()
-        end
-    }
+    'Kicamon/markdown-table-mode.nvim',
+    enabled = false,
+    config = function()
+        require('markdown-table-mode').setup()
+    end
 }
