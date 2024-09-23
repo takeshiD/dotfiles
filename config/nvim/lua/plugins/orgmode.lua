@@ -4,17 +4,34 @@ return {
         event = "VeryLazy",
         ft = { "org" },
         config = function()
-            vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-                pattern = "*.org",
-                command = "language en_US.utf8",
-            })
             require("orgmode").setup({
-                org_agenda_files = "~/notes/agenda/**/*",
-                org_default_notes_file = "~/notes/org/inbox.org",
+                -- Path
+                org_agenda_files = {"~/notes/agenda/**/*", "~/notes/inbox.org" },
+                org_default_notes_file = "~/notes/inbox.org",
+                -- org_archive_location = "~/notes/archive/archive.org",
+                -- Todos
+                org_todo_keywords = { "TODO", "WAITING", "|", "DONE" },
+                org_todo_keyword_faces = {
+                    TODO    = ":foreground white :background red",
+                    WAITING = ":foreground white :background darkmagenta",
+                    DONE    = ":foreground white :background green",
+                },
+                -- Look & Feel
                 org_startup_folded = "showeverything",
-                -- org_agenda_skip_scheduled_if_done = true,
                 win_split_mode = "float",
                 win_border = "single",
+                org_hide_leading_stars = true,
+                -- org_hide_emphasis_markers = true,
+                org_ellipsis = " ",
+                org_log_done = "time",
+                org_log_repeat = "time",
+                org_log_into_drawer = "LOGBOOK",
+                org_startup_indented = false,
+                calendar_week_start_day = 0,
+                -- Agenda settings
+                org_deadline_warning_days = 14,
+                org_agenda_span = "week",
+                -- Keymapping
                 mappings = {
                     global = {
                         org_agenda = "<leader>a",
@@ -24,12 +41,6 @@ return {
                         org_todo = "<C-c>",
                     },
                 },
-                org_todo_keywords = { "TODO", "WAITING", "|", "DONE" },
-                org_todo_keyword_faces = {
-                    TODO    = ":foreground white :background red",
-                    WAITING = ":foreground white :background darkmagenta",
-                    DONE    = ":foreground white :background green",
-                }
             })
         end,
     },

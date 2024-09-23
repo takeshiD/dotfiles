@@ -4,7 +4,6 @@ return {
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "org",
             callback = function()
-                print("vim-table-mode Orgmode")
                 vim.g.table_mode_corner = "+"
                 vim.g.table_mode_header_fillchar = "-"
             end
