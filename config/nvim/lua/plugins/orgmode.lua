@@ -4,11 +4,20 @@ return {
         event = "VeryLazy",
         ft = { "org" },
         config = function()
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "org",
+                callback = function()
+                    vim.keymap.set('i', '<S-CR>', '<cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>', {
+                        silent = true,
+                        buffer = true,
+                    })
+                end,
+            })
             require("orgmode").setup({
                 -- Path
-                org_agenda_files = {"~/notes/agenda/**/*", "~/notes/inbox.org" },
+                org_agenda_files = { "~/notes/agenda/**/*", "~/notes/inbox.org" },
                 org_default_notes_file = "~/notes/inbox.org",
-                -- org_archive_location = "~/notes/archive/archive.org",
+                org_archive_location = "~/notes/archive.org",
                 -- Todos
                 org_todo_keywords = { "TODO", "WAITING", "|", "DONE" },
                 org_todo_keyword_faces = {
@@ -28,17 +37,52 @@ return {
                 org_log_into_drawer = "LOGBOOK",
                 org_startup_indented = false,
                 calendar_week_start_day = 0,
+                org_id_prefix = "org",
+                org_id_method = "org",
+                org_id_link_to_org_use_id = true,
                 -- Agenda settings
                 org_deadline_warning_days = 14,
                 org_agenda_span = "week",
                 -- Keymapping
                 mappings = {
+                    -- org_return_uses_meta_return = true,
                     global = {
                         org_agenda = "<leader>a",
                         org_capture = "<leader>c",
                     },
+                    agenda = {
+                        org_agenda_later = "h",
+                        org_agenda_earlier = "l",
+                    },
                     org = {
-                        org_todo = "<C-c>",
+                        org_todo = "<C-t>",
+                        org_todo_prev = "<C-T>",
+                        org_refile = false,
+                        org_toggle_checkbox = "<C-c>",
+                        org_insert_link = "<leader>l",
+                        org_store_link = "<leader>u",
+                        org_set_tags_command = "<leader>t",
+                        org_archive_subtree = "<C-a>",
+                        org_toggle_archive_tag = "<leader>A",
+                        org_cycle = "<TAB>",
+                        org_global_cycle = "<S-TAB>",
+                        org_do_promote = "<C-h>",
+                        org_do_demote = "<C-l>",
+                        org_promote_subtree = "<C-H>",
+                        org_demote_subtree = "<C-L>",
+                        org_move_subtree_up = "<C-k>",
+                        org_move_subtree_down = "<C-j>",
+                        org_deadline = "<leader>d",
+                        org_schedule = "<leader>s",
+                        org_set_effort = "<leader>e",
+                        org_time_stamp = "<leader>.",
+                        org_toggle_timestamp_type = "<leader>,",
+                        org_priority = "<leader>p",
+                        org_clock_in = "<leader>xi",
+                        org_clock_out = "<leader>xo",
+                        org_clock_cancel = "<leader>xq",
+                        org_clock_goto = "<leader>xj",
+                        org_show_help = "<leader>?",
                     },
                 },
             })
@@ -75,5 +119,5 @@ return {
                 }
             }
         end
-    }
+    },
 }

@@ -5,7 +5,7 @@ vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 -- opt.langmenu = "en_us"
-opt.guifont = "Hackgen Console NF:h14"
+opt.guifont = "Hackgen Console NF:h12"
 vim.cmd[[language en_us.utf8]]
 
 --############ OperationBehavior ###########
