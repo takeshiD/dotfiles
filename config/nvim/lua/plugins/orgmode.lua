@@ -125,4 +125,15 @@ return {
             }
         end
     },
+    {
+        "lukas-reineke/headlines.nvim",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require("headlines").setup({
+                markdown = {
+                    headline_highlights = false,
+                },
+            })
+        end
+    }
 }
