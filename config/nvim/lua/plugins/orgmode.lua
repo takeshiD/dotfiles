@@ -7,7 +7,7 @@ return {
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "org",
                 callback = function()
-                    vim.keymap.set('i', '<CR>', '<cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>', {
+                    vim.keymap.set('i', '<S-CR>', '<cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>', {
                         silent = true,
                         buffer = true,
                     })
@@ -82,6 +82,11 @@ return {
                 org_id_prefix = "org",
                 org_id_method = "org",
                 org_id_link_to_org_use_id = true,
+                org_time_stamp_rounding_minutes = 1,
+                org_blank_before_new_entry = {
+                    heading = false,
+                    plain_list_item = false,
+                },
                 -- Agenda settings
                 org_deadline_warning_days = 14,
                 org_agenda_span = "week",
