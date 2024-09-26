@@ -135,5 +135,17 @@ return {
                 },
             })
         end
+    },
+    {
+        "chipsenkbeil/org-roam.nvim",
+        enabled = false,
+        dependencies = {
+            "nvim-orgmode/orgmode",
+        },
+        config = function()
+            require("org-roam").setup({
+                directory = "~/notes",
+            })
+        end
     }
 }

@@ -16,15 +16,15 @@ return {
                 enabled = true,
                 position = "inline",
                 unchecked = {
-                    icon = "󰄱 ",
+                    icon = "[ ]",
                     highlight = "RenderMarkdownUnchecked",
                 },
                 checked = {
-                    icon = "󰄵 ",
+                    icon = "[󰄬]",
                     highlight = "OkSign",
                 },
                 custom = {
-                    pending = { raw = "[-]", rendered = " ", highlight = "NonText" },
+                    pending = { raw = "[-]", rendered = "[]", highlight = "NonText" },
                 }
             }
         })
