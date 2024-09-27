@@ -13,6 +13,7 @@ return {
                 "rust_analyzer",
                 "clangd",
                 "ruff",
+                "pylsp",
                 "bashls",
                 "cmake",
                 "cssls",
