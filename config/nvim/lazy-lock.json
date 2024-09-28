@@ -33,6 +33,7 @@
   "render-markdown.nvim": { "branch": "main", "commit": "75a0a9596a91130fae43d3b7c0d6c651645ef1df" },
   "telescope-orgmode.nvim": { "branch": "main", "commit": "2cd2ea778726c6e44429fef82f23b63197dbce1b" },
   "telescope.nvim": { "branch": "master", "commit": "b324469959908c1c7434eb65d80e87895e6828f7" },
+  "toggleterm.nvim": { "branch": "main", "commit": "48be57eaba817f038d61bbf64d2c597f578c0827" },
   "treesitter-utils": { "branch": "main", "commit": "df621499e4227f0476f6f4bdb75a9d8dd18d16f2" },
   "vim-table-mode": { "branch": "master", "commit": "e4365bde024f73e205eefa2fb78e3029ddb92ea9" }
 }
