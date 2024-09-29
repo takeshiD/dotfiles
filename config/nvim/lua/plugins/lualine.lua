@@ -7,7 +7,7 @@ return {
             function()
                 local msg = "No Active LSP"
                 local ft = vim.bo.filetype
-                local clients = vim.lsp.get_clients({bufnr = 0})
+                local clients = vim.lsp.get_clients({ bufnr = 0 })
                 if next(clients) == nil then
                     return msg
                 end
@@ -26,6 +26,8 @@ return {
             options = {
                 icons_enabled = true,
                 theme = 'auto',
+                component_separators = '',
+                section_separators = { left = '', right = '' },
             },
             sections = {
                 lualine_a = { 'mode' },

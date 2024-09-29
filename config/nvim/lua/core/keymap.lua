@@ -19,3 +19,7 @@ keymap.set('n', 'gr', '<cmd>Lspsaga lsp_finder<cr>')
 keymap.set('n', 'ga', '<cmd>Lspsaga code_action<cr>')
 keymap.set('n', 'gn', '<cmd>Lspsaga rename<cr>')
 keymap.set('n', 'ge', '<cmd>Lspsaga show_line_diagnostics<cr>')
+
+--############# US-keyboard ###############
+keymap.set('n', ';', ':')
+keymap.set('n', ':', ';')

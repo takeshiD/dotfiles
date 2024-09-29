@@ -138,7 +138,7 @@ return {
     },
     {
         "chipsenkbeil/org-roam.nvim",
-        enabled = false,
+        enabled = true,
         dependencies = {
             "nvim-orgmode/orgmode",
         },
