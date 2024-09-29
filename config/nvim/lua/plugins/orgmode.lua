@@ -57,11 +57,11 @@ return {
                     },
                 },
                 -- Path
-                org_agenda_files = { "~/notes/agenda/**/*", "~/notes/inbox.org" },
-                org_default_notes_file = "~/notes/inbox.org",
-                org_archive_location = "~/notes/archive.org",
+                org_agenda_files = { "~/PersonalKnowledge/pages/*.org", "~/PersonalKnowledge/journals/*.org" },
+                org_default_notes_file = "~/PersonalKnowledge/pages/INBOX.org",
+                org_archive_location = "~/PersonalKnowledge/pages/ARCHIVE.org",
                 -- Todos
-                org_todo_keywords = { "TODO", "WAITING", "|", "DONE" },
+                org_todo_keywords = { "TODO", "DOING","WAITING", "|", "DONE" },
                 org_todo_keyword_faces = {
                     TODO    = ":foreground white :background red",
                     WAITING = ":foreground white :background darkmagenta",
