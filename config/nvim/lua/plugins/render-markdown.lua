@@ -11,7 +11,6 @@ return {
     config = function()
         local color = require("functions.color")
         local NormalBg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
-        local NormalFg = vim.api.nvim_get_hl(0, { name = "Normal" }).fg
         local RenderMarkdownH1Fg = vim.api.nvim_get_hl(0, { name = "Constant" }).fg
         local RenderMarkdownH2Fg = vim.api.nvim_get_hl(0, { name = "String" }).fg
         local RenderMarkdownH3Fg = vim.api.nvim_get_hl(0, { name = "Function" }).fg
