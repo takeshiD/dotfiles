@@ -25,17 +25,17 @@ return {
         vim.api.nvim_set_hl(0, "MyRenderMarkdownH5", { fg = RenderMarkdownH5Fg })
         vim.api.nvim_set_hl(0, "MyRenderMarkdownH6", { fg = RenderMarkdownH6Fg })
         vim.api.nvim_set_hl(0, "MyRenderMarkdownH1Bg",
-            { fg = RenderMarkdownH1Fg, bg = color.composeColor(NormalBg, RenderMarkdownH1Fg, 0.5), bold = true, cterm = { bold = true } })
+            { fg = RenderMarkdownH1Fg, bg = color.composeColor(NormalBg, RenderMarkdownH1Fg, 0.8), bold = true, cterm = { bold = true } })
         vim.api.nvim_set_hl(0, "MyRenderMarkdownH2Bg",
-            { fg = RenderMarkdownH2Fg, bg = color.composeColor(NormalBg, RenderMarkdownH2Fg, 0.5), bold = true, cterm = { bold = true } })
+            { fg = RenderMarkdownH2Fg, bg = color.composeColor(NormalBg, RenderMarkdownH2Fg, 0.8), bold = true, cterm = { bold = true } })
         vim.api.nvim_set_hl(0, "MyRenderMarkdownH3Bg",
-            { fg = RenderMarkdownH3Fg, bg = color.composeColor(NormalBg, RenderMarkdownH3Fg, 0.5), bold = true, cterm = { bold = true } })
+            { fg = RenderMarkdownH3Fg, bg = color.composeColor(NormalBg, RenderMarkdownH3Fg, 0.8), bold = true, cterm = { bold = true } })
         vim.api.nvim_set_hl(0, "MyRenderMarkdownH4Bg",
-            { fg = RenderMarkdownH4Fg, bg = color.composeColor(NormalBg, RenderMarkdownH4Fg, 0.5), bold = true, cterm = { bold = true } })
+            { fg = RenderMarkdownH4Fg, bg = color.composeColor(NormalBg, RenderMarkdownH4Fg, 0.8), bold = true, cterm = { bold = true } })
         vim.api.nvim_set_hl(0, "MyRenderMarkdownH5Bg",
-            { fg = RenderMarkdownH5Fg, bg = color.composeColor(NormalBg, RenderMarkdownH5Fg, 0.5), bold = true, cterm = { bold = true } })
+            { fg = RenderMarkdownH5Fg, bg = color.composeColor(NormalBg, RenderMarkdownH5Fg, 0.8), bold = true, cterm = { bold = true } })
         vim.api.nvim_set_hl(0, "MyRenderMarkdownH6Bg",
-            { fg = RenderMarkdownH6Fg, bg = color.composeColor(NormalBg, RenderMarkdownH6Fg, 0.5), bold = true, cterm = { bold = true } })
+            { fg = RenderMarkdownH6Fg, bg = color.composeColor(NormalBg, RenderMarkdownH6Fg, 0.8), bold = true, cterm = { bold = true } })
         require("render-markdown").setup({
             enabled = true,
             heading = {
