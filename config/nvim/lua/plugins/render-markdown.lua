@@ -84,6 +84,20 @@ return {
                 custom = {
                     pending = { raw = "[-]", rendered = "[]", highlight = "NonText" },
                 }
+            },
+            code = {
+                enabled = true,
+                sign = true,
+                style = 'full',
+                position = 'right',
+                width = 'block',
+                min_width = 60,
+                right_pad = 10,
+                border = 'thick',
+                above = '▄',
+                below = '▀',
+                highlight = 'RenderMarkdownCode',
+                highlight_inline = 'RenderMarkdownCodeInline',
             }
         })
     end
