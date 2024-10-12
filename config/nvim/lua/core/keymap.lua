@@ -10,6 +10,8 @@ keymap.set('n', '<C-n>', ':bnext<Return>')
 keymap.set('n', '<C-w><C-w>', ':bdelete %<Return>')
 keymap.set('n', 'L', '$')
 keymap.set('n', 'H', '^')
+keymap.set('v', 'L', '$')
+keymap.set('v', 'H', '^')
 keymap.set('i', 'jj', '<ESC>')
 
 --############# LSP ###############

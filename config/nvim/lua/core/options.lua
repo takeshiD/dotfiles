@@ -20,6 +20,7 @@ opt.backup = false
 --===== Colors =====
 opt.hlsearch = true
 opt.termguicolors = true
+opt.winblend = 0
 
 --===== Indent&Tab&Space =====
 opt.autoindent = true
