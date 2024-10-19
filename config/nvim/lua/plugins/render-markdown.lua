@@ -4,7 +4,10 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons"
     },
-    ft = { "markdown" },
+    ft = { "markdown", "Avente" },
+    opts = {
+        file_types = { "markdown", "Avente" },
+    },
     keys = {
         { "<leader>t", "<cmd>RenderMarkdown toggle<CR>", mode = { "n" } },
     },

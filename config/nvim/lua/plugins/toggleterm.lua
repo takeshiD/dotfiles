@@ -22,7 +22,7 @@ return {
         })
         require("toggleterm").setup({
             shell = "nu",
-            direction = "vertical",
+            direction = "float",
             size = 60,
             float_opts = {
                 border = 'single',

@@ -30,7 +30,6 @@ return {
                         fallback()
                     end
                 end, {"i", "s"}),
-                -- ["<S-TAB>"] = cmp.mapping.select_prev_item(),
                 ["<S-TAB>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
@@ -51,7 +50,8 @@ return {
                 {
                     { name = "nvim_lsp" },
                     { name = "buffer" },
-                    { name = "orgmode" },
+                    { name = "path" },
+                    { name = "cmdline" },
                 }
             ),
             window = {
