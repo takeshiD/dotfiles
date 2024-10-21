@@ -9,7 +9,7 @@ return {
         file_types = { "markdown", "Avente" },
     },
     keys = {
-        { "<leader>t", "<cmd>RenderMarkdown toggle<CR>", mode = { "n" } },
+        -- { "<leader>t", "<cmd>RenderMarkdown toggle<CR>", mode = { "n" } },
     },
     config = function()
         local color = require("functions.color")

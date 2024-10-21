@@ -8,5 +8,5 @@ return {
                 vim.g.table_mode_header_fillchar = "-"
             end
         })
-    end
+    end,
 }
