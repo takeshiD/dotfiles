@@ -1,3 +1,10 @@
+local exist_env = function(envname)
+    return vim.fn.getenv(envname) ~= vim.Nil
+end
+local ternary = function(cond , T, F)
+    if cond then return T else return F end
+end
+
 return {
     "yetone/avante.nvim",
     enabled = true,
@@ -51,11 +58,9 @@ return {
             max_tokens = 4096,
         },
         azure = {
-            endpoint = "https://" .. vim.env.AZURE_OPENAI_ENDPOINT_ADDR .. "/",
-            deployment = vim.env.AZURE_OPENAI_DEPLOY,
+            endpoint = ternary(exist_env("AZURE_OPENAI_ENDPOINT_ADDR"), "http://" .. vim.fn.getenv("AZURE_OPENAI_ENDPOINT_ADDR"), ""),
+            deployment = ternary(exist_env("AZURE_OPENAI_DEPLOY"), vim.fn.getenv("AZURE_OPENAI_DEPLOY"), ""),
             api_version = "2024-06-01",
-            -- allow_insecure = false,
-            -- proxy = vim.env.HTTPS_PROXY,
             max_tokens = 4096,
         }
     },
