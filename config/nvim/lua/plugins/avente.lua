@@ -8,6 +8,7 @@ return {
         provider = "claude",
         -- provider = "copilot",
         -- provider = "openai",
+        -- provider = "azure",
         auto_suggestions_provider = "copilot",
         behaviour = {
             auto_suggestions = true,
