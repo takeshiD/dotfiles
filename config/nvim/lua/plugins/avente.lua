@@ -5,10 +5,12 @@ return {
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-        provider = "claude",
+        -- provider = "claude",
         -- provider = "copilot",
         -- provider = "openai",
-        auto_suggestions_provider = "copilot",
+        provider = "azure",
+        -- auto_suggestions_provider = "copilot",
+        auto_suggestions_provider = "azure",
         behaviour = {
             auto_suggestions = true,
             auto_set_highlight_group = true,
@@ -35,7 +37,7 @@ return {
             model = "claude-3-5-sonnet-20241022", -- $3/$15, maxtokens=8000
             -- model = "claude-3-opus-20240229",  -- $15/$75
             -- model = "claude-3-haiku-20240307", -- $0.25/1.25
-            -- model = "claude-3-5-haiku-20241022", -- $0.25/1.25
+            -- model = "claude-3-5-haiku-20241022", -- $0.25/1.25k
             -- max_tokens = 4096,
             max_tokens = 8000,
         },
@@ -49,10 +51,18 @@ return {
             -- model = "gpt-4o-mini", -- $0.15/$0.60
             max_tokens = 4096,
         },
+        azure = {
+            endpoint = "https://" .. vim.env.AZURE_OPENAI_ENDPOINT_ADDR .. "/",
+            deployment = vim.env.AZURE_OPENAI_DEPLOY,
+            api_version = "2024-06-01",
+            -- allow_insecure = false,
+            -- proxy = vim.env.HTTPS_PROXY,
+            max_tokens = 4096,
+        }
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     -- build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
+    build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "stevearc/dressing.nvim",
