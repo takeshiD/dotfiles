@@ -17,7 +17,7 @@ return {
         cmp.setup({
             mapping = cmp.mapping.preset.insert({
                 -- ["<TAB>"] = cmp.mapping.select_next_item(),
-                ["<TAB>"] = cmp.mapping(function(fallback)
+                ["<C-j>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif vim.snippet.active({direction=1}) then
@@ -30,7 +30,7 @@ return {
                         fallback()
                     end
                 end, {"i", "s"}),
-                ["<S-TAB>"] = cmp.mapping(function(fallback)
+                ["<C-k>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
                     elseif vim.snippet.active({direction=-1}) then
