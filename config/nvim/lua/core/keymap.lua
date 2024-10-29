@@ -21,6 +21,7 @@ keymap.set('n', 'gd', '<cmd>Lspsaga peek_definition<cr>')
 keymap.set('n', '<leader>d', '<cmd>Lspsaga goto_definition<cr>')
 keymap.set('n', 'gr', '<cmd>Lspsaga lsp_finder<cr>')
 keymap.set('n', 'ga', '<cmd>Lspsaga code_action<cr>')
+keymap.set('n', '<leader>o', '<cmd>Lspsaga outline<cr>')
 keymap.set('n', 'gn', '<cmd>Lspsaga rename<cr>')
 keymap.set('n', 'ge', '<cmd>Lspsaga show_line_diagnostics<cr>')
 

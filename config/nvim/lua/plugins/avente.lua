@@ -1,7 +1,7 @@
 local exist_env = function(envname)
     return vim.fn.getenv(envname) ~= vim.Nil
 end
-local ternary = function(cond , T, F)
+local ternary = function(cond, T, F)
     if cond then return T else return F end
 end
 
@@ -57,12 +57,12 @@ return {
             -- model = "gpt-4o-mini", -- $0.15/$0.60
             max_tokens = 4096,
         },
-        azure = {
-            endpoint = ternary(exist_env("AZURE_OPENAI_ENDPOINT_ADDR"), "http://" .. vim.fn.getenv("AZURE_OPENAI_ENDPOINT_ADDR"), ""),
-            deployment = ternary(exist_env("AZURE_OPENAI_DEPLOY"), vim.fn.getenv("AZURE_OPENAI_DEPLOY"), ""),
-            api_version = "2024-06-01",
-            max_tokens = 4096,
-        }
+        -- azure = {
+        --     endpoint = ternary(exist_env("AZURE_OPENAI_ENDPOINT_ADDR"), "http://" .. vim.fn.getenv("AZURE_OPENAI_ENDPOINT_ADDR"), ""),
+        --     deployment = ternary(exist_env("AZURE_OPENAI_DEPLOY"), vim.fn.getenv("AZURE_OPENAI_DEPLOY"), ""),
+        --     api_version = "2024-06-01",
+        --     max_tokens = 4096,
+        -- }
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     -- build = "make",
