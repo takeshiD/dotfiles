@@ -5,12 +5,12 @@ return {
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-        -- provider = "claude",
+        provider = "claude",
         -- provider = "copilot",
         -- provider = "openai",
-        provider = "azure",
-        -- auto_suggestions_provider = "copilot",
-        auto_suggestions_provider = "azure",
+        -- provider = "azure",
+        auto_suggestions_provider = "copilot",
+        -- auto_suggestions_provider = "azure",
         behaviour = {
             auto_suggestions = true,
             auto_set_highlight_group = true,
