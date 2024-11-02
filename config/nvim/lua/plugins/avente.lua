@@ -12,6 +12,7 @@ return {
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
+        debug = false,
         provider = "claude",
         -- provider = "copilot",
         -- provider = "openai",
@@ -26,7 +27,7 @@ return {
         },
         windows = {
             position = "right",
-            width = 50,
+            width = 40,
             sidebar_header = {
                 align = "center",
                 rounded = false,
