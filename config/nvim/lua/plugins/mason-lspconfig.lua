@@ -3,6 +3,7 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
+        "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
         local lspconfig = require("lspconfig")
@@ -26,12 +27,15 @@ return {
                 "vimls",
             }
         })
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
         require("mason-lspconfig").setup_handlers({
             function(server_name)
                 if server_name == "tsserver" then
                     server_name = "ts_ls"
                 end
-                lspconfig[server_name].setup({})
+                lspconfig[server_name].setup({
+                    capabilities = capabilities
+                })
             end,
             ["lua_ls"] = function()
                 lspconfig.lua_ls.setup({

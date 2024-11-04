@@ -46,8 +46,8 @@ return {
                     end
                 end, { "i", "s" }),
                 ["<C-l>"] = cmp.mapping.complete(),
-                ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+                -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+                -- ["<C-u>"] = cmp.mapping.scroll_docs(4),
                 ["<CR>"] = cmp.mapping.confirm({ select = true }),
             }),
             sources = cmp.config.sources(
@@ -55,9 +55,9 @@ return {
                     { name = "nvim_lsp" },
                     { name = "path" },
                     { name = "nvim_lsp_signature_help" },
-                    { name = "buffer" },
                 },
                 {
+                    { name = "buffer" },
                     -- { name = "cmdline" },
                 }
             ),
@@ -67,17 +67,16 @@ return {
             },
             formatting = {
                 format = lspkind.cmp_format({
-                    mode = "symbol_text",
+                    mode = 'text_symbol', -- show only symbol annotations
                     preset = "codicons",
-                    ellipsis_char = "...",
+                    maxwidth = {
+                        menu = 100,       -- leading text (labelDetails)
+                        abbr = 100,       -- actual suggestion item
+                    },
+                    ellipsis_char = '...',
                     show_labelDetails = true,
                     before = function(entry, vim_item)
-                        local menuname_map = {
-                            nvim_lsp = ' LSP',
-                            path = '󰙅 Path',
-                            nvim_lsp_signature_help = '󰷼 Signature',
-                            buffer = ' Buffer' }
-                        vim_item.menu = menuname_map[entry.source.name]
+                        vim_item.menu = "[" .. entry.source.name .. "]"
                         return vim_item
                     end
                 })

@@ -14,6 +14,10 @@ keymap.set('v', 'L', '$')
 keymap.set('v', 'H', '^')
 keymap.set('i', 'jj', '<ESC>')
 
+-- unset indent/remove-indent when intert-mode
+-- keymap.del("i", "<C-d>")
+-- keymap.del("i", "<C-t>")
+
 --############# LSP ###############
 keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>')
 keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.format()<cr>')
@@ -28,3 +32,5 @@ keymap.set('n', 'ge', '<cmd>Lspsaga show_line_diagnostics<cr>')
 --############# US-keyboard ###############
 keymap.set('n', ';', ':')
 keymap.set('n', ':', ';')
+keymap.set('v', ';', ':')
+keymap.set('v', ':', ';')
