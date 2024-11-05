@@ -55,7 +55,7 @@ local get_provider = function(providers)
         local apikey_envname = provider_apikey_map[provider]
         provider = ternary(exist_envname(apikey_envname), provider, nil)
         if provider ~= nil then
-            print("[LLM Provider] avante.nvim uses " .. string.upper(provider))
+            print("[LLMProvider] avante.nvim uses " .. string.upper(provider))
             return tostring(provider)
         end
     end
@@ -133,7 +133,7 @@ return {
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     -- build = "make",
-    build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "stevearc/dressing.nvim",
