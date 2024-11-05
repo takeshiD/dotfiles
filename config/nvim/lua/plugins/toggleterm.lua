@@ -1,3 +1,11 @@
+local get_shell = function()
+    if vim.fn.has("win32") == 1 then
+        return "nu"
+    elseif vim.fn.has("unix") == 1 then
+        return "bash"
+    end
+end
+
 return {
     'akinsho/toggleterm.nvim',
     event = 'VeryLazy',
@@ -21,7 +29,7 @@ return {
             end
         })
         require("toggleterm").setup({
-            shell = "nu",
+            shell = get_shell(),
             direction = "float",
             size = 60,
             float_opts = {
