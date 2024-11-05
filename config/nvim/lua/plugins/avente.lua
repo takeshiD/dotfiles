@@ -76,7 +76,6 @@ return {
                 "azure",
                 "claude",
                 "openai",
-                "gemini",
             }
         ),
         -- auto_suggestions_provider = "copilot",
