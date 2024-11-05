@@ -2,7 +2,7 @@
 ---@param envname string
 ---@return boolean
 local exist_envname = function(envname)
-    return vim.fn.getenv(envname) ~= vim.Nil
+    return vim.fn.getenv(envname) ~= vim.NIL
 end
 
 ---condがtrueの場合Tを返す condがfalseの場合Fを返す
@@ -21,37 +21,46 @@ end
 ---@param list T[]
 ---@return T | nil
 local member_if = function(pred, list)
-    for k, v in pairs(list) do
+    for _, v in ipairs(list) do
         if pred(v) then
-            return k
+            return v
         end
     end
     return nil
 end
 
 ---環境変数envnameが存在する場合は格納されている値を返す
----存在しない場合はFを返す. Fはデフォルト値が空文字
+---存在しない場合はFを返す
 ---@param envname string
----@param F? string
+---@param F string | nil
 ---@return string
 local getenv_if = function(envname, F)
-    F = F or ""
+    F = F or nil
     return ternary(exist_envname(envname), vim.fn.getenv(envname), F)
 end
 
 local copilot_path = vim.fn.stdpath("data") .. "/avante/github-copilot.json"
+local provider_apikey_map = {
+    azure = "AZURE_OPENAI_API_KEY",
+    claude = "ANTHROPIC_API_KEY",
+    openai = "OPENAI_API_KEY",
+}
 
 ---providersの中で最初に環境変数が設定されているproviderを返す
----先頭に設定されているproviderが優先されるため自分で優先度を設定すること
+---先頭に設定されているproviderが優先されるためリストを並べ替えて優先度を設定する
 ---@param providers string[]
 ---@return string
 local get_provider = function(providers)
-    local provider = member_if(exist_envname, providers)
-    if provider == nil then
-        error("The provider for which the api-key is set cannot be obtained.")
-    else
-        return provider
+    for _, provider in ipairs(providers) do
+        local apikey_envname = provider_apikey_map[provider]
+        provider = ternary(exist_envname(apikey_envname), provider, nil)
+        if provider ~= nil then
+            print("[LLM Provider] avante.nvim uses " .. string.upper(provider))
+            return tostring(provider)
+        end
     end
+    error("The provider for which the api-key is set cannot be obtained.")
+    return ""
 end
 
 return {
@@ -62,23 +71,20 @@ return {
     version = false, -- set this if you want to always pull the latest change
     opts = {
         debug = false,
-        -- provider = "claude",
-        -- provider = "copilot",
-        -- provider = "openai",
         provider = get_provider(
             {
-                azure = "AZURE_OPENAI_API_KEY",
-                claude = "ANTHROPIC_API_KEY",
-                openai = "OPENAI_API_KEY",
+                "azure",
+                "claude",
+                "openai",
+                "gemini",
             }
         ),
         -- auto_suggestions_provider = "copilot",
-        -- auto_suggestions_provider = "claude",
         auto_suggestions_provider = get_provider(
             {
-                azure = "AZURE_OPENAI_API_KEY",
-                claude = "ANTHROPIC_API_KEY",
-                openai = "OPENAI_API_KEY",
+                "azure",
+                "claude",
+                "openai",
             }
         ),
         behaviour = {
@@ -120,8 +126,8 @@ return {
             max_tokens = 4096,
         },
         azure = {
-            endpoint = getenv_if("AZURE_OPENAI_ENDPOINT"),
-            deployment = getenv_if("AZURE_OPENAI_DEPLOY"),
+            endpoint = getenv_if("AZURE_OPENAI_ENDPOINT", ""),
+            deployment = getenv_if("AZURE_OPENAI_DEPLOY", ""),
             api_version = "2024-06-01",
             max_tokens = 4096,
         },
