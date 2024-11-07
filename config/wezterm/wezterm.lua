@@ -1,5 +1,5 @@
 -- wezterm API
-local wezterm = require 'wezterm'
+local wezterm = require ('wezterm')
 local config = wezterm.config_builder()
 
 -- Logger
@@ -34,7 +34,7 @@ config.window_padding = {
 config.color_scheme = 'Espresso Libre'
 config.window_background_opacity = 1
 config.font = wezterm.font("HackGen Console NF", { weight = "Regular", stretch = "Normal" })
-config.font_size = 12
+config.font_size = 14
 
 
 -- #########################################
@@ -63,7 +63,7 @@ config.visual_bell = {
     target = 'CursorColor',
 }
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-    config.default_prog = { 'powershell' }
+    config.default_prog = { 'nu' }
     config.use_fancy_tab_bar = false
     config.enable_tab_bar = true
     config.keys = {
@@ -72,7 +72,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
             mods = 'CTRL',
             action = wezterm.action.ActivateKeyTable {
                 name = 'operate_pane',
-                timeout_milliseconds = 1000,
+                timeout_milliseconds = 500,
             },
         },
     }
