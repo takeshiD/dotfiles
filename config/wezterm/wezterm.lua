@@ -23,11 +23,11 @@ config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "TITLE | RESIZE"
 
 local function tab_title(tab_info)
-  local title = tab_info.tab_title
-  if title and #title > 0 then
-    return title
-  end
-  return tab_info.active_pane.title
+    local title = tab_info.tab_title
+    if title and #title > 0 then
+        return " " .. title " "
+    end
+    return " " .. tab_info.active_pane.title .. " "
 end
 
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
