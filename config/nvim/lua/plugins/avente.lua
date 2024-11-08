@@ -55,7 +55,24 @@ local get_provider = function(providers)
         local apikey_envname = provider_apikey_map[provider]
         provider = ternary(exist_envname(apikey_envname), provider, nil)
         if provider ~= nil then
-            print("[LLMProvider] avante.nvim uses " .. string.upper(provider))
+            print("[avante.nvim] chatting provider: " .. string.upper(provider))
+            return tostring(provider)
+        end
+    end
+    error("The provider for which the api-key is set cannot be obtained.")
+    return ""
+end
+
+---providersの中で最初に環境変数が設定されているproviderを返す
+---先頭に設定されているproviderが優先されるためリストを並べ替えて優先度を設定する
+---@param providers string[]
+---@return string
+local get_suggestions_provider = function(providers)
+    for _, provider in ipairs(providers) do
+        local apikey_envname = provider_apikey_map[provider]
+        provider = ternary(exist_envname(apikey_envname), provider, nil)
+        if provider ~= nil then
+            print("[avante.nvim] suggesting provider: " .. string.upper(provider))
             return tostring(provider)
         end
     end
@@ -79,9 +96,10 @@ return {
             }
         ),
         -- auto_suggestions_provider = "copilot",
-        auto_suggestions_provider = get_provider(
+        auto_suggestions_provider = get_suggestions_provider(
             {
                 "azure",
+                "copilot",
                 "claude",
                 "openai",
             }
