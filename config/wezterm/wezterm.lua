@@ -1,5 +1,5 @@
 -- wezterm API
-local wezterm = require ('wezterm')
+local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
 -- Logger
@@ -18,9 +18,43 @@ end)
 -- ============ Outer Appearance ===========
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
-config.enable_tab_bar = false
-config.window_close_confirmation = 'NeverPrompt'
+config.enable_tab_bar = true
+config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "TITLE | RESIZE"
+
+local function tab_title(tab_info)
+  local title = tab_info.tab_title
+  if title and #title > 0 then
+    return title
+  end
+  return tab_info.active_pane.title
+end
+
+local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
+local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+    local background = "#808080"
+    local foreground = "#cccccc"
+    local edge_background = "none"
+    if tab.is_active then
+        background = "#ff7f50"
+        foreground = "#ffffff"
+    end
+    local edge_foreground = background
+    local title = tab_title(tab)
+    title = wezterm.truncate_right(title, max_width - 2)
+    return {
+        { Background = { Color = edge_background } },
+        { Foreground = { Color = edge_foreground } },
+        { Text = SOLID_LEFT_ARROW },
+        { Background = { Color = background } },
+        { Foreground = { Color = foreground } },
+        { Text = title },
+        { Background = { Color = edge_background } },
+        { Foreground = { Color = edge_foreground } },
+        { Text = SOLID_RIGHT_ARROW },
+    }
+end)
 
 -- ============ Inner Appearance ===========
 config.window_padding = {
@@ -72,7 +106,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
             mods = 'CTRL',
             action = wezterm.action.ActivateKeyTable {
                 name = 'operate_pane',
-                timeout_milliseconds = 500,
+                timeout_milliseconds = 1000,
             },
         },
     }
