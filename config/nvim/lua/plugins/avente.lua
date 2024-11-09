@@ -1,8 +1,17 @@
+local Path = require("plenary.path")
+
 ---環境変数envnameが存在する場合はtrue, しない場合はfalseを返す
 ---@param envname string
 ---@return boolean
 local exist_envname = function(envname)
     return vim.fn.getenv(envname) ~= vim.NIL
+end
+
+---Pathが存在する場合はtrue, しない場合はfalseを返す
+---@param path string
+---@return boolean
+local exist_path = function(path)
+    return Path:new(vim.fn.expand(path)):exists()
 end
 
 ---condがtrueの場合Tを返す condがfalseの場合Fを返す
@@ -40,20 +49,36 @@ local getenv_if = function(envname, F)
 end
 
 local copilot_path = vim.fn.stdpath("data") .. "/avante/github-copilot.json"
-local provider_apikey_map = {
-    azure = "AZURE_OPENAI_API_KEY",
-    claude = "ANTHROPIC_API_KEY",
-    openai = "OPENAI_API_KEY",
+local provider_value_map = {
+    azure = {
+        type = "envvar",
+        value = "AZURE_OPENAI_API_KEY",
+    },
+    claude = {
+        type = "envvar",
+        value = "ANTHROPIC_API_KEY"
+    },
+    openai = {
+        type = "envvar",
+        value = "OPENAI_API_KEY"
+    },
+    copilot = {
+        type = "path",
+        value = copilot_path
+    }
 }
-
 ---providersの中で最初に環境変数が設定されているproviderを返す
 ---先頭に設定されているproviderが優先されるためリストを並べ替えて優先度を設定する
 ---@param providers string[]
 ---@return string
 local get_provider = function(providers)
     for _, provider in ipairs(providers) do
-        local apikey_envname = provider_apikey_map[provider]
-        provider = ternary(exist_envname(apikey_envname), provider, nil)
+        local p = provider_value_map[provider]
+        if p.type == "envvar" then
+            provider = ternary(exist_envname(p.value), provider, nil)
+        elseif p.type == "path" then
+            provider = ternary(exist_path(p.value), provider, nil)
+        end
         if provider ~= nil then
             print("[avante.nvim] chatting provider: " .. string.upper(provider))
             return tostring(provider)
@@ -63,14 +88,18 @@ local get_provider = function(providers)
     return ""
 end
 
----providersの中で最初に環境変数が設定されているproviderを返す
+---providersの中で最初に環境変数が設定されているproviderを返す, copilotは別の処理
 ---先頭に設定されているproviderが優先されるためリストを並べ替えて優先度を設定する
 ---@param providers string[]
 ---@return string
 local get_suggestions_provider = function(providers)
     for _, provider in ipairs(providers) do
-        local apikey_envname = provider_apikey_map[provider]
-        provider = ternary(exist_envname(apikey_envname), provider, nil)
+        local p = provider_value_map[provider]
+        if p.type == "envvar" then
+            provider = ternary(exist_envname(p.value), provider, nil)
+        elseif p.type == "path" then
+            provider = ternary(exist_path(p.value), provider, nil)
+        end
         if provider ~= nil then
             print("[avante.nvim] suggesting provider: " .. string.upper(provider))
             return tostring(provider)

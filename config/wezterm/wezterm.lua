@@ -121,19 +121,19 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
             { key = 'K', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
             { key = 'J', action = wezterm.action.AdjustPaneSize { 'Down', 5 } },
             {
-                key = "v",
-                action = wezterm.action.SplitPane {
-                    direction = "Right",
-                    size = { Percent = 50 },
+                    key = "v",
+                    action = wezterm.action.SplitPane {
+                        direction = "Right",
+                        size = { Percent = 50 },
+                    },
                 },
-            },
             {
-                key = "s",
-                action = wezterm.action.SplitPane {
-                    direction = "Down",
-                    size = { Percent = 50 },
-                }
-            },
+                    key = "s",
+                    action = wezterm.action.SplitPane {
+                        direction = "Down",
+                        size = { Percent = 50 },
+                    }
+                },
             { key = 'c', action = wezterm.action.SpawnTab "CurrentPaneDomain" },
             { key = 'n', action = wezterm.action.ActivateTabRelative(1) },
             { key = 'p', action = wezterm.action.ActivateTabRelative(-1) },
