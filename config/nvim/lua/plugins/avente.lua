@@ -1,114 +1,4 @@
-local Path = require("plenary.path")
-
----環境変数envnameが存在する場合はtrue, しない場合はfalseを返す
----@param envname string
----@return boolean
-local exist_envname = function(envname)
-    return vim.fn.getenv(envname) ~= vim.NIL
-end
-
----Pathが存在する場合はtrue, しない場合はfalseを返す
----@param path string
----@return boolean
-local exist_path = function(path)
-    return Path:new(vim.fn.expand(path)):exists()
-end
-
----condがtrueの場合Tを返す condがfalseの場合Fを返す
----@param cond boolean
----@param T any
----@param F any
----@return any
-local ternary = function(cond, T, F)
-    if cond then return T else return F end
-end
-
----述語predがtrueとなるlistの最初の要素を返す
----全ての要素がfalseの場合はnilを返す
----@generic T
----@param pred fun(item: T): boolean
----@param list T[]
----@return T | nil
-local member_if = function(pred, list)
-    for _, v in ipairs(list) do
-        if pred(v) then
-            return v
-        end
-    end
-    return nil
-end
-
----環境変数envnameが存在する場合は格納されている値を返す
----存在しない場合はFを返す
----@param envname string
----@param F string | nil
----@return string
-local getenv_if = function(envname, F)
-    F = F or nil
-    return ternary(exist_envname(envname), vim.fn.getenv(envname), F)
-end
-
-local copilot_path = vim.fn.stdpath("data") .. "/avante/github-copilot.json"
-local provider_value_map = {
-    azure = {
-        type = "envvar",
-        value = "AZURE_OPENAI_API_KEY",
-    },
-    claude = {
-        type = "envvar",
-        value = "ANTHROPIC_API_KEY"
-    },
-    openai = {
-        type = "envvar",
-        value = "OPENAI_API_KEY"
-    },
-    copilot = {
-        type = "path",
-        value = copilot_path
-    }
-}
----providersの中で最初に環境変数が設定されているproviderを返す
----先頭に設定されているproviderが優先されるためリストを並べ替えて優先度を設定する
----@param providers string[]
----@return string
-local get_provider = function(providers)
-    for _, provider in ipairs(providers) do
-        local p = provider_value_map[provider]
-        if p.type == "envvar" then
-            provider = ternary(exist_envname(p.value), provider, nil)
-        elseif p.type == "path" then
-            provider = ternary(exist_path(p.value), provider, nil)
-        end
-        if provider ~= nil then
-            print("[avante.nvim] chatting provider: " .. string.upper(provider))
-            return tostring(provider)
-        end
-    end
-    error("The provider for which the api-key is set cannot be obtained.")
-    return ""
-end
-
----providersの中で最初に環境変数が設定されているproviderを返す, copilotは別の処理
----先頭に設定されているproviderが優先されるためリストを並べ替えて優先度を設定する
----@param providers string[]
----@return string
-local get_suggestions_provider = function(providers)
-    for _, provider in ipairs(providers) do
-        local p = provider_value_map[provider]
-        if p.type == "envvar" then
-            provider = ternary(exist_envname(p.value), provider, nil)
-        elseif p.type == "path" then
-            provider = ternary(exist_path(p.value), provider, nil)
-        end
-        if provider ~= nil then
-            print("[avante.nvim] suggesting provider: " .. string.upper(provider))
-            return tostring(provider)
-        end
-    end
-    error("The provider for which the api-key is set cannot be obtained.")
-    return ""
-end
-
+local avante_status = require("avante-status")
 return {
     "yetone/avante.nvim",
     enabled = true,
@@ -117,15 +7,14 @@ return {
     version = false, -- set this if you want to always pull the latest change
     opts = {
         debug = false,
-        provider = get_provider(
+        provider = avante_status.get_chat_provider(
             {
                 "azure",
                 "claude",
                 "openai",
             }
         ),
-        -- auto_suggestions_provider = "copilot",
-        auto_suggestions_provider = get_suggestions_provider(
+        auto_suggestions_provider = avante_status.get_suggestions_provider(
             {
                 "azure",
                 "copilot",
@@ -172,8 +61,8 @@ return {
             max_tokens = 4096,
         },
         azure = {
-            endpoint = getenv_if("AZURE_OPENAI_ENDPOINT", ""),
-            deployment = getenv_if("AZURE_OPENAI_DEPLOY", ""),
+            endpoint = avante_status.getenv_if("AZURE_OPENAI_ENDPOINT", ""),
+            deployment = avante_status.getenv_if("AZURE_OPENAI_DEPLOY", ""),
             api_version = "2024-06-01",
             max_tokens = 4096,
         },
@@ -186,6 +75,7 @@ return {
         "stevearc/dressing.nvim",
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
+        "takeshid/avante-status.nvim",
         --- The below dependencies are optional,
         "nvim-tree/nvim-web-devicons",
         "zbirenbaum/copilot.lua", -- for providers='copilot'

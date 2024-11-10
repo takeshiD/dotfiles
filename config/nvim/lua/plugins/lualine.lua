@@ -1,11 +1,14 @@
 return {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+        "takeshid/avante-status.nvim",
+    },
     config = function()
         local lualine = require("lualine")
         local lsp_component = {
             function()
-                local msg = "No Active LSP"
+                local msg = ""
                 local ft = vim.bo.filetype
                 local clients = vim.lsp.get_clients({ bufnr = 0 })
                 if next(clients) == nil then
@@ -22,21 +25,26 @@ return {
             icon = " ",
             color = { fg = "#FF8800" },
         }
-        -- local llm_chat_component = {
-        --     function()
-        --         -- local msg = require("avante-status").provider.chat
-        --         local msg = "󰛄 Claude"
-        --         return msg
-        --     end,
-        --     color = { fg = "#CCCCCC" },
-        -- }
-        -- local llm_suggestion_component = 
-        --     function()
-        --         -- local msg = require("avante-status").provider.suggestions
-        --         local msg = current_provider.suggestions
-        --         return msg
-        --     end,
-        -- }
+        local avante_chat_component = {
+            function()
+                local avante_status = require("avante-status")
+                local chat = avante_status.current_chat_provider
+                -- local msg_chat = "%#" .. chat.highlight .. "#" .. chat.icon .. " " .. chat.name .. "%#StatusLine#"
+                local msg_chat = chat.icon .. " " .. chat.name
+                return msg_chat
+            end,
+            color = require("avante-status").current_chat_provider.highlight
+        }
+        local avante_suggestions_component = {
+            function()
+                local avante_status = require("avante-status")
+                local suggest = avante_status.current_suggestions_provider
+                -- local msg_suggest = "%#" .. suggest.highlight .. "#" .. suggest.icon .. " " .. suggest.name .. "%#StatusLine#"
+                local msg_suggest = suggest.icon .. " " .. suggest.name
+                return msg_suggest
+            end,
+            color = require("avante-status").current_suggestions_provider.highlight
+        }
         local config = {
             options = {
                 icons_enabled = true,
@@ -54,8 +62,8 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = { 'filename' },
-                lualine_x = { 'encoding', 'fileformat', 'filetype', lsp_component, llm_chat_component },
-                lualine_y = { 'progress' },
+                lualine_x = { 'encoding', 'fileformat', 'filetype', lsp_component, avante_chat_component, avante_suggestions_component},
+                lualine_y = { 'progress', },
                 lualine_z = { 'location' }
             },
             inactive_sections = {
