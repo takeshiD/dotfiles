@@ -1,5 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
+  "avante-status.nvim": { "branch": "main", "commit": "3c2044ca2cd3e325c0f0681717fc0caf33ba4d2b" },
   "avante.nvim": { "branch": "main", "commit": "ecaf850859cd38419f73cef76a9e1c53520f44d9" },
   "base16-vim": { "branch": "main", "commit": "2ed5ac1f99adf590d91a9f8d872286bafffaa3f3" },
   "bufferline.nvim": { "branch": "main", "commit": "5cc447cb2b463cb499c82eaeabbed4f5fa6a0a44" },
