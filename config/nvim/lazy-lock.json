@@ -1,6 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
-  "avante-status.nvim": { "branch": "main", "commit": "3c2044ca2cd3e325c0f0681717fc0caf33ba4d2b" },
+  "avante-status.nvim": { "branch": "main", "commit": "ceddc84c6d4223620755da712ea7834d1f34fc60" },
   "avante.nvim": { "branch": "main", "commit": "ecaf850859cd38419f73cef76a9e1c53520f44d9" },
   "base16-vim": { "branch": "main", "commit": "2ed5ac1f99adf590d91a9f8d872286bafffaa3f3" },
   "bufferline.nvim": { "branch": "main", "commit": "5cc447cb2b463cb499c82eaeabbed4f5fa6a0a44" },
@@ -36,7 +36,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "19d257cf889f79f4022163c3fbb5e08639077bd8" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
-  "render-markdown.nvim": { "branch": "main", "commit": "d80acb3f4ccc88052f65fa0a26e46c106b328bbe" },
+  "render-markdown.nvim": { "branch": "main", "commit": "336869114bdea448266e75d08be69a8054d8e277" },
   "telescope.nvim": { "branch": "master", "commit": "85922dde3767e01d42a08e750a773effbffaea3e" },
   "toggleterm.nvim": { "branch": "main", "commit": "87b2d6a3cab8e2bd9a0255427074285f0365398d" },
   "treesitter-utils": { "branch": "main", "commit": "df621499e4227f0476f6f4bdb75a9d8dd18d16f2" },
