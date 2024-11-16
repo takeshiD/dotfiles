@@ -25,7 +25,6 @@ return {
                 "tailwindcss",
                 "taplo",
                 "vimls",
-                "denols",
                 "ts_ls",
             }
         })
