@@ -25,10 +25,7 @@ return {
                 "tailwindcss",
                 "taplo",
                 "vimls",
-<<<<<<< Updated upstream
-=======
                 -- "denols",
->>>>>>> Stashed changes
                 "ts_ls",
             }
         })
