@@ -23,7 +23,7 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", {
 })
 
 vim.diagnostic.config({
-    update_in_insert = true,
+    update_in_insert = false,
     underline = true,
     severity_sort = true,
     virtual_text = {

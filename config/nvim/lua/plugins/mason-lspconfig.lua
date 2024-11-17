@@ -25,6 +25,10 @@ return {
                 "tailwindcss",
                 "taplo",
                 "vimls",
+<<<<<<< Updated upstream
+=======
+                -- "denols",
+>>>>>>> Stashed changes
                 "ts_ls",
             }
         })
@@ -38,12 +42,12 @@ return {
                     capabilities = capabilities
                 })
             end,
-            ["denols"] = function()
-                lspconfig.denols.setup({
-                    single_file_support = true,
-                    -- root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "tsconfig.json", "package.json", ".git")
-                })
-            end,
+            -- ["denols"] = function()
+            --     lspconfig.denols.setup({
+            --         single_file_support = true,
+            --         root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "tsconfig.json", "package.json", ".git")
+            --     })
+            -- end,
             -- ["ts_ls"] = function()
             --     lspconfig.denols.setup({
             --         root_dir = lspconfig.util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json', '.git')
