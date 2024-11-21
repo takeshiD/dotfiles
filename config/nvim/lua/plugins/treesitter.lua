@@ -1,5 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    enabled = true,
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = {
@@ -34,9 +35,6 @@ return {
                 enable = true,
             },
             indent = {
-                enable = true,
-            },
-            autotag = {
                 enable = true,
             },
         })
