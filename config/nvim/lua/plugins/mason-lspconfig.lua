@@ -15,6 +15,7 @@ return {
                 "clangd",
                 "ruff",
                 "pylsp",
+                "pyright",
                 "bashls",
                 "cmake",
                 "cssls",
