@@ -44,7 +44,8 @@ return {
                 enabled = true,
                 sign = false,
                 position = "inline",
-                icons = { "󰕱", "󰕱󰕱", "󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱󰕱󰕱" },
+                -- icons = { "󰕱", "󰕱󰕱", "󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱󰕱󰕱" },
+                icons = { "⟫", "⟫⟫", "⟫⟫⟫", "⟫⟫⟫⟫", "⟫⟫⟫⟫⟫", "⟫⟫⟫⟫⟫⟫" },
                 width = "full",
                 left_margin = 0,
                 left_pad = 0,
@@ -101,6 +102,9 @@ return {
                 below = '▀',
                 highlight = 'RenderMarkdownCode',
                 highlight_inline = 'RenderMarkdownCodeInline',
+            },
+            pipe_table = {
+                enabled = false
             }
         })
     end
