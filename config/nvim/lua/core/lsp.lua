@@ -22,6 +22,14 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", {
     fg = VirtualHintFG,
 })
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        update_in_insert = false,
+        rate_limiting = {
+            max_updates_per_second = 2,
+        },
+    }
+)
 vim.diagnostic.config({
     update_in_insert = false,
     underline = true,
