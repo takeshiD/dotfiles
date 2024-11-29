@@ -69,3 +69,13 @@ vim.diagnostic.config({
 })
 
 vim.lsp.inlay_hint.enable(true, nil)
+
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        update_in_insert = false,
+        rate_limiting = {
+            max_update_per_second = 2
+        }
+    }
+)

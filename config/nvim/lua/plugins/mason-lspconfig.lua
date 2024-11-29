@@ -26,7 +26,7 @@ return {
                 "tailwindcss",
                 "taplo",
                 "vimls",
-                -- "denols",
+                "denols",
                 "ts_ls",
             }
         })
@@ -40,17 +40,17 @@ return {
                     capabilities = capabilities
                 })
             end,
-            -- ["denols"] = function()
-            --     lspconfig.denols.setup({
-            --         single_file_support = true,
-            --         root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "tsconfig.json", "package.json", ".git")
-            --     })
-            -- end,
-            -- ["ts_ls"] = function()
-            --     lspconfig.denols.setup({
-            --         root_dir = lspconfig.util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json', '.git')
-            --     })
-            -- end,
+            ["denols"] = function()
+                lspconfig.denols.setup({
+                    single_file_support = true,
+                    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "tsconfig.json", "package.json", ".git")
+                })
+            end,
+            ["ts_ls"] = function()
+                lspconfig.denols.setup({
+                    root_dir = lspconfig.util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json', '.git')
+                })
+            end,
             ["lua_ls"] = function()
                 lspconfig.lua_ls.setup({
                     on_init = function(client)
@@ -96,6 +96,26 @@ return {
                     }
                 })
             end,
+            ["pylsp"] = function()
+                lspconfig.pylsp.setup({
+                    settings = {
+                        pylsp = {
+                            plugins = {
+                                -- 不要な機能を無効化
+                                pycodestyle = { enabled = false },
+                                mccabe = { enabled = false },
+                                pyflakes = { enabled = false },
+                                pylint = { enabled = false },
+                                yapf = { enabled = false },
+                                autopep8 = { enabled = false },
+                                black = { enabled = false },
+                                -- rope_completionは必要に応じて有効化
+                                rope_completion = { enabled = false },
+                            }
+                        }
+                    }
+                })
+            end
         })
     end
 }
