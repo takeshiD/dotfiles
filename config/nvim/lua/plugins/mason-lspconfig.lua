@@ -109,8 +109,10 @@ return {
                                 yapf = { enabled = false },
                                 autopep8 = { enabled = false },
                                 black = { enabled = false },
-                                -- rope_completionは必要に応じて有効化
                                 rope_completion = { enabled = false },
+                                mypy = { enabled = false},
+                                -- ruffのみ使用, 型チェックはpyright
+                                ruff = { enabled = true }
                             }
                         }
                     }
