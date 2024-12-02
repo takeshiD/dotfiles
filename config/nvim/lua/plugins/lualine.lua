@@ -28,12 +28,18 @@ return {
             color = { fg = "#FF8800" },
         }
         local avante_chat_component = {
-            avante_status.current_chat_provider.name,
+            function()
+                local msg = avante_status.current_chat_provider.name
+                return msg
+            end,
             icon = avante_status.current_chat_provider.icon,
             color = { fg = avante_status.current_chat_provider.fg}
         }
         local avante_suggestions_component = {
-            avante_status.current_suggestions_provider.name,
+            function()
+                local msg = avante_status.current_suggestions_provider.name
+                return msg
+            end,
             icon = avante_status.current_suggestions_provider.icon,
             color = { fg = avante_status.current_suggestions_provider.fg }
         }
