@@ -145,13 +145,15 @@ end
 config.enable_wayland = true
 
 -- ##### GPU
-config.front_end = 'Software'
--- for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
---   if gpu.backend == 'Vulkan' and gpu.device_type == 'IntegratedGpu' then
---     config.webgpu_preferred_adapter = gpu
---     config.front_end = 'WebGpu'
---     break
---   end
--- end
+for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+  if gpu.backend == 'Vulkan' and gpu.device_type == 'IntegratedGpu' then
+    config.webgpu_preferred_adapter = gpu
+    config.front_end = 'WebGpu'
+    break
+  end
+end
+config.freetype_load_target = "Light"
+config.default_cursor_style = "SteadyBlock"
+config.cursor_blink_rate = 0
 
 return config
