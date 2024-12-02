@@ -1,8 +1,10 @@
+local avante_status = require("functions.avante-status")
+avante_status.setup()
 return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        "takeshid/avante-status.nvim",
+        -- "takeshid/avante-status.nvim",
     },
     config = function()
         local lualine = require("lualine")
@@ -26,24 +28,14 @@ return {
             color = { fg = "#FF8800" },
         }
         local avante_chat_component = {
-            function()
-                local avante_status = require("avante-status")
-                local chat = avante_status.current_chat_provider
-                -- local msg_chat = "%#" .. chat.highlight .. "#" .. chat.icon .. " " .. chat.name .. "%#StatusLine#"
-                local msg_chat = chat.icon .. " " .. chat.name
-                return msg_chat
-            end,
-            color = require("avante-status").current_chat_provider.highlight
+            avante_status.current_chat_provider.name,
+            icon = avante_status.current_chat_provider.icon,
+            color = { fg = avante_status.current_chat_provider.fg}
         }
         local avante_suggestions_component = {
-            function()
-                local avante_status = require("avante-status")
-                local suggest = avante_status.current_suggestions_provider
-                -- local msg_suggest = "%#" .. suggest.highlight .. "#" .. suggest.icon .. " " .. suggest.name .. "%#StatusLine#"
-                local msg_suggest = suggest.icon .. " " .. suggest.name
-                return msg_suggest
-            end,
-            color = require("avante-status").current_suggestions_provider.highlight
+            avante_status.current_suggestions_provider.name,
+            icon = avante_status.current_suggestions_provider.icon,
+            color = { fg = avante_status.current_suggestions_provider.fg }
         }
         local config = {
             options = {
@@ -62,7 +54,7 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = { 'filename' },
-                lualine_x = { 'encoding', 'fileformat', 'filetype', lsp_component, avante_chat_component, avante_suggestions_component},
+                lualine_x = { 'encoding', 'fileformat', 'filetype', lsp_component, avante_chat_component, avante_suggestions_component },
                 lualine_y = { 'progress', },
                 lualine_z = { 'location' }
             },

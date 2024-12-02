@@ -96,6 +96,8 @@ config.visual_bell = {
     fade_out_duration_ms = 75,
     target = 'CursorColor',
 }
+
+-- ##### Only Windows
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { 'nu' }
     config.use_fancy_tab_bar = false
@@ -141,5 +143,15 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     }
 end
 config.enable_wayland = true
+
+-- ##### GPU
+config.front_end = 'Software'
+-- for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+--   if gpu.backend == 'Vulkan' and gpu.device_type == 'IntegratedGpu' then
+--     config.webgpu_preferred_adapter = gpu
+--     config.front_end = 'WebGpu'
+--     break
+--   end
+-- end
 
 return config
