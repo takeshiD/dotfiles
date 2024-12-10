@@ -9,14 +9,16 @@ return {
     {
         "sainnhe/everforest",
         lazy = false,
+        enabled = false,
         priority = 1000,
     },
     {
-        "tinted-theming/base16-vim",
+        "RRethy/base16-nvim",
+        enabled = true,
         lazy = false,
         priority = 1000,
-        -- config = function()
-        --     vim.cmd[[colorscheme base16-espresso]]
-        -- end
+        config = function()
+            vim.cmd[[colorscheme base16-espresso]]
+        end
     },
 }

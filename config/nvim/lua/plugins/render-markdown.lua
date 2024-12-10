@@ -1,5 +1,6 @@
 return {
     "MeanderingProgrammer/render-markdown.nvim",
+    enabled = false,
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons"
@@ -44,8 +45,7 @@ return {
                 enabled = true,
                 sign = false,
                 position = "inline",
-                -- icons = { "󰕱", "󰕱󰕱", "󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱󰕱", "󰕱󰕱󰕱󰕱󰕱󰕱" },
-                icons = { "⟫", "⟫⟫", "⟫⟫⟫", "⟫⟫⟫⟫", "⟫⟫⟫⟫⟫", "⟫⟫⟫⟫⟫⟫" },
+                icons = { "⟫ ", "⟫⟫ ", "⟫⟫⟫ ", "⟫⟫⟫⟫ ", "⟫⟫⟫⟫⟫ ", "⟫⟫⟫⟫⟫⟫ " },
                 width = "full",
                 left_margin = 0,
                 left_pad = 0,

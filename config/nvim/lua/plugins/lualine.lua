@@ -1,10 +1,12 @@
-local avante_status = require("functions.avante-status")
-avante_status.setup()
 return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        -- "takeshid/avante-status.nvim",
+        {
+            -- "takeshid/avante-status.nvim",
+            dir = vim.fn.stdpath("data") .. "/develop/avante-status.nvim",
+            dev = true,
+        },
     },
     config = function()
         local lualine = require("lualine")
@@ -29,19 +31,21 @@ return {
         }
         local avante_chat_component = {
             function()
-                local msg = avante_status.current_chat_provider.name
+                local chat = require("avante-status").chat_provider
+                local msg = chat.name
                 return msg
             end,
-            icon = avante_status.current_chat_provider.icon,
-            color = { fg = avante_status.current_chat_provider.fg}
+            icon = require("avante-status").chat_provider.icon,
+            color = { fg = require("avante-status").chat_provider.fg}
         }
         local avante_suggestions_component = {
             function()
-                local msg = avante_status.current_suggestions_provider.name
+                local suggestions = require("avante-status").suggestions_provider
+                local msg = suggestions.name
                 return msg
             end,
-            icon = avante_status.current_suggestions_provider.icon,
-            color = { fg = avante_status.current_suggestions_provider.fg }
+            icon = require("avante-status").suggestions_provider.icon,
+            color = { fg = require("avante-status").suggestions_provider.fg }
         }
         local config = {
             options = {

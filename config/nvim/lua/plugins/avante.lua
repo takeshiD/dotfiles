@@ -1,28 +1,53 @@
-local avante_status = require("functions.avante-status")
 return {
-    {
-        "yetone/avante.nvim",
-        enabled = true,
-        event = "VeryLazy",
-        lazy = false,
-        version = false, -- set this if you want to always pull the latest change
-        opts = {
+    "yetone/avante.nvim",
+    enabled = true,
+    event = "VeryLazy",
+    lazy = false,
+    version = false, -- set this if you want to always pull the latest change
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "stevearc/dressing.nvim",
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+        --- The below dependencies are optional,
+        "nvim-tree/nvim-web-devicons",
+        "zbirenbaum/copilot.lua", -- for providers='copilot'
+        {
+            "takeshid/avante-status.nvim",
+            dir = "d:/ex_prog/ex_neovim/develop/avante-status.nvim",
+            dev = true,
+        },
+        {
+            "HakonHarnes/img-clip.nvim",
+            event = "VeryLazy",
+            opts = {
+                default = {
+                    embed_image_as_base64 = false,
+                    prompt_for_file_name = false,
+                    drag_and_drop = {
+                        insert_mode = true,
+                    },
+                    use_absolute_path = true,
+                },
+            },
+        },
+    },
+    build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
+    -- build = "make",
+    opts = function()
+        require("avante").setup({
             debug = false,
-            provider = avante_status.get_chat_provider(
-                {
-                    "azure",
-                    "claude",
-                    "openai",
-                }
-            ),
-            auto_suggestions_provider = avante_status.get_suggestions_provider(
-                {
-                    "azure",
-                    "copilot",
-                    "claude",
-                    "openai",
-                }
-            ),
+            provider = require("avante-status").get_chat_provider({
+                "azure",
+                "claude",
+                "openai",
+            }),
+            auto_suggestions_provider = require("avante-status").get_suggestions_provider({
+                "azure",
+                "copilot",
+                "claude",
+                "openai",
+            }),
             behaviour = {
                 auto_suggestions = true,
                 auto_set_highlight_group = true,
@@ -47,13 +72,10 @@ return {
             claude = {
                 model = "claude-3-5-sonnet-20241022", -- $3/$15, maxtokens=8192
                 -- model = "claude-3-5-haiku-20241022", -- $1/$5, maxtokens=8192
-                -- model = "claude-3-opus-20240229",  -- $15/$75, maxtokens=4096
-                -- max_tokens = 4096,
                 max_tokens = 8000,
             },
             copilot = {
                 model = "gpt-4o-2024-05-13",
-                -- model = "gpt-4o-mini",
                 max_tokens = 4096,
             },
             openai = {
@@ -62,41 +84,11 @@ return {
                 max_tokens = 4096,
             },
             azure = {
-                endpoint = avante_status.getenv_if("AZURE_OPENAI_ENDPOINT", ""),
-                deployment = avante_status.getenv_if("AZURE_OPENAI_DEPLOY", ""),
+                endpoint = require("avante-status").getenv_if("AZURE_OPENAI_ENDPOINT", ""),
+                deployment = require("avante-status").getenv_if("AZURE_OPENAI_DEPLOY", ""),
                 api_version = "2024-06-01",
                 max_tokens = 4096,
             },
-        },
-        -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-        -- build = "make",
-        build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "stevearc/dressing.nvim",
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            -- "takeshid/avante-status.nvim",
-            --- The below dependencies are optional,
-            "nvim-tree/nvim-web-devicons",
-            "zbirenbaum/copilot.lua", -- for providers='copilot'
-            {
-                -- support for image pasting
-                "HakonHarnes/img-clip.nvim",
-                event = "VeryLazy",
-                opts = {
-                    -- recommended settings
-                    default = {
-                        embed_image_as_base64 = false,
-                        prompt_for_file_name = false,
-                        drag_and_drop = {
-                            insert_mode = true,
-                        },
-                        -- required for Windows users
-                        use_absolute_path = true,
-                    },
-                },
-            },
-        },
-    }
+        })
+    end
 }
