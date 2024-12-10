@@ -55,7 +55,7 @@ return {
                 lspconfig.lua_ls.setup({
                     on_init = function(client)
                         local path = client.workspace_folders[1].name
-                        if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+                        if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
                             return
                         end
                         client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
@@ -67,7 +67,7 @@ return {
                             workspace = {
                                 checkThirdParty = false,
                                 library = {
-                                    vim.env.VIMRUNTIME
+                                    vim.env.VIMRUNTIME,
                                 }
                             }
                         })
@@ -101,7 +101,6 @@ return {
                     settings = {
                         pylsp = {
                             plugins = {
-                                -- 不要な機能を無効化
                                 pycodestyle = { enabled = false },
                                 mccabe = { enabled = false },
                                 pyflakes = { enabled = false },
