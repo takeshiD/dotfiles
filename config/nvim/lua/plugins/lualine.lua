@@ -3,10 +3,9 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         {
-            -- "takeshid/avante-status.nvim",
-            dir = vim.fn.stdpath("data") .. "/develop/avante-status.nvim",
-            dev = true,
-        },
+            "takeshid/avante-status.nvim",
+            lazy = false,
+        }
     },
     config = function()
         local lualine = require("lualine")

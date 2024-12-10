@@ -12,11 +12,7 @@ return {
         --- The below dependencies are optional,
         "nvim-tree/nvim-web-devicons",
         "zbirenbaum/copilot.lua", -- for providers='copilot'
-        {
-            "takeshid/avante-status.nvim",
-            dir = "d:/ex_prog/ex_neovim/develop/avante-status.nvim",
-            dev = true,
-        },
+        "takeshid/avante-status.nvim",
         {
             "HakonHarnes/img-clip.nvim",
             event = "VeryLazy",
