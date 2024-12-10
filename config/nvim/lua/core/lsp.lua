@@ -2,9 +2,7 @@ local M = {}
 function M.setup()
     local color = require("functions.color")
     local NormalBG = vim.api.nvim_get_hl(0, { name = "Normal" })["bg"]
-    print("BG : " .. NormalBG .. " " .. type(NormalBG))
     local VirtualErrorFG = vim.api.nvim_get_hl(0, { name = "DiagnosticError" })["fg"]
-    print("ErrorFG : " .. VirtualErrorFG .. " " .. type(VirtualErrorFG))
     local VirtualWarnFG = vim.api.nvim_get_hl(0, { name = "DiagnosticWarn" })["fg"]
     local VirtualInfoFG = vim.api.nvim_get_hl(0, { name = "DiagnosticInfo" })["fg"]
     local VirtualHintFG = vim.api.nvim_get_hl(0, { name = "DiagnosticHint" })["fg"]
