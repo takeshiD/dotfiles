@@ -31,7 +31,7 @@ return {
     build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
     -- build = "make",
     opts = function()
-        require("avante").setup({
+        return {
             debug = false,
             provider = require("avante-status").get_chat_provider({
                 "azure",
@@ -85,6 +85,6 @@ return {
                 api_version = "2024-06-01",
                 max_tokens = 4096,
             },
-        })
+        }
     end
 }
