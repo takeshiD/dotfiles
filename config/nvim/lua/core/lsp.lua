@@ -1,5 +1,6 @@
 local M = {}
-function M.setup()
+
+function M.setup_virtualtext_highlight()
     local color = require("functions.color")
     local NormalBG = vim.api.nvim_get_hl(0, { name = "Normal" })["bg"]
     local VirtualErrorFG = vim.api.nvim_get_hl(0, { name = "DiagnosticError" })["fg"]
@@ -22,7 +23,9 @@ function M.setup()
         bg = color.composeColor(VirtualHintFG, NormalBG, 0.7),
         fg = VirtualHintFG,
     })
+end
 
+function M.setup_lsp()
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {
             update_in_insert = false,

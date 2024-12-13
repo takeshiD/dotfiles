@@ -62,6 +62,13 @@ opt.helplang = { 'ja', 'en' }
 opt.hidden = true
 opt.wrap = true --端までコードが届いた際に折り返す
 
+--====== Folding ======
+opt.foldcolumn = '1'
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
+
+
 --############ Persistent ###########
 opt.undodir = vim.fn.expand("$HOME") .. "/.nvim/.undo"
 opt.undofile = true
