@@ -1,0 +1,104 @@
+format = """
+$nix_shell\
+$python\
+$lua\
+$rust\
+$c\
+$cmake\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration"""
+
+[directory]
+style = "yellow"
+truncate_to_repo = true
+truncation_symbol = "…/"
+before_repo_root_style = "bright-black"
+repo_root_style = "bold yellow"
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+use_os_path_sep = false
+
+[character]
+format = "$symbol"
+success_symbol = "[](bright-purple)"
+# vimcmd_symbol = "[❮](green)"
+error_symbol = "[](red)"
+
+[git_branch]
+symbol = ""
+format = "[$symbol $branch]($style)"
+style = "bright-black"
+
+[git_status]
+format = "[[($conflicted$untracked$modified$staged$renamed$deleted)](bright-purple)($ahead_behind$stashed) ]($style)"
+style = "bright-cyan"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+modified = "*"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[python]
+format = '[${symbol}${version}\(${virtualenv}\) ]($style)'
+symbol = '󰌠 '
+version_format = 'v${major}.${minor}'
+style = 'bold bright-yellow'
+detect_extensions = []
+
+[rust]
+format = '[${symbol}${version} ]($style)'
+symbol = '🦀 '
+version_format = 'v${major}.${minor}'
+style = 'bold bright-red'
+
+[c]
+format = '[${symbol}${version} ]($style)'
+symbol = ' '
+version_format = 'v${major}.${minor}'
+style = 'bold bright-green'
+
+[cmake]
+format = '[${symbol}${version} ]($style)'
+symbol = '󰔶 CMake '
+version_format = 'v${major}.${minor}'
+style = 'bold bright-green'
+
+[nodejs]
+format = '[${symbol}${version} ]($style)'
+symbol = ' '
+style = "bright-blue"
+
+[deno]
+format = '[${symbol}${version} ]($style)'
+symbol = '🦕 '
+style = "green bold"
+
+[username]
+show_always = true
+style_user = "bright-blue"
+style_root = "bright-red"
+format = '[$user ]($style)'
+
+[nix_shell]
+disabled = false
+symbol = '❄  '
+style = 'bold blue'
+impure_msg = '[impure](bold yellow)'
+pure_msg = '[pure](bold cyan)'
+unknown_msg = '[unknown](bold yellow)'
+format = '[$symbol$state(\($name\))]($style) '
+
+[lua]
+format = 'via [🌕 $version](bold blue) '

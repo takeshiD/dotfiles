@@ -1,0 +1,11 @@
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[init]
+	defaultBranch = main
+[credential]
+	helper = store
+[user]
+    name = takeshid
+    email = goriponikeike55@gmail.com

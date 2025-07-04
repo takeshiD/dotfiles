@@ -1,0 +1,7 @@
+.netrwhist
+.undo/
+pack/
+session/
+view/
+*.bkp
+.aider*
