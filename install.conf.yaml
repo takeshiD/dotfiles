@@ -6,20 +6,45 @@
 - clean: ['~']
 
 - create:
-    - ~/.config
-    - ~/.tmux/resurrect
-    - ~/.nvim
+    ~/.config:
+      mode: 0755
+    ~/.tmux/resurrect:
+      mode: 0755
+    ~/.nvim:
+      mode: 0755
 
 - link:
-    ~/.gitconfig: config/git/.gitconfig
-    ~/.tmux.conf: config/tmux/.tmux.conf
-    ~/.bashrc: config/bash/.bashrc
-    ~/.inputrc: config/bash/.inputrc
-    ~/.config/mise: config/mise
-    ~/.config/nvim: config/nvim
-    ~/.config/starship: config/starship
-    ~/.config/lazygit: config/lazygit
-    ~/.config/clangd: config/clangd
-    ~/.config/nushell: config/nushell
-    ~/.config/lsd: config/lsd
-    ~/.config/bottom: config/bottom
+    ~/.gitconfig:
+      force: true
+      path: config/git/.gitconfig
+    ~/.tmux.conf:
+      force: true
+      path: config/tmux/.tmux.conf
+    ~/.bashrc:
+      force: true
+      path: config/bash/.bashrc
+    ~/.inputrc:
+      force: true
+      path: config/bash/.inputrc
+    ~/.config:
+      glob: true
+      path: config/*
+      exclude: [config/bash, config/tmux]
+
+- shell:
+    - command: curl https://mise.run | sh
+      stdout: true
+      stderr: true
+      description: Installation mise
+    - command: mise install
+      stdout: true
+      stderr: true
+      description: Installation Development Tools
+    - command: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+      stdout: true
+      stderr: true
+      description: Download tmux-plugins
+    - command: tmux source ~/.tmux.conf
+      stdout: true
+      stderr: true
+      description: Reload tmux environment
