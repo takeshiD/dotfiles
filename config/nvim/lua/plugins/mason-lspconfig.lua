@@ -123,12 +123,14 @@ return {
 						"json",
 						"jsonc",
 						"markdown",
-						-- 'python',
+                        "yaml",
 						"toml",
-						-- 'rust',
-						-- 'roslyn',
-						-- 'graphql',
 					},
+                    settings = {
+                        yaml = {
+                            indentWidth = 4,
+                        }
+                    }
 				})
 			end,
 			["ts_ls"] = function()
@@ -137,12 +139,12 @@ return {
 					root_dir = lspconfig.util.root_pattern("package.json"),
 				})
 			end,
-			["denols"] = function()
-				lspconfig.denols.setup({
-					single_file_support = true,
-					root_dir = lspconfig.util.root_pattern("deno.json"),
-				})
-			end,
+			-- ["denols"] = function()
+			-- 	lspconfig.denols.setup({
+			-- 		single_file_support = true,
+			-- 		root_dir = lspconfig.util.root_pattern("deno.json"),
+			-- 	})
+			-- end,
 			["lua_ls"] = function()
 				lspconfig.lua_ls.setup({
 					on_attach = function(client, bufnr)

@@ -105,7 +105,7 @@ return {
                 highlight_inline = 'RenderMarkdownCodeInline',
             },
             pipe_table = {
-                enabled = false
+                enabled = true
             }
         })
     end
