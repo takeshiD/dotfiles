@@ -1,25 +1,25 @@
 - defaults:
-  link:
-    relink: true
-    create: true
+    link:
+      relink: true
+      create: true
 
 - clean: ['~']
 
 - create:
-  - ~/.config
-  - ~/.tmux/resurrect
-  - ~/.nvim
+    - ~/.config
+    - ~/.tmux/resurrect
+    - ~/.nvim
 
 - link:
-  ~/.gitconfig: config/git/.gitconfig
-  ~/.tmux.conf: config/tmux/.tmux.conf
-  ~/.bashrc: config/bash/.bashrc
-  ~/.inputrc: config/bash/.inputrc
-  ~/.config/mise: config/mise
-  ~/.config/nvim: config/nvim
-  ~/.config/starship: config/starship
-  ~/.config/lazygit: config/lazygit
-  ~/.config/clangd: config/clangd
-  ~/.config/nushell: config/nushell
-  ~/.config/lsd: config/lsd
-  ~/.config/bottom: config/bottom
+    ~/.gitconfig: config/git/.gitconfig
+    ~/.tmux.conf: config/tmux/.tmux.conf
+    ~/.bashrc: config/bash/.bashrc
+    ~/.inputrc: config/bash/.inputrc
+    ~/.config/mise: config/mise
+    ~/.config/nvim: config/nvim
+    ~/.config/starship: config/starship
+    ~/.config/lazygit: config/lazygit
+    ~/.config/clangd: config/clangd
+    ~/.config/nushell: config/nushell
+    ~/.config/lsd: config/lsd
+    ~/.config/bottom: config/bottom
