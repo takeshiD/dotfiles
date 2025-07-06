@@ -6,29 +6,42 @@
 # Requirement
 
 - `git`: git
-- `mise`: Runtime manager
-- `dotbot`: dotfiles symbolic link manager
 
 # Installation
 
-## Install `git` and `curl`
+You have to run `install.sh` twice for applying configuration and installaion.
 
-- Arch Linux
 ```
-$ sudo pacman -Syu git curl
+$ cd ~
+$ git clone https://github.com/takeshiD/dotfiles.git
+$ cd dotfiles
+$ ./install
+[INFO] 🚀 Setting up development environment with flakes...
+[INFO] 📦 Installing Nix...
+...
+[SUCCESS] ❄  Nix install is success! Please restart shell, due to nix will be enabled.
+# restart shell
+
+$ cd dotfiles
+$ ./install
+[INFO] ❄  Installed Nix
+[INFO] 📦 Installing home-manager...
+...
+[SUCCESS] 🏠 home-manager install is success!
+[INFO] ⚙️ Applying home-manager configuration...
+...
+Starting Home Manager activation
+...
+[SUCCESS] ✅ Setup completed! Please restart your shell.
 ```
 
-- Ubuntu
-```
-$ sudo apt install git curl
-```
+# Update and Add packages
+After you edit `home.nix` or `flake.nix` and more `.nix` files, please run `install.sh` to apply changed configuration.
 
-## Install `mise`
-```
-$ curl https://mise.run | sh
-```
+```bash
+$ ./install.sh
 
-## Install tools via `mise`
+```
 
 ### Program Language and Ecosystems
 

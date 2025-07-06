@@ -20,6 +20,8 @@ in
     bat
     delta
     fd
+    dust
+    duf
     direnv
     # Development Tools
     gcc
@@ -30,6 +32,7 @@ in
     uv
     pnpm
     nodejs
+    stack
     nixfmt-rfc-style
     # LLM
     claude-code
@@ -38,12 +41,14 @@ in
     zip
     unzip
     neofetch
+    vhs
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
     ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
     ".gitconfig".source = mkOutOfStoreSymlink "${dotfilesPath}/config/git/.gitconfig";
     ".tmux.conf".source = mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
+    ".stack/config.yaml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
     ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
     ".config/lazygit".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
     ".config/bottom".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";

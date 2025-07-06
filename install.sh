@@ -1,14 +1,16 @@
 #!/bin/bash
 
 set -e
+source  ./config/bash/components/notice.sh
 
-echo "🚀 Setting up development environment with flakes..."
+info "🚀 Setting up development environment with flakes..."
 if ! command -v nix &> /dev/null; then
-    echo "📦 Installing Nix..."
+    info "📦 Installing Nix..."
     curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
-    echo "⚠ Please restart shell. when next shell started, nix will be enabled."
+    success "❄  Nix install is success! Please restart shell, due to nix will be enabled."
+    return
 else
-    echo "✔  Installed Nix"
+    info "❄  Installed Nix"
 fi
 
 if ! command -v home-manager &> /dev/null; then
@@ -16,14 +18,21 @@ if ! command -v home-manager &> /dev/null; then
     nix run home-manager/master -- init --switch
     # Verifying
     if ! command -v home-manager &> /dev/null; then
-        echo "Error! Failed home-manager install"
+        error "Failed install home-manager"
         return
+    else
+        success "🏠 home-manager install is success!"
     fi
 else
-    echo "✔  Installed home-manager"
+    info "🏠 Installed home-manager"
 fi
 
-echo "⚙️ Applying home-manager configuration..."
-home-manager switch --flake .#tkcd
+if ! command -v home-manager &> /dev/null; then
+    error "home-manager is not installed! Abort configuration."
+    return
+else
+    info "⚙️ Applying home-manager configuration..."
+    home-manager switch --flake .#tkcd
+    success "✅ Setup completed! Please restart your shell."
+fi
 
-echo "✅ Setup completed! Please restart your shell."
