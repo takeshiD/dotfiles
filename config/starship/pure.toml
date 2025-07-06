@@ -1,4 +1,5 @@
 format = """
+$haskell\
 $nix_shell\
 $python\
 $lua\
@@ -101,4 +102,7 @@ unknown_msg = '[unknown](bold yellow)'
 format = '[$symbol$state(\($name\))]($style) '
 
 [lua]
-format = 'via [🌕 $version](bold blue) '
+format = '[🌕 $version](bold blue) '
+
+[haskell]
+format = '[$symbol($version )]($style)'

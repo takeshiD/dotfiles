@@ -37,6 +37,7 @@ in
     tree-sitter
     zip
     unzip
+    neofetch
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
