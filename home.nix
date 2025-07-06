@@ -30,6 +30,8 @@ in
     uv
     pnpm
     nodejs
+    haskellPackages.ghcup
+    haskellPackages.stack
     nixfmt-rfc-style
     # LLM
     claude-code
