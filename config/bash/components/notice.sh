@@ -9,16 +9,16 @@ CLEAR='\e[0m'
 BOLD='\e[1m'
 
 function success(){
-    echo -e "${GREEN}${BOLD}SUCCESS:${CLEAR} ${1}"
+    echo -e "${GREEN}${BOLD}[SUCCESS]${CLEAR} ${1}"
 }
 function warning(){
-    echo -e "${YELLOW}${BOLD}WARNING:${CLEAR} ${1}"
+    echo -e "${YELLOW}${BOLD}[WARNING]${CLEAR} ${1}"
 }
 function error(){
-    echo -e "${RED}${BOLD}ERROR:${CLEAR} ${1}"
+    echo -e "${RED}${BOLD}[ERROR]${CLEAR} ${1}"
 }
 function info(){
-    echo -e "${BLUE}${BOLD}INFO:${CLEAR} ${1}"
+    echo -e "${BLUE}${BOLD}[INFO]${CLEAR} ${1}"
 }
 function title(){
     echo -e "${BOLD}${WHITE}$1${CLEAR}"
