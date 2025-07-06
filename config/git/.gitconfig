@@ -9,3 +9,5 @@
 [user]
     name = takeshid
     email = goriponikeike55@gmail.com
+[core]
+    editor = nvim
