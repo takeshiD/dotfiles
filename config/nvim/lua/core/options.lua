@@ -6,7 +6,7 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 -- opt.langmenu = "en_us"
 opt.guifont = "Hackgen Console NF:h12"
-vim.cmd[[language en_US.UTF-8]]
+-- vim.cmd[[language en_US.UTF-8]]
 
 --############ OperationBehavior ###########
 opt.updatetime = 100

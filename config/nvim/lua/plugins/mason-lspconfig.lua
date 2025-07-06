@@ -29,6 +29,7 @@ return {
 				"vimls",
 				"dprint",
 				"ts_ls",
+                "nil_ls",
 			},
 		})
 		local capabilities = require("blink.cmp").get_lsp_capabilities({

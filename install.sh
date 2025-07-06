@@ -6,11 +6,7 @@ echo "🚀 Setting up development environment with flakes..."
 if ! command -v nix &> /dev/null; then
     echo "📦 Installing Nix..."
     curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
-    # Verifying
-    if ! command -v nix &> /dev/null; then
-        echo "Error! Failed Nix install"
-        return
-    fi
+    echo "⚠ Please restart shell. when next shell started, nix will be enabled."
 else
     echo "✔  Installed Nix"
 fi
