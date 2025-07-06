@@ -57,7 +57,7 @@ return {
                     lsp_component,
                     -- require('avante-status.lualine').chat_component,
                     -- require('avante-status.lualine').suggestions_component,
-                    require('mcphub.extensions.lualine'),
+                    -- require('mcphub.extensions.lualine'),
                 },
                 lualine_y = { 'progress', },
                 lualine_z = { 'location' }

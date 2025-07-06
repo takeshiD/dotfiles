@@ -3,6 +3,3 @@
 pack/
 session/
 view/
-*.bkp
-.aider*
-install_dotbot
