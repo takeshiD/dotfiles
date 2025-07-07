@@ -42,6 +42,7 @@ in
     unzip
     neofetch
     vhs
+    less
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";

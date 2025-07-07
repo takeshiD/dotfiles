@@ -5,7 +5,7 @@
 
 # Requirement
 
-- `git`: git
+- `git`
 
 # Installation
 
@@ -40,49 +40,4 @@ After you edit `home.nix` or `flake.nix` and more `.nix` files, please run `inst
 
 ```bash
 $ ./install.sh
-
 ```
-
-### Program Language and Ecosystems
-
-| tool           | description             |
-| -----          | ------------            |
-| `rustup`       | Rust Toolchain          |
-| `uv`           | python project manager  |
-| `pnpm`         | node project manager    |
-| `clang`        | C, C++ compiler by llvm |
-| `clang-format` | C, C++ Formatter        |
-| `clangd`       | C, C++ LSP              |
-| `cmake`        | cmake                   |
-| `gcc`          | C, C++ compiler by gnu  |
-| `make`      | make                    |
-
-### Editor and Improve Terminal Environment
-| tool       | description         |
-| -----      | ------------        |
-| `neovim`   | GreatEditor         |
-| `tmux`     | TerminalMultiplexer |
-| `lazygit`  | GitUI               |
-| `starship` | Prompt              |
-| `ripgrep`  | Grep                |
-| `fzf`      | FuzzyFinder         |
-| `lld`      | Alternative `ls`    |
-| `bat`      | Alternative `cat`   |
-| `delta`    | Alternative `diff`  |
-| `fd`       | Alternative `find`  |
-
-### LLM
-| tool     | description  |
-| -----    | ------------ |
-| `claude` | ClaudeCode   |
-
-### Misc
-| tool          | description                    |
-| -----         | ------------                   |
-| `tree-sitter` | Increment Parser for highlight |
-
-## Install tools via `pacman`
-### GUI Envionment
-| tool  | description  |
-| ----- | ------------ |
-| ``    | unzip        |
