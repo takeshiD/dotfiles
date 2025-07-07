@@ -1,13 +1,14 @@
+[core]
+    editor = nvim
+
 [color]
 	diff = auto
 	status = auto
 	branch = auto
+    ui = auto
+
 [init]
 	defaultBranch = main
+
 [credential]
 	helper = store
-[user]
-    name = takeshid
-    email = goriponikeike55@gmail.com
-[core]
-    editor = nvim

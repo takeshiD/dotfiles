@@ -46,7 +46,6 @@ in
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
     ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
-    ".gitconfig".source = mkOutOfStoreSymlink "${dotfilesPath}/config/git/.gitconfig";
     ".tmux.conf".source = mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
     ".stack/config.yaml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
     ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
@@ -55,6 +54,11 @@ in
     ".config/starship".source = mkOutOfStoreSymlink "${dotfilesPath}/config/starship";
     ".config/lsd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lsd";
     ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
+  };
+  home.activation = {
+    gitConfig =
+      config.lib.hm.dag.entryAfter [ "writeBoundary" ]
+        ''${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared" '';
   };
   home.sessionVariables = {
     EDITOR = "nvim";
