@@ -59,6 +59,11 @@ in
     gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared"
     '';
+    tpmGitClone = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -d "${config.home.homeDirectory}/.tmux/plugins/tpm" ]; then
+        ${pkgs.git}/bin/git clone https://github.com/tmux-plugins/tpm "${config.home.homeDirectory}/.tmux/plugins/tpm"
+      fi
+    '';
   };
   home.sessionVariables = {
     EDITOR = "nvim";
