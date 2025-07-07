@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
 in
@@ -56,9 +56,9 @@ in
     ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
   };
   home.activation = {
-    gitConfig =
-      config.lib.hm.dag.entryAfter [ "writeBoundary" ]
-        ''${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared" '';
+    gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      ${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared"
+    '';
   };
   home.sessionVariables = {
     EDITOR = "nvim";
