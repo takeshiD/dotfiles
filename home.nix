@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
 in
@@ -11,6 +16,8 @@ in
     # Editor and Terminal tools
     neovim
     tmux
+    fish
+    bash
     starship
     lazygit
     bottom
@@ -56,6 +63,7 @@ in
     ".config/starship".source = mkOutOfStoreSymlink "${dotfilesPath}/config/starship";
     ".config/lsd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lsd";
     ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
+    ".config/fish".source = mkOutOfStoreSymlink "${dotfilesPath}/config/fish";
   };
   home.activation = {
     gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
