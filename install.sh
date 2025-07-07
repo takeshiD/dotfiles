@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-source  ./config/bash/components/notice.sh
+source "$HOME/dotfiles/config/bash/components/notice.sh"
 
 info "🚀 Setting up development environment with flakes..."
 if ! command -v nix &> /dev/null; then
@@ -14,7 +14,7 @@ else
 fi
 
 if ! command -v home-manager &> /dev/null; then
-    echo "📦 Installing home-manager..."
+    info "📦 Installing home-manager..."
     nix run home-manager/master -- init --switch
     # Verifying
     if ! command -v home-manager &> /dev/null; then

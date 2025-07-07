@@ -94,9 +94,9 @@ if [[ -x $(which starship) ]];then
 fi
 
 #-------------- Scripts load ---------------
-if [[ -d "$HOME"/dotfiles/config/bash/comletions ]];then
-    script_dir="$HOME"/dotfiles/config/bash/comletions
-    if [[ -f "$script_dir/git-completion.sh" ]];then
+if [ -d "$HOME"/dotfiles/config/bash/completions ];then
+    script_dir="$HOME"/dotfiles/config/bash/completions
+    if [ -f "$script_dir/git-completion.sh" ];then
         source "$script_dir/git-completion.sh"
     fi
 fi
