@@ -89,7 +89,7 @@ esac
 #-------------- Prompt : plugin ---------------
 #------ starship ------
 export STARSHIP_CONFIG="$HOME"/.config/starship/starship.toml
-if [[ -x $(which starship) ]];then
+if command -v starship &> /dev/null;then
     eval "$(starship init bash)"
 fi
 

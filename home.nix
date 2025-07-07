@@ -43,6 +43,7 @@ in
     neofetch
     vhs
     less
+    openssh
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
