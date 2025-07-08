@@ -27,11 +27,27 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd[[colorscheme terafox]]
+            vim.cmd[[colorscheme carbonfox]]
             require('nightfox').setup({
                 options = {
                     transparent = true,
                 }
+            })
+        end
+    },
+    {
+        "uloco/bluloco.nvim",
+        enabled = false,
+        lazy = false,
+        priority = 1000,
+        dependencies = {
+            'rktjmp/lush.nvim'
+        },
+        config = function()
+            vim.cmd[[colorscheme bluloco]]
+            require('bluloco').setup({
+                style = "dark",
+                transparent = true,
             })
         end
     },
