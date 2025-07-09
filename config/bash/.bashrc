@@ -31,13 +31,12 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if command -v lsd > /dev/null 2>&1; then
-    alias ls='lsd'
+    alias ls='lsd -a'
     alias ll='lsd -la'
-    alias la='lsd -A'
+    alias la='lsd -la --tree --depth 2'
 else
+    # alias ls='ls'
     alias ll='ls -alF'
-    alias la='ls -A'
-    alias l='ls -CF'
 fi
 
 if command -v bat > /dev/null 2>&1; then
