@@ -1,0 +1,22 @@
+{
+    "permissions": {
+        "allow": [
+            "Bash(pnpm test)"
+        ],
+        "deny": [
+            "Bash(pnpm add:*)",
+            "Bash(pnpm remove:*)",
+            "Bash(npm install:*)",
+            "Bash(npm uninstall:*)",
+            "Bash(npm remove:*)",
+            "Bash(git commit:*)",
+            "Bash(git push:*)",
+            "Bash(git reset:*)",
+            "Bash(git rebase:*)",
+            "Bash(rm:*)",
+            "Bash(sudo:*)",
+            "Read(.env.*)"
+        ]
+    },
+    "preferredNotifChannel": "terminal_bell"
+}

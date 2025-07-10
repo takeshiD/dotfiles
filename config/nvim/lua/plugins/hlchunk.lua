@@ -21,7 +21,7 @@ return {
 		require("hlchunk").setup({
 			chunk = {
 				enable = true,
-				use_treesitter = true,
+				use_treesitter = false,
 				duration = 100,
 				delay = 100,
 				style = {
@@ -30,7 +30,7 @@ return {
 			},
 			indent = {
 				enable = true,
-				use_treesitter = true,
+				use_treesitter = false,
 				chars = {
 					"│",
 					-- "¦",

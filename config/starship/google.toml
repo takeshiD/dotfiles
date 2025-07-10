@@ -1,0 +1,192 @@
+# Google風 Starship設定ファイル
+# ~/.config/starship.toml に保存してください
+
+# メインプロンプト形式
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$typescript\
+$python\
+$rust\
+$c\
+$lua\
+$deno\
+$docker_context\
+$kubernetes\
+$aws\
+$cmd_duration\
+$line_break\
+$character"""
+
+# 右側プロンプト
+right_format = """$time$battery"""
+
+# ユーザー名表示
+[username]
+style_user = "bold #4285F4"
+style_root = "bold #EA4335"
+format = "[󱍢 ](bold #EA4335)[$user]($style)"
+disabled = false
+show_always = true
+
+# ホスト名表示
+[hostname]
+ssh_only = false
+format = "[󰁥 ](bold #FBBC05)[$hostname](bold #34A853) "
+disabled = false
+
+# ディレクトリ表示
+[directory]
+style = "bold #FBBC05"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+before_repo_root_style = "bright-black"
+repo_root_style = "bold #FBBC05"
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+use_os_path_sep = false
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Desktop" = " "
+"Videos" = " "
+"Projects" = " "
+"Development" = " "
+
+# Gitブランチ表示
+[git_branch]
+symbol = " "
+style = "bold #34A853"
+format = " [$symbol$branch]($style)"
+
+# Git状態表示
+[git_status]
+style = "#EA4335"
+format = '([$all_status$ahead_behind]($style))'
+conflicted = "⚡ "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+untracked = "? "
+stashed = "📦 "
+modified = "! "
+staged = "+ "
+renamed = "» "
+deleted = "✘ "
+
+# プログラミング言語
+[nodejs]
+symbol = "󰋘 "
+style = "#34A853"
+format = " [$symbol$version]($style)"
+
+[python]
+symbol = "󱔎 "
+style = "#FBBC05"
+format = " [$symbol$version]($style)"
+
+[rust]
+symbol = " "
+style = "#EA4335"
+format = " [$symbol($version)]($style)"
+
+[c]
+symbol = " "
+style = "#4285F4"
+format = " [$symbol$version]($style)"
+
+[lua]
+symbol = " "
+style = "#4285F4"
+format = " [$symbol$version]($style)"
+
+[deno]
+symbol = "🦕 "
+style = "#34A853"
+format = " [$symbol$version]($style)"
+
+# TypeScript (Node.jsプロジェクト内で検出)
+[typescript]
+symbol = " "
+style = "#4285F4"
+format = " [$symbol$version]($style)"
+
+[nix_shell]
+symbol = "󱄅 "
+style = "#4285F4"
+format = " [$symbol$version]($style)"
+
+# コマンド実行時間
+[cmd_duration]
+min_time = 2_000
+style = "#FBBC05"
+format = " [$duration]($style)"
+
+# 文字プロンプト
+[character]
+success_symbol = "[❯](bold #34A853)"
+error_symbol = "[❯](bold #EA4335)"
+vicmd_symbol = "[❮](bold #4285F4)"
+
+# 時刻表示
+[time]
+disabled = false
+style = "bold #4285F4"
+format = "[$time]($style)"
+time_format = "%H:%M"
+
+# バッテリー表示
+[battery]
+full_symbol = " "
+charging_symbol = " "
+discharging_symbol = " "
+format = " [$symbol$percentage]($style)"
+
+[[battery.display]]
+threshold = 15
+style = "bold #EA4335"
+
+[[battery.display]]
+threshold = 50
+style = "bold #FBBC05"
+
+[[battery.display]]
+threshold = 80
+style = "bold #34A853"
+
+# Docker
+[docker_context]
+symbol = " "
+style = "#4285F4"
+format = " [$symbol$context]($style)"
+
+# Kubernetes
+[kubernetes]
+symbol = "☸ "
+style = "#4285F4"
+format = " [$symbol$context]($style)"
+disabled = false
+
+# AWS
+[aws]
+symbol = " "
+style = "#FBBC05"
+format = " [$symbol$profile]($style)"
+
+# パッケージバージョン
+[package]
+symbol = " "
+style = "#4285F4"
+format = " [$symbol$version]($style)"
+
+# 改行設定
+[line_break]
+disabled = false

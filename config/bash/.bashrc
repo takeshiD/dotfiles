@@ -92,12 +92,15 @@ if command -v starship &> /dev/null;then
     eval "$(starship init bash)"
 fi
 
-#-------------- Scripts load ---------------
-if [ -d "$HOME"/dotfiles/config/bash/completions ];then
-    script_dir="$HOME"/dotfiles/config/bash/completions
-    if [ -f "$script_dir/git-completion.sh" ];then
-        source "$script_dir/git-completion.sh"
-    fi
+#-------------- Load Completions ---------------
+completion_dir="$HOME"/dotfiles/config/bash/completions
+if [ -d "$completion_dir" ];then
+    for completion_file in "$completion_dir"/*-completion.sh; do
+        script_dir="$HOME"/dotfiles/config/bash/completions
+        if [ -f "$completion_file" ];then
+            source $completion_file
+        fi
+    done
 fi
 
 #=======================================================

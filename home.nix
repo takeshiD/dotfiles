@@ -1,13 +1,6 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-let
-  dotfilesPath = "${config.home.homeDirectory}/dotfiles";
-in
-{
+{ config, pkgs, lib, ... }:
+let dotfilesPath = "${config.home.homeDirectory}/dotfiles";
+in {
   # inherit dotfilesPath;
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
@@ -53,18 +46,27 @@ in
     openssh
   ];
   home.file = with config.lib.file; {
-    ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
-    ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
-    ".tmux.conf".source = mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
-    ".stack/config.yaml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
+    ".bashrc".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
+    ".inputrc".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
+    ".tmux.conf".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
+    ".stack/config.yaml".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
     ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
-    ".config/lazygit".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
-    ".config/bottom".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";
-    ".config/starship".source = mkOutOfStoreSymlink "${dotfilesPath}/config/starship";
+    ".config/lazygit".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
+    ".config/bottom".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";
+    ".config/starship".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/starship";
     ".config/lsd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lsd";
-    ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
+    ".config/clangd".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
     ".config/fish".source = mkOutOfStoreSymlink "${dotfilesPath}/config/fish";
   };
+  home.sessionVariables = { EDITOR = "nvim"; };
   home.activation = {
     gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared"
@@ -74,9 +76,6 @@ in
         ${pkgs.git}/bin/git clone https://github.com/tmux-plugins/tpm "${config.home.homeDirectory}/.tmux/plugins/tpm"
       fi
     '';
-  };
-  home.sessionVariables = {
-    EDITOR = "nvim";
   };
   nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;

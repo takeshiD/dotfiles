@@ -1,5 +1,9 @@
 [core]
     editor = nvim
+    pager = delta --side-by-side
+
+[interactive]
+    diffFilter = delta --color-only
 
 [color]
 	diff = auto
@@ -12,3 +16,10 @@
 
 [credential]
 	helper = store
+
+[delta]
+    navigate = true
+    dark = true
+
+[merge]
+    conflictstyle = zdiff3
