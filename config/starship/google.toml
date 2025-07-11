@@ -29,7 +29,7 @@ right_format = """$time$battery"""
 [username]
 style_user = "bold #4285F4"
 style_root = "bold #EA4335"
-format = "[󱍢 ](bold #EA4335)[$user]($style)"
+format = "[󱍢 404 ](bold #cccccc)[$user]($style)"
 disabled = false
 show_always = true
 
@@ -91,7 +91,8 @@ format = " [$symbol$version]($style)"
 [python]
 symbol = "󱔎 "
 style = "#FBBC05"
-format = " [$symbol$version]($style)"
+version_format = 'v${major}.${minor}'
+format = '[${symbol}${version}\(${virtualenv}\)]($style)'
 
 [rust]
 symbol = " "
@@ -111,12 +112,6 @@ format = " [$symbol$version]($style)"
 [deno]
 symbol = "🦕 "
 style = "#34A853"
-format = " [$symbol$version]($style)"
-
-# TypeScript (Node.jsプロジェクト内で検出)
-[typescript]
-symbol = " "
-style = "#4285F4"
 format = " [$symbol$version]($style)"
 
 [nix_shell]
