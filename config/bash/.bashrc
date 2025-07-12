@@ -1,11 +1,14 @@
+# Entry Point
+DOTFILES_DIR="$HOME/dotfiles"
+
+# Import Notice Components
+source "$DOTFILES_DIR/config/bash/components/notice.sh"
+
 #-------------------- Development Environmen Setup ---------------------
 if command -v mise > /dev/null 2>&1; then
     eval "$(mise activate bash)"
 fi
 
-#=======================================================
-# Misc
-#=======================================================
 # only apply bashrc when running interactive-mode. 
 case $- in
     *i*) ;;
@@ -22,28 +25,15 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 #-------------- Alias and Colored -------------
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-if command -v lsd > /dev/null 2>&1; then
-    alias ls='lsd -a'
-    alias ll='lsd -la'
-    alias la='lsd -la --tree --depth 2'
+BASH_ALIAS_PATH="$DOTFILES_DIR/config/bash/alias.sh"
+if [ -f $BASH_ALIAS_PATH ]; then
+    source $BASH_ALIAS_PATH
+    info "Loaded $BASH_ALIAS_PATH"
 else
-    # alias ls='ls'
-    alias ll='ls -alF'
+    warning "Not Found $BASH_ALIAS_PATH"
 fi
-
-if command -v bat > /dev/null 2>&1; then
-    alias cat='bat'
-fi
-
 #-------------------- Completion ---------------------
+# Global Completions
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -51,57 +41,32 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+# Custom Completions
+COMPLETION_DIR="$DOTFILES_DIR/config/bash/completions"
+if [ -d $COMPLETION_DIR ];then
+    for completion_file in "$COMPLETION_DIR"/*-completion.sh; do
+        # script_dir="$HOME"/dotfiles/config/bash/completions
+        if [ -f "$completion_file" ];then
+            source $completion_file
+            info "Loaded $completion_file"
+        else
+            warning "Not Found $completion_file"
+        fi
+    done
+fi
 
 
 #=======================================================
 # Look and Feel
 #=======================================================
-#-------------- Prompt : no plugin ---------------
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
-fi
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PROMPT_PATH="$DOTFILES_DIR/config/bash/prompt.sh"
+if [ -f $PROMPT_PATH ];then
+    source "$PROMPT_PATH"
+    info "Loaded $PROMPT_PATH"
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-case "$TERM" in
-    xterm*|rxvt*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-        ;;
-*)
-    ;;
-esac
-
-#-------------- Prompt : plugin ---------------
-#------ starship ------
-export STARSHIP_CONFIG="$HOME"/.config/starship/starship.toml
-if command -v starship &> /dev/null;then
-    eval "$(starship init bash)"
+    warning "Not Found $PROMPT_PATH"
 fi
 
-#-------------- Load Completions ---------------
-completion_dir="$HOME"/dotfiles/config/bash/completions
-if [ -d "$completion_dir" ];then
-    for completion_file in "$completion_dir"/*-completion.sh; do
-        script_dir="$HOME"/dotfiles/config/bash/completions
-        if [ -f "$completion_file" ];then
-            source $completion_file
-        fi
-    done
-fi
 
 #=======================================================
 # PATH Configuration --->> see $HOME/.bash_profile

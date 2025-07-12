@@ -44,6 +44,7 @@ in {
     vhs
     less
     openssh
+    gh
   ];
   home.file = with config.lib.file; {
     ".bashrc".source =
@@ -54,8 +55,10 @@ in {
       mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
     ".stack/config.yaml".source =
       mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
-    ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
-    ".claude/settings.json".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
+    ".claude/CLAUDE.md".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
+    ".claude/settings.json".source =
+      mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
     ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
     ".config/lazygit".source =
       mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
