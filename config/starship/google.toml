@@ -132,7 +132,10 @@ format = " [$duration]($style)"
 [character]
 success_symbol = "[❯](bold #34A853)"
 error_symbol = "[❯](bold #EA4335)"
-vicmd_symbol = "[❮](bold #4285F4)"
+vimcmd_symbol = "[❮](bold #4285F4)"
+vimcmd_replace_one_symbol = "[❮](bold #4285F4)"
+vimcmd_replace_symbol = "[❮](bold #4285F4)"
+vimcmd_visual_symbol = "[❮](bold #4285F4)"
 
 # 時刻表示
 [time]

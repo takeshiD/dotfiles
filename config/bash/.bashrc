@@ -1,13 +1,12 @@
+#=======================================================
+# Note! PATH Configuration --->> see $HOME/.bash_profile
+#=======================================================
+
 # Entry Point
 DOTFILES_DIR="$HOME/dotfiles"
 
 # Import Notice Components
 source "$DOTFILES_DIR/config/bash/components/notice.sh"
-
-#-------------------- Development Environmen Setup ---------------------
-if command -v mise > /dev/null 2>&1; then
-    eval "$(mise activate bash)"
-fi
 
 # only apply bashrc when running interactive-mode. 
 case $- in
@@ -32,7 +31,9 @@ if [ -f $BASH_ALIAS_PATH ]; then
 else
     warning "Not Found $BASH_ALIAS_PATH"
 fi
-#-------------------- Completion ---------------------
+#=======================================================
+# Completion
+#=======================================================
 # Global Completions
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -57,7 +58,7 @@ fi
 
 
 #=======================================================
-# Look and Feel
+# Prompt Look and Feel
 #=======================================================
 PROMPT_PATH="$DOTFILES_DIR/config/bash/prompt.sh"
 if [ -f $PROMPT_PATH ];then
@@ -69,5 +70,22 @@ fi
 
 
 #=======================================================
-# PATH Configuration --->> see $HOME/.bash_profile
+# Look and Feel
 #=======================================================
+if command -v mise > /dev/null 2>&1; then
+    eval "$(mise activate bash)"
+fi
+
+
+#=======================================================
+# Nix Profile
+#=======================================================
+NIX_PROFILE_PATH="$DOTFILES_DIR/config/bash/nix-profile.sh"
+if [ -f $NIX_PROFILE_PATH ]; then
+    source "$NIX_PROFILE_PATH"
+    info "Loaded $NIX_PROFILE_PATH"
+else
+    warning "Not Found $NIX_PROFILE_PATH"
+fi
+
+exec fish

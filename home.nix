@@ -1,6 +1,13 @@
-{ config, pkgs, lib, ... }:
-let dotfilesPath = "${config.home.homeDirectory}/dotfiles";
-in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  dotfilesPath = "${config.home.homeDirectory}/dotfiles";
+in
+{
   # inherit dotfilesPath;
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
@@ -23,6 +30,10 @@ in {
     dust
     duf
     direnv
+    zoxide
+    gh
+    silicon
+    tokei
     # Development Tools
     gcc
     gnumake
@@ -44,34 +55,31 @@ in {
     vhs
     less
     openssh
-    gh
+    openssl
+    pkg-config
+    hackgen-nf-font
   ];
   home.file = with config.lib.file; {
-    ".bashrc".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
-    ".inputrc".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
-    ".tmux.conf".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
-    ".stack/config.yaml".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
-    ".claude/CLAUDE.md".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
-    ".claude/settings.json".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
+    ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
+    ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
+    ".tmux.conf".source = mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
+    ".stack/config.yaml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
+    ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
+    ".claude/settings.json".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
     ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
-    ".config/lazygit".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
-    ".config/bottom".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";
-    ".config/starship".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/starship";
+    ".config/lazygit".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
+    ".config/bottom".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";
+    ".config/starship".source = mkOutOfStoreSymlink "${dotfilesPath}/config/starship";
     ".config/lsd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lsd";
-    ".config/clangd".source =
-      mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
+    ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
     ".config/fish".source = mkOutOfStoreSymlink "${dotfilesPath}/config/fish";
   };
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables = with pkgs; {
+    EDITOR = "nvim";
+    PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
+      openssl.dev
+    ];
+  };
   home.activation = {
     gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared"
@@ -82,6 +90,7 @@ in {
       fi
     '';
   };
+  systemd.user.sessionVariables = { };
   nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
 }
