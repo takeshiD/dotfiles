@@ -74,7 +74,7 @@ format = '([$all_status$ahead_behind]($style))'
 conflicted = "⚡ "
 ahead = "⇡${count} "
 behind = "⇣${count} "
-diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](#4285F4) "
 untracked = "? "
 stashed = "📦 "
 modified = "! "
@@ -83,9 +83,12 @@ renamed = "» "
 deleted = "✘ "
 
 # プログラミング言語
+# TypeScript (Node.jsプロジェクト内で検出)
+
+# プログラミング言語
 [nodejs]
 symbol = "󰋘 "
-style = "#34A853"
+style = "#80bd00"
 format = " [$symbol$version]($style)"
 
 [python]
@@ -96,27 +99,27 @@ format = '[${symbol}${version}\(${virtualenv}\)]($style)'
 
 [rust]
 symbol = " "
-style = "#EA4335"
-format = " [$symbol($version)]($style)"
+style = "#CE422B"
+format = " [$symbol$version]($style)"
 
 [c]
 symbol = " "
-style = "#4285F4"
+style = "#A8B9CC"
 format = " [$symbol$version]($style)"
 
 [lua]
 symbol = " "
-style = "#4285F4"
+style = "#fdbb51"
 format = " [$symbol$version]($style)"
 
 [deno]
 symbol = "🦕 "
-style = "#34A853"
+style = "#ffffff"
 format = " [$symbol$version]($style)"
 
 [nix_shell]
 symbol = "󱄅 "
-style = "#4285F4"
+style = "#5277C3"
 format = " [$symbol$version]($style)"
 
 # コマンド実行時間
