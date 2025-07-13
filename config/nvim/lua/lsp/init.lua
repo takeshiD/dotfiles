@@ -61,6 +61,7 @@ local ensure_installed = {
 	"cmake",
 	"clangd",
 	"yaml_ls",
+	"hls",
 }
 
 for _, lsp_name in pairs(ensure_installed) do

@@ -62,6 +62,7 @@ in
     taplo
     cmake-language-server
     yaml-language-server
+    haskell-language-server
     # LLM
     claude-code
     # Misc
