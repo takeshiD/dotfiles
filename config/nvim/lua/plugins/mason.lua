@@ -1,5 +1,6 @@
 return {
     "williamboman/mason.nvim",
+    enalbed = false,
     config = function()
         require("mason").setup({
             ui = {

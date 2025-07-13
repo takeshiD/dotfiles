@@ -20,10 +20,10 @@ keymap.set('i', 'jj', '<ESC>')
 
 
 --############# LSP ###############
-keymap.set('n', 'gf', function()
-    vim.lsp.buf.format({ async = true })
-end, { desc = "LSP Formatting" }
-)
+-- keymap.set('n', 'gf', function()
+--     vim.lsp.buf.format({ async = true })
+-- end, { desc = "LSP Formatting" }
+-- )
 
 --############# US-keyboard ###############
 keymap.set('n', ';', ':')

@@ -45,6 +45,20 @@ in
     nodejs
     stack
     nixfmt-rfc-style
+    lua-language-server
+    stylua
+    pyright
+    ruff
+    bash-language-server
+    cmake-language-server
+    tailwindcss-language-server
+    eslint
+    markdown-oxide
+    taplo
+    vim-language-server
+    dprint
+    typescript-language-server
+    nil
     # LLM
     claude-code
     # Misc

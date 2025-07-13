@@ -1,6 +1,7 @@
 return {
 	"neovim/nvim-lspconfig",
-	tag = "v2.0.0",
+    enabled = false,
+	-- tag = "v2.0.0",
 	config = function()
 		local lspconfig = require("lspconfig")
 		lspconfig.teal_ls.setup({
