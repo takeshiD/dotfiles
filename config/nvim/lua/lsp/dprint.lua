@@ -1,9 +1,19 @@
 return {
 	cmd = { "dprint" },
-	filetypes = { "js", "jsx", "ts", "tsx", "md", "yaml", "toml" },
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"json",
+		"jsonc",
+		"markdown",
+		"yaml",
+		"toml",
+	},
 	settings = {
-        yaml = {
-            indentWidth = 4,
-        }
+		yaml = {
+			indentWidth = 4,
+		},
 	},
 }

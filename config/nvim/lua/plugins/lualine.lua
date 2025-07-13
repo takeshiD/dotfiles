@@ -16,7 +16,6 @@ return {
 				local ft = vim.bo.filetype
 				local buf_client_names = {}
 				for _, client in pairs(clients) do
-					print(client.name)
 					if client.name ~= "copilot" and client.name ~= "null-ls" then
 						table.insert(buf_client_names, client.name)
 					end

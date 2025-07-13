@@ -17,7 +17,7 @@ return {
 				path = { "?.lua", "?/init.lua" },
 			},
 			workspace = {
-				checkThirdParty = false,
+				checkThirdParty = "Disable",
 				library = {
 					vim.env.VIMRUNTIME,
 				},

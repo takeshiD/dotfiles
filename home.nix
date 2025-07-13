@@ -52,13 +52,13 @@ in
     bash-language-server
     cmake-language-server
     tailwindcss-language-server
-    eslint
+    vscode-langservers-extracted
     markdown-oxide
     taplo
-    vim-language-server
     dprint
     typescript-language-server
     nil
+    taplo
     # LLM
     claude-code
     # Misc

@@ -34,9 +34,22 @@ local ensure_installed = {
     "rust-analyzer",
     "pylsp",
     "pyright",
+    "ruff",
     "markdown-oxide",
+    "ts_ls",
     "eslint",
+    "dprint",
+    "tailwindcss",
+    "bash_ls",
+    "nil_ls",
+    "taplo"
 }
+
+--clangd
+--cmake-language-server
+--css-lsp
+--html-lsp
+--json-lsp
 for _, lsp_name in pairs(ensure_installed) do
     load_lsp_opts(lsp_name)
 end
