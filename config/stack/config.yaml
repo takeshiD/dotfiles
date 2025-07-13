@@ -10,7 +10,7 @@ templates:
   params:
    author-name: tkcd
    author-email: goriponikeike55@gmail.com
-   copyright: 
+   copyright: 'copyright takeshid'
    github-username: takeshid
 
 # The following parameter specifies Stack's output styles; STYLES is a
@@ -19,7 +19,7 @@ templates:
 # Rendition) control codes (in decimal). Use 'stack ls stack-colors --basic'
 # to see the current sequence.
 # stack-colors: STYLES
-install-ghc: false
+install-ghc: true
 system-ghc: true
 
 # Stack and Nix Itegration
