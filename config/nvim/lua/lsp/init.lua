@@ -21,35 +21,48 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.lsp.config("*", {
 	root_markers = { ".git" },
+	capabilities = require("blink.cmp").get_lsp_capabilities({
+		textDocument = {
+			completion = {
+				completionItem = {
+					snippetSupport = true,
+				},
+			},
+			foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			},
+		},
+	}),
 })
 
 ---@param lsp_name string
 local function load_lsp_opts(lsp_name)
-    local opts = require("lsp." .. lsp_name)
-    vim.lsp.config(lsp_name, opts)
-    vim.lsp.enable(lsp_name)
+	local opts = require("lsp." .. lsp_name)
+	vim.lsp.config(lsp_name, opts)
+	vim.lsp.enable(lsp_name)
 end
 local ensure_installed = {
-    "lua_ls",
-    "rust-analyzer",
-    "pylsp",
-    "pyright",
-    "ruff",
-    "markdown-oxide",
-    "ts_ls",
-    "eslint",
-    "dprint",
-    "tailwindcss",
-    "bash_ls",
-    "nil_ls",
-    "taplo"
+	"lua_ls",
+	"rust-analyzer",
+	"pylsp",
+	"pyright",
+	"ruff",
+	"markdown-oxide",
+	"ts_ls",
+	"eslint",
+	"dprint",
+	"tailwindcss",
+	"css_ls",
+	"html_ls",
+	"bash_ls",
+	"nil_ls",
+	"taplo",
+	"cmake",
+	"clangd",
+	"yaml_ls",
 }
 
---clangd
---cmake-language-server
---css-lsp
---html-lsp
---json-lsp
 for _, lsp_name in pairs(ensure_installed) do
-    load_lsp_opts(lsp_name)
+	load_lsp_opts(lsp_name)
 end

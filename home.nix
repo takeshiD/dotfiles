@@ -35,9 +35,10 @@ in
     silicon
     tokei
     # Development Tools
-    gcc
+    # gcc
     gnumake
     cmake
+    clang
     clang-tools
     rustup
     uv
@@ -59,6 +60,8 @@ in
     typescript-language-server
     nil
     taplo
+    cmake-language-server
+    yaml-language-server
     # LLM
     claude-code
     # Misc

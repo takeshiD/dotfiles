@@ -27,7 +27,7 @@ return {
 	settings = {
 		Lua = {
 			format = {
-				enbale = true,
+				enbale = false,
 				defaultConfig = {
 					indent_style = "space",
 					indent_size = 4,

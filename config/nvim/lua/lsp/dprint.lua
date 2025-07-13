@@ -1,5 +1,10 @@
+---@brief
+---
+--- https://github.com/dprint/dprint
+---
+--- Pluggable and configurable code formatting platform written in Rust.
 return {
-	cmd = { "dprint" },
+	cmd = { "dprint", "lsp" },
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -7,13 +12,13 @@ return {
 		"typescriptreact",
 		"json",
 		"jsonc",
-		"markdown",
-		"yaml",
+		-- "markdown",
+		-- "python",
 		"toml",
+		-- "rust",
+		-- "roslyn",
+		"graphql",
 	},
-	settings = {
-		yaml = {
-			indentWidth = 4,
-		},
-	},
+	root_markers = { "dprint.json", ".dprint.json", "dprint.jsonc", ".dprint.jsonc" },
+	settings = {},
 }
