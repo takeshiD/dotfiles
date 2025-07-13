@@ -91,6 +91,7 @@ in
     ".config/lsd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lsd";
     ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
     ".config/fish".source = mkOutOfStoreSymlink "${dotfilesPath}/config/fish";
+    ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
   };
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";
@@ -108,7 +109,6 @@ in
       fi
     '';
   };
-  systemd.user.sessionVariables = { };
   nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
 }

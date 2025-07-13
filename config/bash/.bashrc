@@ -88,4 +88,4 @@ else
     warning "Not Found $NIX_PROFILE_PATH"
 fi
 
-exec fish
+# exec fish
