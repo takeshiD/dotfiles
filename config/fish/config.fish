@@ -11,5 +11,5 @@ if command -v bat &> /dev/null
     alias cat='bat'
 end
 
-# fish_vi_keybindings
+zoxide init fish | source
 starship init fish | source
