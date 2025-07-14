@@ -16,15 +16,8 @@ return {
 	config = function()
 		vim.o.winwidth = 10     -- Minimum current window width
         vim.o.winminwidth = 10  -- Minimum window width other than current window
-		vim.o.equalalways = true
+		vim.o.equalalways = false
 		require("windows").setup({
-            autowidth = {
-                enable = true,
-                winwidth = 0.5,
-                filetype = {
-                    help = 2,
-                },
-            },
             animation = {
                 enable = true,
                 duration = 200,
