@@ -32,6 +32,7 @@ in
     direnv
     zoxide
     gh
+    glab
     silicon
     tokei
     # Development Tools
