@@ -51,6 +51,7 @@ in
     stylua
     pyright
     ruff
+    ty
     bash-language-server
     cmake-language-server
     tailwindcss-language-server

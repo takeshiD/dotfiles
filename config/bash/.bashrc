@@ -61,7 +61,7 @@ fi
 # Prompt Look and Feel
 #=======================================================
 PROMPT_PATH="$DOTFILES_DIR/config/bash/prompt.sh"
-if [ -f $PROMPT_PATH ];then
+if [ -f "$PROMPT_PATH" ];then
     source "$PROMPT_PATH"
     info "Loaded $PROMPT_PATH"
 else

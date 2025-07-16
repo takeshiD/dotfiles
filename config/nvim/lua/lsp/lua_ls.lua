@@ -20,6 +20,8 @@ return {
 				checkThirdParty = "Disable",
 				library = {
 					vim.env.VIMRUNTIME,
+                    "lua",
+                    "${3rd}/luv/library"
 				},
 			},
 		})
