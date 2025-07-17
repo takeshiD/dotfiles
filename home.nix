@@ -49,6 +49,7 @@ in
     nixfmt-rfc-style
     lua-language-server
     stylua
+    python313Packages.python-lsp-server
     pyright
     ruff
     ty
