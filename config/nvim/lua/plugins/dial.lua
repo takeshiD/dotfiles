@@ -23,6 +23,18 @@ return {
                 augend.constant.alias.ja_weekday_full,
                 augend.constant.alias.ja_weekday,
                 augend.constant.alias.bool,
+            },
+        }
+        require("dial.config").augends:on_filetype {
+            python = {
+                augend.constant.new{
+                    elements = {"True", "False"},
+                    word = false,
+                    cyclic = true,
+                }
+            },
+            markdown = {
+                augend.misc.alias.markdown_header,
             }
         }
     end

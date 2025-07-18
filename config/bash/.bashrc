@@ -25,8 +25,8 @@ shopt -s checkwinsize
 
 #-------------- Alias and Colored -------------
 BASH_ALIAS_PATH="$DOTFILES_DIR/config/bash/alias.sh"
-if [ -f $BASH_ALIAS_PATH ]; then
-    source $BASH_ALIAS_PATH
+if [ -f "$BASH_ALIAS_PATH" ]; then
+    source "$BASH_ALIAS_PATH"
     info "Loaded $BASH_ALIAS_PATH"
 else
     warning "Not Found $BASH_ALIAS_PATH"
@@ -37,18 +37,18 @@ fi
 # Global Completions
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
+    source /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+    source /etc/bash_completion
   fi
 fi
 # Custom Completions
 COMPLETION_DIR="$DOTFILES_DIR/config/bash/completions"
-if [ -d $COMPLETION_DIR ];then
+if [ -d "$COMPLETION_DIR" ];then
     for completion_file in "$COMPLETION_DIR"/*-completion.sh; do
         # script_dir="$HOME"/dotfiles/config/bash/completions
         if [ -f "$completion_file" ];then
-            source $completion_file
+            source "$completion_file"
             info "Loaded $completion_file"
         else
             warning "Not Found $completion_file"
@@ -89,11 +89,9 @@ fi
 # Nix Profile
 #=======================================================
 NIX_PROFILE_PATH="$DOTFILES_DIR/config/bash/nix-profile.sh"
-if [ -f $NIX_PROFILE_PATH ]; then
+if [ -f "$NIX_PROFILE_PATH" ]; then
     source "$NIX_PROFILE_PATH"
     info "Loaded $NIX_PROFILE_PATH"
 else
     warning "Not Found $NIX_PROFILE_PATH"
 fi
-
-# exec fish
