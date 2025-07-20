@@ -35,6 +35,7 @@ in
     glab
     silicon
     tokei
+    yazi
     # Development Tools
     # gcc
     gnumake
