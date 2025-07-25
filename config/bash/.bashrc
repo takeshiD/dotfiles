@@ -103,3 +103,11 @@ if [ -f "$NIX_PROFILE_PATH" ]; then
 else
     warning "Not Found $NIX_PROFILE_PATH"
 fi
+
+# pnpm
+export PNPM_HOME="/home/tkcd/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
