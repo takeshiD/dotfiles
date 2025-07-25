@@ -33,9 +33,6 @@ return {
                     cyclic = true,
                 }
             },
-            markdown = {
-                augend.misc.alias.markdown_header,
-            }
         }
     end
 }
