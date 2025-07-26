@@ -12,9 +12,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 		if client:supports_method("textDocument/formatting") then
-			vim.keymap.set("n", "gf", function()
-				vim.lsp.buf.format({ bufnr = args.buf, id = client.id, async = true })
-			end, { buffer = args.buf, desc = "LSP Formatting" })
+			-- vim.keymap.set("n", "gf", function()
+			-- 	vim.lsp.buf.format({ bufnr = args.buf, id = client.id, async = true })
+			-- end, { buffer = args.buf, desc = "LSP Formatting" })
 		end
 	end,
 })
@@ -64,6 +64,7 @@ local ensure_installed = {
 	"clangd",
 	"yaml_ls",
 	"hls",
+	"nrs-ls",
 }
 
 for _, lsp_name in pairs(ensure_installed) do

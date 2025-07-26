@@ -74,7 +74,3 @@ opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.undodir = vim.fn.expand("$HOME") .. "/.nvim/.undo"
 opt.undofile = true
 
---############ Global Highlight ###########
--- vim.api.nvim_set_hl(0, "Directory", {
---     fg = VirtualErrorFG,
--- })

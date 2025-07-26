@@ -5,13 +5,6 @@ vim.api.nvim_create_autocmd("User", {
     end,
 })
 
--- vim.api.nvim_create_autocmd({"LspAttach"}, {
---     pattern = "*",
---     callback = function()
---         require("core.lsp").setup_lsp()
---     end,
--- })
-
 -- ############## Folding ####################
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*",
