@@ -80,6 +80,8 @@ in
     openssl
     pkg-config
     hackgen-nf-font
+    pandoc
+    podman
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";

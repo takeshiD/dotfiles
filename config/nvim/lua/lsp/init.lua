@@ -1,4 +1,12 @@
+-- vim.lsp.set_log_level 'debug'
+require('vim.lsp.log').set_format_func(vim.inspect)
 vim.api.nvim_create_user_command("LspHealth", "checkhealth vim.lsp", { desc = "LSP Health Check" })
+vim.api.nvim_create_user_command("LspLog", function()
+	vim.cmd(string.format("tabnew %s", vim.lsp.get_log_path()))
+end, {
+	desc = "Opens the Nvim LSP client log.",
+})
+
 vim.lsp.inlay_hint.enable()
 vim.diagnostic.config({
 	virtual_text = true,
@@ -12,7 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 		if client:supports_method("textDocument/formatting") then
-			-- vim.keymap.set("n", "gf", function()
+		    -- vim.keymap.set("n", "gf", function()
 			-- 	vim.lsp.buf.format({ bufnr = args.buf, id = client.id, async = true })
 			-- end, { buffer = args.buf, desc = "LSP Formatting" })
 		end

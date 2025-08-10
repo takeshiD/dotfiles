@@ -250,7 +250,7 @@ _get_examples(){
 	local names=("${files[@]##*/}")
 	local names=("${names[@]%.*}")
 	# "*" means no examples found
-	if [[ "${names[@]}" != "*" ]]; then
+	if [ "${names[@]}" != "*" ]; then
 		echo "${names[@]}"
 	fi
 }
