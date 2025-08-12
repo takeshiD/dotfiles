@@ -20,6 +20,12 @@ return {
                     color = "#0099a4",
                     cterm_color = "39",
                     name = "teal"
+                },
+                ["nrs"] = {
+                    icon = "",
+                    color = "#9c4221",
+                    cterm_color = "124",
+                    name = "nrs"
                 }
             }
         })

@@ -1,5 +1,6 @@
 -- vim.lsp.set_log_level 'debug'
-require('vim.lsp.log').set_format_func(vim.inspect)
+require("lspconfig")
+require("vim.lsp.log").set_format_func(vim.inspect)
 vim.api.nvim_create_user_command("LspHealth", "checkhealth vim.lsp", { desc = "LSP Health Check" })
 vim.api.nvim_create_user_command("LspLog", function()
 	vim.cmd(string.format("tabnew %s", vim.lsp.get_log_path()))
@@ -20,7 +21,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 		if client:supports_method("textDocument/formatting") then
-		    -- vim.keymap.set("n", "gf", function()
+			-- vim.keymap.set("n", "gf", function()
 			-- 	vim.lsp.buf.format({ bufnr = args.buf, id = client.id, async = true })
 			-- end, { buffer = args.buf, desc = "LSP Formatting" })
 		end
@@ -46,35 +47,39 @@ vim.lsp.config("*", {
 
 ---@param lsp_name string
 local function load_lsp_opts(lsp_name)
-	local opts = require("lsp." .. lsp_name)
-	vim.lsp.config(lsp_name, opts)
 	vim.lsp.enable(lsp_name)
+    local status, opts = pcall(require, "lsp." .. lsp_name)
+    if status then
+        vim.lsp.config(lsp_name, opts)
+    else
+        vim.notify("[LSP] " ..lsp_name .. " is ensured but your config was not found. using nvim-lspconfig instead.", vim.log.levels.WARN)
+    end
 end
+
 local ensure_installed = {
 	"lua_ls",
-	"rust-analyzer",
+	"rust_analyzer",
 	"pylsp",
 	"pyright",
 	-- "ty",
 	"ruff",
-	"markdown-oxide",
+	"markdown_oxide",
 	"ts_ls",
 	"eslint",
 	-- "dprint",
 	"tailwindcss",
-	"css_ls",
-	"html_ls",
-	"json_ls",
-	"bash_ls",
+	"cssls",
+	"html",
+	"jsonls",
+	"bashls",
 	"nil_ls",
 	"taplo",
 	"cmake",
 	"clangd",
-	"yaml_ls",
+	"yamlls",
 	"hls",
-	"nrs-ls",
+	"nrs_ls",
 }
-
 for _, lsp_name in pairs(ensure_installed) do
 	load_lsp_opts(lsp_name)
 end
