@@ -21,7 +21,7 @@ return {
 		require("hlchunk").setup({
 			chunk = {
 				enable = true,
-				use_treesitter = false,
+				use_treesitter = true,
 				duration = 100,
 				delay = 100,
 				style = {
@@ -45,6 +45,7 @@ return {
 					IndentHighlight5,
 					IndentHighlight6,
 				},
+                exclude_filetypes = {"nix"}
 			},
 		})
 	end,

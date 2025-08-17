@@ -8,6 +8,7 @@ $hostname\
 $directory\
 $git_branch\
 $git_status\
+$nix_shell\
 $nodejs\
 $typescript\
 $python\
@@ -119,8 +120,8 @@ format = " [$symbol$version]($style)"
 
 [nix_shell]
 symbol = "󱄅 "
-style = "#5277C3"
-format = " [$symbol$version]($style)"
+style = "#5278C3"
+format = ' [${symbol}${name}]($style)\([${state}](red)\)'
 
 # コマンド実行時間
 [cmd_duration]
