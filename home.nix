@@ -36,6 +36,7 @@ in
     silicon
     tokei
     yazi
+    hexyl
     # Development Tools
     # gcc
     gnumake

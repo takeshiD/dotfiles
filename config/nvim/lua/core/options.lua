@@ -11,7 +11,7 @@ opt.guifont = "Hackgen Console NF:h12"
 --############ OperationBehavior ###########
 opt.updatetime = 100
 opt.clipboard = { "unnamed", "unnamedplus" }
-opt.mouse = 'a'      --マウス操作を有効化
+opt.mouse = "a" --マウス操作を有効化
 opt.updatetime = 300
 opt.swapfile = false --スワップファイルを生成しない
 opt.backup = false
@@ -37,13 +37,13 @@ opt.showtabline = 4
 vim.wo.number = true
 vim.wo.relativenumber = true
 opt.number = true
-opt.signcolumn = 'yes' --行数表示の横に余白を追加
+opt.signcolumn = "yes" --行数表示の横に余白を追加
 
 --====== ControlCharacters =====
 opt.list = true
 opt.listchars = {
-    tab = "↦ ",
-    eol = "↲",
+	tab = "↦ ",
+	eol = "↲",
 }
 
 --====== Commandline ======
@@ -56,16 +56,16 @@ opt.laststatus = 2
 opt.title = true
 opt.scrolloff = 10
 -- opt.shell = 'bash'
-opt.inccommand = 'split'
+opt.inccommand = "split"
 opt.ignorecase = false
 opt.smartcase = true
 opt.wrap = true
-opt.helplang = { 'ja', 'en' }
+opt.helplang = { "ja", "en" }
 opt.hidden = true
 opt.wrap = true --端までコードが届いた際に折り返す
 
 --====== Folding ======
-opt.foldcolumn = '1'
+opt.foldcolumn = "1"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
@@ -74,4 +74,3 @@ opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 --############ Persistent ###########
 opt.undodir = vim.fn.expand("$HOME") .. "/.nvim/.undo"
 opt.undofile = true
-
