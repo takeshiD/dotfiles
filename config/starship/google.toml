@@ -121,7 +121,8 @@ format = " [$symbol$version]($style)"
 [nix_shell]
 symbol = "󱄅 "
 style = "#5278C3"
-format = ' [${symbol}${name}]($style)\([${state}](red)\)'
+# format = ' [${symbol}${name}]($style)\([${state}](red)\)'
+format = ' [${symbol}${name}]($style)'
 
 # コマンド実行時間
 [cmd_duration]

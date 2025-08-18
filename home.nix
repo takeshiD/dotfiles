@@ -18,6 +18,7 @@ in
     tmux
     fish
     bash
+    bash-completion
     starship
     lazygit
     bottom

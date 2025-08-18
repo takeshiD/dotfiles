@@ -27,7 +27,7 @@ return {
 				"scheme",
 				"yaml",
 				"toml",
-				"nu",
+				"nix",
 			},
 			ignore_install = {
 				"org",
@@ -38,7 +38,7 @@ return {
 			},
 			indent = {
 				enable = true,
-				-- disable = { "yaml", "nix" },
+				disable = { "yaml", "nix" },
 			},
 		})
 	end,
