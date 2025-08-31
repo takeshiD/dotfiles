@@ -1,0 +1,31 @@
+model = "gpt-5"
+model_reasoning_effort = "high"
+model_reasoning_summary = "auto"
+projects = { "/home/tkcd/ex_prog/ex_rust/lamb" = { trust_level = "trusted" } }
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+network_access = true
+
+[mcp_servers.serena]
+command = "uvx"
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+#
+[mcp_servers.sequential-thinking]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+[mcp_servers.time]
+command = "uvx"
+args = ["mcp-server-time"]
+
+[mcp_servers.git]
+command = "uvx"
+args = ["mcp-server-git", "--repository", "."]
+
+[mcp_servers.tavily]
+command = "npx"
+args = ["-y", "tavily-mcp@latest"]
