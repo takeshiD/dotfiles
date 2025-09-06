@@ -1,5 +1,6 @@
 return {
     'sindrets/diffview.nvim',
+    event = "VeryLazy",
     enabled = true,
     keys = {
         { mode = {"n"}, "<leader>hf", "<cmd>DiffviewFileHistory %<CR>"},
@@ -13,6 +14,6 @@ return {
         },
     },
     config = function()
-        require('diffview').setup({})
+        require('diffview').setup()
     end
 }
