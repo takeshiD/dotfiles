@@ -41,6 +41,7 @@ in
     # Development Tools
     # gcc
     gnumake
+    mold
     cmake
     clang
     clang-tools
