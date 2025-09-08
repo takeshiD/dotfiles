@@ -1,9 +1,22 @@
 model = "gpt-5"
-model_reasoning_effort = "high"
-model_reasoning_summary = "auto"
-projects = { "/home/tkcd/ex_prog/ex_rust/lamb" = { trust_level = "trusted" } }
+profile = "gpt-5"
+
+##########################################
+# Profiles
+##########################################
+[profiles.gpt-5]
+model = "gpt-5"
+model_provider="openai"
+model_verbosity="medium"
 approval_policy = "on-request"
-sandbox_mode = "workspace-write"
+
+#######################################################
+##################       Network      #################
+#######################################################
+[sandobox_read_only]
+network_access = true
+
+[sandobox_workspace_write]
 network_access = true
 
 [mcp_servers.serena]

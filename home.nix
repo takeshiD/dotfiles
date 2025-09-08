@@ -86,6 +86,7 @@ in
     pandoc
     podman
     poppler-utils
+    apprise
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
@@ -102,6 +103,7 @@ in
     ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
     ".config/fish".source = mkOutOfStoreSymlink "${dotfilesPath}/config/fish";
     ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
+    ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
   };
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";

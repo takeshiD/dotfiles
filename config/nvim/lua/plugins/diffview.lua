@@ -3,8 +3,8 @@ return {
     event = "VeryLazy",
     enabled = true,
     keys = {
-        { mode = {"n"}, "<leader>hf", "<cmd>DiffviewFileHistory %<CR>"},
-        { mode = {"n"}, "<leader>hd", function()
+        { mode = {"n"}, "<leader>dh", "<cmd>DiffviewFileHistory %<CR>"},
+        { mode = {"n"}, "<leader>df", function()
             if next(require("diffview.lib").views) == nil then
                 vim.cmd("DiffviewOpen")
             else
