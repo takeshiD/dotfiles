@@ -86,7 +86,6 @@ in
     pandoc
     podman
     poppler-utils
-    apprise
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
