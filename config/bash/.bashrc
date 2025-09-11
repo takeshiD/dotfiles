@@ -1,15 +1,4 @@
 #=======================================================
-# Nix Profile
-#=======================================================
-NIX_PROFILE_PATH="$DOTFILES_DIR/config/bash/nix-profile.sh"
-if [ -f "$NIX_PROFILE_PATH" ]; then
-    source "$NIX_PROFILE_PATH"
-    info "Loaded $NIX_PROFILE_PATH"
-else
-    warning "Not Found $NIX_PROFILE_PATH"
-fi
-
-#=======================================================
 # Note! PATH Configuration --->> see $HOME/.bash_profile
 #=======================================================
 
@@ -42,6 +31,18 @@ if [ -f "$BASH_ALIAS_PATH" ]; then
 else
     warning "Not Found $BASH_ALIAS_PATH"
 fi
+
+#=======================================================
+# Nix Profile
+#=======================================================
+NIX_PROFILE_PATH="$DOTFILES_DIR/config/bash/nix-profile.sh"
+if [ -f "$NIX_PROFILE_PATH" ]; then
+    source "$NIX_PROFILE_PATH"
+    info "Loaded $NIX_PROFILE_PATH"
+else
+    warning "Not Found $NIX_PROFILE_PATH"
+fi
+
 #=======================================================
 # Completion
 #=======================================================
