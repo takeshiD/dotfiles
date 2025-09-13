@@ -16,7 +16,6 @@ in
     # Editor and Terminal tools
     neovim
     tmux
-    fish
     bash
     bash-completion
     starship
@@ -63,7 +62,6 @@ in
     vscode-langservers-extracted
     markdown-oxide
     taplo
-    dprint
     typescript-language-server
     nil
     taplo
@@ -85,7 +83,6 @@ in
     hackgen-nf-font
     pandoc
     podman
-    poppler-utils
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";

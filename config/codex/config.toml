@@ -6,8 +6,8 @@ profile = "gpt-5"
 ##########################################
 [profiles.gpt-5]
 model = "gpt-5"
-model_provider="openai"
-model_verbosity="medium"
+model_provider = "openai"
+model_verbosity = "medium"
 approval_policy = "on-request"
 
 #######################################################
@@ -21,7 +21,15 @@ network_access = true
 
 [mcp_servers.serena]
 command = "uvx"
-args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
+args = [
+    "--from",
+    "git+https://github.com/oraios/serena",
+    "serena",
+    "start-mcp-server",
+    "--context",
+    "codex",
+]
+startup_timeout_ms = 20_000
 
 [mcp_servers.context7]
 command = "npx"
@@ -37,8 +45,9 @@ args = ["mcp-server-time"]
 
 [mcp_servers.git]
 command = "uvx"
-args = ["mcp-server-git", "--repository", "."]
+args = ["mcp-server-git"]
 
 [mcp_servers.tavily]
 command = "npx"
 args = ["-y", "tavily-mcp@latest"]
+startup_timeout_ms = 20_000

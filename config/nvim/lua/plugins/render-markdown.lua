@@ -89,7 +89,7 @@ return {
 			}
 		)
 		require("render-markdown").setup({
-			enabled = true,
+			enabled = false,
 			heading = {
 				enabled = true,
 				sign = false,
@@ -153,7 +153,8 @@ return {
 				highlight_inline = "RenderMarkdownCodeInline",
 			},
 			pipe_table = {
-				enabled = true,
+				enabled = false,
+                render_modes = false,
 			},
 		})
 	end,
