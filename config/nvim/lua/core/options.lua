@@ -10,7 +10,7 @@ opt.guifont = "Hackgen Console NF:h12"
 
 --############ OperationBehavior ###########
 opt.updatetime = 100
-opt.clipboard = { "unnamed", "unnamedplus" }
+opt.clipboard = "unnamedplus"
 opt.mouse = "a" --マウス操作を有効化
 opt.updatetime = 300
 opt.swapfile = false --スワップファイルを生成しない
