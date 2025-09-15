@@ -21,8 +21,8 @@
 # # separated by equals signs.
 font-family = "HackGen Console NF"
 font-size = 14
-# theme = "Banana Bluebery"
+theme = "Banana Blueberry"
 resize-overlay = never
 keybind = f11=toggle_fullscreen
-background-opacity = 0.8
+background-opacity = 0.9
 background-blur = true
