@@ -1,5 +1,3 @@
--- vim.lsp.set_log_level 'debug'
-require("lspconfig")
 require("vim.lsp.log").set_format_func(vim.inspect)
 vim.api.nvim_create_user_command("LspHealth", "checkhealth vim.lsp", { desc = "LSP Health Check" })
 vim.api.nvim_create_user_command("LspLog", function()
@@ -28,32 +26,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-vim.lsp.config("*", {
-	root_markers = { ".git" },
-	capabilities = require("blink.cmp").get_lsp_capabilities({
-		textDocument = {
-			completion = {
-				completionItem = {
-					snippetSupport = true,
-				},
-			},
-			foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			},
-		},
-	}),
-})
-
 ---@param lsp_name string
 local function load_lsp_opts(lsp_name)
 	vim.lsp.enable(lsp_name)
-    local status, opts = pcall(require, "lsp." .. lsp_name)
-    if status then
-        vim.lsp.config(lsp_name, opts)
-    else
-        vim.notify("[LSP] " ..lsp_name .. " is ensured but your config was not found. using nvim-lspconfig instead.", vim.log.levels.WARN)
-    end
+	local status, opts = pcall(require, "lsp." .. lsp_name)
+	if status then
+		vim.lsp.config(lsp_name, opts)
+	else
+		vim.notify(
+			"[LSP] " .. lsp_name .. " is ensured but your config was not found. using nvim-lspconfig instead.",
+			vim.log.levels.WARN
+		)
+	end
 end
 
 local ensure_installed = {
