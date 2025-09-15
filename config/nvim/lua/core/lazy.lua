@@ -23,17 +23,24 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
-    spec = {
-        { import = "plugins" },
-        {
-            dir = "~/example.nvim",
-            enabled = false,
-            opts = {}
-        },
-    },
-    checker = {
-        enabled = false,
-        notify = false,
-    },
-    debug = false,
+<<<<<<< Updated upstream
+	spec = {
+		{ import = "plugins" },
+		{
+			dir = "~/example.nvim",
+			enabled = false,
+			opts = {},
+		},
+		{
+			dir = "~/ex_prog/ex_lua/undump.nvim",
+			config = function()
+                require("undump").setup()
+            end
+		},
+	},
+	checker = {
+		enabled = false,
+		notify = false,
+	},
+	debug = false,
 })
