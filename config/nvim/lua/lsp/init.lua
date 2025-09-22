@@ -1,4 +1,5 @@
 require("vim.lsp.log").set_format_func(vim.inspect)
+vim.lsp.set_log_level("info")
 vim.api.nvim_create_user_command("LspHealth", "checkhealth vim.lsp", { desc = "LSP Health Check" })
 vim.api.nvim_create_user_command("LspLog", function()
 	vim.cmd(string.format("tabnew %s", vim.lsp.get_log_path()))
@@ -42,6 +43,7 @@ end
 
 local ensure_installed = {
 	"lua_ls",
+	"typua",
 	"rust_analyzer",
 	"pylsp",
 	"pyright",

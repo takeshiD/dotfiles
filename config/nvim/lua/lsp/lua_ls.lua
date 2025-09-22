@@ -30,25 +30,34 @@ return {
 	end,
 	settings = {
 		Lua = {
-			format = {
-				enbale = false,
-				defaultConfig = {
-					indent_style = "space",
-					indent_size = 4,
-				},
-			},
 			completion = {
 				enable = true,
 				autoRequire = true,
 				displayContext = true,
 			},
 			hint = {
-				enable = true,
+				enable = false,
 				arrayIndex = "Auto",
 				paramName = "All",
 				paramType = true,
 				setType = true,
 			},
+			format = { -- use stylua via nil-ls
+				enbale = false,
+				defaultConfig = {
+					indent_style = "space",
+					indent_size = 4,
+				},
+			},
+            diagnostics = { -- use typua
+                enable = true,
+                -- disable = {
+                --     "assign-type-mismatch",
+                --     "param-type-mismatch",
+                --     "return-type-mismatch",
+                --     "undefined-field",
+                -- }
+            }
 		},
 	},
 }

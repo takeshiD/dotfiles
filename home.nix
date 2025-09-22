@@ -40,11 +40,11 @@ in
     smem
     hyperfine
     # Development Tools
-    gcc
-    gnumake
+    # gcc
+    # gnumake
     mold
-    cmake
-    clang
+    # cmake
+    # clang
     clang-tools
     rustup
     uv
@@ -105,6 +105,7 @@ in
   };
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";
+    VIMRUNTIME = "${neovim}/share/nvim/runtime";
     PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
       openssl.dev
     ];
