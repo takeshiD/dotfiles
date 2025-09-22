@@ -39,18 +39,19 @@ in
     procs
     smem
     hyperfine
+    vhs
     # Development Tools
-    gcc
+    # gcc
     gnumake
-    mold
+    # mold
     cmake
-    clang
-    clang-tools
+    # clang
+    # clang-tools
     rustup
     uv
     pnpm
     nodejs
-    stack
+    # stack
     nixfmt-rfc-style
     lua-language-server
     stylua
@@ -67,20 +68,18 @@ in
     typescript-language-server
     nil
     taplo
-    cmake-language-server
     yaml-language-server
-    haskell-language-server
+    pkg-config
+    # haskell-language-server
     # LLM
-    claude-code
+    # claude-code
     # Misc
     tree-sitter
     zip
     unzip
-    vhs
     less
     openssh
     openssl
-    pkg-config
     hackgen-nf-font
     pandoc
     podman

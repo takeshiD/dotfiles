@@ -60,7 +60,7 @@ local ensure_installed = {
 	"taplo",
 	"cmake",
 	"clangd",
-	"yamlls",
+	-- "yamlls",
 	"hls",
 	"nrs_ls",
 }
