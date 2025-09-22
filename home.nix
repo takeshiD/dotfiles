@@ -37,6 +37,9 @@ in
     tokei
     yazi
     hexyl
+    procs
+    smem
+    hyperfine
     # Development Tools
     # gcc
     gnumake
@@ -83,6 +86,7 @@ in
     hackgen-nf-font
     pandoc
     podman
+    jq
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
