@@ -1,5 +1,4 @@
 require("vim.lsp.log").set_format_func(vim.inspect)
-vim.lsp.set_log_level("info")
 vim.api.nvim_create_user_command("LspHealth", "checkhealth vim.lsp", { desc = "LSP Health Check" })
 vim.api.nvim_create_user_command("LspLog", function()
 	vim.cmd(string.format("tabnew %s", vim.lsp.get_log_path()))
@@ -14,18 +13,6 @@ vim.diagnostic.config({
 
 -- augroup for this config file
 local augroup = vim.api.nvim_create_augroup("lsp/init.lua", {})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = augroup,
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		if client:supports_method("textDocument/formatting") then
-			-- vim.keymap.set("n", "gf", function()
-			-- 	vim.lsp.buf.format({ bufnr = args.buf, id = client.id, async = true })
-			-- end, { buffer = args.buf, desc = "LSP Formatting" })
-		end
-	end,
-})
 
 ---@param lsp_name string
 local function load_lsp_opts(lsp_name)
