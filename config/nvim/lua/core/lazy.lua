@@ -30,13 +30,13 @@ require("lazy").setup({
 			enabled = false,
 			opts = {},
 		},
-		{
-			dir = "~/ex_prog/ex_lua/undump.nvim",
-            enabled = false,
-			config = function()
-                require("undump").setup()
-            end
-		},
+		-- {
+		-- 	dir = "~/ex_prog/ex_lua/undump.nvim",
+  --           enabled = false,
+		-- 	config = function()
+  --               require("undump").setup()
+  --           end
+		-- },
 	},
 	checker = {
 		enabled = false,
