@@ -37,7 +37,7 @@ in
     tokei
     hexyl
     procs
-    smem
+    smemstat
     hyperfine
     # Development Tools
     # gcc

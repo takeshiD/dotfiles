@@ -22,8 +22,8 @@ return {
 				checkThirdParty = "Disable",
 				library = {
 					vim.env.VIMRUNTIME,
-                    "lua",
-                    "${3rd}/luv/library"
+                    -- "lua",
+                    -- "${3rd}/luv/library"
 				},
 			},
 		})
@@ -31,12 +31,12 @@ return {
 	settings = {
 		Lua = {
 			completion = {
-				enable = true,
+				enable = false,
 				autoRequire = true,
 				displayContext = true,
 			},
 			hint = {
-				enable = false,
+				enable = true,
 				arrayIndex = "Auto",
 				paramName = "All",
 				paramType = true,
@@ -57,6 +57,9 @@ return {
                 --     "return-type-mismatch",
                 --     "undefined-field",
                 -- }
+                globals = {
+                    "vim"
+                }
             }
 		},
 	},

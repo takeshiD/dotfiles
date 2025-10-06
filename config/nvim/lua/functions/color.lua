@@ -8,7 +8,7 @@ local lshift = bit.lshift
 ---@param fg number foreground color
 ---@param bg number background color
 ---@param alpha number between 0.0 to 1.0. if aplha is out of range, this would be rounded between 0.0 to 1.0.
----@return number # colorcode mixed alpha
+---@return number 
 function M.composeColor(fg, bg, alpha)
     if (type(fg) ~= "number") then
         error(string.format("fg is not integer. Actually got = %s", fg))

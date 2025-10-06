@@ -30,7 +30,7 @@ end
 
 local ensure_installed = {
 	"lua_ls",
-	"typua",
+	-- "typua",
 	"rust_analyzer",
 	"pylsp",
 	"pyright",
