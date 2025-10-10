@@ -25,7 +25,7 @@ return {
 				easing = "in_out_quad",
 			},
 			ignore = {
-				filetype = { "neo-tree", "DiffViewFiles" },
+				filetype = { "neo-tree", "DiffviewFiles" },
 			},
 		})
 	end,
