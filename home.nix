@@ -85,6 +85,7 @@ in
     pandoc
     podman
     jq
+    ast-grep
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
