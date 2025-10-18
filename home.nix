@@ -44,8 +44,8 @@ in
     gnumake
     mold
     cmake
-    clang
-    clang-tools
+    # clang
+    # clang-tools
     rustup
     uv
     pnpm
