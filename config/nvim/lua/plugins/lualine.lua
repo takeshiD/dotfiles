@@ -35,7 +35,7 @@ return {
 				end
 				local client_names_str = table.concat(unique_client_names, ", ")
 				local language_servers = string.format("%s", client_names_str)
-                local icon = require("nvim-web-devicons").get_icon_by_filetype(ft)
+				local icon = require("nvim-web-devicons").get_icon_by_filetype(ft)
 				return icon .. " " .. language_servers
 			end,
 			color = { fg = "#FF8800" },
