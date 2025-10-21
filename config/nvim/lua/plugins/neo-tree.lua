@@ -7,7 +7,7 @@ return {
     },
     lazy = false,
     keys = {
-        { '<C-e>',     '<cmd>Neotree toggle left<cr>',               desc = 'NeoTree Toggle' },
+        { '<C-e>',     '<cmd>Neotree toggle float<cr>',               desc = 'NeoTree Toggle' },
         -- { '<leader>g', '<cmd>Neotree float git_status<cr>',          desc = 'NeoTree Git' },
         -- { '<leader>b', '<cmd>Neotree toggle show buffers right<cr>', desc = 'NeoTree Buffers' }
     },

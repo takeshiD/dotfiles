@@ -4,6 +4,7 @@
   "aerial.nvim": { "branch": "master", "commit": "5e687b5a14004fa2dd9eccbee042b96869fe1557" },
   "animation.nvim": { "branch": "main", "commit": "fb77091ab72ec9971aee0562e7081182527aaa6a" },
   "avante-status.nvim": { "branch": "main", "commit": "35b4cebedae0b1de6a33e9562af20bb0150f2230" },
+  "bimove": { "branch": "main", "commit": "96f31f7c8e00863fdb71611d1cc56bcf9d3a2856" },
   "blink-cmp-avante": { "branch": "master", "commit": "4f494c6e124acbe31a8f5d58effa0c14aa38a6d5" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
   "bluloco.nvim": { "branch": "main", "commit": "afc95b6696a0a568a5a186a7e563f6c9947d0d79" },
