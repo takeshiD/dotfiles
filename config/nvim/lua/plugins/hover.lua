@@ -12,7 +12,6 @@ return {
 	},
 	config = function()
 		require("hover").config({
-			---@type (string|Hover.Config.Provider)[]
 			providers = {
 				"hover.providers.diagnostic",
 				"hover.providers.lsp",
