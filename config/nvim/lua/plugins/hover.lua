@@ -2,7 +2,7 @@ return {
 	"lewis6991/hover.nvim",
 	keys = {
 		{
-			"O",
+			"U",
 			function()
 				require("hover").hover()
 			end,

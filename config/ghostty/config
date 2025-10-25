@@ -25,4 +25,5 @@ theme = "Banana Blueberry"
 resize-overlay = never
 keybind = f11=toggle_fullscreen
 background-opacity = 0.9
-background-blur = true
+# custom-shader = ~/.config/ghostty/custom_shader/cursor_blaze.glsl
+custom-shader-animation = true
