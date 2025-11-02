@@ -1,7 +1,7 @@
 return {
     "f-person/git-blame.nvim",
     event = "VeryLazy",
-    enabled = true,
+    enabled = false,
     priority = 1020, -- needs to be loaded in first
     opts = {
         enabled = true,

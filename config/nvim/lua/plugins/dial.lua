@@ -23,6 +23,8 @@ return {
                 augend.constant.alias.ja_weekday_full,
                 augend.constant.alias.ja_weekday,
                 augend.constant.alias.bool,
+                augend.constant.alias.alpha,
+                augend.constant.alias.Alpha,
             },
         }
         require("dial.config").augends:on_filetype {
