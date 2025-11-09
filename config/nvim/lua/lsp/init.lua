@@ -46,6 +46,7 @@ local ensure_installed = {
 	"pylsp",
 	"pyright",
 	-- "ty",
+	"typua",
 	"ruff",
 	"markdown_oxide",
 	"ts_ls",
