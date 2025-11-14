@@ -71,7 +71,8 @@ in
     yaml-language-server
     haskell-language-server
     # LLM
-    claude-code
+    # claude-code   # install via pnpm
+    # codex         # install via pnpm
     # Misc
     tree-sitter
     zip
@@ -86,6 +87,7 @@ in
     podman
     jq
     sysstat
+    nix-bash-completions
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
