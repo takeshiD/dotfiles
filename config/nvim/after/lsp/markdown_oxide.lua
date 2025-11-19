@@ -1,7 +1,7 @@
 return {
-	root_markers = { ".git", ".obsidian", ".moxide.toml" },
-	filetypes = { "markdown" },
 	cmd = { "markdown-oxide" },
+	filetypes = { "markdown" },
+	root_markers = { ".git", ".obsidian", ".moxide.toml" },
 	on_attach = function(_, bufnr)
 		vim.api.nvim_buf_create_user_command(bufnr, "LspToday", function()
 			vim.lsp.buf.execute_command({ command = "jump", arguments = { "today" } })

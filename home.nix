@@ -75,6 +75,7 @@ in
     # codex         # install via pnpm
     # Misc
     tree-sitter
+    nixd
     zip
     unzip
     vhs
