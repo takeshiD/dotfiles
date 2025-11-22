@@ -105,6 +105,21 @@ if command -v direnv > /dev/null 2>&1; then
 fi
 
 
+#=======================================================
+# Custom commands
+#=======================================================
+COMMANDS_DIR="$DOTFILES_DIR/config/bash/commands"
+if [ -d "$COMMANDS_DIR" ]; then
+    for command_file in "$COMMANDS_DIR"/*.sh; do
+        if [ -f "$command_file" ];then
+            source "$command_file"
+            info "Loaded $command_file"
+        else
+            warning "Not Found $command_file"
+        fi
+    done
+fi
+
 
 # pnpm
 export PNPM_HOME="/home/tkcd/.local/share/pnpm"
