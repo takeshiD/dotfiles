@@ -129,4 +129,3 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-alias claude="/home/tkcd/.claude/local/claude"
