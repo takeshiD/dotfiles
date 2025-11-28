@@ -29,7 +29,7 @@ local ensure_installed = {
 	"pyright",
 	-- "ty",
 	"lua_ls",
-	"typua",
+	-- "typua",
 	"ruff",
 	"markdown_oxide",
 	"ts_ls",

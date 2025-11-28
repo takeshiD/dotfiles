@@ -128,8 +128,8 @@
 
 # These are all the components that support custom theming.  Note that colour support
 # will depend on terminal support.
-#[styles] # Uncomment if you want to use custom styling
-
+[styles] # Uncomment if you want to use custom styling
+theme = "nord"
 # Built-in themes. Valid values are:
 # - "default"
 # - "default-light"
@@ -140,7 +140,6 @@
 #
 # This will have the lowest precedence if a custom colour palette is set,
 # or overridden if the command-line flag for a built-in theme is set.
-#theme = "default"
 
 #[styles.cpu]
 #all_entry_color = "green"
@@ -188,25 +187,22 @@
 # All widgets must have the type value set to one of ["cpu", "mem", "proc", "net", "temp", "disk", "empty"].
 # All layout components have a ratio value - if this is not set, then it defaults to 1.
 # The default widget layout:
-#[[row]]
-#  ratio=30
-#  [[row.child]]
-#  type="cpu"
-#[[row]]
-#    ratio=40
-#    [[row.child]]
-#      ratio=4
-#      type="mem"
-#    [[row.child]]
-#      ratio=3
-#      [[row.child.child]]
-#        type="temp"
-#      [[row.child.child]]
-#        type="disk"
-#[[row]]
-#  ratio=30
-#  [[row.child]]
-#    type="net"
-#  [[row.child]]
-#    type="proc"
-#    default=true
+[[row]]
+ [[row.child]]
+ type="cpu"
+[[row]]
+   ratio=2
+   [[row.child]]
+     ratio=4
+     type="mem"
+   [[row.child]]
+     ratio=3
+     [[row.child.child]]
+       type="disk"
+[[row]]
+ ratio=3
+ [[row.child]]
+   type="net"
+ [[row.child]]
+   type="proc"
+   default=true
