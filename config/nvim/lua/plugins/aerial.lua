@@ -109,6 +109,9 @@ return {
 					Function = "def",
 					Method = "def",
 				},
+				markdown = {
+					Interface = "Header",
+				},
 			},
 		})
 	end,
