@@ -42,9 +42,9 @@ in
     vhs
     # Development Tools
     # gcc
-    gnumake
+    # gnumake
     # mold
-    cmake
+    # cmake
     # clang
     # clang-tools
     rustup
@@ -60,13 +60,13 @@ in
     ruff
     ty
     bash-language-server
-    cmake-language-server
-    tailwindcss-language-server
-    vscode-langservers-extracted
+    # cmake-language-server
+    # tailwindcss-language-server
+    # vscode-langservers-extracted
     markdown-oxide
     taplo
-    typescript-language-server
-    nil
+    # typescript-language-server
+    # nil
     taplo
     yaml-language-server
     pkg-config

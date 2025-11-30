@@ -40,17 +40,17 @@ in
     smem
     hyperfine
     # Development Tools
-    gcc
-    gnumake
+    # gcc
+    # gnumake
     mold
-    cmake
+    # cmake
     # clang
-    clang-tools
+    # clang-tools
     rustup
     uv
     pnpm
     nodejs
-    stack
+    # stack
     nixfmt-rfc-style
     lua-language-server
     stylua
@@ -59,23 +59,23 @@ in
     ruff
     ty
     bash-language-server
-    cmake-language-server
-    tailwindcss-language-server
-    vscode-langservers-extracted
+    # cmake-language-server
+    # tailwindcss-language-server
+    # vscode-langservers-extracted
     markdown-oxide
     taplo
     typescript-language-server
     nil
     taplo
-    cmake-language-server
+    # cmake-language-server
     yaml-language-server
-    haskell-language-server
+    # haskell-language-server
+    nixd
     # LLM
     # claude-code   # install via pnpm
     # codex         # install via pnpm
     # Misc
     tree-sitter
-    nixd
     zip
     unzip
     vhs

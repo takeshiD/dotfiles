@@ -35,7 +35,7 @@ local ensure_installed = {
 	"ts_ls",
 	"eslint",
 	-- "dprint",
-	"tailwindcss",
+	-- "tailwindcss",
 	"cssls",
 	"html",
 	"jsonls",
