@@ -39,6 +39,7 @@ in
     procs
     smem
     hyperfine
+    vhs
     # Development Tools
     # gcc
     # gnumake
@@ -89,6 +90,7 @@ in
     jq
     sysstat
     nix-bash-completions
+    nixd
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
