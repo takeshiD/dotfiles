@@ -84,6 +84,8 @@ in
     pandoc
     podman
     jq
+    nix-bash-completions
+    nixd
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";

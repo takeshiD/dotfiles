@@ -32,7 +32,7 @@ if ! command -v home-manager &> /dev/null; then
     return
 else
     info "⚙️ Applying home-manager configuration..."
-    home-manager switch --flake .#tkcd
+    home-manager switch --flake .#tkcd-work
     success "✅ Setup completed! Please restart your shell."
 fi
 
