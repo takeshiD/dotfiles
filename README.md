@@ -1,10 +1,7 @@
 # Target OS
 - ArchLinux
-- Ubuntu22.04
-- Ubuntu24.04
 
 # Requirement
-
 - `git`
 
 # Installation
