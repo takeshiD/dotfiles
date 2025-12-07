@@ -21,6 +21,6 @@
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true
   },
-  "alwaysThinkingEnabled": false,
+  "alwaysThinkingEnabled": true,
   "preferredNotifChannel": "terminal_bell"
 }
