@@ -112,6 +112,10 @@ return {
 				markdown = {
 					Interface = "Header",
 				},
+				yaml = {
+					Class = " ",
+					Enum = " ",
+				},
 			},
 		})
 	end,
