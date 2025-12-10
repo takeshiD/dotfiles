@@ -91,6 +91,8 @@ in
     sysstat
     nix-bash-completions
     nixd
+    doxx
+    xleak
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
