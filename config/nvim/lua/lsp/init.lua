@@ -45,7 +45,7 @@ local ensure_installed = {
 	"taplo",
 	"cmake",
 	"clangd",
-	-- "yamlls",
+	"yamlls",
 	"hls",
 }
 for _, lsp_name in pairs(ensure_installed) do
