@@ -1,5 +1,6 @@
 return {
 	"shellRaining/hlchunk.nvim",
+	enabled = false,
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local color = require("functions.color")
@@ -45,7 +46,7 @@ return {
 					IndentHighlight5,
 					IndentHighlight6,
 				},
-                exclude_filetypes = {"nix"}
+				exclude_filetypes = { "nix" },
 			},
 		})
 	end,
