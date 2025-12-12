@@ -129,3 +129,8 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+
+
+
+
+source ~/.safe-chain/scripts/init-posix.sh # Safe-chain bash initialization script

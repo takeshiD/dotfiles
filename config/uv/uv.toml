@@ -1,0 +1,6 @@
+allow-insecure-host = [
+    "pypi.org",
+    "pypi.python.org",
+    "files.pythonhosted.org",
+]
+# exclude-newer = "2025-12-12T00:00:00+09:00"
