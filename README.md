@@ -38,3 +38,7 @@ After you edit `home.nix` or `flake.nix` and more `.nix` files, please run `inst
 ```bash
 $ ./install.sh
 ```
+
+
+![](assets/aaaaa.png)
+

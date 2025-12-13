@@ -51,6 +51,7 @@ in
     uv
     pnpm
     nodejs
+    go
     # stack
     nixfmt-rfc-style
     lua-language-server
@@ -94,7 +95,9 @@ in
     doxx
     xleak
     zk
-    viddy
+    wl-clipboard
+    imagemagick
+    libsixel
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
