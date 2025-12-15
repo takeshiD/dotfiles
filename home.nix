@@ -63,7 +63,7 @@ in
     bash-language-server
     # cmake-language-server
     # tailwindcss-language-server
-    # vscode-langservers-extracted
+    vscode-langservers-extracted
     markdown-oxide
     taplo
     typescript-language-server
