@@ -25,32 +25,6 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
-		{
-			dir = "~/example.nvim",
-			enabled = false,
-			opts = {},
-		},
-		{
-			dir = "~/ex_prog/ex_lua/undump.nvim",
-			enabled = false,
-			config = function()
-				require("undump").setup()
-			end,
-		},
-		{
-			dir = "~/ex_prog/ex_lua/img-clip.nvim",
-			enabled = false,
-			event = "VeryLazy",
-			opts = {
-				-- add options here
-				-- or leave it empty to use the default settings
-				process_cmd = "covert - -quality 85 -",
-			},
-			keys = {
-				-- suggested keymap
-				{ "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
-			},
-		},
 	},
 	checker = {
 		enabled = false,

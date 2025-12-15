@@ -97,7 +97,7 @@ in
     zk
     wl-clipboard
     imagemagick
-    libsixel
+    lolcat
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
