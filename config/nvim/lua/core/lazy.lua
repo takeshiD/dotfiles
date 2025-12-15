@@ -39,7 +39,7 @@ require("lazy").setup({
 		},
 		{
 			dir = "~/ex_prog/ex_lua/img-clip.nvim",
-			enabled = true,
+			enabled = false,
 			event = "VeryLazy",
 			opts = {
 				-- add options here

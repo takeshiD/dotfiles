@@ -23,7 +23,8 @@ return {
 				library = {
 					vim.env.VIMRUNTIME,
                     "lua",
-                    "${3rd}/luv/library"
+                    "${3rd}/luv/library",
+                    vim.fn.stdpath("data") .. "/lazy/"
 				},
 			},
 		})
