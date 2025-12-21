@@ -24,6 +24,6 @@ font-size = 14
 theme = "Banana Blueberry"
 resize-overlay = never
 keybind = f11=toggle_fullscreen
-background-opacity = 0.9
+background-opacity = 1.0
 # custom-shader = ~/.config/ghostty/custom_shader/cursor_blaze.glsl
 custom-shader-animation = true

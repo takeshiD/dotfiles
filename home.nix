@@ -18,6 +18,7 @@ in
     tmux
     bash
     bash-completion
+    vscode-json-languageserver
     starship
     lazygit
     bottom
@@ -91,7 +92,6 @@ in
     jq
     sysstat
     nix-bash-completions
-    nixd
     doxx
     xleak
     zk
