@@ -40,5 +40,3 @@ $ ./install.sh
 ```
 
 
-![](assets/aaaaa.png)
-
