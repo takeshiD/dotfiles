@@ -18,7 +18,6 @@ in
     tmux
     bash
     bash-completion
-    vscode-json-languageserver
     starship
     lazygit
     bottom
