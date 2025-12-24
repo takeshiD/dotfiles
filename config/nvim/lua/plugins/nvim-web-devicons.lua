@@ -26,6 +26,12 @@ return {
                     color = "#9c4221",
                     cterm_color = "124",
                     name = "nrs"
+                },
+                ["mbt"] = {
+                    icon = "󱩡",
+                    color = "#b92482",
+                    cterm_color = "126",
+                    name = "moonbit",
                 }
             }
         })
