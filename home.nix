@@ -96,6 +96,8 @@ in
     zk
     wl-clipboard
     imagemagick
+    glow
+    wslu
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
