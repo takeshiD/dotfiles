@@ -87,7 +87,6 @@ in
     pkg-config
     hackgen-nf-font
     pandoc
-    podman
     jq
     sysstat
     nix-bash-completions
@@ -100,6 +99,8 @@ in
     wslu
     lolcat
     figlet
+    act
+    # podman        # via pacman
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
