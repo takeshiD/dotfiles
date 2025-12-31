@@ -1,0 +1,21 @@
+{
+    "default": [
+        {
+            "type": "insecureAcceptAnything"
+        }
+    ],
+    "transports": {
+        "docker": {
+            "docker.io/library/": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ],
+            "ghcr.io": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ]
+        }
+    }
+}

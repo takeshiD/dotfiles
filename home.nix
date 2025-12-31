@@ -117,6 +117,7 @@ in
     ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
     ".config/fish".source = mkOutOfStoreSymlink "${dotfilesPath}/config/fish";
     ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
+    ".config/containers".source = mkOutOfStoreSymlink "${dotfilesPath}/config/containers";
     # ".config/uv".source = mkOutOfStoreSymlink "${dotfilesPath}/config/uv";
     ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
   };
