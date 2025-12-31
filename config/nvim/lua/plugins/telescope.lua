@@ -2,7 +2,7 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "stevearc/aerial.nvim"
+        "stevearc/aerial.nvim",
     },
     keys = {
         { mode = { "n" }, "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>",     desc = "Telescope FileName" },
