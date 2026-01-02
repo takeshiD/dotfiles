@@ -52,7 +52,6 @@ in
     pnpm
     nodejs
     go
-    # stack
     nixfmt-rfc-style
     lua-language-server
     stylua
@@ -97,10 +96,10 @@ in
     imagemagick
     glow
     wslu
-    lolcat
     figlet
     act
     # podman        # via pacman
+    awscli2
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";

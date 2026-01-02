@@ -19,9 +19,5 @@
         inherit pkgs;
         modules = [ ./home.nix ];
       };
-      homeConfigurations."tkcd-work" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home_work.nix ];
-      };
     };
 }
