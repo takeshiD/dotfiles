@@ -14,7 +14,6 @@ return {
 					-- on_attach = ...
 					-- etc, see `:h vim.lsp.start()`
 				},
-
 				-- automatically attach buffers in a zk notebook that match the given filetypes
 				auto_attach = {
 					enabled = true,

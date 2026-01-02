@@ -33,7 +33,7 @@ in
     zoxide
     gh
     glab
-    silicon
+    # silicon
     tokei
     hexyl
     procs
@@ -100,6 +100,7 @@ in
     act
     # podman        # via pacman
     awscli2
+    aws-cdk-cli
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
