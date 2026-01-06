@@ -1,6 +1,6 @@
 return {
 	cmd = { "markdown-oxide" },
-	filetypes = { "markdown" },
+	filetypes = { "markdown", "mdx" },
 	root_markers = { ".git", ".obsidian", ".moxide.toml" },
 	on_attach = function(_, bufnr)
 		vim.api.nvim_buf_create_user_command(bufnr, "LspToday", function()

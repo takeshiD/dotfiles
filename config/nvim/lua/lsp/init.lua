@@ -36,6 +36,7 @@ local ensure_installed = {
 	"eslint",
 	-- "dprint",
 	-- "tailwindcss",
+    "astro",
 	"cssls",
 	"html",
 	"jsonls",

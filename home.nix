@@ -101,6 +101,8 @@ in
     # podman        # via pacman
     awscli2
     aws-cdk-cli
+    biome
+    astro-language-server
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
