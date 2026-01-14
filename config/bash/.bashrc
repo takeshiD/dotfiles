@@ -82,14 +82,6 @@ fi
 
 
 #=======================================================
-# Look and Feel
-#=======================================================
-if command -v mise > /dev/null 2>&1; then
-    eval "$(mise activate bash)"
-fi
-
-
-#=======================================================
 # zoxide
 #=======================================================
 if command -v zoxide > /dev/null 2>&1; then
@@ -129,4 +121,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# source ~/.safe-chain/scripts/init-posix.sh # Safe-chain bash initialization script
+
+# default shell: fish
+if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
+then
+	shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+	exec fish $LOGIN_OPTION
+fi
+

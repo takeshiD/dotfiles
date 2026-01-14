@@ -17,6 +17,7 @@ in
     neovim
     tmux
     bash
+    fish
     bash-completion
     starship
     lazygit
