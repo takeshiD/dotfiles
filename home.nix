@@ -42,12 +42,12 @@ in
     hyperfine
     vhs
     # Development Tools
-    # gcc
-    # gnumake
+    gcc
+    gnumake
     mold
-    # cmake
+    cmake
     # clang
-    # clang-tools
+    clang-tools
     rustup
     uv
     pnpm
@@ -104,6 +104,8 @@ in
     aws-cdk-cli
     biome
     astro-language-server
+    ghostty
+    google-chrome
   ];
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
