@@ -40,3 +40,13 @@ $ ./install.sh
 ```
 
 
+# tkcd Nix Environment
+| Host          | Name    | OS              | GUI     | IME         |
+| ------------- | ------  | -----           | ------- | ----        |
+| tkcd          | Desktop | WSL2 Arch Linux | -       | GoogleIME   |
+| tkcd          | Laptop  | Arch Linux      | GNOME   | fcitx5-mocz |
+| tkcd          | Laptop  | NixOS           | GNOME   | fcitx5-mocz |
+| Company       | Laptop  | WSL2 Arch Linux | -       | GoogleIME   |
+| -             | Docker  | NixOS           | -       | -           |
+
+

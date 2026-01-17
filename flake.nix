@@ -15,7 +15,13 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      homeConfigurations."tkcd" = home-manager.lib.homeManagerConfiguration {
+      nixosConfigurations.tkcd = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+        ./nixos/configuration.nix
+        ];
+      };
+      homeConfigurations.tkcd = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home.nix ];
       };
