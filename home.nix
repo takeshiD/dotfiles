@@ -124,7 +124,6 @@ in
     ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
     ".config/wezterm".source = mkOutOfStoreSymlink "${dotfilesPath}/config/wezterm";
     ".config/containers".source = mkOutOfStoreSymlink "${dotfilesPath}/config/containers";
-    # ".config/uv".source = mkOutOfStoreSymlink "${dotfilesPath}/config/uv";
     ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
   };
   home.sessionVariables = with pkgs; {
@@ -133,6 +132,9 @@ in
       openssl.dev
     ];
   };
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
+  ];
   home.activation = {
     gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared"
