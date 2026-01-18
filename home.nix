@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  codex-cli,
   ...
 }:
 let
@@ -13,6 +14,7 @@ in
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
   home.packages = with pkgs; [
+    codex-cli.packages.${system}.default
     # Editor and Terminal tools
     neovim
     tmux
@@ -80,7 +82,6 @@ in
     tree-sitter
     zip
     unzip
-    vhs
     less
     openssh
     openssl

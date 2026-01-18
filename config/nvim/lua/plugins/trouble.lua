@@ -7,7 +7,7 @@ return {
 	cmd = "Trouble",
 	keys = {
 		{
-			"gx",
+			"<leader>x",
 			"<cmd>Trouble diagnostics toggle filter.buf=0 win.type=split win.position=left<cr>",
 			desc = "Diagnostics (Trouble)",
 		},

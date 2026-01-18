@@ -1,11 +1,13 @@
 {
-  description = "Home Manager configuration of tkcd";
+  description = "NixOS & Home Manager configuration";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
+    codex-cli.url = "github:sadjow/codex-cli-nix";
   };
 
   outputs =
@@ -15,15 +17,19 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations.tkcd = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-        ./nixos/configuration.nix
-        ];
+      nixosConfigurations = {
+        "dev-laptop" = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./nixos/configuration.nix
+          ];
+        };
       };
-      homeConfigurations.tkcd = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix ];
+      homeConfigurations = {
+        "tkcd@dev-laptop" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home.nix ];
+        };
       };
     };
 }

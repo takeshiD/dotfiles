@@ -1,31 +1,30 @@
 {
-    "permissions": {
-        "allow": [
-            "Bash(pnpm test)",
-            "AskUserQuestion",
-            "Task",
-            "WebSearch",
-            "SlashCommand"
-        ],
-        "deny": [
-            "Bash(pnpm add:*)",
-            "Bash(pnpm remove:*)",
-            "Bash(npm install:*)",
-            "Bash(npm uninstall:*)",
-            "Bash(npm remove:*)",
-            "Bash(git push:*)",
-            "Bash(git reset:*)",
-            "Bash(git rebase:*)",
-            "Bash(rm:*)",
-            "Bash(sudo:*)",
-            "Read(.env.*)"
-        ]
-    },
-    "model": "opus",
-    "enabledPlugins": {
-        "document-skills@anthropic-agent-skills": true,
-        "rust-analyzer-lsp@claude-plugins-official": true
-    },
-    "alwaysThinkingEnabled": true,
-    "preferredNotifChannel": "terminal_bell"
+  "permissions": {
+    "allow": [
+      "Bash(pnpm test)",
+      "AskUserQuestion",
+      "Task",
+      "WebSearch",
+      "SlashCommand"
+    ],
+    "deny": [
+      "Bash(pnpm add:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm remove:*)",
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Bash(rm:*)",
+      "Bash(sudo:*)",
+      "Read(.env.*)"
+    ]
+  },
+  "enabledPlugins": {
+    "document-skills@anthropic-agent-skills": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "preferredNotifChannel": "terminal_bell"
 }
