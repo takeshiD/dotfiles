@@ -28,7 +28,13 @@
       homeConfigurations = {
         "tkcd@dev-laptop" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home.nix ];
+          modules = [ ./hosts/dev-laptop.nix ];
+        };
+      };
+      homeConfigurations = {
+        "tkcd@company-laptop" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./hosts/company-laptop.nix ];
         };
       };
     };
