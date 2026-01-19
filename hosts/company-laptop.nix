@@ -1,7 +1,7 @@
 {
+  lib,
   config,
   pkgs,
-  lib,
   ...
 }:
 let
@@ -9,6 +9,11 @@ let
 in
 {
   # inherit dotfilesPath;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
@@ -47,10 +52,10 @@ in
     # cmake
     # clang
     # clang-tools
-    rustup
+    # rustup
     uv
-    pnpm
-    nodejs
+    # pnpm
+    # nodejs
     # go
     nixfmt-rfc-style
     lua-language-server
@@ -65,7 +70,7 @@ in
     vscode-langservers-extracted
     markdown-oxide
     taplo
-    typescript-language-server
+    # typescript-language-server
     nil
     taplo
     # cmake-language-server
@@ -81,10 +86,10 @@ in
     unzip
     less
     openssh
-    openssl
-    pkg-config
+    # openssl
+    # pkg-config
     # hackgen-nf-font
-    pandoc
+    # pandoc
     jq
     sysstat
     nix-bash-completions
@@ -92,16 +97,16 @@ in
     # xleak
     zk
     wl-clipboard
-    imagemagick
-    glow
+    # imagemagick
+    # glow
     wslu
     figlet
     act
     # podman        # via pacman
     awscli2
     aws-cdk-cli
-    biome
-    astro-language-server
+    # biome
+    # astro-language-server
     # ghostty
     # google-chrome
   ];
@@ -143,7 +148,6 @@ in
       fi
     '';
   };
-  nixpkgs.config.allowUnfree = true;
   programs = {
     home-manager.enable = true;
     direnv = {
