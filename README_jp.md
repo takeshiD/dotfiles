@@ -1,190 +1,125 @@
-# Target OS
-- ArchLinux
+<h1 align="center">tkcd dotfiles</h1>
 
-# Requirement
-- `git`
+[Nix Flakes](https://nixos.wiki/wiki/Flakes) と [home-manager](https://github.com/nix-community/home-manager) で管理する個人用dotfiles。
 
-# Installation
+## 対応環境
 
-You have to run `install.sh` twice for applying configuration and installaion.
+| 名前           | ホスト              | OS                | GUI   | IME         |
+| ------         | --------            | -----             | ----- | -----       |
+| dev-laptop     | tkcd@dev-laptop     | NixOS             | GNOME | fcitx5-mozc |
+| company-laptop | tkcd@company-laptop | WSL2 (Arch Linux) | -     | Windows IME |
 
-```
-$ cd ~
-$ git clone https://github.com/takeshiD/dotfiles.git
-$ cd dotfiles
-$ ./install
-[INFO] 🚀 Setting up development environment with flakes...
-[INFO] 📦 Installing Nix...
-...
-[SUCCESS] ❄  Nix install is success! Please restart shell, due to nix will be enabled.
-# restart shell
-
-$ cd dotfiles
-$ ./install
-[INFO] ❄  Installed Nix
-[INFO] 📦 Installing home-manager...
-...
-[SUCCESS] 🏠 home-manager install is success!
-[INFO] ⚙️ Applying home-manager configuration...
-...
-Starting Home Manager activation
-...
-[SUCCESS] ✅ Setup completed! Please restart your shell.
-```
-
-# Update and Add packages
-After you edit `home.nix` or `flake.nix` and more `.nix` files, please run `install.sh` to apply changed configuration.
-
-```bash
-$ ./install.sh
-```
-
-
-# tkcd Nix Environment
-| Host          | Name    | OS              | GUI     | IME         |
-| ------------- | ------  | -----           | ------- | ----        |
-| tkcd          | Desktop | WSL2 Arch Linux | -       | GoogleIME   |
-| tkcd          | Laptop  | Arch Linux      | GNOME   | fcitx5-mocz |
-| tkcd          | Laptop  | NixOS           | GNOME   | fcitx5-mocz |
-| Company       | Laptop  | WSL2 Arch Linux | -       | GoogleIME   |
-| -             | Docker  | NixOS           | -       | -           |
-
-
-# dotfiles 複数環境対応計画
-
-## 概要
-
-NixOS、home-manager、将来のmacOS (nix-darwin)に対応した、ホストの追加・削除が容易なdotfiles構成への移行。
-
-## 推奨ディレクトリ構成
+## ディレクトリ構成
 
 ```
 dotfiles/
-├── flake.nix                      # エントリポイント（ホスト定義）
-├── lib/
-│   └── default.nix                # mkNixosHost, mkHomeConfiguration等
-│
-├── modules/
-│   ├── home/                      # home-managerモジュール
-│   │   ├── core/                  # 全環境共通（shell, editor, git, dev-tools）
-│   │   ├── development/           # 開発ツール（rust, nodejs, python, lsp）
-│   │   ├── desktop/               # GUI環境（terminal, browser, fonts）
-│   │   └── wsl/                   # WSL固有（wslu等）
-│   │
-│   └── nixos/                     # NixOSモジュール
-│       ├── core/                  # 必須設定（nix, locale, users）
-│       └── desktop/               # デスクトップ（gnome, sound, ime）
-│
-├── hosts/                         # ホスト固有設定
-│   ├── tkcd-desktop/              # WSL2 (CLI)
-│   │   └── home.nix
-│   ├── tkcd-laptop-arch/          # Arch + GNOME
-│   │   └── home.nix
-│   ├── tkcd-laptop-nixos/         # NixOS + GNOME
-│   │   ├── default.nix
-│   │   ├── home.nix
-│   │   └── hardware-configuration.nix
-│   ├── company-laptop/            # WSL2 (CLI)
-│   │   └── home.nix
-│   └── docker/                    # Docker NixOS
-│       ├── default.nix
-│       └── home.nix
-│
-├── overlays/                      # パッケージオーバーレイ
-│   └── default.nix
-│
-└── config/                        # 設定ファイル（既存維持）
+├── flake.nix                   # エントリポイント（NixOS + Home Manager）
+├── hosts/
+│   ├── dev-laptop.nix          # 個人ラップトップ（NixOS + GNOME + GUIアプリ）
+│   └── company-laptop.nix      # 会社ラップトップ（WSL2、CLI中心）
+├── home/
+│   └── cli.nix                 # 共通CLIパッケージ（オプション）
+├── nixos/
+│   ├── configuration.nix       # NixOSシステム設定（GNOME、fcitx5等）
+│   └── hardware-configuration.nix
+├── config/                     # アプリ設定ファイル（シンボリックリンク）
+│   ├── bash/
+│   ├── fish/
+│   ├── nvim/
+│   ├── tmux/
+│   ├── lazygit/
+│   ├── starship/
+│   ├── ghostty/
+│   ├── wezterm/
+│   ├── claude/
+│   └── ...
+└── install.sh                  # 初期セットアップスクリプト
 ```
 
-## flake.nix設計
+## 必要なもの
 
-ホストをデータとして定義し、ヘルパー関数で設定を生成:
+- `git`
+- `curl`（Nixインストール用）
 
-```nix
-hosts = {
-  tkcd-laptop-nixos = {
-    system = "x86_64-linux";
-    type = "nixos";           # または "home-manager"
-    username = "tkcd";
-    modules = {
-      nixos = [ "core" "desktop" ];
-      home = [ "core" "development" "desktop" ];
-    };
-  };
-  tkcd-desktop = {
-    system = "x86_64-linux";
-    type = "home-manager";
-    username = "tkcd";
-    modules.home = [ "core" "development" "wsl" ];
-  };
-  # ...
-};
+## インストール
+
+### 新規インストール（NixOS以外）
+
+`install.sh`を2回実行 - 1回目でNixをインストール、2回目で設定を適用：
+
+```bash
+cd ~
+git clone https://github.com/takeshiD/dotfiles.git
+cd dotfiles
+./install.sh
+# Nixインストール後、シェルを再起動
+./install.sh
 ```
 
-## 新しいホストの追加手順
+### NixOS
 
-1. `hosts/new-host/` フォルダを作成
-2. `home.nix`（全ホスト）と `default.nix`（NixOSのみ）を作成
-3. `flake.nix`の`hosts`定義に追加
-4. `home-manager switch --flake .#username` または `nixos-rebuild switch --flake .#hostname`
-
-## モジュール分割方針
-
-| モジュール | 内容 | 対象ホスト |
-|-----------|------|----------|
-| `home/core` | fish, bash, neovim, tmux, git, ripgrep等 | 全環境 |
-| `home/development` | rustup, nodejs, python, LSP群 | 全環境 |
-| `home/desktop` | ghostty, wezterm, chrome, fonts | GUI環境 |
-| `home/wsl` | wslu, clipboard統合 | WSL環境 |
-| `nixos/core` | nix設定, locale, users | NixOS |
-| `nixos/desktop` | GNOME, pipewire, fcitx5 | NixOS GUI |
-
-## 実装ステップ
-
-### Phase 1: 基盤作成
-- [ ] `lib/default.nix`にヘルパー関数を実装
-- [ ] `modules/`ディレクトリ構造を作成
-- [ ] `overlays/default.nix`を作成
-
-### Phase 2: home-managerモジュール分割
-- [ ] 現在の`home.nix`を`modules/home/core/`に分割
-- [ ] GUI専用設定を`modules/home/desktop/`に移動
-- [ ] 開発ツールを`modules/home/development/`に整理
-- [ ] WSL設定を`modules/home/wsl/`に作成
-
-### Phase 3: NixOSモジュール分割
-- [ ] `nixos/configuration.nix`を`modules/nixos/core/`に分割
-- [ ] GNOME/音声/IMEを`modules/nixos/desktop/`に移動
-
-### Phase 4: ホスト定義
-- [ ] 各ホストの`hosts/`ディレクトリを作成
-- [ ] `flake.nix`を新構成に更新
-
-### Phase 5: 検証
-- [ ] `nix flake check`で構文確認
-- [ ] 各ホストでビルドテスト
-- [ ] 実環境で`home-manager switch`/`nixos-rebuild switch`を実行
-
-## 主要ファイルの変更
-
-| ファイル                         | 変更内容                                   |
-| ---------                        | ---------                                  |
-| `flake.nix`                      | hosts定義とヘルパー関数呼び出しに書き換え  |
-| `home.nix`                       | モジュールに分割後、削除または参照用に保持 |
-| `nixos/configuration.nix`        | モジュールに分割後、ホスト固有部分のみ残す |
-| `lib/default.nix`                | 新規作成                                   |
-| `modules/home/core/default.nix`  | 新規作成                                   |
-| `modules/nixos/core/default.nix` | 新規作成                                   |
-
-## 将来のmacOS対応
-
-```nix
-inputs.darwin.url = "github:lnl7/nix-darwin";
-
-darwinConfigurations.macbook = darwin.lib.darwinSystem {
-  system = "aarch64-darwin";
-  modules = [ ./hosts/macbook/darwin.nix ];
-};
+```bash
+cd ~/dotfiles
+sudo nixos-rebuild switch --flake .#dev-laptop
 ```
 
-`modules/darwin/`を追加してmacOS固有モジュールを配置。
+## 使い方
+
+### home-manager設定の適用
+
+```bash
+# 個人ラップトップ
+home-manager switch --flake .#tkcd@dev-laptop
+
+# 会社ラップトップ
+home-manager switch --flake .#tkcd@company-laptop
+```
+
+### NixOS設定の適用
+
+```bash
+sudo nixos-rebuild switch --flake .#dev-laptop
+```
+
+### Flake入力の更新
+
+```bash
+nix flake update
+```
+
+## パッケージの追加
+
+1. `hosts/`内の適切なホストファイルを編集：
+   - `hosts/dev-laptop.nix` - 個人ラップトップ用
+   - `hosts/company-laptop.nix` - 会社ラップトップ用
+
+2. `home.packages`にパッケージを追加：
+   ```nix
+   home.packages = with pkgs; [
+     # ここにパッケージを追加
+     newpackage
+   ];
+   ```
+
+3. 変更を適用：
+   ```bash
+   home-manager switch --flake .#tkcd@dev-laptop
+   ```
+
+## アプリ設定の追加
+
+1. `config/<アプリ名>/`に設定ファイルを追加
+
+2. ホストファイルにシンボリックリンクを追加：
+   ```nix
+   home.file = with config.lib.file; {
+     ".config/<アプリ名>".source = mkOutOfStoreSymlink "${dotfilesPath}/config/<アプリ名>";
+   };
+   ```
+
+## 主な特徴
+
+- **Nix Flakes**: ロックファイルによる再現可能なビルド
+- **home-manager**: 宣言的なユーザー環境管理
+- **シンボリックリンク設定**: リビルドなしで設定ファイルを直接編集可能
+- **マルチホスト対応**: マシンごとに異なる設定を管理
