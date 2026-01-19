@@ -21,11 +21,12 @@
       "Read(.env.*)"
     ]
   },
+  "model": "opus",
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "preferredNotifChannel": "terminal_bell",
-  "model": "opus"
+  "preferredNotifChannel": "terminal_bell"
 }

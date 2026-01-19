@@ -113,15 +113,6 @@ if [ -d "$COMMANDS_DIR" ]; then
 fi
 
 
-# pnpm
-export PNPM_HOME="/home/tkcd/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-
 # default shell: fish
 if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
 then
