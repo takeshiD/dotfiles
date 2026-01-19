@@ -6,32 +6,25 @@
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
     codex-cli.url = "github:sadjow/codex-cli-nix";
     claude-code.url = "github:sadjow/claude-code-nix";
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
-      claude-code,
-      codex-cli,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgsWithClaude = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [ claude-code.overlays.default ];
-      };
-      pkgsCodex = codex-cli.packages.${system}.default;
     in
     {
       nixosConfigurations = {
         "dev-laptop" = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./nixos/configuration.nix
+            ./nixos/dev-laptop
           ];
         };
       };
@@ -40,25 +33,19 @@
           inherit pkgs;
           modules = [
             ./hosts/dev-laptop.nix
-            {
-              home.packages = [
-                pkgsWithClaude.claude-code
-                pkgsCodex
-              ];
-            }
           ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
         };
         "tkcd@company-laptop" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsWithClaude;
+          inherit pkgs;
           modules = [
             ./hosts/company-laptop.nix
-            {
-              home.packages = [
-                pkgsWithClaude.claude-code
-                pkgsCodex
-              ];
-            }
           ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
         };
       };
     };

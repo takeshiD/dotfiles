@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
-  core = with pkgs; [
+  corePkgs = with pkgs; [
     neovim
     tmux
     bash
@@ -9,21 +9,21 @@ let
     bash-completion
     nix-bash-completions
   ];
-  git = with pkgs; [
+  gitPkgs = with pkgs; [
     git
     lazygit
     gh
     glab
     delta
   ];
-  container = with pkgs; [
+  containerPkgs = with pkgs; [
     docker
     podman
     act
     awscli2
     aws-cdk-cli
   ];
-  misc = with pkgs; [
+  miscPkgs = with pkgs; [
     ripgrep
     bat
     fd
@@ -54,11 +54,11 @@ let
     figlet
     imagemagick
   ];
-  wsl = with pkgs; [
+  wslPkgs = with pkgs; [
     wslu
     wl-clipboard
   ];
-  development = with pkgs; [
+  devPkgs = with pkgs; [
     gcc
     gnumake
     mold
@@ -70,10 +70,10 @@ let
     nodejs
     go
   ];
-  lsp = with pkgs; [
+  lspPkgs = with pkgs; [
     biome
     astro-language-server
-    nixfmt-rfc-style
+    nixfmt
     lua-language-server
     stylua
     python313Packages.python-lsp-server
@@ -95,7 +95,7 @@ let
   ];
 in
 {
-  home.packages = core ++ git ++ misc ++ wsl ++ development ++ lsp;
+  home.packages = corePkgs ++ gitPkgs ++ miscPkgs ++ wslPkgs ++ devPkgs ++ lspPkgs;
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";
     PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [

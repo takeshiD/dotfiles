@@ -6,11 +6,11 @@ let
   terminalPkgs = with pkgs; [
     ghostty
   ];
-  wmPkgs = with pkgs; [
-    hyprland
-  ];
+  # wmPkgs = with pkgs; [
+  #   hyprland
+  # ];
 in
 {
-  home.packages = browserPkgs ++ terminalPkgs ++ wmPkgs;
+  home.packages = browserPkgs ++ terminalPkgs;
   nixpkgs.config.allowUnfree = true;
 }

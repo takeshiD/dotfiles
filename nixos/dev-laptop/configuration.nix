@@ -1,15 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
-
 {
-  # imports =
-  #   [ # Include the results of the hardware scan.
-  #     ./hardware-configuration.nix
-  #   ];
-  #
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -28,7 +18,10 @@
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -66,17 +59,6 @@
       naturalScrolling = true;
     };
   };
-  # services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  # services.xserver.xkb = {
-  #  layout = "us";
-  #  variant = "";
-  #};
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -104,10 +86,11 @@
   users.users.tkcd = {
     isNormalUser = true;
     description = "tkcd";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
+    packages = [ ];
   };
 
   # Install firefox.
@@ -121,7 +104,7 @@
     neovim
     git
     hackgen-nf-font
-    # google-chrome
+    kitty
   ];
   nixpkgs.config = {
     allowUnfree = false;
@@ -153,5 +136,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
+  programs.hyprland = {
+    enable = true;
+  };
 }
