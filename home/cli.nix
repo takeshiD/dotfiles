@@ -95,7 +95,7 @@ let
   ];
 in
 {
-  home.packages = corePkgs ++ gitPkgs ++ miscPkgs ++ wslPkgs ++ devPkgs ++ lspPkgs;
+  home.packages = corePkgs ++ gitPkgs ++ containerPkgs ++ miscPkgs ++ wslPkgs ++ devPkgs ++ lspPkgs;
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";
     PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [

@@ -2,10 +2,15 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
+  llmAgentsPkgs = with inputs.llm-agents.packages.${pkgs.system}; [
+    claude-code
+    codex
+  ];
 in
 {
   # inherit dotfilesPath;
@@ -17,99 +22,102 @@ in
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
-  home.packages = with pkgs; [
-    # Editor and Terminal tools
-    neovim
-    tmux
-    bash
-    fish
-    bash-completion
-    starship
-    lazygit
-    bottom
-    lsd
-    fzf
-    ripgrep
-    bat
-    delta
-    fd
-    dust
-    duf
-    direnv
-    zoxide
-    gh
-    glab
-    tokei
-    hexyl
-    procs
-    smem
-    hyperfine
-    vhs
-    # Development Tools
-    # gcc
-    # gnumake
-    # mold
-    # cmake
-    # clang
-    # clang-tools
-    # rustup
-    uv
-    # pnpm
-    # nodejs
-    # go
-    nixfmt-rfc-style
-    lua-language-server
-    stylua
-    python313Packages.python-lsp-server
-    pyright
-    ruff
-    ty
-    bash-language-server
-    # cmake-language-server
-    # tailwindcss-language-server
-    vscode-langservers-extracted
-    markdown-oxide
-    taplo
-    # typescript-language-server
-    nil
-    taplo
-    # cmake-language-server
-    yaml-language-server
-    # haskell-language-server
-    nixd
-    # LLM
-    # claude-code   # install via pnpm
-    # codex         # install via pnpm
-    # Misc
-    tree-sitter
-    zip
-    unzip
-    less
-    openssh
-    # openssl
-    # pkg-config
-    # hackgen-nf-font
-    # pandoc
-    jq
-    sysstat
-    nix-bash-completions
-    # doxx
-    # xleak
-    zk
-    wl-clipboard
-    # imagemagick
-    # glow
-    wslu
-    figlet
-    act
-    # podman        # via pacman
-    awscli2
-    aws-cdk-cli
-    # biome
-    # astro-language-server
-    # ghostty
-    # google-chrome
-  ];
+  home.packages =
+    with pkgs;
+    [
+      # Editor and Terminal tools
+      neovim
+      tmux
+      bash
+      fish
+      bash-completion
+      starship
+      lazygit
+      bottom
+      lsd
+      fzf
+      ripgrep
+      bat
+      delta
+      fd
+      dust
+      duf
+      direnv
+      zoxide
+      gh
+      glab
+      tokei
+      hexyl
+      procs
+      smem
+      hyperfine
+      vhs
+      # Development Tools
+      # gcc
+      # gnumake
+      # mold
+      # cmake
+      # clang
+      # clang-tools
+      # rustup
+      uv
+      # pnpm
+      # nodejs
+      # go
+      nixfmt
+      lua-language-server
+      stylua
+      python313Packages.python-lsp-server
+      pyright
+      ruff
+      ty
+      bash-language-server
+      # cmake-language-server
+      # tailwindcss-language-server
+      vscode-langservers-extracted
+      markdown-oxide
+      taplo
+      # typescript-language-server
+      nil
+      taplo
+      # cmake-language-server
+      yaml-language-server
+      # haskell-language-server
+      nixd
+      # LLM
+      # claude-code   # install via pnpm
+      # codex         # install via pnpm
+      # Misc
+      tree-sitter
+      zip
+      unzip
+      less
+      openssh
+      # openssl
+      # pkg-config
+      # hackgen-nf-font
+      # pandoc
+      jq
+      sysstat
+      nix-bash-completions
+      # doxx
+      # xleak
+      zk
+      wl-clipboard
+      # imagemagick
+      # glow
+      wslu
+      figlet
+      act
+      # podman        # via pacman
+      awscli2
+      aws-cdk-cli
+      # biome
+      # astro-language-server
+      # ghostty
+      # google-chrome
+    ]
+    ++ llmAgentsPkgs;
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
     ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
