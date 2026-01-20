@@ -10,8 +10,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
-    codex-cli.url = "github:sadjow/codex-cli-nix";
-    claude-code.url = "github:sadjow/claude-code-nix";
     llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
