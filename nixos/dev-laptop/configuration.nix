@@ -18,6 +18,10 @@
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
+  nix.settings.trusted-users = [
+    "root"
+    "tkcd"
+  ];
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
