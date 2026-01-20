@@ -13,7 +13,12 @@ let
   ];
 in
 {
-  # inherit dotfilesPath;
+  # nix.settings = {
+  #   trusted-users = [
+  #     "root"
+  #     "tkcd"
+  #   ];
+  # };
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -116,6 +121,7 @@ in
       # astro-language-server
       # ghostty
       # google-chrome
+      # cachix
     ]
     ++ llmAgentsPkgs;
   home.file = with config.lib.file; {
