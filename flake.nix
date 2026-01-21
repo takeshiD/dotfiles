@@ -52,6 +52,15 @@
             inherit inputs;
           };
         };
+        "tkcd@espresso" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/espresso.nix
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
       };
     };
 }

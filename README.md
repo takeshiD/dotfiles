@@ -2,12 +2,17 @@
 
 Personal dotfiles managed with [Nix Flakes](https://nixos.wiki/wiki/Flakes) and [home-manager](https://github.com/nix-community/home-manager).
 
-## Environments
+## Machines
 
-| Name           | Host                | OS                | GUI   | IME         |
-| ------         | ------              | -----             | ----- | -----       |
-| dev-laptop     | tkcd@dev-laptop     | NixOS             | GNOME | fcitx5-mozc |
-| company-laptop | tkcd@company-laptop | WSL2 (Arch Linux) | -     | Windows IME |
+NixOS
+
+| Host           | OS                | GUI   | IME         | Description     |
+| ------         | -----             | ----- | ----        | -----           |
+| tkcd@snowcat   | NixOS             | GNOME | fcitx5-mozc | My main laptop  |
+| tkcd@icedog    | WSL2 (NixOS)      | -     | Windows IME | My main desktop |
+| tkcd@doppio    | Arch Linux        | GNOME | fcitx5-mozc | My sub laptop   |
+| tkcd@americano | WSL2 (Arch Linux) | -     | Windows IME | Company laptop  |
+| tkcd@espresso  | WSL2 (Arch Linux) | -     | Windows IME | My main desktop |
 
 ## Directory Structure
 
