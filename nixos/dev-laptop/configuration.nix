@@ -1,5 +1,24 @@
 { config, pkgs, ... }:
 {
+  nix.settings = {
+    trusted-users = [
+      "root"
+      "tkcd"
+    ];
+    substituters = [
+      "https://hyprland.cachix.org"
+      "https://cache.numtide.com"
+    ];
+    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -18,14 +37,6 @@
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
-  nix.settings.trusted-users = [
-    "root"
-    "tkcd"
-  ];
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -97,11 +108,9 @@
     packages = [ ];
   };
 
-  # Install firefox.
-  # programs.firefox.enable = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  programs.hyprland = {
+    enable = true;
+  };
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -140,7 +149,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-  programs.hyprland = {
-    enable = true;
-  };
 }

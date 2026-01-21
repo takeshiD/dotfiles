@@ -13,10 +13,19 @@ let
   ];
 in
 {
+  nixpkgs.config.allowUnfree = true;
   imports = [
     ../home/cli.nix
     ../home/gui.nix
   ];
+  programs = {
+    home-manager.enable = true;
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
+  };
   # inherit dotfilesPath;
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
@@ -59,14 +68,5 @@ in
         ${pkgs.git}/bin/git clone https://github.com/tmux-plugins/tpm "${config.home.homeDirectory}/.tmux/plugins/tpm"
       fi
     '';
-  };
-  nixpkgs.config.allowUnfree = true;
-  programs = {
-    home-manager.enable = true;
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      nix-direnv.enable = true;
-    };
   };
 }

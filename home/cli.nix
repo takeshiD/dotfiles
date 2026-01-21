@@ -87,10 +87,10 @@ let
     markdown-oxide
     taplo
     typescript-language-server
-    nil
     taplo
     yaml-language-server
     haskell-language-server
+    nil
     nixd
   ];
 in
