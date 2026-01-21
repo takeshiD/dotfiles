@@ -32,6 +32,12 @@
             ./nixos/dev-laptop
           ];
         };
+        "icedog" = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./nixos/icedog
+          ];
+        };
       };
       homeConfigurations = {
         "tkcd@dev-laptop" = home-manager.lib.homeManagerConfiguration {
@@ -56,6 +62,15 @@
           inherit pkgs;
           modules = [
             ./hosts/espresso.nix
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
+        "tkcd@icedog" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/icedog.nix
           ];
           extraSpecialArgs = {
             inherit inputs;
