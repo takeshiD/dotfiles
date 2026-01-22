@@ -44,6 +44,7 @@ in
       direnv
       zoxide
       gh
+      ghq
       glab
       tokei
       hexyl

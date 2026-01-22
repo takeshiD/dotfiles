@@ -53,7 +53,7 @@
         "tkcd@americano" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./hosts/company-laptop.nix
+            ./hosts/americano.nix
           ];
           extraSpecialArgs = {
             inherit inputs;
