@@ -26,10 +26,10 @@
     in
     {
       nixosConfigurations = {
-        "dev-laptop" = nixpkgs.lib.nixosSystem {
+        "snowcat" = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./nixos/dev-laptop
+            ./nixos/snowcat
           ];
         };
         "icedog" = nixpkgs.lib.nixosSystem {
@@ -40,10 +40,10 @@
         };
       };
       homeConfigurations = {
-        "tkcd@dev-laptop" = home-manager.lib.homeManagerConfiguration {
+        "tkcd@snowcat" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./hosts/dev-laptop.nix
+            ./hosts/snowcat.nix
           ];
           extraSpecialArgs = {
             inherit inputs;
