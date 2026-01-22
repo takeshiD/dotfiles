@@ -13,6 +13,7 @@ let
     git
     lazygit
     gh
+    ghq
     glab
     delta
   ];
@@ -53,6 +54,7 @@ let
     glow
     figlet
     imagemagick
+    fzf
   ];
   wslPkgs = with pkgs; [
     wslu
