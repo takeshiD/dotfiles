@@ -13,12 +13,6 @@ let
   ];
 in
 {
-  # nix.settings = {
-  #   trusted-users = [
-  #     "root"
-  #     "tkcd"
-  #   ];
-  # };
   nixpkgs = {
     config = {
       allowUnfree = true;

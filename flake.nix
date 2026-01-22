@@ -49,7 +49,8 @@
             inherit inputs;
           };
         };
-        "tkcd@company-laptop" = home-manager.lib.homeManagerConfiguration {
+        # Company Laptop
+        "tkcd@americano" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./hosts/company-laptop.nix
