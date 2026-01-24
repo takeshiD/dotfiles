@@ -9,7 +9,7 @@
       "https://hyprland.cachix.org"
       "https://cache.numtide.com"
     ];
-    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-substituters = [ "https://hyprland.cachix.org" ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
@@ -23,7 +23,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.hostName = "tkcd-x1-aura-nixos"; # Define your hostname.
   networking.hostName = "snowcat"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -62,16 +61,24 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
     xkb = {
       layout = "us";
       variant = "";
       options = "ctrl:nocaps";
     };
-    libinput = {
-      enable = true;
+    autoRepeatDelay = 192;
+    autoRepeatInterval = 16;
+  };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      scrollMethod = "edge";
       naturalScrolling = true;
+      disableWhileTyping = true;
     };
   };
 
@@ -93,9 +100,6 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tkcd = {
