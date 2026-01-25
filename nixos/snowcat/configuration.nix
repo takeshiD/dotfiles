@@ -122,6 +122,7 @@
     git
     hackgen-nf-font
     kitty
+    pgcli
   ];
   nixpkgs.config = {
     allowUnfree = false;
@@ -153,4 +154,13 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
+  # ...
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "mydatabase" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
 }
