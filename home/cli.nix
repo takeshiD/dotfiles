@@ -55,6 +55,7 @@ let
     figlet
     imagemagick
     fzf
+    bottom
   ];
   wslPkgs = with pkgs; [
     wslu

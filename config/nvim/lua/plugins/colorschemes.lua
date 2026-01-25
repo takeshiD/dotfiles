@@ -3,8 +3,17 @@ return {
 	{
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
-		enabled = false,
+		enabled = true,
 		priority = 1000,
+		opts = function()
+			vim.cmd([[colorscheme cyberdream]])
+			require("cyberdream").setup({
+				variant = "dark",
+				extensions = {
+					telescope = true,
+				},
+			})
+		end,
 	},
 	{
 		"sainnhe/everforest",
@@ -23,7 +32,7 @@ return {
 	},
 	{
 		"EdenEast/nightfox.nvim",
-		enabled = true,
+		enabled = false,
 		lazy = false,
 		priority = 1000,
 		config = function()
