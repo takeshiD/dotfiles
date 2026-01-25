@@ -10,7 +10,11 @@
   };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
     llm-agents.url = "github:numtide/llm-agents.nix";
   };
@@ -18,6 +22,7 @@
     {
       nixpkgs,
       home-manager,
+      nixos-wsl,
       ...
     }@inputs:
     let
@@ -35,6 +40,7 @@
         "icedog" = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            nixos-wsl.nixosModules.wsl
             ./nixos/icedog
           ];
         };

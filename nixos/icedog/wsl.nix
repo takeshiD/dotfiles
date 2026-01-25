@@ -6,10 +6,6 @@
 }:
 
 {
-  imports = [
-    # include NixOS-WSL modules
-    <nixos-wsl/modules>
-  ];
   nix.settings = {
     trusted-users = [
       "root"
@@ -32,11 +28,15 @@
     neovim
     wget
     git
+    home-manager
   ];
 
   wsl.enable = true;
   wsl.defaultUser = "tkcd";
-  wsl.interop.enabled = false;
-  wsl.wslConf.hostname = "icedog";
+  wsl.wslConf.interop = {
+    enabled = false;
+    appendWindowsPath = false;
+  };
+  wsl.wslConf.network.hostname = "icedog";
   system.stateVersion = "25.11"; # Did you read the comment?
 }

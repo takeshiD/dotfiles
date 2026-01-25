@@ -67,5 +67,12 @@ in
         ${pkgs.git}/bin/git clone https://github.com/tmux-plugins/tpm "${config.home.homeDirectory}/.tmux/plugins/tpm"
       fi
     '';
+    bashProfile = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -f "${config.home.homeDirectory}/.bash_profile" ]; then
+        cat > "$HOME"/.bash_profile << 'EOF'
+[[ -f ~/.bashrc ]] && source ~/.bashrc
+EOF
+      fi
+    '';
   };
 }
