@@ -1,11 +1,11 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	enabled = true,
-    lazy = false,
-    version = false,
-    build = ":TSUpdate",
+	lazy = false,
+	version = false,
+	build = ":TSUpdate",
 	opts = function()
-		require("nvim-treesitter").install({
+		local langs = {
 			"bash",
 			"c",
 			"cpp",
@@ -30,45 +30,14 @@ return {
 			"toml",
 			"nix",
 			"astro",
+		}
+		require("nvim-treesitter").install(langs)
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = langs,
+			callback = function()
+				vim.treesitter.start()
+                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
 		})
-		-- require("nvim-treesitter.config").setup({
-		-- 	ensure_installed = {
-		-- 		"bash",
-		-- 		"c",
-		-- 		"cpp",
-		-- 		"lua",
-		-- 		"vim",
-		-- 		"rust",
-		-- 		"markdown",
-		-- 		"markdown_inline",
-		-- 		"mermaid",
-		-- 		"haskell",
-		-- 		"http",
-		-- 		"css",
-		-- 		"javascript",
-		-- 		"typescript",
-		-- 		"tsx",
-		-- 		"css",
-		-- 		"json",
-		-- 		"make",
-		-- 		"python",
-		-- 		"scheme",
-		-- 		"yaml",
-		-- 		"toml",
-		-- 		"nix",
-		-- 		"astro",
-		-- 	},
-		-- 	ignore_install = {
-		-- 		"org",
-		-- 	},
-		-- 	auto_install = true,
-		-- 	highlight = {
-		-- 		enable = true,
-		-- 	},
-		-- 	indent = {
-		-- 		enable = true,
-		-- 		disable = { "yaml", "nix" },
-		-- 	},
-		-- })
 	end,
 }
