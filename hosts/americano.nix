@@ -11,6 +11,9 @@ let
     claude-code
     codex
   ];
+  tmuxdeckPkgs = with inputs.tmux-deck.packages.${pkgs.system}; [
+    tmux-deck
+  ];
 in
 {
   nixpkgs = {
@@ -118,7 +121,8 @@ in
       # google-chrome
       # cachix
     ]
-    ++ llmAgentsPkgs;
+    ++ llmAgentsPkgs
+    ++ tmuxdeckPkgs;
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
     ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
