@@ -30,7 +30,7 @@
     git
     home-manager
   ];
-
+  time.timeZone = "Asia/Tokyo";
   wsl.enable = true;
   wsl.defaultUser = "tkcd";
   wsl.wslConf.interop = {

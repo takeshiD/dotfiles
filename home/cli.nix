@@ -56,6 +56,7 @@ let
     imagemagick
     fzf
     bottom
+    lsd
   ];
   wslPkgs = with pkgs; [
     wslu
