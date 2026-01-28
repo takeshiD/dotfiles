@@ -21,7 +21,6 @@
       "Read(.env.*)"
     ]
   },
-  "model": "opus",
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
