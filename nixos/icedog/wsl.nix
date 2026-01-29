@@ -29,7 +29,18 @@
     wget
     git
     home-manager
+    # docker
   ];
+  virtualisation.docker = {
+    enable = true;
+  };
+  users.users.tkcd = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
+  };
   time.timeZone = "Asia/Tokyo";
   wsl.enable = true;
   wsl.defaultUser = "tkcd";

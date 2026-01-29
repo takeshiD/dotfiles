@@ -18,8 +18,10 @@ let
     delta
   ];
   containerPkgs = with pkgs; [
-    docker
-    podman
+    # docker
+    lazydocker
+    # podman
+    # podman-tui
     act
     awscli2
     aws-cdk-cli
