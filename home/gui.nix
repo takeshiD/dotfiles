@@ -12,6 +12,6 @@ let
   ];
 in
 {
-  home.packages = browserPkgs ++ terminalEnumulatorPkgs;
+  home.packages = browserPkgs ++ terminalEnumulatorPkgs ++ miscPkgs;
   nixpkgs.config.allowUnfree = true;
 }
