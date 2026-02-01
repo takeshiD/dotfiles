@@ -2,12 +2,16 @@
 let
   browserPkgs = with pkgs; [
     google-chrome
+    vivaldi
   ];
-  terminalPkgs = with pkgs; [
+  terminalEnumulatorPkgs = with pkgs; [
     ghostty
+  ];
+  miscPkgs = with pkgs; [
+    slack
   ];
 in
 {
-  home.packages = browserPkgs ++ terminalPkgs;
+  home.packages = browserPkgs ++ terminalEnumulatorPkgs;
   nixpkgs.config.allowUnfree = true;
 }

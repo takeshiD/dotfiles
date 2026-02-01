@@ -108,26 +108,25 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     packages = [ ];
   };
 
-  programs.hyprland = {
-    enable = true;
-  };
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     neovim
     git
     hackgen-nf-font
-    kitty
     pgcli
   ];
   nixpkgs.config = {
     allowUnfree = false;
   };
-
+  virtualisation.docker = {
+    enable = true;
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
