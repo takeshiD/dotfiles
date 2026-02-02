@@ -59,6 +59,7 @@ let
     fzf
     bottom
     lsd
+    cachix
   ];
   wslPkgs = with pkgs; [
     wslu
