@@ -78,7 +78,7 @@
         "tkcd@cafelatte" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./hosts/cafelatte.ix
+            ./hosts/cafelatte.nix
           ];
           extraSpecialArgs = {
             inherit inputs;

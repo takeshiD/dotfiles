@@ -30,6 +30,7 @@ in
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
   home.packages = llmAgentsPkgs;
+  # home.packages = []; 
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
     ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
@@ -48,6 +49,11 @@ in
     ".config/wezterm".source = mkOutOfStoreSymlink "${dotfilesPath}/config/wezterm";
     ".config/containers".source = mkOutOfStoreSymlink "${dotfilesPath}/config/containers";
     ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
+    # ".config/nix/nix.conf".text = ''
+    #   experimental-features = nix-command flakes
+    #   substituers = https://cache.numtide.com
+    #   trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+    # '';
   };
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";
