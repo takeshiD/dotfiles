@@ -75,6 +75,15 @@
             inherit inputs;
           };
         };
+        "tkcd@cafelatte" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/cafelatte.ix
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
         "tkcd@icedog" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
