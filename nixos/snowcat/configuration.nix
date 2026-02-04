@@ -157,6 +157,7 @@
     git
     hackgen-nf-font
     pgcli
+    powertop
   ];
   nixpkgs.config = {
     allowUnfree = false;
