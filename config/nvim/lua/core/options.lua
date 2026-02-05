@@ -4,6 +4,7 @@ local opt = vim.opt
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
+opt.fileencodings = "cp932,euc-jp,utf-8"
 -- opt.langmenu = "en_us"
 opt.guifont = "Hackgen Console NF:h12"
 -- vim.cmd[[language en_US.UTF-8]]
