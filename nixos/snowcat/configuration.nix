@@ -131,10 +131,33 @@
       CPU_MAX_PERF_ON_BAT = 20;
 
       #Optional helps save long term battery health
-      START_CHARGE_THRESH_BAT0 = 40;    # 40 and below it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 95;     # 80 and above it stops charging
+      START_CHARGE_THRESH_BAT0 = 0; # 40 and below it starts to charge
+      STOP_CHARGE_THRESH_BAT0 = 95; # 80 and above it stops charging
 
     };
+  };
+  ###################################################
+  # Power Management and Behaviour closing the lid. #
+  # > see https://wiki.nixos.org/wiki/Laptop        #
+  ###################################################
+  boot.kernelParams = [ "mem_sleep_default=deep" ];
+  services.logind.settings.Login = {
+    # "ignore": no action
+    # "poweroff": shutdown os and turn off
+    # "halt": shutdown os and NOT turn off
+    # "reboot": reboot os and NOT turn off
+    # "kexec": ?
+    # "suspend": NOT turn off RAM, turn off CPU
+    # "hibernate": Save RAM data to swap partition, turn off
+    # "hybrid-sleep": first suspend,
+    # "suspend-then-hibernate": closing the lid and suspend, spent few minutes and hybernate
+    # "lock": screen lock only
+    # Battely supply
+    HandleLidSwitch = "hibernate";
+    # Power is connected
+    HandleLidSwitchExternalPower = "suspend";
+    # Another screen is connected(cram shell)
+    HandleLidSwitchDocked = "ignore";
   };
   powerManagement.powertop.enable = true;
 

@@ -3,7 +3,7 @@ return {
 	{
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
-		enabled = true,
+		enabled = false,
 		priority = 1000,
 		opts = function()
 			vim.cmd([[colorscheme cyberdream]])
@@ -32,7 +32,7 @@ return {
 	},
 	{
 		"EdenEast/nightfox.nvim",
-		enabled = false,
+		enabled = true,
 		lazy = false,
 		priority = 1000,
 		config = function()
