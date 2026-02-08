@@ -76,6 +76,11 @@
   };
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+  services.gnome = {
+    core-apps.enable = true;
+    core-developer-tools.enable = true;
+    games.enable = false;
+  };
   services.libinput = {
     enable = true;
     touchpad = {
@@ -177,7 +182,6 @@
     wget
     neovim
     git
-    hackgen-nf-font
     pgcli
     powertop
   ];
@@ -186,6 +190,38 @@
   };
   virtualisation.docker = {
     enable = true;
+  };
+  fonts = {
+    packages = with pkgs; [
+      hackgen-nf-font
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      fira-code
+      fira-code-symbols
+      dina-font
+      proggyfonts
+      udev-gothic-nf
+      font-awesome
+      cantarell-fonts
+    ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = [ "UDEV Gothic 35NFLG" ];
+        sansSerif = [
+          "Noto Sans CJK JP"
+          "DejaVu Sans"
+        ];
+        serif = [
+          "Noto Serif JP"
+          "DejaVu Serif"
+        ];
+      };
+      subpixel = {
+        lcdfilter = "light";
+      };
+    };
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
