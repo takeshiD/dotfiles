@@ -19,13 +19,15 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
-font-family = "HackGen Console NF"
-font-size = 14
-theme = "Banana Blueberry"
+font-family = "UDEV Gothic NF Regular"
+font-size = 12
+theme = "Carbonfox"
 resize-overlay = never
 keybind = f11=toggle_fullscreen
 background-opacity = 1.0
 # custom-shader = ~/.config/ghostty/custom_shader/cursor_blaze.glsl
-custom-shader-animation = true
+custom-shader-animation = false
 gtk-titlebar = false
 mouse-hide-while-typing = true
+adjust-cell-height = 1
+adjust-cell-width = 1
