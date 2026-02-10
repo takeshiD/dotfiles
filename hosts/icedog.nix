@@ -38,8 +38,6 @@ in
     ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
     ".tmux.conf".source = mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
     ".stack/config.yaml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
-    ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
-    ".claude/settings.json".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
     ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
     ".config/lazygit".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
     ".config/bottom".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";
@@ -50,7 +48,9 @@ in
     ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
     ".config/wezterm".source = mkOutOfStoreSymlink "${dotfilesPath}/config/wezterm";
     ".config/containers".source = mkOutOfStoreSymlink "${dotfilesPath}/config/containers";
-    ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
+    # ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
+    # ".claude/settings.json".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
+    # ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
   };
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";

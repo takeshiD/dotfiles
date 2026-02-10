@@ -18,6 +18,11 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
     llm-agents.url = "github:numtide/llm-agents.nix";
+    # agent-skills.url = "github:Kyure-A/agent-skills-nix";
+    # anthropic-skills = {
+    #   url = "github:Kyure-A/agent-skills-nix";
+    #   flake = false;
+    # };
   };
   outputs =
     {

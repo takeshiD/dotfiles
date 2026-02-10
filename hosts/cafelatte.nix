@@ -30,14 +30,11 @@ in
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
   home.packages = llmAgentsPkgs;
-  # home.packages = []; 
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
     ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
     ".tmux.conf".source = mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
     ".stack/config.yaml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
-    ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
-    ".claude/settings.json".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
     ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
     ".config/lazygit".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
     ".config/bottom".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";
@@ -48,12 +45,9 @@ in
     ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
     ".config/wezterm".source = mkOutOfStoreSymlink "${dotfilesPath}/config/wezterm";
     ".config/containers".source = mkOutOfStoreSymlink "${dotfilesPath}/config/containers";
-    ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
-    # ".config/nix/nix.conf".text = ''
-    #   experimental-features = nix-command flakes
-    #   substituers = https://cache.numtide.com
-    #   trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
-    # '';
+    # ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
+    # ".claude/settings.json".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
+    # ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
   };
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";
