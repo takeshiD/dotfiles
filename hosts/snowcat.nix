@@ -19,6 +19,7 @@ in
   nixpkgs.config.allowUnfree = true;
   imports = [
     ../home/cli.nix
+    ../home/common-files.nix
     ../home/gui.nix
   ];
   programs = {
@@ -47,23 +48,11 @@ in
     enableNodejs = true;
     enableLsp = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs;
-  home.file = with config.lib.file; {
-    ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
-    ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
-    ".tmux.conf".source = mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
-    ".stack/config.yaml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
-    ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
-    ".config/lazygit".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
-    ".config/bottom".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";
-    ".config/starship".source = mkOutOfStoreSymlink "${dotfilesPath}/config/starship";
-    ".config/lsd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lsd";
-    ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
-    ".config/fish".source = mkOutOfStoreSymlink "${dotfilesPath}/config/fish";
-    ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
-    ".config/wezterm".source = mkOutOfStoreSymlink "${dotfilesPath}/config/wezterm";
-    ".config/containers".source = mkOutOfStoreSymlink "${dotfilesPath}/config/containers";
+  dotfiles = {
+    shell = "both";
+    enableCargoConfig = true;
   };
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
   };

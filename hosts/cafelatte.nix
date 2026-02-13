@@ -19,6 +19,7 @@ in
   nixpkgs.config.allowUnfree = true;
   imports = [
     ../home/cli.nix
+    ../home/common-files.nix
   ];
   programs = {
     home-manager.enable = true;
@@ -46,31 +47,13 @@ in
     enableNodejs = true;
     enableLsp = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs;
-  home.file = with config.lib.file; {
-    ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
-    ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";
-    ".tmux.conf".source = mkOutOfStoreSymlink "${dotfilesPath}/config/tmux/.tmux.conf";
-    ".stack/config.yaml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/stack/config.yaml";
-    ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesPath}/config/nvim";
-    ".config/lazygit".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lazygit";
-    ".config/bottom".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bottom";
-    ".config/starship".source = mkOutOfStoreSymlink "${dotfilesPath}/config/starship";
-    ".config/lsd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/lsd";
-    ".config/clangd".source = mkOutOfStoreSymlink "${dotfilesPath}/config/clangd";
-    ".config/fish".source = mkOutOfStoreSymlink "${dotfilesPath}/config/fish";
-    ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
-    ".config/wezterm".source = mkOutOfStoreSymlink "${dotfilesPath}/config/wezterm";
-    ".config/containers".source = mkOutOfStoreSymlink "${dotfilesPath}/config/containers";
-    # ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
-    # ".claude/settings.json".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
-    # ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
+  dotfiles = {
+    shell = "both";
+    enableCargoConfig = true;
   };
-  home.sessionVariables = with pkgs; {
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs;
+  home.sessionVariables = {
     EDITOR = "nvim";
-    PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
-      openssl.dev
-    ];
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"

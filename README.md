@@ -4,15 +4,14 @@ Personal dotfiles managed with [Nix Flakes](https://nixos.wiki/wiki/Flakes) and 
 
 ## Machines
 
-NixOS
-
-| Host           | OS                   | GUI   | IME         | Description     |
-| ------         | -----                | ----- | ----        | -----           |
-| tkcd@snowcat   | ❄  NixOS             | GNOME | fcitx5-mozc | My main laptop  |
-| tkcd@icedog    | ❄  WSL2 (NixOS)      | -     | Windows IME | My main desktop |
-| tkcd@doppio    | 🌉 Arch Linux        | GNOME | fcitx5-mozc | My sub laptop   |
-| tkcd@americano | 🌉 WSL2 (Arch Linux) | -     | Windows IME | Company laptop  |
-| tkcd@espresso  | 🌉 WSL2 (Arch Linux) | -     | Windows IME | My main desktop |
+| Host              | Env    | OS          | GUI   | IME         | Description    |
+| ------            | ----   | -----       | ----- | ----        | -----          |
+| ❄  tkcd@snowcat   | Native | NixOS       | GNOME | fcitx5-mozc | main laptop    |
+| ❄  tkcd@icedog    | WSL2   | NixOS       | -     | Windows IME | main desktop   |
+| ☕︎ tkcd@doppio    | Native | Arch Linux  | GNOME | fcitx5-mozc | sub laptop     |
+| ☕︎ tkcd@americano | WSL2   | Arch Linux  | -     | Windows IME | company laptop |
+| ☕︎ tkcd@espresso  | WSL2   | Arch Linux  | -     | Windows IME | main desktop   |
+| ☕︎ tkcd@cafelatte | WSL2   | Ubuntu24.02 | -     | Windows IME | main desktop   |
 
 ## Directory Structure
 
