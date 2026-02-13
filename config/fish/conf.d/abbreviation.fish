@@ -35,3 +35,10 @@ if command -v duf &> /dev/null
     abbr --add df "duf"
 end
 
+#-------------------------------------------------------
+# lazygit -> lg
+#-------------------------------------------------------
+if command -v lazygit &> /dev/null
+    abbr --add lg "lazygit"
+end
+
