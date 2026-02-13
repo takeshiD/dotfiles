@@ -1,6 +1,47 @@
 -- Color scheme is specified in init.lua
 return {
 	{
+		"nyoom-engineering/oxocarbon.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		-- opts = function() end,
+	},
+	{
+		"eldritch-theme/eldritch.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		opts = function()
+			require("eldritch").setup({})
+		end,
+	},
+	{
+		"0xstepit/flow.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		opts = function()
+			require("flow").setup({
+				theme = {
+					style = "dark",
+					contrast = "high",
+				},
+			})
+		end,
+	},
+	{
+		"navarasu/onedark.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		opts = function()
+			require("onedark").setup({
+				style = "darker",
+			})
+		end,
+	},
+	{
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
 		enabled = true,
@@ -8,8 +49,12 @@ return {
 		opts = function()
 			require("cyberdream").setup({
 				variant = "dark",
+				italic_comments = false,
 				extensions = {
 					telescope = true,
+					gitsigns = true,
+					blinkcmp = true,
+					mini = true,
 				},
 			})
 		end,
@@ -71,7 +116,9 @@ return {
 		config = function()
 			require("bluloco").setup({
 				style = "dark",
-				transparent = true,
+				transparent = false,
+				italics = true,
+				rainbow_headings = true,
 			})
 		end,
 	},

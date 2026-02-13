@@ -64,8 +64,8 @@ in
       # clang-tools
       # rustup
       uv
-      # pnpm
-      # nodejs
+      pnpm
+      nodejs
       # go
       nixfmt
       lua-language-server
@@ -73,7 +73,7 @@ in
       python313Packages.python-lsp-server
       pyright
       ruff
-      ty
+      # ty
       bash-language-server
       # cmake-language-server
       # tailwindcss-language-server
@@ -88,8 +88,6 @@ in
       # haskell-language-server
       nixd
       # LLM
-      # claude-code   # install via pnpm
-      # codex         # install via pnpm
       # Misc
       tree-sitter
       zip
@@ -143,9 +141,9 @@ in
   };
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";
-    PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
-      openssl.dev
-    ];
+    # PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
+    #   openssl.dev
+    # ];
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
