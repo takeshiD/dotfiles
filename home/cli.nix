@@ -74,6 +74,7 @@ let
     cmake-language-server
   ];
   clangPkgs = with pkgs; [
+    clang
     clang-tools
     pkg-config
     gnumake
@@ -124,19 +125,10 @@ in
     ++ miscPkgs
     ++ wslPkgs
     # ++ gccPkgs
-    # ++ clangPkgs
-    # ++ rustPkgs
+    ++ clangPkgs
+    ++ rustPkgs
     ++ pythonPkgs
     ++ goPkgs
     ++ nodePkgs
     ++ lspPkgs;
-  home.sessionVariables = with pkgs; {
-    EDITOR = "nvim";
-    # PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
-    #   openssl.dev
-    # ];
-  };
-  home.sessionPath = [
-    "$HOME/.cargo/bin"
-  ];
 }

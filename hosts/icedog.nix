@@ -48,15 +48,10 @@ in
     ".config/ghostty".source = mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
     ".config/wezterm".source = mkOutOfStoreSymlink "${dotfilesPath}/config/wezterm";
     ".config/containers".source = mkOutOfStoreSymlink "${dotfilesPath}/config/containers";
-    # ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
-    # ".claude/settings.json".source = mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
-    # ".codex/AGENTS.md".source = mkOutOfStoreSymlink "${dotfilesPath}/config/codex/AGENTS.md";
+    ".cargo/config.toml".source = mkOutOfStoreSymlink "${dotfilesPath}/config/cargo/config.toml";
   };
-  home.sessionVariables = with pkgs; {
+  home.sessionVariables = {
     EDITOR = "nvim";
-    PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
-      openssl.dev
-    ];
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
