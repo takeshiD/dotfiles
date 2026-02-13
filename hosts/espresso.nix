@@ -29,6 +29,20 @@ in
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
+  cli = {
+    enableCore = true;
+    enableGit = true;
+    enableContainer = true;
+    enableMisc = true;
+    enableWsl = true;
+    enableGcc = false;
+    enableClang = true;
+    enableRust = true;
+    enablePython = true;
+    enableGo = true;
+    enableNodejs = true;
+    enableLsp = true;
+  };
   home.packages = llmAgentsPkgs;
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";

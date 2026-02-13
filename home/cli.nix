@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 let
   corePkgs = with pkgs; [
     neovim
@@ -118,17 +118,21 @@ let
   ];
 in
 {
+  imports = [
+    ../modules/cli-options.nix
+  ];
+
   home.packages =
-    corePkgs
-    ++ gitPkgs
-    ++ containerPkgs
-    ++ miscPkgs
-    ++ wslPkgs
-    # ++ gccPkgs
-    ++ clangPkgs
-    ++ rustPkgs
-    ++ pythonPkgs
-    ++ goPkgs
-    ++ nodePkgs
-    ++ lspPkgs;
+    lib.optionals config.cli.enableCore corePkgs
+    ++ lib.optionals config.cli.enableGit gitPkgs
+    ++ lib.optionals config.cli.enableContainer containerPkgs
+    ++ lib.optionals config.cli.enableMisc miscPkgs
+    ++ lib.optionals config.cli.enableWsl wslPkgs
+    ++ lib.optionals config.cli.enableGcc gccPkgs
+    ++ lib.optionals config.cli.enableClang clangPkgs
+    ++ lib.optionals config.cli.enableRust rustPkgs
+    ++ lib.optionals config.cli.enablePython pythonPkgs
+    ++ lib.optionals config.cli.enableGo goPkgs
+    ++ lib.optionals config.cli.enableNodejs nodePkgs
+    ++ lib.optionals config.cli.enableLsp lspPkgs;
 }

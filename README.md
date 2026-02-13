@@ -6,13 +6,13 @@ Personal dotfiles managed with [Nix Flakes](https://nixos.wiki/wiki/Flakes) and 
 
 NixOS
 
-| Host           | OS                | GUI   | IME         | Description     |
-| ------         | -----             | ----- | ----        | -----           |
-| tkcd@snowcat   | NixOS             | GNOME | fcitx5-mozc | My main laptop  |
-| tkcd@icedog    | WSL2 (NixOS)      | -     | Windows IME | My main desktop |
-| tkcd@doppio    | Arch Linux        | GNOME | fcitx5-mozc | My sub laptop   |
-| tkcd@americano | WSL2 (Arch Linux) | -     | Windows IME | Company laptop  |
-| tkcd@espresso  | WSL2 (Arch Linux) | -     | Windows IME | My main desktop |
+| Host           | OS                   | GUI   | IME         | Description     |
+| ------         | -----                | ----- | ----        | -----           |
+| tkcd@snowcat   | ❄  NixOS             | GNOME | fcitx5-mozc | My main laptop  |
+| tkcd@icedog    | ❄  WSL2 (NixOS)      | -     | Windows IME | My main desktop |
+| tkcd@doppio    | 🌉 Arch Linux        | GNOME | fcitx5-mozc | My sub laptop   |
+| tkcd@americano | 🌉 WSL2 (Arch Linux) | -     | Windows IME | Company laptop  |
+| tkcd@espresso  | 🌉 WSL2 (Arch Linux) | -     | Windows IME | My main desktop |
 
 ## Directory Structure
 
