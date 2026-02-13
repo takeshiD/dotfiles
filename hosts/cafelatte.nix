@@ -11,6 +11,9 @@ let
     claude-code
     codex
   ];
+  tmuxDeckPkgs = with inputs.tmux-deck.packages.${pkgs.system}; [
+    tmux-deck
+  ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -29,7 +32,7 @@ in
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
-  home.packages = llmAgentsPkgs;
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs;
   home.file = with config.lib.file; {
     ".bashrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.bashrc";
     ".inputrc".source = mkOutOfStoreSymlink "${dotfilesPath}/config/bash/.inputrc";

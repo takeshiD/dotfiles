@@ -65,49 +65,76 @@ let
     wslu
     wl-clipboard
   ];
-  devPkgs = with pkgs; [
+  gccPkgs = with pkgs; [
     gcc
     gnumake
-    mold
+    pkg-config
     cmake
-    clang-tools
-    rustup
-    uv
-    pnpm
-    nodejs
-    go
+    mold
+    cmake-language-server
   ];
-  lspPkgs = with pkgs; [
-    biome
-    astro-language-server
-    nixfmt
-    lua-language-server
-    stylua
+  clangPkgs = with pkgs; [
+    clang-tools
+    pkg-config
+    gnumake
+    cmake
+    mold
+    cmake-language-server
+  ];
+  rustPkgs = with pkgs; [
+    rustup
+  ];
+  pythonPkgs = with pkgs; [
+    uv
     python313Packages.python-lsp-server
     pyright
     ruff
     ty
+  ];
+  goPkgs = with pkgs; [
+    go
+  ];
+  nodePkgs = with pkgs; [
+    typescript-language-server
+    biome
+    pnpm
+    nodejs
+  ];
+  lspPkgs = with pkgs; [
+    astro-language-server
+    lua-language-server
+    stylua
     bash-language-server
-    cmake-language-server
     tailwindcss-language-server
     vscode-langservers-extracted
     markdown-oxide
-    taplo
-    typescript-language-server
     taplo
     yaml-language-server
     haskell-language-server
     nil
     nixd
+    nixfmt
   ];
 in
 {
-  home.packages = corePkgs ++ gitPkgs ++ containerPkgs ++ miscPkgs ++ wslPkgs ++ devPkgs ++ lspPkgs;
+  home.packages =
+    corePkgs
+    ++ gitPkgs
+    ++ containerPkgs
+    ++ miscPkgs
+    ++ wslPkgs
+    # ++ gccPkgs
+    # ++ clangPkgs
+    # ++ rustPkgs
+    ++ pythonPkgs
+    ++ goPkgs
+    ++ nodePkgs
+    ++ lspPkgs;
   home.sessionVariables = with pkgs; {
     EDITOR = "nvim";
-    PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
-      openssl.dev
-    ];
+    # PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [
+    #   openssl.dev
+    # ];
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
