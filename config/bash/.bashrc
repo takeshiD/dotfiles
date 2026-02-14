@@ -105,4 +105,3 @@ if [ -d "$COMMANDS_DIR" ]; then
         fi
     done
 fi
-echo "Loaded rc"
