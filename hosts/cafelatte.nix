@@ -54,6 +54,7 @@ in
   home.packages = llmAgentsPkgs ++ tmuxDeckPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
+    DEFAULT_SHELL = "fish";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"

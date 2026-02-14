@@ -25,6 +25,14 @@ in
     ../home/cli.nix
     ../home/common-files.nix
   ];
+  programs = {
+    home-manager.enable = true;
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
+  };
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
@@ -49,6 +57,7 @@ in
   home.packages = llmAgentsPkgs ++ tmuxdeckPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
+    DEFAULT_SHELL = "fish";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
@@ -64,12 +73,4 @@ in
       fi
     '';
   };
-  # programs = {
-  #   home-manager.enable = true;
-  #   direnv = {
-  #     enable = true;
-  #     enableBashIntegration = true;
-  #     nix-direnv.enable = true;
-  #   };
-  # };
 }

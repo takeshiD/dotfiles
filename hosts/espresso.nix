@@ -51,6 +51,7 @@ in
   home.packages = llmAgentsPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
+    DEFAULT_SHELL = "fish";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"

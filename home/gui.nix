@@ -9,6 +9,7 @@ let
   ];
   miscPkgs = with pkgs; [
     slack
+    # discord
   ];
 in
 {

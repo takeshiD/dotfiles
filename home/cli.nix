@@ -5,6 +5,7 @@ let
     tmux
     bash
     fish
+    brush
     starship
     bash-completion
     nix-bash-completions
