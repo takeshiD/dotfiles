@@ -14,6 +14,9 @@ let
   tmuxDeckPkgs = with inputs.tmux-deck.packages.${pkgs.system}; [
     tmux-deck
   ];
+  gfmPreviewPkgs = with inputs.gfm-preview.packages.${pkgs.system}; [
+    gh-gfm-preview
+  ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -52,10 +55,10 @@ in
     shell = "both";
     enableCargoConfig = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs;
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
-    DEFAULT_SHELL = "brush";
+    DEFAULT_SHELL = "fish";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"

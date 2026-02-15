@@ -18,8 +18,9 @@
 # Config syntax crash course
 # ==========================
 # # The config file consists of simple key-value pairs,
-# # separated by equals signs.
-font-family = "UDEV Gothic NF Regular"
+# separated by equals signs.
+# font-family = "UDEV Gothic NF Regular"
+font-family = "HackGen Console NF"
 font-size = 12
 theme = "Carbonfox"
 resize-overlay = never
