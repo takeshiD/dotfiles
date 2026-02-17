@@ -27,7 +27,6 @@ shopt -s checkwinsize
 BASH_ALIAS_PATH="$DOTFILES_DIR/config/bash/alias.sh"
 if [ -f "$BASH_ALIAS_PATH" ]; then
     source "$BASH_ALIAS_PATH"
-    info "Loaded $BASH_ALIAS_PATH"
 else
     warning "Not Found $BASH_ALIAS_PATH"
 fi
@@ -38,7 +37,6 @@ fi
 NIX_PROFILE_PATH="$DOTFILES_DIR/config/bash/nix-profile.sh"
 if [ -f "$NIX_PROFILE_PATH" ]; then
     source "$NIX_PROFILE_PATH"
-    info "Loaded $NIX_PROFILE_PATH"
 else
     warning "Not Found $NIX_PROFILE_PATH"
 fi
@@ -58,10 +56,8 @@ fi
 COMPLETION_DIR="$DOTFILES_DIR/config/bash/completions"
 if [ -d "$COMPLETION_DIR" ];then
     for completion_file in "$COMPLETION_DIR"/*-completion.sh; do
-        # script_dir="$HOME"/dotfiles/config/bash/completions
         if [ -f "$completion_file" ];then
             source "$completion_file"
-            info "Loaded $completion_file"
         else
             warning "Not Found $completion_file"
         fi
@@ -75,7 +71,6 @@ fi
 PROMPT_PATH="$DOTFILES_DIR/config/bash/prompt.sh"
 if [ -f "$PROMPT_PATH" ];then
     source "$PROMPT_PATH"
-    info "Loaded $PROMPT_PATH"
 else
     warning "Not Found $PROMPT_PATH"
 fi
@@ -105,27 +100,8 @@ if [ -d "$COMMANDS_DIR" ]; then
     for command_file in "$COMMANDS_DIR"/*.sh; do
         if [ -f "$command_file" ];then
             source "$command_file"
-            info "Loaded $command_file"
         else
             warning "Not Found $command_file"
         fi
     done
 fi
-
-
-# pnpm
-export PNPM_HOME="/home/tkcd/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-
-# default shell: fish
-if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
-then
-	shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
-	exec fish $LOGIN_OPTION
-fi
-

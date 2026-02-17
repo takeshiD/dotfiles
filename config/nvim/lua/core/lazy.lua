@@ -25,10 +25,14 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
+		{ import = "pseudo-plugins" },
 	},
 	checker = {
 		enabled = false,
 		notify = false,
+	},
+	install = {
+		colorscheme = { "cyberdream" },
 	},
 	debug = false,
 })

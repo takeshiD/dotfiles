@@ -1,7 +1,8 @@
 return {
 	"saghen/blink.cmp",
-	version = "*",
-	build = "cargo build --release",
+	version = "1.*",
+	-- build = "cargo build --release",
+	-- build = "nix run .#build-plugin",
 	enabled = true,
 	dependencies = {
 		"nvim-mini/mini.nvim",

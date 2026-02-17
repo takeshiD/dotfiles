@@ -1,25 +1,75 @@
 -- Color scheme is specified in init.lua
 return {
 	{
+		"nyoom-engineering/oxocarbon.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		-- opts = function() end,
+	},
+	{
+		"eldritch-theme/eldritch.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		opts = function()
+			require("eldritch").setup({})
+		end,
+	},
+	{
+		"0xstepit/flow.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		opts = function()
+			require("flow").setup({
+				theme = {
+					style = "dark",
+					contrast = "high",
+				},
+			})
+		end,
+	},
+	{
+		"navarasu/onedark.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		opts = function()
+			require("onedark").setup({
+				style = "darker",
+			})
+		end,
+	},
+	{
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
-		enabled = false,
+		enabled = true,
 		priority = 1000,
+		opts = function()
+			require("cyberdream").setup({
+				variant = "dark",
+				italic_comments = false,
+				extensions = {
+					telescope = true,
+					gitsigns = true,
+					blinkcmp = true,
+					mini = true,
+				},
+			})
+		end,
 	},
 	{
 		"sainnhe/everforest",
 		lazy = false,
-		enabled = false,
+		enabled = true,
 		priority = 1000,
 	},
 	{
 		"RRethy/base16-nvim",
-		enabled = false,
+		enabled = true,
 		lazy = false,
 		priority = 1000,
-		config = function()
-			vim.cmd([[colorscheme base16-espresso]])
-		end,
 	},
 	{
 		"EdenEast/nightfox.nvim",
@@ -27,7 +77,6 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd([[colorscheme carbonfox]])
 			require("nightfox").setup({
 				options = {
 					transparent = true,
@@ -58,17 +107,18 @@ return {
 	},
 	{
 		"uloco/bluloco.nvim",
-		enabled = false,
+		enabled = true,
 		lazy = false,
 		priority = 1000,
 		dependencies = {
 			"rktjmp/lush.nvim",
 		},
 		config = function()
-			vim.cmd([[colorscheme bluloco]])
 			require("bluloco").setup({
 				style = "dark",
-				transparent = true,
+				transparent = false,
+				italics = true,
+				rainbow_headings = true,
 			})
 		end,
 	},

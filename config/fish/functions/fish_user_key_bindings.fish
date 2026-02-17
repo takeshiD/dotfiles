@@ -6,4 +6,5 @@ function fish_user_key_bindings
     bind -M visual L end-of-line
     bind -M insert ctrl-p history-search-backward
     bind -M insert ctrl-n history-search-forward
+    bind -M insert ctrl-l accept-autosuggestion
 end
