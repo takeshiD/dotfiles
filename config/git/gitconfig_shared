@@ -23,3 +23,6 @@
 
 [merge]
     conflictstyle = zdiff3
+[alias]
+    branch-recent = branch --sort=-committerdate --format='%(color:cyan)%(committerdate:short)%(color:reset) %(if)%(HEAD)%(then)%(color:green bold) *%(else)%(color:red dim)  %(end)%(refname:short)%(color:reset)'
+    log-graph = log --all --graph --decorate --pretty=format:'%C(yellow)%h%Creset %C(cyan)%ad%Creset %s %C(green)%d%Creset' --date=short
