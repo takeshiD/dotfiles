@@ -48,6 +48,7 @@ local ensure_installed = {
 	"clangd",
 	"yamlls",
 	"hls",
+	"csharp_ls",
 }
 for _, lsp_name in pairs(ensure_installed) do
 	vim.lsp.enable(lsp_name)

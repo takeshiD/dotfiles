@@ -14,6 +14,8 @@ let
   tmuxdeckPkgs = with inputs.tmux-deck.packages.${pkgs.system}; [
     tmux-deck
   ];
+  customPkgs = with pkgs; [
+  ];
 in
 {
   nixpkgs = {
@@ -54,7 +56,7 @@ in
     shell = "both";
     enableCargoConfig = false;
   };
-  home.packages = llmAgentsPkgs ++ tmuxdeckPkgs;
+  home.packages = llmAgentsPkgs ++ tmuxdeckPkgs ++ customPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "fish";
