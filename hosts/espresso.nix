@@ -42,6 +42,9 @@ in
     enablePython = true;
     enableGo = true;
     enableNodejs = true;
+    enableHaskell = false;
+    enableLua = true;
+    enableNix = true;
     enableLsp = true;
   };
   dotfiles = {

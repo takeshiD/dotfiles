@@ -102,20 +102,27 @@ let
     pnpm
     nodejs
   ];
-  lspPkgs = with pkgs; [
-    astro-language-server
+  haskellPkgs = with pkgs; [
+    haskellPackages.ghcup
+    haskellPackages.haskell-language-server
+  ];
+  luaPkgs = with pkgs; [
     lua-language-server
     stylua
+  ];
+  nixPkgs = with pkgs; [
+    # nil
+    nixd
+    nixfmt
+  ];
+  lspPkgs = with pkgs; [
+    astro-language-server
     bash-language-server
     tailwindcss-language-server
     vscode-langservers-extracted
     markdown-oxide
     taplo
     yaml-language-server
-    haskell-language-server
-    nil
-    nixd
-    nixfmt
   ];
 in
 {

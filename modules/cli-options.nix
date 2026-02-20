@@ -12,6 +12,9 @@
     enablePython = lib.mkEnableOption "python";
     enableGo = lib.mkEnableOption "golang";
     enableNodejs = lib.mkEnableOption "nodejs";
+    enableHaskell = lib.mkEnableOption "haskell";
+    enableLua = lib.mkEnableOption "lua";
+    enableNix = lib.mkEnableOption "nix";
     enableLsp = lib.mkEnableOption "lsp";
   };
 }
