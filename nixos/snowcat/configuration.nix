@@ -109,9 +109,9 @@
     #media-session.enable = true;
   };
   services.thermald.enable = true;
-  services.power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = true;
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -157,7 +157,8 @@
     # "suspend-then-hibernate": closing the lid and suspend, spent few minutes and hybernate
     # "lock": screen lock only
     # Battely supply
-    HandleLidSwitch = "suspend-then-hibernate";
+    # HandleLidSwitch = "suspend-then-hibernate";
+    HandleLidSwitch = "suspend";
     # Power is connected
     HandleLidSwitchExternalPower = "suspend";
     # Another screen is connected(cram shell)
@@ -188,6 +189,8 @@
     iw
     iwd
     nixos-container
+    usbutils
+    pciutils
   ];
   nixpkgs.config = {
     allowUnfree = false;

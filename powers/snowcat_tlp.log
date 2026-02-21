@@ -1,4 +1,4 @@
-Device: /org/freedesktop/UPower/devices/battery_BAT0
+Device: /org/freedesktop/UPower/devices/battery_BAT2
   native-path:          BAT0
   vendor:               Sunwoda
   model:                5B11M90099

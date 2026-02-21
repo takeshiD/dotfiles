@@ -1,0 +1,145 @@
+Device: /org/freedesktop/UPower/devices/battery_BAT0
+  native-path:          BAT0
+  vendor:               Sunwoda
+  model:                5B11M90099
+  serial:               7692
+  power supply:         yes
+  updated:              Fri 20 Feb 2026 08:31:55 PM JST (3 seconds ago)
+  has history:          yes
+  has statistics:       yes
+  battery
+    present:             yes
+    rechargeable:        yes
+    state:               discharging
+    warning-level:       none
+    energy:              53.76 Wh
+    energy-empty:        0 Wh
+    energy-full:         57.03 Wh
+    energy-full-design:  57 Wh
+    voltage-min-design:  11.7 V
+    capacity-level:      Normal
+    energy-rate:         3.574 W
+    voltage:             12.722 V
+    charge-cycles:       7
+    time to empty:       15.0 hours
+    percentage:          94%
+    capacity:            100%
+    technology:          lithium-polymer
+    charge-start-threshold:        75%
+    charge-end-threshold:          80%
+    charge-threshold-supported:    yes
+    icon-name:          'battery-full-symbolic'
+  History (rate):
+    1771587115	3.574	discharging
+    1771587085	3.298	discharging
+    1771587055	3.326	discharging
+    1771587025	3.443	discharging
+
+Device: /org/freedesktop/UPower/devices/battery_BAT0
+  native-path:          BAT0
+  vendor:               Sunwoda
+  model:                5B11M90099
+  serial:               7692
+  power supply:         yes
+  updated:              Fri 20 Feb 2026 09:03:47 PM JST (5 seconds ago)
+  has history:          yes
+  has statistics:       yes
+  battery
+    present:             yes
+    rechargeable:        yes
+    state:               discharging
+    warning-level:       none
+    energy:              53.59 Wh
+    energy-empty:        0 Wh
+    energy-full:         57.03 Wh
+    energy-full-design:  57 Wh
+    voltage-min-design:  11.7 V
+    capacity-level:      Normal
+    energy-rate:         0.229 W
+    voltage:             12.742 V
+    charge-cycles:       7
+    time to empty:       9.8 days
+    percentage:          94%
+    capacity:            100%
+    technology:          lithium-polymer
+    charge-start-threshold:        75%
+    charge-end-threshold:          80%
+    charge-threshold-supported:    yes
+    icon-name:          'battery-full-symbolic'
+  History (rate):
+    1771589027	0.229	discharging
+    1771589017	0.000	discharging
+
+Device: /org/freedesktop/UPower/devices/battery_BAT0
+  native-path:          BAT0
+  vendor:               Sunwoda
+  model:                5B11M90099
+  serial:               7692
+  power supply:         yes
+  updated:              Fri 20 Feb 2026 09:11:47 PM JST (20 seconds ago)
+  has history:          yes
+  has statistics:       yes
+  battery
+    present:             yes
+    rechargeable:        yes
+    state:               discharging
+    warning-level:       none
+    energy:              52.5 Wh
+    energy-empty:        0 Wh
+    energy-full:         57.03 Wh
+    energy-full-design:  57 Wh
+    voltage-min-design:  11.7 V
+    capacity-level:      Normal
+    energy-rate:         4.397 W
+    voltage:             12.599 V
+    charge-cycles:       7
+    time to empty:       11.9 hours
+    percentage:          92%
+    capacity:            100%
+    technology:          lithium-polymer
+    charge-start-threshold:        75%
+    charge-end-threshold:          80%
+    charge-threshold-supported:    yes
+    icon-name:          'battery-full-symbolic'
+  History (rate):
+    1771589507	4.397	discharging
+    1771589477	7.377	discharging
+    1771589447	7.183	discharging
+    1771589417	5.772	discharging
+
+Device: /org/freedesktop/UPower/devices/battery_BAT0
+  native-path:          BAT0
+  vendor:               Sunwoda
+  model:                5B11M90099
+  serial:               7692
+  power supply:         yes
+  updated:              Fri 20 Feb 2026 11:22:27 PM JST (27 seconds ago)
+  has history:          yes
+  has statistics:       yes
+  battery
+    present:             yes
+    rechargeable:        yes
+    state:               discharging
+    warning-level:       none
+    energy:              38.56 Wh
+    energy-empty:        0 Wh
+    energy-full:         57.03 Wh
+    energy-full-design:  57 Wh
+    voltage-min-design:  11.7 V
+    capacity-level:      Normal
+    energy-rate:         6.713 W
+    voltage:             11.84 V
+    charge-cycles:       7
+    time to empty:       5.7 hours
+    percentage:          68%
+    capacity:            100%
+    technology:          lithium-polymer
+    charge-start-threshold:        75%
+    charge-end-threshold:          80%
+    charge-threshold-supported:    yes
+    icon-name:          'battery-full-symbolic'
+  History (rate):
+    1771597347	6.713	discharging
+    1771597317	7.708	discharging
+    1771597287	8.865	discharging
+

@@ -61,6 +61,7 @@ let
     bottom
     lsd
     cachix
+    rclone
   ];
   wslPkgs = with pkgs; [
     wslu
