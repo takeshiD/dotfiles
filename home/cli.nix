@@ -143,5 +143,8 @@ in
     ++ lib.optionals config.cli.enablePython pythonPkgs
     ++ lib.optionals config.cli.enableGo goPkgs
     ++ lib.optionals config.cli.enableNodejs nodePkgs
+    ++ lib.optionals config.cli.enableHaskell haskellPkgs
+    ++ lib.optionals config.cli.enableLua luaPkgs
+    ++ lib.optionals config.cli.enableNix nixPkgs
     ++ lib.optionals config.cli.enableLsp lspPkgs;
 }
