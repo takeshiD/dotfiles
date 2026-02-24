@@ -31,6 +31,10 @@
     home-manager
     # docker
   ];
+  security.pki.certificates = [
+    (builtins.readFile /home/tkcd/cert/zscaler.crt)
+    (builtins.readFile /home/tkcd/cert/agcglobal.cer)
+  ];
   virtualisation.docker = {
     enable = true;
   };
