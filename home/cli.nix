@@ -62,6 +62,7 @@ let
     lsd
     cachix
     rclone
+    pgcli
   ];
   wslPkgs = with pkgs; [
     wslu
