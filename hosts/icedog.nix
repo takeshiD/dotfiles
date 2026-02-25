@@ -54,10 +54,11 @@ in
     shell = "both";
     enableCargoConfig = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs;
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ [ pkgs.pgcli ];
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "fish";
+    SSL_CERT_FILE="$HOME/cert/zscaler.crt";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
