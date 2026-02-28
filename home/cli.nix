@@ -63,6 +63,8 @@ let
     cachix
     rclone
     pgcli
+    dig
+    doggo
   ];
   wslPkgs = with pkgs; [
     wslu

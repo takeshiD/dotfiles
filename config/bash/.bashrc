@@ -105,3 +105,7 @@ if [ -d "$COMMANDS_DIR" ]; then
         fi
     done
 fi
+
+if command -v fish > /dev/null 2>&1; then
+    exec fish
+fi

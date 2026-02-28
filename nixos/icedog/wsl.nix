@@ -32,10 +32,10 @@
     docker
   ];
   programs.nix-ld.enable = true;
-  security.pki.certificates = [
-    (builtins.readFile /home/tkcd/cert/zscaler.crt)
-    (builtins.readFile /home/tkcd/cert/agcglobal.cer)
-  ];
+  # security.pki.certificates = [
+  #   (builtins.readFile /home/tkcd/cert/zscaler.crt)
+  #   (builtins.readFile /home/tkcd/cert/agcglobal.cer)
+  # ];
   # networking.enableIPv6 = false;
   virtualisation.docker = {
     enable = true;
