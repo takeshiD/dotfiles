@@ -58,7 +58,7 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "fish";
-    SSL_CERT_FILE="$HOME/cert/zscaler.crt";
+    # SSL_CERT_FILE="$HOME/cert/zscaler.crt";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
