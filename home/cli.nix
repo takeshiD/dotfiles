@@ -65,6 +65,7 @@ let
     pgcli
     dig
     doggo
+    bat-extras.batman
   ];
   wslPkgs = with pkgs; [
     wslu
