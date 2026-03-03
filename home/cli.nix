@@ -1,71 +1,75 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   corePkgs = with pkgs; [
-    neovim
-    tmux
     bash
-    fish
-    brush
-    starship
     bash-completion
+    brush
+    fish
+    neovim
     nix-bash-completions
+    starship
+    tmux
   ];
   gitPkgs = with pkgs; [
-    git
-    lazygit
+    delta
     gh
     ghq
+    git
     glab
-    delta
+    lazygit
   ];
   containerPkgs = with pkgs; [
-    # docker
+    act
+    aws-cdk-cli
+    awscli2
     lazydocker
     # podman
     # podman-tui
-    act
-    awscli2
-    aws-cdk-cli
   ];
   miscPkgs = with pkgs; [
-    ripgrep
     bat
-    fd
-    dust
-    duf
+    bat-extras.batman
+    bottom
+    cachix
+    dig
     direnv
-    zoxide
-    tokei
+    doggo
+    doxx
+    duf
+    dust
+    fd
+    figlet
+    fzf
+    glow
     hexyl
-    procs
-    smem
     hyperfine
-    vhs
-    tree-sitter
-    zip
-    unzip
+    imagemagick
+    jq
     less
+    lsd
     openssh
     openssl
-    pkg-config
     pandoc
-    jq
-    sysstat
-    doxx
-    xleak
-    zk
-    glow
-    figlet
-    imagemagick
-    fzf
-    bottom
-    lsd
-    cachix
-    rclone
     pgcli
-    dig
-    doggo
-    bat-extras.batman
+    pkg-config
+    procs
+    rclone
+    ripgrep
+    smem
+    sysstat
+    tokei
+    tree-sitter
+    unzip
+    vhs
+    xleak
+    zip
+    zk
+    zoxide
   ];
   wslPkgs = with pkgs; [
     wslu

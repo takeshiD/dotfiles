@@ -33,23 +33,25 @@ in
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
   home.stateVersion = "25.11";
+  # nixfmt: off
   cli = {
-    enableCore = true;
-    enableGit = true;
+    enableCore      = true;
+    enableGit       = true;
     enableContainer = true;
-    enableMisc = true;
-    enableWsl = true;
-    enableGcc = false;
-    enableClang = true;
-    enableRust = true;
-    enablePython = true;
-    enableGo = true;
-    enableNodejs = true;
-    enableHaskell = false;
-    enableLua = true;
-    enableNix = true;
-    enableLsp = true;
+    enableMisc      = true;
+    enableWsl       = true;
+    enableGcc       = false;
+    enableClang     = true;
+    enableRust      = true;
+    enablePython    = true;
+    enableGo        = true;
+    enableNodejs    = true;
+    enableHaskell   = false;
+    enableLua       = true;
+    enableNix       = true;
+    enableLsp       = true;
   };
+  # nixfmt: on
   dotfiles = {
     shell = "both";
     enableCargoConfig = true;
@@ -58,7 +60,6 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "fish";
-    # SSL_CERT_FILE="$HOME/cert/zscaler.crt";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"

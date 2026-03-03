@@ -45,6 +45,13 @@
             ./nixos/icedog
           ];
         };
+        "samoyed" = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            nixos-wsl.nixosModules.wsl
+            ./nixos/samoyed
+          ];
+        };
       };
       homeConfigurations = {
         "tkcd@snowcat" = home-manager.lib.homeManagerConfiguration {
@@ -88,6 +95,15 @@
           inherit pkgs;
           modules = [
             ./hosts/icedog.nix
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
+        "tkcd@samoyed" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/samoyed.nix
           ];
           extraSpecialArgs = {
             inherit inputs;

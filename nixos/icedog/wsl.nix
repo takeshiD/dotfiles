@@ -32,10 +32,8 @@
     docker
   ];
   programs.nix-ld.enable = true;
-  # security.pki.certificates = [
-  #   (builtins.readFile /home/tkcd/cert/zscaler.crt)
-  #   (builtins.readFile /home/tkcd/cert/agcglobal.cer)
-  # ];
+  security.pki.certificates = [
+  ];
   # networking.enableIPv6 = false;
   virtualisation.docker = {
     enable = true;
@@ -51,7 +49,7 @@
   wsl.enable = true;
   wsl.defaultUser = "tkcd";
   wsl.wslConf.interop = {
-    enabled = false;
+    enabled = true;
     appendWindowsPath = false;
   };
   wsl.wslConf.network.hostname = "icedog";
