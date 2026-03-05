@@ -7,7 +7,15 @@ return {
 				require("hover").hover()
 			end,
 			mode = { "n" },
-			{ desc = "LSP Diagnostics" },
+			desc = "LSP Diagnostics",
+		},
+		{
+			"<C-r>",
+			function()
+				require("hover").hover()
+			end,
+			mode = { "n" },
+			desc = "LSP Diagnostics",
 		},
 	},
 	config = function()

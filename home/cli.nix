@@ -70,6 +70,8 @@ let
     zip
     zk
     zoxide
+    binwalk
+    file
   ];
   wslPkgs = with pkgs; [
     wslu
