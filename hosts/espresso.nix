@@ -40,7 +40,7 @@ in
     enableClang = true;
     enableRust = true;
     enablePython = true;
-    enableGo = true;
+    enableGo = false;
     enableNodejs = true;
     enableHaskell = false;
     enableLua = true;
