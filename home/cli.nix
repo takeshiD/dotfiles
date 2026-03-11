@@ -103,6 +103,7 @@ let
     pyright
     ruff
     ty
+    zuban
   ];
   goPkgs = with pkgs; [
     go
