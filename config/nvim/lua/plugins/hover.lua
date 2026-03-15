@@ -9,14 +9,6 @@ return {
 			mode = { "n" },
 			desc = "LSP Diagnostics",
 		},
-		{
-			"<C-r>",
-			function()
-				require("hover").hover()
-			end,
-			mode = { "n" },
-			desc = "LSP Diagnostics",
-		},
 	},
 	config = function()
 		require("hover").config({

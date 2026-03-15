@@ -7,7 +7,8 @@ keymap.set("n", "<ESC><ESC>", ":noh<Return>")
 keymap.set("n", "<Return><Return>", "<C-w>w", { desc = "BufferCyclic" })
 keymap.set("n", "<C-p>", ":bprev<Return>")
 keymap.set("n", "<C-n>", ":bnext<Return>")
-keymap.set("n", "<C-w><C-w>", ":bdelete %<Return>")
+keymap.set("n", "<C-w><C-w>", ":close<Return>")
+keymap.set("n", "<leader>bd", ":bdelete<Return>")
 keymap.set("i", "jj", "<ESC>")
 
 --############# Motion      ###############

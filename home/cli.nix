@@ -6,12 +6,12 @@
 }:
 let
   corePkgs = with pkgs; [
-    bash
+    # bash
     bash-completion
     brush
     fish
     neovim
-    nix-bash-completions
+    # nix-bash-completions
     starship
     tmux
   ];
@@ -72,6 +72,7 @@ let
     zoxide
     binwalk
     file
+    coreutils
   ];
   wslPkgs = with pkgs; [
     wslu

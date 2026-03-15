@@ -26,10 +26,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local ensure_installed = {
 	"rust_analyzer",
 	"pylsp",
-	-- "pyright",
+	"pyright",
 	-- "ty",
-	"zuban",
+	-- "zuban",
 	"lua_ls",
+	"luau_lsp",
 	-- "typua",
 	"ruff",
 	"markdown_oxide",
