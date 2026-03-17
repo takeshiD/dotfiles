@@ -25,5 +25,7 @@
     conflictstyle = zdiff3
 [alias]
     st = status
+    ss = status -sb
+    cm = commit
     branch-recent = branch --sort=-committerdate --format='%(color:cyan)%(committerdate:short)%(color:reset) %(if)%(HEAD)%(then)%(color:green bold) *%(else)%(color:red dim)  %(end)%(refname:short)%(color:reset)'
     log-graph = log --all --graph --decorate --pretty=format:'%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(green)%an%Creset %s %C(green)%d%Creset' --date=short

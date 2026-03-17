@@ -1,3 +1,16 @@
+---@param buf number
+---@return number[]
+local wins_for_buf = function(buf)
+	---@type number[]
+	local wins = {}
+	for _, _win in ipairs(vim.api.nvim_list_wins()) do
+		local _buf = vim.api.nvim_win_get_buf(_win)
+		if _buf ~= nil and _buf == buf then
+			table.insert(wins, _win)
+		end
+	end
+	return wins
+end
 local keymap = vim.keymap
 vim.opt.timeout = true
 vim.opt.timeoutlen = 1000
@@ -7,7 +20,17 @@ keymap.set("n", "<ESC><ESC>", ":noh<Return>")
 keymap.set("n", "<Return><Return>", "<C-w>w", { desc = "BufferCyclic" })
 keymap.set("n", "<C-p>", ":bprev<Return>")
 keymap.set("n", "<C-n>", ":bnext<Return>")
-keymap.set("n", "<C-w><C-w>", ":close<Return>")
+keymap.set("n", "<C-w><C-w>", ":close!<cr>")
+keymap.set("n", "<C-w><C-w>", function()
+	local cur_buf = vim.api.nvim_get_current_buf()
+	local wins = wins_for_buf(cur_buf)
+	if #wins > 1 then
+		local cur_win = vim.api.nvim_get_current_win()
+		vim.api.nvim_win_close(cur_win, false)
+	else
+		vim.api.nvim_buf_delete(cur_buf, {})
+	end
+end)
 keymap.set("n", "<leader>bd", ":bdelete<Return>")
 keymap.set("i", "jj", "<ESC>")
 
