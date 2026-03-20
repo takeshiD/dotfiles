@@ -55,6 +55,9 @@ return {
 	},
     -- stylua: ignore
 	keys = {
-		{"<leader><leader>", function() require('snacks').picker.smart() end, desc = "Smart Find Files"},
+		{"<leader><leader>", function() require('snacks').picker.smart({
+            cwd = require("lspconfig.util").root_pattern(".git")(vim.fn.getcwd())
+             or vim.fn.getcwd()
+        }) end, desc = "Smart Find Files"},
 	},
 }
