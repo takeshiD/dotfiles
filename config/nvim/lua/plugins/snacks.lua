@@ -34,7 +34,8 @@ return {
 			},
 		},
 		picker = {
-			enabled = true,
+			enabled = false,
+			ui_select = false,
 			matcher = {
 				fuzzy = true, -- use fuzzy matching
 				smartcase = true, -- use smartcase

@@ -1,13 +1,16 @@
 return {
-    "f-person/git-blame.nvim",
-    event = "VeryLazy",
-    enabled = true,
-    priority = 1020, -- needs to be loaded in first
-    opts = {
-        enabled = false,
-        message_template = " <author> '<summary>' : <date>",
-        date_format = "%r (%Y-%m-%d %H:%M:%S)",
-        message_when_not_commited = " Not Commited Yet",
-        display_virtual_text = 1,
-    },
+	"f-person/git-blame.nvim",
+	event = "VeryLazy",
+	enabled = true,
+	priority = 1020, -- needs to be loaded in first
+	keys = {
+		{ "<leader>gb", ":GitBlameToggle<cr>", mode = "n" },
+	},
+	opts = {
+		enabled = false,
+		message_template = " <author> '<summary>' : <date>",
+		date_format = "%r (%Y-%m-%d %H:%M:%S)",
+		message_when_not_commited = " Not Commited Yet",
+		display_virtual_text = 1,
+	},
 }

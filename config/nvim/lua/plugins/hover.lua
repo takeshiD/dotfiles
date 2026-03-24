@@ -15,6 +15,7 @@ return {
 			providers = {
 				"hover.providers.diagnostic",
 				"hover.providers.lsp",
+                "plugins.hover_providers.simple",
 			},
 			preview_opts = { border = "single" },
 			preview_window = true,
