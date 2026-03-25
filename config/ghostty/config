@@ -19,7 +19,7 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # separated by equals signs.
-font-family = "UDEV Gothic NF Regular"
+font-family = "UDEV Gothic NF"
 # font-family = "HackGen Console NF"
 font-size = 12
 theme = "Carbonfox"
@@ -30,7 +30,6 @@ background-opacity = 1.0
 custom-shader-animation = false
 gtk-titlebar = true
 mouse-hide-while-typing = true
-line-height = 0.95
 adjust-cell-height = 0
 adjust-cell-width = 0
 desktop-notifications = false

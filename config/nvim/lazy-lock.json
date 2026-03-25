@@ -5,6 +5,7 @@
   "avante-status.nvim": { "branch": "main", "commit": "35b4cebedae0b1de6a33e9562af20bb0150f2230" },
   "base16-nvim": { "branch": "master", "commit": "190397833e53fdfd5cf400c5baaf1a4e533158e5" },
   "bimove": { "branch": "main", "commit": "0be30f1620a61fa59f8bc3fcbdb454fa4c9798b2" },
+  "blame.nvim": { "branch": "main", "commit": "179da7aaacce7c52874af636255ede72dd6fe796" },
   "blink-cmp-avante": { "branch": "master", "commit": "4f494c6e124acbe31a8f5d58effa0c14aa38a6d5" },
   "blink.cmp": { "branch": "main", "commit": "451168851e8e2466bc97ee3e026c3dcb9141ce07" },
   "bluloco.nvim": { "branch": "main", "commit": "ca548a50c1c9ccbb3f730c6144a55d48017a07c6" },

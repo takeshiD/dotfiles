@@ -11,6 +11,7 @@ let
     slack
     discord
     obsidian
+    fontforge-gtk
   ];
 in
 {
