@@ -12,6 +12,7 @@ let
     discord
     obsidian
     fontforge-gtk
+    foliate
   ];
 in
 {
