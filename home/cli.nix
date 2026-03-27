@@ -110,10 +110,11 @@ let
   pythonPkgs = with pkgs; [
     uv
     python313Packages.python-lsp-server
-    pyright
     ruff
+    pyright
     ty
     zuban
+    pyrefly
   ];
   goPkgs = with pkgs; [
     go

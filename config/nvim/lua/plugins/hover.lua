@@ -1,5 +1,11 @@
 return {
 	"lewis6991/hover.nvim",
+	dependencies = {
+		-- {
+		-- 	dir = "~/ex_prog/ex_lua/hover-git.nvim",
+		-- },
+        "takeshid/hover-git.nvim"
+	},
 	keys = {
 		{
 			"U",
@@ -23,8 +29,9 @@ return {
 			providers = {
 				"hover.providers.diagnostic",
 				"hover.providers.lsp",
-                "hover.providers.gh"
-                -- "plugins.hover_providers.simple", -- sample provider
+				"hover.providers.gh",
+                "hover-git"
+				-- "plugins.hover_providers.simple", -- sample provider
 			},
 			preview_opts = { border = "single" },
 			preview_window = true,

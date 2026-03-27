@@ -290,6 +290,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1774386573,
+        "narHash": "sha256-4hAV26quOxdC6iyG7kYaZcM3VOskcPUrdCQd/nx8obc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "46db2e09e1d3f113a13c0d7b81e2f221c63b8ce9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1769330179,
         "narHash": "sha256-yxgb4AmkVHY5OOBrC79Vv6EVd4QZEotqv+6jcvA212M=",
         "owner": "NixOS",
@@ -304,6 +320,24 @@
         "type": "github"
       }
     },
+    "ob-fish": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1774621574,
+        "narHash": "sha256-xcgdYQE94A8ipdyKRp17ORYIEP4CMZI3CYWAnIbeTaw=",
+        "owner": "takeshid",
+        "repo": "ob.fish",
+        "rev": "0d2647033e872f35c868a9c845e27bf0f1ff0706",
+        "type": "github"
+      },
+      "original": {
+        "owner": "takeshid",
+        "repo": "ob.fish",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "gfm-preview": "gfm-preview",
@@ -311,6 +345,7 @@
         "llm-agents": "llm-agents",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_4",
+        "ob-fish": "ob-fish",
         "tmux-deck": "tmux-deck"
       }
     },
@@ -368,7 +403,7 @@
     "tmux-deck": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "rust-overlay": "rust-overlay"
       },
       "locked": {

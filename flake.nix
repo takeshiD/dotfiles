@@ -19,6 +19,7 @@
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
     llm-agents.url = "github:numtide/llm-agents.nix";
     # bacon-ls.url = "github:crisidev/bacon-ls";
+    ob-fish.url = "github:takeshid/ob.fish";
   };
   outputs =
     {

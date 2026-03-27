@@ -20,6 +20,9 @@ let
   # baconlsPkgs = with inputs.bacon-ls.packages.${pkgs.system}; [
   #   bacon-ls
   # ];
+  obfishPkgs = with inputs.ob-fish.packages.${pkgs.system}; [
+    ob-fish-completion
+  ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -61,7 +64,7 @@ in
     shell = "both";
     enableCargoConfig = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs;
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "fish";
