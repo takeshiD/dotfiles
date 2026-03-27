@@ -69,7 +69,7 @@ in
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
-    "$PNPM_HOME"
+    "$HOME/.local/share/pnpm"
   ];
   # home.sessionVariables = [
   #   PKG_CONFIG
