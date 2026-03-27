@@ -4,10 +4,18 @@ return {
 		{
 			"U",
 			function()
-				require("hover").hover()
+				require("hover").open()
 			end,
 			mode = { "n" },
-			desc = "LSP Diagnostics",
+			desc = "Hover Open",
+		},
+		{
+			"gu",
+			function()
+				require("hover").enter()
+			end,
+			mode = { "n" },
+			desc = "Hover Enter",
 		},
 	},
 	config = function()
@@ -15,7 +23,8 @@ return {
 			providers = {
 				"hover.providers.diagnostic",
 				"hover.providers.lsp",
-                "plugins.hover_providers.simple",
+                "hover.providers.gh"
+                -- "plugins.hover_providers.simple", -- sample provider
 			},
 			preview_opts = { border = "single" },
 			preview_window = true,

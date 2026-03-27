@@ -17,6 +17,9 @@ let
   gfmPreviewPkgs = with inputs.gfm-preview.packages.${pkgs.system}; [
     gh-gfm-preview
   ];
+  # baconlsPkgs = with inputs.bacon-ls.packages.${pkgs.system}; [
+  #   bacon-ls
+  # ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -62,9 +65,11 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "fish";
+    PNPM_HOME = "$HOME/.local/share/pnpm";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
+    "$PNPM_HOME"
   ];
   # home.sessionVariables = [
   #   PKG_CONFIG

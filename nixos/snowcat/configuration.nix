@@ -215,7 +215,7 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "UDEV Gothic 35NFLG" ];
+        monospace = [ "UDEV Gothic 35NF" ];
         sansSerif = [
           "Noto Sans CJK JP"
           "DejaVu Sans"

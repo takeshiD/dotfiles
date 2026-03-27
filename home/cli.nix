@@ -52,6 +52,7 @@ let
     jq
     less
     lsd
+    eza
     openssh
     openssl
     pandoc
@@ -97,6 +98,14 @@ let
   ];
   rustPkgs = with pkgs; [
     rustup
+    cargo-nextest
+    bacon
+    cargo-deny
+    cargo-edit
+    cargo-expand
+    sccache
+    cargo-bloat
+    cargo-binstall
   ];
   pythonPkgs = with pkgs; [
     uv

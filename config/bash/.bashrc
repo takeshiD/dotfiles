@@ -109,3 +109,11 @@ fi
 if command -v fish > /dev/null 2>&1; then
     exec fish
 fi
+
+# pnpm
+export PNPM_HOME="/home/tkcd/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
