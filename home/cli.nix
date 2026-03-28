@@ -54,7 +54,7 @@ let
     lsd
     eza
     openssh
-    openssl
+    # openssl
     pandoc
     pgcli
     pkg-config

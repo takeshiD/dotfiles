@@ -3,9 +3,13 @@
   nixConfig = {
     extra-substituters = [
       "https://cache.numtide.com"
+      "https://ros.cachix.org"
+      "https://takeshid.cachix.org"
     ];
     extra-trusted-public-keys = [
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
+      "takeshid.cachix.org-1:2GsGTUZ3djVzbGzXgeia+SRV1ZJYOXySHyNfBPsEjRA="
     ];
   };
   inputs = {
@@ -106,6 +110,15 @@
           inherit pkgs;
           modules = [
             ./hosts/samoyed.nix
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
+        "tkcd@doppio" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/doppio.nix
           ];
           extraSpecialArgs = {
             inherit inputs;

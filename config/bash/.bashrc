@@ -106,9 +106,9 @@ if [ -d "$COMMANDS_DIR" ]; then
     done
 fi
 
-if command -v fish > /dev/null 2>&1; then
-    exec fish
-fi
+# if command -v fish > /dev/null 2>&1; then
+#     exec fish
+# fi
 
 # pnpm
 export PNPM_HOME="/home/tkcd/.local/share/pnpm"

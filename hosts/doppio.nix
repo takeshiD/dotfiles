@@ -50,7 +50,7 @@ in
     enableMisc = true;
     enableWsl = false;
     enableGcc = false;
-    enableClang = true;
+    enableClang = false;
     enableRust = true;
     enablePython = true;
     enableGo = true;
@@ -67,13 +67,23 @@ in
   home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
-    DEFAULT_SHELL = "fish";
+    DEFAULT_SHELL = "bash";
     PNPM_HOME = "$HOME/.local/share/pnpm";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"
     "$HOME/.local/share/pnpm"
   ];
+  home.keyboard = {
+    layout = "us";
+    variant = "";
+    options = [ "ctrl:nocaps" ];
+  };
+  dconf.settings = {
+    "org/gnome/desktop/input-sources" = {
+      xkb-options = [ "ctrl:nocaps" ];
+    };
+  };
   # home.sessionVariables = [
   #   PKG_CONFIG
   # ];
