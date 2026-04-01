@@ -111,6 +111,7 @@ let
     uv
     python313Packages.python-lsp-server
     ruff
+    mypy
     pyright
     ty
     zuban
