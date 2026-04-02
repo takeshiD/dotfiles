@@ -46,7 +46,6 @@ local ensure_installed = {
 	"nil_ls",
 	"nixd",
 	"taplo",
-	"pyproject_ls",
 	"cmake",
 	"clangd",
 	"yamlls",
