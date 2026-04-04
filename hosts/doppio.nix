@@ -84,9 +84,6 @@ in
       xkb-options = [ "ctrl:nocaps" ];
     };
   };
-  # home.sessionVariables = [
-  #   PKG_CONFIG
-  # ];
   home.activation = {
     gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared"

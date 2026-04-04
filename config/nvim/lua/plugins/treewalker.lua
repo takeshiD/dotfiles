@@ -8,4 +8,7 @@ return {
 		-- { "<C-,>", "<cmd>Treewalker SwapLeft<cr>", mode = { "n" }, desc = "Treewalker SwapLeft" },
 		-- { "<C-.>", "<cmd>Treewalker SwapRight<cr>", mode = { "n" }, desc = "Treewalker SwapRight" },
 	},
+    opts = {
+        highlight = false,
+    }
 }
