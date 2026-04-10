@@ -67,7 +67,8 @@ in
   home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
-    DEFAULT_SHELL = "bash";
+    # DEFAULT_SHELL = "bash";
+    DEFAULT_SHELL = "fish";
     PNPM_HOME = "$HOME/.local/share/pnpm";
   };
   home.sessionPath = [

@@ -6,15 +6,15 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileencodings = "utf-8,cp932,euc-jp,utf-16le"
 -- opt.langmenu = "en_us"
-opt.guifont = "Hackgen Console NF:h12"
+opt.guifont = "UDEV GothicNF:h12"
 -- vim.cmd[[language en_US.UTF-8]]
 
 --############ OperationBehavior ###########
 opt.updatetime = 100
 opt.clipboard = "unnamedplus"
-opt.mouse = "a" --マウス操作を有効化
+opt.mouse = "a"
 opt.updatetime = 300
-opt.swapfile = false --スワップファイルを生成しない
+opt.swapfile = false
 opt.backup = false
 
 --############ Look&Feel ###########
@@ -38,7 +38,7 @@ opt.showtabline = 4
 vim.wo.number = true
 vim.wo.relativenumber = true
 opt.number = true
-opt.signcolumn = "yes" --行数表示の横に余白を追加
+opt.signcolumn = "yes:1"
 
 --====== ControlCharacters =====
 opt.list = true
@@ -63,7 +63,7 @@ opt.smartcase = true
 opt.wrap = true
 opt.helplang = { "ja", "en" }
 opt.hidden = true
-opt.wrap = true --端までコードが届いた際に折り返す
+opt.wrap = true
 
 --====== Folding ======
 opt.foldcolumn = "1"

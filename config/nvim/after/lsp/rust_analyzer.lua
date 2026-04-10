@@ -12,6 +12,9 @@ return {
 				command = "clippy",
                 workspace = true,
 			},
+            lens = {
+                enable = true,
+            }
 		},
 	},
 }

@@ -106,10 +106,6 @@ if [ -d "$COMMANDS_DIR" ]; then
     done
 fi
 
-# if command -v fish > /dev/null 2>&1; then
-#     exec fish
-# fi
-
 # pnpm
 export PNPM_HOME="/home/tkcd/.local/share/pnpm"
 case ":$PATH:" in
@@ -117,3 +113,12 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
+if [[ "$DEFAULT_SHELL" == "fish" ]] && [[ $- == *i* && $- != *c* && $- != *s* ]] && command -v fish &>/dev/null && [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" ]]; then
+  if shopt -q login_shell; then
+    exec fish --login
+  else
+    exec fish
+  fi
+fi

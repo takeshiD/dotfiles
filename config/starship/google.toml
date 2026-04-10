@@ -24,7 +24,7 @@ $line_break\
 $character"""
 
 # 右側プロンプト
-right_format = """$time$battery"""
+# right_format = """$env_var"""
 
 # ユーザー名表示
 [username]
@@ -61,6 +61,12 @@ use_os_path_sep = false
 "Videos" = " "
 "Projects" = " "
 "Development" = " "
+
+# [env_var.CLIPPED_ITEM]
+# disabled = false
+# default = "none"
+# style = "dimmed white"
+# format = "Clipped [$env_value]($style)"
 
 # Gitブランチ表示
 [git_branch]

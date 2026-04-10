@@ -6,6 +6,7 @@ let
   ];
   terminalEnumulatorPkgs = with pkgs; [
     ghostty
+    wezterm
   ];
   miscPkgs = with pkgs; [
     slack
