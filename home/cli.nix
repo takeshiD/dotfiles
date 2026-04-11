@@ -146,6 +146,7 @@ let
     vscode-langservers-extracted
     markdown-oxide
     taplo
+    tombi
     yaml-language-server
   ];
 in

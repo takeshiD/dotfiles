@@ -33,18 +33,6 @@ vim.diagnostic.config({
 	},
 })
 
--- augroup for this config file
--- local augroup = vim.api.nvim_create_augroup("lsp/init.lua", {})
-
--- vim.api.nvim_create_autocmd("LspAttach", {
--- 	group = augroup,
--- 	callback = function(args)
--- 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
--- 		if client:supports_method("textDocument/formatting") then
--- 		end
--- 	end,
--- })
-
 local ensure_installed = {
 	"rust_analyzer",
 	"bacon_ls",
@@ -67,7 +55,8 @@ local ensure_installed = {
 	"bashls",
 	"nil_ls",
 	"nixd",
-	"taplo",
+	-- "taplo",
+	"tombi",
 	"cmake",
 	"clangd",
 	"yamlls",

@@ -8,10 +8,10 @@ return {
         { mode = { "n" }, "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>",     desc = "Telescope FileName" },
         { mode = { "n" }, "<leader>fr", "<cmd>lua require('telescope.builtin').live_grep()<CR>",      desc = "Telescope RipGrep" },
         { mode = { "n" }, "<leader>fj", "<cmd>lua require('telescope.builtin').jumplist()<CR>",       desc = "Telescope Jumplist" },
-        { mode = { "n" }, "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>",        desc = "Telescope Buffers" },
+        -- { mode = { "n" }, "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>",        desc = "Telescope Buffers" },
         { mode = { "n" }, "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>",      desc = "Telescope Help" },
         { mode = { "n" }, "<leader>fl", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", desc = "Telescope LSP-Reference" },
-        { mode = { "n" }, "<leader>fo", "<cmd>lua require('telescope').extensions.aerial.aerial()<CR>", desc = "Aerial OutlineView" },
+        -- { mode = { "n" }, "<leader>fo", "<cmd>lua require('telescope').extensions.aerial.aerial()<CR>", desc = "Aerial OutlineView" },
     },
     config = function()
         require("telescope").load_extension("aerial")

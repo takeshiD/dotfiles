@@ -8,16 +8,11 @@ return {
 	lazy = false,
 	keys = {
 		{ "<C-e>", "<cmd>Neotree toggle left<cr>", desc = "NeoTree Toggle" },
+		{ "<leader>fb", "<cmd>Neotree toggle float buffers<cr>", desc = "NeoTree Buffers" },
 		-- { '<leader>g', '<cmd>Neotree float git_status<cr>',          desc = 'NeoTree Git' },
 		-- { '<leader>b', '<cmd>Neotree toggle show buffers right<cr>', desc = 'NeoTree Buffers' }
 	},
 	config = function()
-		-- If you want icons for diagnostic errors, you'll need to define them somewhere:
-		-- vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-		-- vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-		-- vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-		-- vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
-
 		require("neo-tree").setup({
 			close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
 			popup_border_style = "rounded",
@@ -249,9 +244,23 @@ return {
 					},
 					fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
 						["<down>"] = "move_cursor_down",
-						["<C-n>"] = "move_cursor_down",
+						["<C-j>"] = "move_cursor_down",
 						["<up>"] = "move_cursor_up",
-						["<C-p>"] = "move_cursor_up",
+						["<C-k>"] = "move_cursor_up",
+						["<esc>"] = "close",
+						["<S-CR>"] = "close_keep_filter",
+						["<C-CR>"] = "close_clear_filter",
+						["<C-w>"] = { "<C-S-w>", raw = true },
+						{
+							-- normal mode mappings
+							n = {
+								["j"] = "move_cursor_down",
+								["k"] = "move_cursor_up",
+								["<S-CR>"] = "close_keep_filter",
+								["<C-CR>"] = "close_clear_filter",
+								["<esc>"] = "close",
+							},
+						},
 						-- ['<key>'] = function(state, scroll_padding) ... end,
 					},
 				},
