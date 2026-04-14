@@ -10,8 +10,8 @@ return {
 			autoload = true,
 			autoupdate = false,
 			autoupdate_throttle = 250,
-			loading_indicator = true,
-			search_indicator = true,
+			loading_indicator = false,
+			search_indicator = false,
 			date_format = "%Y-%m-%d",
 			thousands_separator = ".",
 			notification_title = "crates.nvim",
@@ -26,9 +26,19 @@ return {
 				version = " %s",
 				prerelease = "   %s",
 				yanked = "   %s",
-				nomatch = "   No match",
+				nomatch = "",
 				upgrade = "   %s",
-				error = "   Error fetching crate",
+				error = "",
+			},
+			highlight = {
+				searching = "CratesNvimSearching",
+				loading = "CratesNvimLoading",
+				version = "NonText",
+				prerelease = "CratesNvimPreRelease",
+				yanked = "CratesNvimYanked",
+				nomatch = "CratesNvimNoMatch",
+				upgrade = "CratesNvimUpgrade",
+				error = "CratesNvimError",
 			},
 			popup = {
 				autofocus = true,
@@ -38,9 +48,9 @@ return {
 				border = "rounded",
 				show_version_date = false,
 				show_dependency_version = true,
-				max_height = 30,
-				min_width = 20,
-				padding = 1,
+				max_height = 50,
+				min_width = 40,
+				padding = 2,
 				text = {
 					title = " %s",
 					pill_left = "",
@@ -102,8 +112,7 @@ return {
 					lib_rs = "CratesNvimPopupUrl",
 					categories_label = "CratesNvimPopupLabel",
 					keywords_label = "CratesNvimPopupLabel",
-					-- version = "CratesNvimPopupVersion",
-                    version = "NonText",
+					version = "CratesNvimPopupVersion",
 					prerelease = "CratesNvimPopupPreRelease",
 					yanked = "CratesNvimPopupYanked",
 					version_date = "CratesNvimPopupVersionDate",
@@ -190,6 +199,6 @@ return {
 				hover = false,
 			},
 		})
-		vim.keymap.set("n", "<leader>cf", require("crates").show_features_popup, { desc = "Crates Feature" })
+		vim.keymap.set("n", "<leader>cc", require("crates").show_features_popup, { desc = "Crates Feature" })
 	end,
 }
