@@ -276,6 +276,7 @@ return {
 				show_unloaded = true,
 				window = {
 					mappings = {
+						["d"] = "buffer_delete",
 						["bd"] = "buffer_delete",
 						["<bs>"] = "navigate_up",
 						["."] = "set_root",
