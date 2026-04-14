@@ -1,5 +1,6 @@
 return {
     "kamecha/bimove",
+    enabled = false,
     config = function()
         vim.keymap.set({"n"}, "M", "<Plug>(bimove-enter)<Plug>(bimove)")
         vim.keymap.set({"n"}, "<Plug>(bimove)k", "<Plug>(bimove-high)<Plug>(bimove)")
