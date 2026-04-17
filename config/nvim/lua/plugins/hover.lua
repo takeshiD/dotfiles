@@ -1,10 +1,9 @@
 return {
 	"lewis6991/hover.nvim",
 	dependencies = {
-		-- {
-		-- 	dir = "~/ex_prog/ex_lua/hover-git.nvim",
-		-- },
-        "takeshid/hover-git.nvim"
+		-- { dir = "~/ex_prog/ex_lua/hover-git.nvim" }, -- for dev
+		"takeshid/hover-git.nvim",
+		"takeshid/whyis.nvim",
 	},
 	keys = {
 		{
@@ -30,8 +29,9 @@ return {
 				"hover.providers.diagnostic",
 				"hover.providers.lsp",
 				"hover.providers.gh",
-                "hover-git"
-				-- "plugins.hover_providers.simple", -- sample provider
+				"hover-git",
+				"whyis.hover.clippy",
+				"whyis.hover.ruff",
 			},
 			preview_opts = { border = "single" },
 			preview_window = true,

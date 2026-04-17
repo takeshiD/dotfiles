@@ -119,9 +119,13 @@ let
   ];
   goPkgs = with pkgs; [
     go
+    gopls
+    golangci-lint
+    golangci-lint-langserver
   ];
   nodePkgs = with pkgs; [
     typescript-language-server
+    eslint
     biome
     pnpm
     nodejs

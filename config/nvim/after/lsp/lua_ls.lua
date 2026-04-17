@@ -22,7 +22,7 @@ return {
 				checkThirdParty = "Disable",
 				library = {
 					vim.env.VIMRUNTIME .. "/lua",
-					-- vim.fn.stdpath("data") .. "/lua",
+					vim.fn.stdpath("data") .. "/lazy/hover.nvim",
 					"${3rd}/luv/library",
 					"${3rd}/busted/library",
 					"${3rd}/luassert/library",

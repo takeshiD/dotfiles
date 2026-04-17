@@ -1,6 +1,6 @@
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
-	enabled = false,
+	enabled = true,
 	event = "VeryLazy",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
@@ -89,7 +89,7 @@ return {
 			}
 		)
 		require("render-markdown").setup({
-			enabled = false,
+			enabled = true,
 			heading = {
 				enabled = true,
 				sign = false,
