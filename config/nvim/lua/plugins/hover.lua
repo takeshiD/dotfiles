@@ -3,7 +3,8 @@ return {
 	dependencies = {
 		-- { dir = "~/ex_prog/ex_lua/hover-git.nvim" }, -- for dev
 		"takeshid/hover-git.nvim",
-		"takeshid/whyis.nvim",
+		{ dir = "~/ex_prog/ex_lua/whyis.nvim" }, -- for dev
+		-- "takeshid/whyis.nvim",
 	},
 	keys = {
 		{
@@ -30,8 +31,7 @@ return {
 				"hover.providers.lsp",
 				"hover.providers.gh",
 				"hover-git",
-				"whyis.hover.clippy",
-				"whyis.hover.ruff",
+				"whyis.hover",
 			},
 			preview_opts = { border = "single" },
 			preview_window = true,

@@ -153,9 +153,12 @@ return {
 				highlight_inline = "RenderMarkdownCodeInline",
 			},
 			pipe_table = {
-				enabled = false,
+				enabled = true,
                 render_modes = false,
 			},
+            link = {
+                enabled = true,
+            }
 		})
 	end,
 }

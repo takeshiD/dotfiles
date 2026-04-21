@@ -1,5 +1,6 @@
 return {
-    "takeshid/whyis.nvim",
+    -- "takeshid/whyis.nvim",
+    dir = "~/ex_prog/ex_lua/whyis.nvim/",
 	event = "VeryLazy",
     keys = {
         {"<leader>wf", "<cmd>Whyis float<cr>", desc = "Whyis float"},

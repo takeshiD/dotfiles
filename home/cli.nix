@@ -74,6 +74,8 @@ let
     binwalk
     file
     coreutils
+    vega-lite
+    vega-cli
   ];
   wslPkgs = with pkgs; [
     wslu
@@ -122,6 +124,7 @@ let
     gopls
     golangci-lint
     golangci-lint-langserver
+    go-tools
   ];
   nodePkgs = with pkgs; [
     typescript-language-server
@@ -129,6 +132,8 @@ let
     biome
     pnpm
     nodejs
+    bun
+    deno
   ];
   haskellPkgs = with pkgs; [
     haskellPackages.ghcup
@@ -152,6 +157,8 @@ let
     taplo
     tombi
     yaml-language-server
+    cmake-language-server
+    neocmakelsp
   ];
 in
 {

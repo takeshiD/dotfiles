@@ -36,7 +36,7 @@ vim.diagnostic.config({
 local ensure_installed = {
 	"rust_analyzer",
 	"bacon_ls",
-	-- "pylsp",
+	"pylsp",
 	-- "pyright",
 	-- "pyrefly",
 	-- "ty",
@@ -47,6 +47,7 @@ local ensure_installed = {
 	-- "typua",
 	"markdown_oxide",
 	"ts_ls",
+    "denols",
 	"biome",
 	"eslint",
 	"astro",
@@ -59,12 +60,14 @@ local ensure_installed = {
 	-- "taplo",
 	"tombi",
 	"cmake",
+	"neocmake",
 	"clangd",
 	"yamlls",
 	"hls",
 	"csharp_ls",
 	"gopls",
 	"golangci_lint_ls",
+    "staticcheck",
 }
 for _, lsp_name in pairs(ensure_installed) do
 	vim.lsp.enable(lsp_name)

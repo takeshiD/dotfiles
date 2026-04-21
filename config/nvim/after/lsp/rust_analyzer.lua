@@ -3,9 +3,9 @@ return {
 	filetypes = { "rust" },
 	settings = {
 		["rust-analyzer"] = {
-            checkOnSave = false,
+            checkOnSave = true,
             diagnostics = {
-                enable = false,
+                enable = true,
             },
 			check = {
 				-- command = "check",
