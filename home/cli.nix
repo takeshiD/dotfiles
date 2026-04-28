@@ -74,8 +74,9 @@ let
     binwalk
     file
     coreutils
-    vega-lite
-    vega-cli
+    # vega-lite
+    # vega-cli
+    imagemagick
   ];
   wslPkgs = with pkgs; [
     wslu
@@ -118,6 +119,7 @@ let
     ty
     zuban
     pyrefly
+    pixi
   ];
   goPkgs = with pkgs; [
     go
@@ -151,6 +153,7 @@ let
   lspPkgs = with pkgs; [
     astro-language-server
     bash-language-server
+    shellcheck
     tailwindcss-language-server
     vscode-langservers-extracted
     markdown-oxide
@@ -159,6 +162,7 @@ let
     yaml-language-server
     cmake-language-server
     neocmakelsp
+    lemminx
   ];
 in
 {

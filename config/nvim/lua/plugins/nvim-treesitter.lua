@@ -23,6 +23,7 @@ local langs = {
 	"toml",
 	"nix",
 	"astro",
+	"xml",
 }
 return {
 	"nvim-treesitter/nvim-treesitter",

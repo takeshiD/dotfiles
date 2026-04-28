@@ -1,12 +1,14 @@
 return {
 	"smjonas/inc-rename.nvim",
-    lazy = false,
+	-- lazy = false,
 	dependencies = {
 		"folke/snacks.nvim",
 	},
 	config = function()
 		require("inc_rename").setup({
 			input_buffer_type = "snacks",
+			show_message = false,
+			save_in_cmdline_history = false,
 		})
 		vim.keymap.set("n", "gn", function()
 			return ":IncRename " .. vim.fn.expand("<cword>")

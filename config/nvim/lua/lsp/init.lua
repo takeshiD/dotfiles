@@ -68,6 +68,7 @@ local ensure_installed = {
 	"gopls",
 	"golangci_lint_ls",
     "staticcheck",
+    "lemminx",
 }
 for _, lsp_name in pairs(ensure_installed) do
 	vim.lsp.enable(lsp_name)

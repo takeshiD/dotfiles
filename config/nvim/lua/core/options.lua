@@ -37,6 +37,7 @@ opt.showtabline = 4
 --===== Linenumber =====
 vim.wo.number = true
 vim.wo.relativenumber = true
+opt.cursorline = true
 opt.number = true
 opt.signcolumn = "yes:1"
 
