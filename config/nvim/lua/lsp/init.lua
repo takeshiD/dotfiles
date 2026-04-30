@@ -59,7 +59,6 @@ local ensure_installed = {
 	"nixd",
 	-- "taplo",
 	"tombi",
-	"cmake",
 	"neocmake",
 	"clangd",
 	"yamlls",
