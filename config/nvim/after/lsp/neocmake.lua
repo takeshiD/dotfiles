@@ -2,6 +2,8 @@ return {
 	cmd = { "neocmakelsp", "stdio" },
 	filetypes = { "cmake" },
 	root_markers = { ".neocmake.toml", ".git", "build", "cmake" },
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
+	single_file_support = true,
 	settings = {
 		neocmake = {
 			init_options = {

@@ -1,11 +1,16 @@
 -- Color scheme is specified in init.lua
 return {
 	{
-		dir = "~/ex_prog/ex_lua/plum.nvim",
+		-- dir = "~/ex_prog/ex_lua/plum.nvim",
+		"takeshid/plum.nvim",
 		lazy = false,
 		enabled = true,
 		priority = 1000,
-		-- opts = function() end,
+		config = function()
+			require("plum").setup({
+				variant = "auto",
+			})
+		end,
 	},
 	{
 		"nyoom-engineering/oxocarbon.nvim",

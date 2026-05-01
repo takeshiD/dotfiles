@@ -1,6 +1,16 @@
 return {
 	"saecki/crates.nvim",
 	tag = "stable",
+	keys = {
+		{
+			mode = { "n" },
+			"<leader>cc",
+			function()
+				require("crates").show_features_popup()
+			end,
+			desc = "Crates Fetures",
+		},
+	},
 	config = function()
 		require("crates").setup({
 			smart_insert = true,
@@ -199,6 +209,6 @@ return {
 				hover = false,
 			},
 		})
-		vim.keymap.set("n", "<leader>cc", require("crates").show_features_popup, { desc = "Crates Feature" })
+		-- vim.keymap.set("n", "<leader>cc", require("crates").show_features_popup, { desc = "Crates Feature" })
 	end,
 }

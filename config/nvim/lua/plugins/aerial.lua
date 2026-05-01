@@ -10,6 +10,7 @@ return {
 		{ mode = { "n" }, "go", "<cmd>AerialToggle float<CR>", desc = "LSP Outline" },
 	},
 	config = function()
+        require("telescope").load_extension("aerial")
 		require("aerial").setup({
 			backends = { "treesitter", "lsp", "markdown" },
 			layout = {
