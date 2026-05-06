@@ -23,6 +23,7 @@ font-family = "UDEV Gothic NF"
 # font-family = "HackGen Console NF"
 font-size = 12
 theme = "Carbonfox"
+# theme = "plum-dark"
 resize-overlay = never
 keybind = f11=toggle_fullscreen
 background-opacity = 1.0
@@ -34,3 +35,6 @@ adjust-cell-height = 0
 adjust-cell-width = 0
 desktop-notifications = false
 keybind = ctrl+slash=text:\x1f
+window-step-resize = true
+window-padding-balance = true
+window-padding-color = extend

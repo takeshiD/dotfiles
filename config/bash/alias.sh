@@ -18,3 +18,7 @@ fi
 if command -v bat > /dev/null 2>&1; then
     alias cat='bat'
 fi
+
+if command -v man > /dev/null 2>&1; then
+    alias man='batman'
+fi

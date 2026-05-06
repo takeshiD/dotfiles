@@ -24,6 +24,7 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     # bacon-ls.url = "github:crisidev/bacon-ls";
     ob-fish.url = "github:takeshid/ob.fish";
+    markdown-tui-explorer.url = "github:leboiko/markdown-reader";
   };
   outputs =
     {

@@ -23,6 +23,9 @@ let
   obfishPkgs = with inputs.ob-fish.packages.${pkgs.system}; [
     ob-fish-completion
   ];
+  markdowReaderPkgs = with inputs.markdown-tui-explorer.packages.${pkgs.system}; [
+    markdown-reader
+  ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -64,7 +67,7 @@ in
     shell = "both";
     enableCargoConfig = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs;
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs ++ markdowReaderPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "bash";
