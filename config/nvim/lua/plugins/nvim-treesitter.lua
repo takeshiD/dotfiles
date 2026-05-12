@@ -24,6 +24,7 @@ local langs = {
 	"nix",
 	"astro",
 	"xml",
+    "dockerfile",
 }
 return {
 	"nvim-treesitter/nvim-treesitter",

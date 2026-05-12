@@ -3,8 +3,7 @@ return {
 	dependencies = {
 		-- { dir = "~/ex_prog/ex_lua/hover-git.nvim" }, -- for dev
 		"takeshid/hover-git.nvim",
-		{ dir = "~/ex_prog/ex_lua/whyis.nvim" }, -- for dev
-		-- "takeshid/whyis.nvim",
+		"takeshid/whyis.nvim",
 	},
 	keys = {
 		{

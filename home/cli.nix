@@ -22,6 +22,7 @@ let
     git
     glab
     lazygit
+    git-lfs
   ];
   containerPkgs = with pkgs; [
     act
@@ -77,6 +78,8 @@ let
     # vega-lite
     # vega-cli
     imagemagick
+    # ansible
+    mdbook
   ];
   wslPkgs = with pkgs; [
     wslu

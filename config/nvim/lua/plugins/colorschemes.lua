@@ -1,7 +1,6 @@
 -- Color scheme is specified in init.lua
 return {
 	{
-		-- dir = "~/ex_prog/ex_lua/plum.nvim",
 		"takeshid/plum.nvim",
 		lazy = false,
 		enabled = true,
