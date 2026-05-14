@@ -85,3 +85,7 @@ vim.o.foldcolumn = "1"
 --############ Persistent ###########
 opt.undodir = vim.fn.expand("$HOME") .. "/.nvim/.undo"
 opt.undofile = true
+
+--########## Project Configure ###########
+vim.o.exrc = true
+vim.o.secure = true
