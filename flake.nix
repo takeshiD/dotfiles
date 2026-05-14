@@ -25,12 +25,15 @@
     # bacon-ls.url = "github:crisidev/bacon-ls";
     ob-fish.url = "github:takeshid/ob.fish";
     markdown-tui-explorer.url = "github:leboiko/markdown-reader";
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
     {
       nixpkgs,
       home-manager,
       nixos-wsl,
+      nix-index-database,
       ...
     }@inputs:
     let
@@ -119,6 +122,7 @@
         "tkcd@doppio" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
+            nix-index-database.homeModules.nix-index
             ./hosts/doppio.nix
           ];
           extraSpecialArgs = {

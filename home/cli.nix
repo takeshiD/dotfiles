@@ -78,8 +78,9 @@ let
     # vega-lite
     # vega-cli
     imagemagick
-    # ansible
+    ansible
     mdbook
+    google-cloud-sdk
   ];
   wslPkgs = with pkgs; [
     wslu
@@ -166,6 +167,7 @@ let
     cmake-language-server
     neocmakelsp
     lemminx
+    clang-tools
   ];
 in
 {

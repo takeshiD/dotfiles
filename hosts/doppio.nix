@@ -41,6 +41,13 @@ in
       enableBashIntegration = true;
       nix-direnv.enable = true;
     };
+    nix-index = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+    nix-index-database.comma = {
+      enable = true;
+    };
   };
   # inherit dotfilesPath;
   home.username = "tkcd";
