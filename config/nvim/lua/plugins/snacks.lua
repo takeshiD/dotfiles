@@ -15,7 +15,7 @@ return {
 				-- { section = "header" },
 				{
 					section = "terminal",
-					cmd = "figlet -f basic 'Neovim'",
+					cmd = "figlet -f basic 'UNSAFE'",
 					hl = "header",
 					height = 8,
 					padding = 1,
@@ -26,6 +26,16 @@ return {
 				{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
 				{ section = "startup" },
 			},
+            preset = {
+                header = [[
+        \
+         \
+            _~^~^~_
+        \) /  o o  \ (/
+          '_   -   _'
+          / '-----' \
+                ]]
+            }
 		},
 		indent = {
 			enabled = true,
