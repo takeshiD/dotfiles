@@ -50,9 +50,6 @@ in
     };
   };
   # inherit dotfilesPath;
-  home.username = "tkcd";
-  home.homeDirectory = "/home/tkcd";
-  home.stateVersion = "25.11";
   cli = {
     enableCore = true;
     enableGit = true;
@@ -74,6 +71,9 @@ in
     shell = "both";
     enableCargoConfig = true;
   };
+  home.username = "tkcd";
+  home.homeDirectory = "/home/tkcd";
+  home.stateVersion = "25.11";
   home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs ++ markdowReaderPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -105,4 +105,5 @@ in
       fi
     '';
   };
+  news.display = "silent";
 }
