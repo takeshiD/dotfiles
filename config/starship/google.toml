@@ -5,6 +5,7 @@
 format = """
 $username\
 $hostname\
+$custom\
 $directory\
 $git_branch\
 $git_status\
@@ -199,3 +200,13 @@ format = " [$symbol$version]($style)"
 # 改行設定
 [line_break]
 disabled = false
+
+
+[custom.gh]
+description = "Active GitHub CLI account"
+command = "awk '/^    user:/{print $2; exit}' ~/.config/gh/hosts.yml"
+when = "test -f ~/.config/gh/hosts.yml"                         
+symbol = " "
+style = "bold #666666"
+format = "[$symbol$output]($style) "    
+shell = ["bash", "--noprofile", "--norc"]
