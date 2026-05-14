@@ -186,7 +186,7 @@ disabled = false
 
 # AWS
 [aws]
-symbol = " "
+symbol = " "
 style = "#FBBC05"
 format = " [$symbol$profile]($style)"
 
