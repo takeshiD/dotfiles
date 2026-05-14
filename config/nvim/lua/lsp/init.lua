@@ -1,4 +1,4 @@
-require("vim.lsp.log").set_format_func(vim.inspect)
+-- require("vim.lsp.log").set_format_func(vim.inspect)
 -- vim.api.nvim_create_user_command("LspHealth", "checkhealth vim.lsp", { desc = "LSP Health Check" })
 vim.api.nvim_create_user_command("LspLog", function()
 	vim.cmd(string.format("tabnew %s", vim.lsp.log.get_filename()))
