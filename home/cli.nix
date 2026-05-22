@@ -7,11 +7,11 @@
 let
   corePkgs = with pkgs; [
     # bash
-    bash-completion
+    # bash-completion
     brush
     fish
     neovim
-    # nix-bash-completions
+    nix-bash-completions
     starship
     tmux
   ];
@@ -31,6 +31,8 @@ let
     lazydocker
     # podman
     # podman-tui
+    ssm-session-manager-plugin
+    influxdb2-cli
   ];
   miscPkgs = with pkgs; [
     bat
