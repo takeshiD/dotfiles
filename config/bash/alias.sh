@@ -22,3 +22,5 @@ fi
 if command -v man > /dev/null 2>&1; then
     alias man='batman'
 fi
+
+alias cdr='cd $(git rev-parse --show-toplevel)'
