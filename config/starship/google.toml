@@ -204,7 +204,7 @@ disabled = false
 
 [custom.gh]
 description = "Active GitHub CLI account"
-command = "awk '/^    user:/{print $2; exit}' ~/.config/gh/hosts.yml"
+command = "awk '/^    user:/{print $2; exit}' $GH_CONFIG_DIR/hosts.yml"
 when = "test -f ~/.config/gh/hosts.yml"                         
 symbol = " "
 style = "bold #666666"

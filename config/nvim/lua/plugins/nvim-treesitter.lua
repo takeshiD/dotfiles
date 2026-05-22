@@ -17,6 +17,7 @@ local langs = {
 	"css",
 	"json",
 	"make",
+	"cmake",
 	"python",
 	"scheme",
 	"yaml",
