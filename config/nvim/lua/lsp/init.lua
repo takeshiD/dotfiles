@@ -60,6 +60,7 @@ local ensure_installed = {
 	-- "taplo",
 	"tombi",
 	"neocmake",
+	"cmake",
 	"clangd",
 	"yamlls",
 	"hls",
