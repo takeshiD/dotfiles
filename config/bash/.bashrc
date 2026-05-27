@@ -64,7 +64,6 @@ if [ -d "$COMPLETION_DIR" ];then
     done
 fi
 
-
 #=======================================================
 # Prompt Look and Feel
 #=======================================================
@@ -90,7 +89,6 @@ fi
 if command -v direnv > /dev/null 2>&1; then
     eval "$(direnv hook bash)"
 fi
-
 
 #=======================================================
 # Custom commands

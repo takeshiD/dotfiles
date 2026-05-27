@@ -83,6 +83,7 @@ let
     ansible
     mdbook
     google-cloud-sdk
+    ookla-speedtest
   ];
   wslPkgs = with pkgs; [
     wslu
