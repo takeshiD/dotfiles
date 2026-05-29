@@ -64,6 +64,42 @@ if [ -d "$COMPLETION_DIR" ];then
     done
 fi
 
+# gh completion
+if command -v gh > /dev/null 2>&1; then
+    eval "$(gh completion --shell bash)"
+fi
+
+# glab completion
+if command -v glab > /dev/null 2>&1; then
+    eval "$(glab completion --shell bash)"
+fi
+
+# influx completion
+if command -v influx > /dev/null 2>&1; then
+    eval "$(influx completion bash)"
+fi
+
+# linear completion
+if command -v linear > /dev/null 2>&1; then
+    eval "$(linear completions bash)"
+fi
+
+# delta completion
+if command -v delta > /dev/null 2>&1; then
+    eval "$(delta --generate-completion bash)"
+fi
+
+# ripgrep completion
+if command -v rg > /dev/null 2>&1; then
+    eval "$(rg --generate=complete-bash)"
+fi
+
+# rustup, cargo completion
+if command -v rustup > /dev/null 2>&1; then
+    eval "$(rustup completions bash rustup)"
+    eval "$(rustup completions bash cargo)"
+fi
+
 #=======================================================
 # Prompt Look and Feel
 #=======================================================
