@@ -37,6 +37,7 @@ in
     ".config/wezterm".source = mkLink "${cfg.path}/config/wezterm";
     ".config/containers".source = mkLink "${cfg.path}/config/containers";
     ".config/tombi".source = mkLink "${cfg.path}/config/tombi";
+    ".config/gh-dash".source = mkLink "${cfg.path}/config/gh-dash";
   }
   // lib.optionalAttrs (cfg.shell == "bash" || cfg.shell == "both") {
     ".bashrc".source = mkLink "${cfg.path}/config/bash/.bashrc";
