@@ -38,6 +38,8 @@ in
     ".config/containers".source = mkLink "${cfg.path}/config/containers";
     ".config/tombi".source = mkLink "${cfg.path}/config/tombi";
     ".config/gh-dash".source = mkLink "${cfg.path}/config/gh-dash";
+    ".config/mdpeek".source = mkLink "${cfg.path}/config/mdpeek";
+    ".config/tmux-deck/config.toml".source = mkLink "${cfg.path}/config/tmux-deck/config.toml";
   }
   // lib.optionalAttrs (cfg.shell == "bash" || cfg.shell == "both") {
     ".bashrc".source = mkLink "${cfg.path}/config/bash/.bashrc";
