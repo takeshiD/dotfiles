@@ -58,8 +58,9 @@ keymap.set("v", ":", ";")
 
 --############# LSP-keyboard ###############
 vim.keymap.set("n", "gf", function()
-	vim.lsp.buf.format({ async = true })
-end, { desc = "LSP Formatting" })
+	-- conform に formatter があればそれを使い、無ければ LSP にフォールバック
+	require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "Formatting" })
 vim.keymap.set("n", "g]", function()
 	vim.diagnostic.jump({ count = 1, float = false })
 end, { desc = "LSP Diagnostic Next" })

@@ -61,7 +61,7 @@ return {
 			},
 		},
 		input = { enabled = true },
-		image = { enabled = false },
+		image = { enabled = true },
 		explorer = { enabled = false },
 	},
     -- stylua: ignore

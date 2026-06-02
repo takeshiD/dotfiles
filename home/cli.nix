@@ -26,7 +26,7 @@ let
   ];
   containerPkgs = with pkgs; [
     act
-    aws-cdk-cli
+    # aws-cdk-cli
     awscli2
     lazydocker
     # podman

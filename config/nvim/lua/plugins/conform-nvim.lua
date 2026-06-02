@@ -4,6 +4,8 @@ return {
 		formatters_by_ft = {
 			markdown = { "injected" },
 			lua = { "stylua" },
+			typescript = { "biome" },
+			typescriptreact = { "biome" },
 		},
 	},
 }
