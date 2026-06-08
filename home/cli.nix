@@ -86,7 +86,7 @@ let
     ookla-speedtest
   ];
   wslPkgs = with pkgs; [
-    wslu
+    # wslu
     wl-clipboard
   ];
   gccPkgs = with pkgs; [

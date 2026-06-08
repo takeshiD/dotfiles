@@ -16,6 +16,9 @@ let
   ];
 in
 {
+  wsl.enable = true;
+  wsl.useWindowsDriver = true;
+  hardware.graphics.enable = true;
   nixpkgs.config.allowUnfree = true;
   imports = [
     ../home/cli.nix
