@@ -52,6 +52,7 @@
     enabled = true;
     appendWindowsPath = false;
   };
+  wsl.useWindowsDriver = true;
   wsl.wslConf.network.hostname = "icedog";
   system.stateVersion = "25.11"; # Did you read the comment?
 }

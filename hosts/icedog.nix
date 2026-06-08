@@ -14,11 +14,13 @@ let
   tmuxDeckPkgs = with inputs.tmux-deck.packages.${pkgs.system}; [
     tmux-deck
   ];
+  mdpeekPkgs = with inputs.markdown-peek.packages.${pkgs.system}; [
+    markdown-peek
+  ];
 in
 {
-  wsl.enable = true;
-  wsl.useWindowsDriver = true;
-  hardware.graphics.enable = true;
+  # wsl.* / hardware.* are NixOS options handled in nixos/icedog/wsl.nix,
+  # not valid in this home-manager configuration.
   nixpkgs.config.allowUnfree = true;
   imports = [
     ../home/cli.nix
@@ -38,28 +40,28 @@ in
   home.stateVersion = "25.11";
   # nixfmt: off
   cli = {
-    enableCore      = true;
-    enableGit       = true;
+    enableCore = true;
+    enableGit = true;
     enableContainer = true;
-    enableMisc      = true;
-    enableWsl       = true;
-    enableGcc       = false;
-    enableClang     = true;
-    enableRust      = true;
-    enablePython    = true;
-    enableGo        = true;
-    enableNodejs    = true;
-    enableHaskell   = false;
-    enableLua       = true;
-    enableNix       = true;
-    enableLsp       = true;
+    enableMisc = true;
+    enableWsl = true;
+    enableGcc = false;
+    enableClang = true;
+    enableRust = true;
+    enablePython = true;
+    enableGo = true;
+    enableNodejs = true;
+    enableHaskell = false;
+    enableLua = true;
+    enableNix = true;
+    enableLsp = true;
   };
   # nixfmt: on
   dotfiles = {
     shell = "both";
     enableCargoConfig = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ [ pkgs.pgcli ];
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ mdpeekPkgs ++ [ pkgs.pgcli ];
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "fish";
