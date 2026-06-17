@@ -1,10 +1,14 @@
 prSections:
-  - title: My Pull Requests
+  - title: 󰅺 Needs Your Review
+    filters: is:open -reviewed-by:@me review-requested:@me -author:@me
+  - title: 󰅿 Reviewed
+    filters: is:open reviewed-by:@me -review-requested:@me -author:@me
+  - title:  My PR
     filters: is:open author:@me
-  - title: Needs My Review
-    filters: is:open review-requested:@me
-  - title: Involved
-    filters: is:open involves:@me -author:@me
+  - title:  Re-Requested
+    filters: is:open reviewed-by:@me review-requested:@me -author:@me
+  - title:  Drafts
+    filters: is:open is:draft review-requested:@me -author:@me
 issuesSections:
   - title: My Issues
     filters: is:open author:@me
@@ -78,10 +82,19 @@ defaults:
   refetchIntervalMinutes: 30
 keybindings:
   universal:
-    - key: tab
+    - key: ctrl+n
       builtin: nextSection
-    - key: shift+tab
+    - key: ctrl+p
       builtin: prevSection
+    - key: ctrl+j
+      builtin: pageDown
+    - key: ctrl+k
+      builtin: pageUp
+  prs:
+    - key: tab
+      builtin: nextSidebarTab
+    - key: shift+tab
+      builtin: prevSidebarTab
 repoPaths: {}
 theme:
   ui:

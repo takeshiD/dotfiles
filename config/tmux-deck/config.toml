@@ -55,12 +55,12 @@ preset = "nord"
 quit           = ["q", "Esc"]
 refresh        = "r"
 sort           = "s"            # TreeView + Sessions focus only
-group          = "g"            # TreeView + Sessions focus only
-input          = "i"
+group          = "C-g"            # TreeView + Sessions focus only
+input          = "C-i"
 enter          = "Enter"
-new_session    = "n"
-rename_session = "r"
-kill_session   = "x"
+new_session    = "C-n"
+rename_session = "C-r"
+kill_session   = "C-x"
 
 # -----------------------------------------------------------------------------
 # Markers shown for hook-driven agent states. Each marker has a `glyph` and a

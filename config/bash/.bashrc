@@ -100,6 +100,12 @@ if command -v rustup > /dev/null 2>&1; then
     eval "$(rustup completions bash cargo)"
 fi
 
+# colcon, ros2
+if command -v register-python-argcomplete > /dev/null 2>&1; then
+    eval "$(register-python-argcomplete ros2)"
+    eval "$(register-python-argcomplete colcon)"
+fi
+
 #=======================================================
 # Prompt Look and Feel
 #=======================================================

@@ -29,8 +29,6 @@ let
     # aws-cdk-cli
     awscli2
     lazydocker
-    # podman
-    # podman-tui
     ssm-session-manager-plugin
     influxdb2-cli
   ];
@@ -74,11 +72,8 @@ let
     zip
     zk
     zoxide
-    binwalk
     file
     coreutils
-    # vega-lite
-    # vega-cli
     imagemagick
     ansible
     mdbook
