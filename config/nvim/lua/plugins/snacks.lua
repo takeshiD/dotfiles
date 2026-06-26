@@ -63,6 +63,7 @@ return {
 		input = { enabled = true },
 		image = { enabled = true },
 		explorer = { enabled = false },
+		bigfile = { enabled = true },
 	},
     -- stylua: ignore
 	-- keys = {
