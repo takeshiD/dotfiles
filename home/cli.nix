@@ -79,6 +79,7 @@ let
     mdbook
     google-cloud-sdk
     ookla-speedtest
+    lnav
   ];
   wslPkgs = with pkgs; [
     # wslu

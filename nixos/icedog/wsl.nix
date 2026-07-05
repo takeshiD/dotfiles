@@ -30,7 +30,21 @@
     git
     home-manager
     docker
+    tailscale
+    gh-markdown-preview
   ];
+  services.tailscale.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
+  };
+  networking.firewall = {
+    trustedInterfaces = [ "tailscale0" ];
+    allowedUDPPorts = [ config.services.tailscale.port ];
+  };
   programs.nix-ld.enable = true;
   security.pki.certificates = [
   ];
@@ -54,5 +68,5 @@
   };
   wsl.useWindowsDriver = true;
   wsl.wslConf.network.hostname = "icedog";
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "26.11"; # Did you read the comment?
 }
