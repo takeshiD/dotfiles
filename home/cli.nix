@@ -80,6 +80,7 @@ let
     google-cloud-sdk
     ookla-speedtest
     silicon
+    lnav
   ];
   wslPkgs = with pkgs; [
     # wslu

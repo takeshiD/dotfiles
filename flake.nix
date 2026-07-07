@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tmux-deck.url = "github:takeshid/tmux-deck";
-    markdown-peek.url = "github:takeshid/markdown-peek";
+    markdown-peek.url = "github:takeshid/markdown-peek/v0.1.9";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
     llm-agents.url = "github:numtide/llm-agents.nix";

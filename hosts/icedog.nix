@@ -17,6 +17,9 @@ let
   mdpeekPkgs = with inputs.markdown-peek.packages.${pkgs.system}; [
     markdown-peek
   ];
+  gfmPreviewPkgs = with inputs.gfm-preview.packages.${pkgs.system}; [
+    gh-gfm-preview
+  ];
 in
 {
   # wsl.* / hardware.* are NixOS options handled in nixos/icedog/wsl.nix,
@@ -37,7 +40,7 @@ in
   # inherit dotfilesPath;
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.11";
   # nixfmt: off
   cli = {
     enableCore = true;
@@ -61,7 +64,7 @@ in
     shell = "both";
     enableCargoConfig = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ mdpeekPkgs ++ [ pkgs.pgcli ];
+  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ mdpeekPkgs ++ gfmPreviewPkgs ++ [ pkgs.pgcli ];
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "fish";

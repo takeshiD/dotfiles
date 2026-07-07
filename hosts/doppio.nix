@@ -76,7 +76,7 @@ in
   };
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.11";
   home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs ++ markdowReaderPkgs ++ mdpeekPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
