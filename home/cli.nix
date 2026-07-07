@@ -54,7 +54,7 @@ let
     less
     lsd
     eza
-    openssh
+    # openssh
     # openssl
     pandoc
     pgcli
@@ -79,6 +79,7 @@ let
     mdbook
     google-cloud-sdk
     ookla-speedtest
+    silicon
   ];
   wslPkgs = with pkgs; [
     # wslu
