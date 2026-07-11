@@ -15,26 +15,36 @@
   ];
 
   boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
     "nvme"
+    "ahci"
+    "xhci_pci"
     "usb_storage"
+    "usbhid"
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [
-    "kvm-intel"
-    "btusb"
-  ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/360d017a-c2cd-48bf-a0c4-859c4f5efed9";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/dbc5547a-b794-43de-8e39-15f3195af4ee";
+    fsType = "btrfs";
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/dbc5547a-b794-43de-8e39-15f3195af4ee";
+    fsType = "btrfs";
+    options = [ "subvol=home" ];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/dbc5547a-b794-43de-8e39-15f3195af4ee";
+    fsType = "btrfs";
+    options = [ "subvol=nix" ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/A40F-1783";
+    device = "/dev/disk/by-uuid/8C34-2C7A";
     fsType = "vfat";
     options = [
       "fmask=0077"
@@ -43,12 +53,11 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/be258e7a-01d7-42ab-8614-eff7a2397cf0"; }
+    { device = "/dev/disk/by-uuid/d516361b-709c-4426-86da-72c9f3cb33a4"; }
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.enableRedistributableFirmware = true;
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;

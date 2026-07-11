@@ -42,7 +42,7 @@ in
   # inherit dotfilesPath;
   home.username = "tkcd";
   home.homeDirectory = "/home/tkcd";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
   cli = {
     enableCore = true;
     enableGit = true;
@@ -61,13 +61,13 @@ in
     enableLsp = true;
   };
   dotfiles = {
-    shell = "both";
+    shell = "bash";
     enableCargoConfig = true;
   };
   home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
-    DEFAULT_SHELL = "fish";
+    DEFAULT_SHELL = "bash";
     PNPM_HOME = "$HOME/.local/share/pnpm";
   };
   home.sessionPath = [
