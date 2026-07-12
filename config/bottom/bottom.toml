@@ -45,7 +45,7 @@
 # Expand selected widget upon starting the app
 #expanded = true
 # Use basic mode
-basic = true
+basic = false
 # Use the old network legend style
 #use_old_network_legend = false
 # Remove space in tables
@@ -71,7 +71,7 @@ process_command = false
 # Hides advanced options to stop a process on Unix-like systems.
 #disable_advanced_kill = false
 # Shows GPU(s) information
-#enable_gpu = false
+enable_gpu = true
 # Shows cache and buffer memory
 #enable_cache_memory = false
 # How much data is stored at once in terms of time.

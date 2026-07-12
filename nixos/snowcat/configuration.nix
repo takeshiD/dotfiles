@@ -55,13 +55,6 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-mozc
-    ];
-  };
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -141,6 +134,26 @@
 
     };
   };
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-cuda;
+    loadModels = [
+      "gemma3:27b"
+      "gemma4:e4b"
+      "gemma4:12b"
+      "gemma4:26b"
+      "qwen3.5:9b"
+      "qwen3.5:27b"
+      "qwen3.6:27b"
+    ];
+  };
+  services.resolved.enable = true;
+  services.tailscale.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
   ###################################################
   # Power Management and Behaviour closing the lid. #
   # > see https://wiki.nixos.org/wiki/Laptop        #
@@ -191,9 +204,12 @@
     nixos-container
     usbutils
     pciutils
+    (ollama.override {
+      acceleration = "cuda";
+    })
   ];
   nixpkgs.config = {
-    allowUnfree = false;
+    allowUnfree = true;
   };
   virtualisation.docker = {
     enable = true;
@@ -241,7 +257,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

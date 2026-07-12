@@ -68,6 +68,7 @@
         "tkcd@snowcat" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
+            nix-index-database.homeModules.nix-index
             ./hosts/snowcat.nix
           ];
           extraSpecialArgs = {
