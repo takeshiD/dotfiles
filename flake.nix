@@ -18,12 +18,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # my tools
     tmux-deck.url = "github:takeshid/tmux-deck";
     markdown-peek.url = "github:takeshid/markdown-peek/v0.1.9";
+    ioskeley-mono-jp.url = "github:takeshid/IoskeleyMonoJP";
+    # thirdparty
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
     llm-agents.url = "github:numtide/llm-agents.nix";
-    # bacon-ls.url = "github:crisidev/bacon-ls";
     ob-fish.url = "github:takeshid/ob.fish";
     markdown-tui-explorer.url = "github:leboiko/markdown-reader";
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -48,6 +50,9 @@
           modules = [
             ./nixos/snowcat
           ];
+          specialArgs = {
+            inherit (inputs) ioskeley-mono-jp;
+          };
         };
         "icedog" = nixpkgs.lib.nixosSystem {
           inherit system;

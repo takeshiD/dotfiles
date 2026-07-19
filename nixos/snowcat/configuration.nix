@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ioskeley-mono-jp,
+  ...
+}:
 {
   nix.settings = {
     trusted-users = [
@@ -145,6 +150,7 @@
       "qwen3.5:9b"
       "qwen3.5:27b"
       "qwen3.6:27b"
+      "qwen3.6:27b"
     ];
   };
   services.resolved.enable = true;
@@ -171,13 +177,20 @@
     # "lock": screen lock only
     # Battely supply
     # HandleLidSwitch = "suspend-then-hibernate";
-    HandleLidSwitch = "suspend";
+    IdleAction = "ignore";
+    HandleLidSwitch = "ignore";
     # Power is connected
-    HandleLidSwitchExternalPower = "suspend";
+    HandleLidSwitchExternalPower = "ignore";
     # Another screen is connected(cram shell)
     HandleLidSwitchDocked = "ignore";
   };
   powerManagement.powertop.enable = true;
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = false;
+    AllowHibernation = false;
+    AllowHybridSleep = false;
+    AllowSuspendThenHibernate = false;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tkcd = {
@@ -215,19 +228,22 @@
     enable = true;
   };
   fonts = {
-    packages = with pkgs; [
-      hackgen-nf-font
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
-      fira-code
-      fira-code-symbols
-      dina-font
-      proggyfonts
-      udev-gothic-nf
-      font-awesome
-      cantarell-fonts
-    ];
+    packages =
+      with pkgs;
+      [
+        hackgen-nf-font
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+        fira-code
+        fira-code-symbols
+        dina-font
+        proggyfonts
+        udev-gothic-nf
+        font-awesome
+        cantarell-fonts
+      ]
+      ++ [ ioskeley-mono-jp.packages.${pkgs.system}.default ];
     fontconfig = {
       enable = true;
       defaultFonts = {
@@ -272,13 +288,80 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
-  # ...
-  # services.postgresql = {
-  #   enable = true;
-  #   ensureDatabases = [ "mydatabase" ];
-  #   authentication = pkgs.lib.mkOverride 10 ''
-  #     #type database  DBuser  auth-method
-  #     local all       all     trust
-  #   '';
-  # };
+  services.jupyterhub = {
+    enable = false;
+    host = "0.0.0.0";
+    port = 9999;
+    kernels = {
+      python3 =
+        let
+          env = (
+            pkgs.python3.withPackages (
+              pythonPackages: with pythonPackages; [
+                ipykernel
+                pandas
+                scikit-learn
+                scikit-image
+                ipympl
+                plotly
+                ipywidgets
+                numpy
+                matplotlib
+                torch-bin
+                torchvision-bin
+                pyvista
+                vtk
+
+              ]
+            )
+          );
+        in
+        {
+          displayName = "Python 3 for machine learning";
+          argv = [
+            "${env.interpreter}"
+            "-m"
+            "ipykernel_launcher"
+            "-f"
+            "{connection_file}"
+          ];
+          language = "python";
+          logo32 = "${env}/${env.sitePackages}/ipykernel/resources/logo-32x32.png";
+          logo64 = "${env}/${env.sitePackages}/ipykernel/resources/logo-64x64.png";
+        };
+    };
+    extraConfig = ''
+      c.Authenticator.allowed_users = {"tkcd"}
+      c.Authenticator.admin_users = {"tkcd"}
+
+      import os, pwd, json
+
+      BASE = "/var/lib/jupyterhub/users"
+
+      # ノートブックのルート({username}はJupyterHubが展開)
+      c.Spawner.notebook_dir = BASE + "/{username}/notebooks"
+
+      def pre_spawn_hook(spawner):
+          name = spawner.user.name
+          uid = pwd.getpwnam(name).pw_uid
+          gid = pwd.getpwnam(name).pw_gid
+          root = os.path.join(BASE, name)
+
+          for sub in ("notebooks", "data", "config", "lab-settings", "workspaces"):
+              d = os.path.join(root, sub)
+              os.makedirs(d, exist_ok=True)
+              os.chown(d, uid, gid)
+          os.chown(root, uid, gid)
+
+          # ~/.jupyter や ~/.local/share/jupyter を使わせない
+          spawner.environment.update({
+              "JUPYTER_DATA_DIR": f"{root}/data",
+              "JUPYTER_CONFIG_DIR": f"{root}/config",
+              "JUPYTERLAB_SETTINGS_DIR": f"{root}/lab-settings",
+              "JUPYTERLAB_WORKSPACES_DIR": f"{root}/workspaces",
+          })
+
+      c.Spawner.pre_spawn_hook = pre_spawn_hook
+        '';
+  };
 }
