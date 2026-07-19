@@ -102,7 +102,7 @@ fi
 
 # tailscale
 if command -v tailscale > /dev/null 2>&1; then
-    eval "$(tailscale completions bash)"
+    eval "$(tailscale completion bash)"
 fi
 
 # colcon, ros2
@@ -136,6 +136,8 @@ fi
 if command -v direnv > /dev/null 2>&1; then
     eval "$(direnv hook bash)"
 fi
+
+alias ip='ip -color=auto'
 
 #=======================================================
 # Custom commands
