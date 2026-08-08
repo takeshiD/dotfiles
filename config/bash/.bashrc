@@ -105,6 +105,11 @@ if command -v tailscale > /dev/null 2>&1; then
     eval "$(tailscale completion bash)"
 fi
 
+# hexyl
+if command -v hexyl > /dev/null 2>&1; then
+    eval "$(hexyl --completion bash)"
+fi
+
 # colcon, ros2
 if command -v register-python-argcomplete > /dev/null 2>&1; then
     eval "$(register-python-argcomplete ros2)"

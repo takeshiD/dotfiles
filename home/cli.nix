@@ -81,6 +81,9 @@ let
     ookla-speedtest
     silicon
     lnav
+    tshark
+    ov
+    mcap-cli
   ];
   wslPkgs = with pkgs; [
     # wslu
