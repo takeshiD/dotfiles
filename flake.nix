@@ -54,20 +54,6 @@
             inherit (inputs) ioskeley-mono-jp;
           };
         };
-        "icedog" = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            nixos-wsl.nixosModules.wsl
-            ./nixos/icedog
-          ];
-        };
-        "samoyed" = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            nixos-wsl.nixosModules.wsl
-            ./nixos/samoyed
-          ];
-        };
       };
       homeConfigurations = {
         "tkcd@snowcat" = home-manager.lib.homeManagerConfiguration {
@@ -75,52 +61,6 @@
           modules = [
             nix-index-database.homeModules.nix-index
             ./hosts/snowcat.nix
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
-        # Company Laptop
-        "tkcd@americano" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./hosts/americano.nix
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
-        "tkcd@espresso" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./hosts/espresso.nix
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
-        "tkcd@cafelatte" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./hosts/cafelatte.nix
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
-        "tkcd@icedog" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./hosts/icedog.nix
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
-        "tkcd@samoyed" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./hosts/samoyed.nix
           ];
           extraSpecialArgs = {
             inherit inputs;
