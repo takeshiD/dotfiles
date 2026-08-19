@@ -4,10 +4,10 @@ Personal dotfiles managed with [Nix Flakes](https://nixos.wiki/wiki/Flakes) and 
 
 ## Machines
 
-| Host            | Env    | OS          | GUI   | IME         | Description  |
-| ------          | ----   | -----       | ----- | ----        | -----        |
-| ❄  tkcd@snowcat | Native | NixOS       | GNOME | fcitx5-mozc | main desktop |
-| ☕︎ tkcd@doppio  | Native | Ubuntu24.04 | GNOME | fcitx5-mozc | main laptop  |
+| Host           | Env    | OS          | GUI   | IME         | Description  |
+| ------         | ----   | -----       | ----- | ----        | -----        |
+| ❄ tkcd@snowcat | Native | NixOS       | GNOME | fcitx5-mozc | main desktop |
+| ☕︎ tkcd@doppio | Native | Ubuntu24.04 | GNOME | fcitx5-mozc | main laptop  |
 
 ## Directory Structure
 
@@ -68,12 +68,43 @@ sudo nixos-rebuild switch --flake .#dev-laptop
 ### Apply home-manager Configuration
 
 ```bash
-# Personal laptop
-home-manager switch --flake .#tkcd@dev-laptop
+# main desktop
+home-manager switch --flake .#tkcd@snowcat
 
-# Company laptop
-home-manager switch --flake .#tkcd@company-laptop
+# main laptop
+home-manager switch --flake .#tkcd@doppio
+
+# any other machine (user and home directory taken from the environment)
+home-manager switch --flake .#local --impure
 ```
+
+### The `local` Configuration
+
+`.#local` is for machines whose account name or hostname must not be recorded
+in this public repository - for example a work machine where the login name
+contains a real name or an employer domain.
+
+Such values cannot be hidden by encryption, because Nix needs them at
+evaluation time. So they are not written down at all: `.#local` reads them from
+the environment instead.
+
+```nix
+home.username = requireEnv "USER";
+home.homeDirectory = requireEnv "HOME";
+```
+
+Notes:
+
+- `--impure` is required. Flakes block environment variables during pure
+  evaluation, and without it the run stops with an explicit error message.
+- `.#local` builds on `hosts/doppio.nix`. Its `home.username` and
+  `home.homeDirectory` are declared with `lib.mkDefault`, so `.#local`
+  overrides them.
+- `dotfiles.path` follows `$HOME/dotfiles`. Clone this repository to
+  `~/dotfiles` on those machines as usual, since the `config/` files are
+  symlinked from there.
+- Machine specific settings, if any are ever needed, belong outside this
+  repository. Keep `.#local` free of them.
 
 ### Apply NixOS Configuration
 
