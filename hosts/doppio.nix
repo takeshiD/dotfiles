@@ -74,8 +74,8 @@ in
     shell = "both";
     enableCargoConfig = true;
   };
-  home.username = "tkcd";
-  home.homeDirectory = "/home/tkcd";
+  home.username = lib.mkDefault "tkcd";
+  home.homeDirectory = lib.mkDefault "/home/tkcd";
   home.stateVersion = "26.11";
   home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs ++ markdowReaderPkgs ++ mdpeekPkgs;
   home.sessionVariables = {

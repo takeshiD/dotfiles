@@ -42,6 +42,17 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      # flake は既定で pure eval のため getEnv は空文字列になる。
+      # 素通しすると分かりにくい失敗をするので、明示的に落とす。
+      requireEnv =
+        name:
+        let
+          value = builtins.getEnv name;
+        in
+        if value == "" then
+          throw "環境変数 ${name} を取得できません。--impure を付けて実行してください。"
+        else
+          value;
     in
     {
       nixosConfigurations = {
@@ -71,6 +82,23 @@
           modules = [
             nix-index-database.homeModules.nix-index
             ./hosts/doppio.nix
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
+        # 利用者名やホスト名をこのリポジトリに残したくない環境向け。
+        # 実行時の $USER / $HOME から解決するため --impure が必要。
+        #   home-manager switch --flake .#local --impure
+        "local" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            nix-index-database.homeModules.nix-index
+            ./hosts/doppio.nix
+            {
+              home.username = requireEnv "USER";
+              home.homeDirectory = requireEnv "HOME";
+            }
           ];
           extraSpecialArgs = {
             inherit inputs;
