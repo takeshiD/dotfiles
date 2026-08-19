@@ -84,6 +84,7 @@ let
     tshark
     ov
     mcap-cli
+    gdrive3
   ];
   wslPkgs = with pkgs; [
     # wslu
@@ -177,6 +178,7 @@ in
 {
   imports = [
     ../modules/cli-options.nix
+    # ./rustup-nix-runtime.nix
   ];
 
   home.packages =
