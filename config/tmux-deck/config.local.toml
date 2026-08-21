@@ -1,6 +1,6 @@
 # tmux-deck configuration (local構成向け)
 #
-# dotfiles.enableTmuxLocal が有効なとき、config.toml の代わりに
+# dotfiles.enableLocalOverrides が有効なとき、config.toml の代わりに
 # ~/.config/tmux-deck/config.toml へ記号リンクされる。
 # テーマ以外は config.toml と同期を保つこと。
 #

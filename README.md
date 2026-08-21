@@ -105,12 +105,16 @@ Notes:
   symlinked from there.
 - Machine specific settings, if any are ever needed, belong outside this
   repository. Keep `.#local` free of them.
-- tmux behaves differently under `.#local`: `dotfiles.enableTmuxLocal` symlinks
-  `config/tmux/local.conf` to `~/.config/tmux/local.conf`, which `.tmux.conf`
-  sources to switch the prefix back to `Ctrl+b` and set the tmux2k theme to
-  `duo`. It also points `~/.config/tmux-deck/config.toml` at
-  `config/tmux-deck/config.local.toml` (gruvbox theme) instead of
-  `config/tmux-deck/config.toml`.
+- Some tools behave differently under `.#local` via
+  `dotfiles.enableLocalOverrides`:
+  - tmux: `config/tmux/local.conf` is symlinked to `~/.config/tmux/local.conf`,
+    which `.tmux.conf` sources to switch the prefix back to `Ctrl+b` and set
+    the tmux2k theme to `duo`.
+  - tmux-deck: `~/.config/tmux-deck/config.toml` points at
+    `config/tmux-deck/config.local.toml` (gruvbox theme) instead of
+    `config/tmux-deck/config.toml`.
+  - starship: `~/.config/starship/starship.toml` points at
+    `config/starship/gruvbox.toml` instead of `config/starship/starship.toml`.
 
 ### Apply NixOS Configuration
 
