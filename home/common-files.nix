@@ -32,9 +32,12 @@ in
     ".config/nvim".source = mkLink "${cfg.path}/config/nvim";
     ".config/lazygit".source = mkLink "${cfg.path}/config/lazygit";
     ".config/bottom".source = mkLink "${cfg.path}/config/bottom";
-    ".config/starship/starship.toml".source = mkLink "${cfg.path}/config/starship/${
-      if cfg.enableLocalOverrides then "gruvbox.toml" else "starship.toml"
-    }";
+    ".config/starship/starship.toml" = {
+      source = mkLink "${cfg.path}/config/starship/${
+        if cfg.enableLocalOverrides then "gruvbox.toml" else "starship.toml"
+      }";
+      force = true;
+    };
     ".config/lsd".source = mkLink "${cfg.path}/config/lsd";
     ".config/clangd".source = mkLink "${cfg.path}/config/clangd";
     ".config/ghostty".source = mkLink "${cfg.path}/config/ghostty";
