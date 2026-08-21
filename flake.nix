@@ -98,6 +98,7 @@
             {
               home.username = requireEnv "USER";
               home.homeDirectory = requireEnv "HOME";
+              dotfiles.enableTmuxLocal = true;
             }
           ];
           extraSpecialArgs = {

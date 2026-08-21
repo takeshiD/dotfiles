@@ -22,6 +22,8 @@ in
     };
 
     enableCargoConfig = lib.mkEnableOption "symlink .cargo/config.toml";
+
+    enableTmuxLocal = lib.mkEnableOption "tmux overrides for the local configuration (prefix C-b, tmux2k duo theme, tmux-deck gruvbox theme)";
   };
 
   config.home.file = {
@@ -39,7 +41,9 @@ in
     ".config/tombi".source = mkLink "${cfg.path}/config/tombi";
     ".config/gh-dash".source = mkLink "${cfg.path}/config/gh-dash";
     ".config/mdpeek".source = mkLink "${cfg.path}/config/mdpeek";
-    ".config/tmux-deck/config.toml".source = mkLink "${cfg.path}/config/tmux-deck/config.toml";
+    ".config/tmux-deck/config.toml".source = mkLink "${cfg.path}/config/tmux-deck/${
+      if cfg.enableTmuxLocal then "config.local.toml" else "config.toml"
+    }";
   }
   // lib.optionalAttrs (cfg.shell == "bash" || cfg.shell == "both") {
     ".bashrc".source = mkLink "${cfg.path}/config/bash/.bashrc";
@@ -50,5 +54,8 @@ in
   }
   // lib.optionalAttrs cfg.enableCargoConfig {
     ".cargo/config.toml".source = mkLink "${cfg.path}/config/cargo/config.toml";
+  }
+  // lib.optionalAttrs cfg.enableTmuxLocal {
+    ".config/tmux/local.conf".source = mkLink "${cfg.path}/config/tmux/local.conf";
   };
 }

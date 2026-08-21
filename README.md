@@ -105,6 +105,12 @@ Notes:
   symlinked from there.
 - Machine specific settings, if any are ever needed, belong outside this
   repository. Keep `.#local` free of them.
+- tmux behaves differently under `.#local`: `dotfiles.enableTmuxLocal` symlinks
+  `config/tmux/local.conf` to `~/.config/tmux/local.conf`, which `.tmux.conf`
+  sources to switch the prefix back to `Ctrl+b` and set the tmux2k theme to
+  `duo`. It also points `~/.config/tmux-deck/config.toml` at
+  `config/tmux-deck/config.local.toml` (gruvbox theme) instead of
+  `config/tmux-deck/config.toml`.
 
 ### Apply NixOS Configuration
 
