@@ -34,7 +34,7 @@ in
     ".config/bottom".source = mkLink "${cfg.path}/config/bottom";
     ".config/starship/starship.toml" = {
       source = mkLink "${cfg.path}/config/starship/${
-        if cfg.enableLocalOverrides then "gruvbox.toml" else "starship.toml"
+        if cfg.enableLocalOverrides then "gruvbox.toml" else "google.toml"
       }";
       force = true;
     };
