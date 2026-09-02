@@ -85,6 +85,7 @@ let
     ov
     mcap-cli
     gdrive3
+    inotify-tools
   ];
   wslPkgs = with pkgs; [
     # wslu
@@ -97,6 +98,9 @@ let
     cmake
     mold
     cmake-language-server
+    automake
+    autoconf
+    libtool
   ];
   clangPkgs = with pkgs; [
     clang
@@ -106,6 +110,9 @@ let
     cmake
     mold
     cmake-language-server
+    automake
+    autoconf
+    libtool
   ];
   rustPkgs = with pkgs; [
     rustup
