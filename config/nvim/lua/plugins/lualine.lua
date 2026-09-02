@@ -40,6 +40,37 @@ return {
 			end,
 			color = { fg = "#FF8800" },
 		}
+		local diffview_component = {
+			function()
+				local lib = require("diffview.lib")
+				local view = lib.get_current_view()
+				if not view then
+					return ""
+				end
+				if view.rev_arg and view.rev_arg ~= "" then
+					return view.rev_arg
+				end
+				if view.left and view.right then
+					local RevType = require("diffview.vcs.rev").RevType
+					local function rev_name(rev)
+						if rev.type == RevType.LOCAL then
+							return "LOCAL"
+						elseif rev.type == RevType.STAGE then
+							return "STAGE"
+						end
+						return rev:object_name(7)
+					end
+					return rev_name(view.left) .. ".." .. rev_name(view.right)
+				end
+				return ""
+			end,
+			icon = "",
+			cond = function()
+				return package.loaded["diffview.lib"] ~= nil
+					and require("diffview.lib").get_current_view() ~= nil
+			end,
+			color = { fg = "#FF8800" },
+		}
 		local project_root = {
 			function()
 				return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
@@ -63,7 +94,7 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { project_root, "branch", "diff", "diagnostics" },
-				lualine_c = { "filename" },
+				lualine_c = { "filename", diffview_component },
 				lualine_x = {
 					"encoding",
 					"fileformat",
