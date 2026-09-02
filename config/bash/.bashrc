@@ -110,6 +110,11 @@ if command -v hexyl > /dev/null 2>&1; then
     eval "$(hexyl --completion bash)"
 fi
 
+# fzf
+if command -v fzf > /dev/null 2>&1; then
+    eval "$(fzf --bash)"
+fi
+
 # colcon, ros2
 if command -v register-python-argcomplete > /dev/null 2>&1; then
     eval "$(register-python-argcomplete ros2)"
