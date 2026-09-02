@@ -39,7 +39,8 @@ show_always = true
 # ホスト名表示
 [hostname]
 ssh_only = false
-format = "[󰁥 ](bold #FBBC05)[$hostname](bold #34A853) "
+ssh_symbol = '󰖟'
+format = "[󰁥 ](bold #FBBC05)[$hostname](bold #34A853)[$ssh_symbol](bold #4285F4) "
 disabled = false
 
 # ディレクトリ表示
