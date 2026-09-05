@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -14,6 +15,7 @@ let
     nix-bash-completions
     starship
     tmux
+    inputs.herdr.packages.${pkgs.system}.default
   ];
   gitPkgs = with pkgs; [
     delta

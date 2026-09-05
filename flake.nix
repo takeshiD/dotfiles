@@ -22,6 +22,10 @@
     tmux-deck.url = "github:takeshid/tmux-deck";
     markdown-peek.url = "github:takeshid/markdown-peek/v0.1.9";
     ioskeley-mono-jp.url = "github:takeshid/IoskeleyMonoJP";
+    herdr = {
+      url = "github:herdrdev/herdr/v0.8.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # thirdparty
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
