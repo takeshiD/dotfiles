@@ -46,6 +46,7 @@ in
     ".config/tombi".source = mkLink "${cfg.path}/config/tombi";
     ".config/gh-dash".source = mkLink "${cfg.path}/config/gh-dash";
     ".config/mdpeek".source = mkLink "${cfg.path}/config/mdpeek";
+    ".config/herdr/config.toml".source = mkLink "${cfg.path}/config/herdr/config.toml";
     ".config/tmux-deck/config.toml".source = mkLink "${cfg.path}/config/tmux-deck/${
       if cfg.enableLocalOverrides then "config.local.toml" else "config.toml"
     }";

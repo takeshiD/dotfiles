@@ -1,0 +1,26 @@
+onboarding = false
+[theme]
+name = "vesper"
+auto_switch = false
+
+[ui.toast]
+delivery = "herdr"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+status_indicators = "dots"
+[ui.sound]
+enabled = true
+
+[keys]
+prefix = "ctrl+b"
+goto = "prefix+g"
+new_tab = "prefix+c"
+next_tab = "prefix+c"
+previous_tab = "prefix+c"
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+navigate_pane_down = "ctrl+j"
+navigate_pane_up = "ctrl+k"
+open_notification_target = "prefix+o"
