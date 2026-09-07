@@ -20,7 +20,7 @@
     };
     # my tools
     tmux-deck.url = "github:takeshid/tmux-deck";
-    markdown-peek.url = "github:takeshid/markdown-peek";
+    markdown-peek.url = "github:takeshid/markdown-peek/v0.1.9";
     pcx.url = "github:takeshid/pcx";
     ioskeley-mono-jp.url = "github:takeshid/IoskeleyMonoJP";
     herdr = {

@@ -115,6 +115,11 @@ if command -v fzf > /dev/null 2>&1; then
     eval "$(fzf --bash)"
 fi
 
+# herdr
+if command -v herdr > /dev/null 2>&1; then
+    eval "$(herdr completion bash)"
+fi
+
 # colcon, ros2
 if command -v register-python-argcomplete > /dev/null 2>&1; then
     eval "$(register-python-argcomplete ros2)"

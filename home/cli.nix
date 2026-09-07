@@ -88,6 +88,7 @@ let
     mcap-cli
     gdrive3
     inotify-tools
+    bubblewrap
   ];
   wslPkgs = with pkgs; [
     # wslu
