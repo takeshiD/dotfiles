@@ -7,6 +7,7 @@ format = """
 $username\
 $hostname\
 $custom\
+$env_var\
 $directory\
 $git_branch\
 $git_status\
@@ -187,12 +188,8 @@ format = " [$symbol$version]($style)"
 [line_break]
 disabled = false
 
-
-[custom.gh]
-description = "Active GitHub CLI account"
-command = "awk '/^    user:/{print $2; exit}' $GH_CONFIG_DIR/hosts.yml"
-when = "test -f ~/.config/gh/hosts.yml"                         
-symbol = " "
-style = "bold #666666"
-format = "[$symbol$output]($style) "    
-shell = ["bash", "--noprofile", "--norc"]
+[env_var.github_user]
+variable = "GH_PROMPT_USER"
+default = "unknown"
+format = '[ $env_value]($style) '
+style = "#666666"
