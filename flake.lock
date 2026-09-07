@@ -247,11 +247,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1788649992,
-        "narHash": "sha256-heW/CKFTd5dqzmRz7giidf8fD6E1vRJ0qBKffycMsXs=",
+        "lastModified": 1788653023,
+        "narHash": "sha256-2Q1CW2Czn8zyaG5XVRdhD3YI0kYi7GDtWQi4aHkiQtQ=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "c09e5e8ff37aa117efab68096fca292976f410dc",
+        "rev": "3c743a2bb63c54d8732fd2a0174a6cbd8a72b225",
         "type": "github"
       },
       "original": {
@@ -267,16 +267,15 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1781071913,
-        "narHash": "sha256-RkzvN5oOJ8ZpY/5SNo/IX8tQB78v3aQEkQ0dZtm5HCg=",
+        "lastModified": 1783227403,
+        "narHash": "sha256-EETcN380iJ4cR424jZxyBvZq39slyzXqU6GFOktW6fU=",
         "owner": "takeshid",
         "repo": "markdown-peek",
-        "rev": "4d3675e2d76329a4593c3ea7dd9b9cbac8685185",
+        "rev": "0c37cb9e5968d84f9d308ce074339efcab38b8e2",
         "type": "github"
       },
       "original": {
         "owner": "takeshid",
-        "ref": "v0.1.9",
         "repo": "markdown-peek",
         "type": "github"
       }
@@ -346,6 +345,22 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "59682e0069f0ed0a452e2179a7f4c1f247027b9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_10": {
+      "locked": {
+        "lastModified": 1769330179,
+        "narHash": "sha256-yxgb4AmkVHY5OOBrC79Vv6EVd4QZEotqv+6jcvA212M=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "48698d12cc10555a4f3e3222d9c669b884a49dfe",
         "type": "github"
       },
       "original": {
@@ -469,16 +484,16 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1769330179,
-        "narHash": "sha256-yxgb4AmkVHY5OOBrC79Vv6EVd4QZEotqv+6jcvA212M=",
+        "lastModified": 1788179007,
+        "narHash": "sha256-hn1oU2rue2SYK8dAr8+WNZWtbsz1S2W5mnHlSEuh3bo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "48698d12cc10555a4f3e3222d9c669b884a49dfe",
+        "rev": "34ab99075ac4f7e40cf037eef32cb1c360bb85e9",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -501,6 +516,25 @@
         "type": "github"
       }
     },
+    "pcx": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_9",
+        "rust-overlay": "rust-overlay_3"
+      },
+      "locked": {
+        "lastModified": 1788652813,
+        "narHash": "sha256-CNKzz5gOFhsBQdXdzZxUwpGxzwK5p9LcSuIXszloE3E=",
+        "owner": "takeshid",
+        "repo": "pcx",
+        "rev": "8ff2ccbc5514e7b4c1a97c71276645567449442b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "takeshid",
+        "repo": "pcx",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "gfm-preview": "gfm-preview",
@@ -514,6 +548,7 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_7",
         "ob-fish": "ob-fish",
+        "pcx": "pcx",
         "tmux-deck": "tmux-deck"
       }
     },
@@ -560,6 +595,27 @@
       }
     },
     "rust-overlay_3": {
+      "inputs": {
+        "nixpkgs": [
+          "pcx",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788248235,
+        "narHash": "sha256-siCQqLbY7AbZ9V3oyc65K8bhNr7QgZTXoqLTws3pv0s=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "6a84c41e705533dcc5569ac0731f18406b4cdf86",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_4": {
       "inputs": {
         "nixpkgs": [
           "tmux-deck",
@@ -658,8 +714,8 @@
     "tmux-deck": {
       "inputs": {
         "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_9",
-        "rust-overlay": "rust-overlay_3"
+        "nixpkgs": "nixpkgs_10",
+        "rust-overlay": "rust-overlay_4"
       },
       "locked": {
         "lastModified": 1788586311,

@@ -15,6 +15,12 @@ let
   tmuxDeckPkgs = with inputs.tmux-deck.packages.${pkgs.system}; [
     tmux-deck
   ];
+  mdpeekPkgs = with inputs.markdown-peek.packages.${pkgs.system}; [
+    markdown-peek
+  ];
+  pcxPkgs = with inputs.pcx.packages.${pkgs.system}; [
+    pcx
+  ];
   gfmPreviewPkgs = with inputs.gfm-preview.packages.${pkgs.system}; [
     gh-gfm-preview
   ];
@@ -23,6 +29,9 @@ let
   # ];
   obfishPkgs = with inputs.ob-fish.packages.${pkgs.system}; [
     ob-fish-completion
+  ];
+  markdowReaderPkgs = with inputs.markdown-tui-explorer.packages.${pkgs.system}; [
+    markdown-reader
   ];
 in
 {
@@ -115,7 +124,14 @@ in
     shell = "bash";
     enableCargoConfig = true;
   };
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs;
+  home.packages =
+    llmAgentsPkgs
+    ++ tmuxDeckPkgs
+    ++ mdpeekPkgs
+    ++ pcxPkgs
+    ++ gfmPreviewPkgs
+    ++ obfishPkgs
+    ++ markdowReaderPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "bash";

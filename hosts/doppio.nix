@@ -17,6 +17,9 @@ let
   mdpeekPkgs = with inputs.markdown-peek.packages.${pkgs.system}; [
     markdown-peek
   ];
+  pcxPkgs = with inputs.pcx.packages.${pkgs.system}; [
+    pcx
+  ];
   gfmPreviewPkgs = with inputs.gfm-preview.packages.${pkgs.system}; [
     gh-gfm-preview
   ];
@@ -77,7 +80,14 @@ in
   home.username = lib.mkDefault "tkcd";
   home.homeDirectory = lib.mkDefault "/home/tkcd";
   home.stateVersion = "26.11";
-  home.packages = llmAgentsPkgs ++ tmuxDeckPkgs ++ gfmPreviewPkgs ++ obfishPkgs ++ markdowReaderPkgs ++ mdpeekPkgs;
+  home.packages =
+    llmAgentsPkgs
+    ++ tmuxDeckPkgs
+    ++ gfmPreviewPkgs
+    ++ obfishPkgs
+    ++ markdowReaderPkgs
+    ++ mdpeekPkgs
+    ++ pcxPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "bash";
