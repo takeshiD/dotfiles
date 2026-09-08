@@ -51,6 +51,13 @@ in
       if cfg.enableLocalOverrides then "config.local.toml" else "config.toml"
     }";
   }
+  // lib.mapAttrs' (
+    name: _:
+    lib.nameValuePair ".codex/rules/${name}" {
+      source = mkLink "${cfg.path}/config/codex/rules/${name}";
+      force = true;
+    }
+  ) (lib.filterAttrs (_: type: type == "regular") (builtins.readDir ../config/codex/rules))
   // lib.optionalAttrs (cfg.shell == "bash" || cfg.shell == "both") {
     ".bashrc".source = mkLink "${cfg.path}/config/bash/.bashrc";
     ".inputrc".source = mkLink "${cfg.path}/config/bash/.inputrc";
