@@ -1,0 +1,18 @@
+prefix_rule(
+    pattern = ["git", "push", ["-f", "--force"]],
+    decision = "forbidden",
+    # より安全なオプションを案内
+    justification = "force push は履歴を破壊するリスクがあるため禁止です。代わりに --force-with-lease を使用してください。",
+    match = [
+        "git push --force origin main",
+        "git push -f origin feature"
+    ],
+    not_match = [
+        "git push --force-with-lease",
+    ]
+)
+prefix_rule(
+    pattern = ["gh", "pr"],
+    decision = "allow",
+    justification = "github PR operations are allowed"],
+)

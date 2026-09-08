@@ -1,0 +1,5 @@
+prefix_rule(pattern = ["sed"], decision = "allow")
+prefix_rule(pattern=["sort"], decision="allow")
+prefix_rule(pattern=["ls"], decision="allow")
+prefix_rule(pattern=["rg"], decision="allow")
+prefix_rule(pattern=["tree"], decision="allow")

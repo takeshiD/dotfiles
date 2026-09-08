@@ -1,0 +1,11 @@
+# Docs: https://learn.chatgpt.com/docs/agent-configuration/rules
+# 作成したルールファイルを使ってチェック
+# codex execpolicy check --pretty --rules ~/.codex/rules/custom.rules -- git status
+prefix_rule(
+    pattern = ["grep"],
+    decision = "forbidden",
+    # 禁止理由と代替案を提示
+    justification = "大規模な検索には grep は低速です。代わりに高速な ripgrep (rg) を使用してください。",
+    match = ["grep TODO ."],
+    not_match = ["rg TODO ."]
+)
