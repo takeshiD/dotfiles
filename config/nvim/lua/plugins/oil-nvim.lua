@@ -19,33 +19,44 @@ return {
 	-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 	lazy = false,
 	keys = {
-		{ "<leader>e", "<CMD>Oil<CR>", desc = "Open parent dir" },
+		{ "<C-e>", "<CMD>Oil<CR>", desc = "Open parent dir" },
 	},
-	opts = function()
-		local detail = false
-		require("oil").setup({
-			columns = {
-				"icon",
-				"permissions",
-				"size",
-				"mtime",
+	opts = require("oil").setup({
+		columns = {
+			"icon",
+			"permissions",
+			"size",
+			"mtime",
+		},
+		win_options = {
+			signcolumn = "yes:2",
+			winbar = "%!v:lua.get_oil_winbar()",
+		},
+		keymaps = {
+			["g?"] = { "actions.show_help", mode = "n" },
+			["<CR>"] = "actions.select",
+			["<C-s>"] = { "actions.select", opts = { vertical = true } },
+			["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+			["<C-t>"] = { "actions.select", opts = { tab = true } },
+			["<C-p>"] = {
+				callback = function()
+					require("oil.actions").preview.callback({
+						split = "botright",
+					})
+				end,
+				desc = "Toggle Oil Preview",
+				mode = "n",
 			},
-			win_options = {
-				winbar = "%!v:lua.get_oil_winbar()",
-			},
-			keymaps = {
-				["gd"] = {
-					desc = "Toggle file detail view",
-					callback = function()
-						detail = not detail
-						if detail then
-							require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-						else
-							require("oil").set_columns({ "icon" })
-						end
-					end,
-				},
-			},
-		})
-	end,
+			["<C-e>"] = { "actions.close", mode = "n" },
+			["<C-l>"] = "actions.refresh",
+			["-"] = { "actions.parent", mode = "n" },
+			["_"] = { "actions.open_cwd", mode = "n" },
+			["`"] = { "actions.cd", mode = "n" },
+			["g~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+			["gs"] = { "actions.change_sort", mode = "n" },
+			["gx"] = "actions.open_external",
+			["g."] = { "actions.toggle_hidden", mode = "n" },
+			["g\\"] = { "actions.toggle_trash", mode = "n" },
+		},
+	}),
 }

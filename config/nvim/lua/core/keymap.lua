@@ -17,7 +17,7 @@ vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
 
 keymap.set("n", "<ESC><ESC>", ":noh<Return>")
-keymap.set("n", "<Return><Return>", "<C-w>w", { desc = "BufferCyclic" })
+-- keymap.set("n", "<Return><Return>", "<C-w>w", { desc = "BufferCyclic" })
 keymap.set("n", "<C-p>", ":bprev<Return>")
 keymap.set("n", "<C-n>", ":bnext<Return>")
 keymap.set("n", "<C-w><C-w>", ":close!<cr>")

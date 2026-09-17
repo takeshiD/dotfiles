@@ -5,6 +5,7 @@ return {
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		"MunifTanjim/nui.nvim",
 	},
+    enabled = false,
 	lazy = true,
 	keys = {
 		{ "<C-e>", "<cmd>Neotree toggle left<cr>", desc = "NeoTree Toggle" },
