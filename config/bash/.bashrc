@@ -41,6 +41,13 @@ else
     warning "Not Found $NIX_PROFILE_PATH"
 fi
 
+#===========================================================
+# Ghostty shell integration for Bash.
+#===========================================================
+if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+    builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
+fi
+
 #=======================================================
 # Completion
 #=======================================================

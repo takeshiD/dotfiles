@@ -39,3 +39,4 @@ keybind = ctrl+slash=text:\x1f
 window-step-resize = true
 window-padding-balance = true
 window-padding-color = extend
+shell-integration = detect
