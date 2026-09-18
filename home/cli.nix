@@ -89,6 +89,9 @@ let
     gdrive3
     inotify-tools
     bubblewrap
+    taskwarrior3
+    taskwarrior-tui
+    python314Packages.bugwarrior
   ];
   wslPkgs = with pkgs; [
     # wslu

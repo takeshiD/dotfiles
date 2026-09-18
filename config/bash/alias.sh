@@ -23,4 +23,8 @@ if command -v man > /dev/null 2>&1; then
     alias man='batman'
 fi
 
+if command -v taskwarrior-tui > /dev/null 2>&1; then
+    alias tt='taskwarrior-tui'
+fi
+
 alias cdr='cd $(git rev-parse --show-toplevel)'
