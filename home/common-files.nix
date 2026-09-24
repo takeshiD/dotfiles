@@ -39,7 +39,6 @@ in
       force = true;
     };
     ".config/lsd".source = mkLink "${cfg.path}/config/lsd";
-    ".config/clangd".source = mkLink "${cfg.path}/config/clangd";
     ".config/ghostty".source = mkLink "${cfg.path}/config/ghostty";
     ".config/wezterm".source = mkLink "${cfg.path}/config/wezterm";
     ".config/containers".source = mkLink "${cfg.path}/config/containers";
