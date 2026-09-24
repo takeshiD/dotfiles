@@ -1,6 +1,6 @@
 return {
 	"danielfalk/smart-open.nvim",
-	enabled = true,
+	enabled = false,
 	dependencies = {
 		"kkharji/sqlite.lua",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -15,6 +15,7 @@ return {
 					filename_first = true,
 				})
 			end,
+			desc = "SmartOpen",
 		},
 	},
 	config = function()

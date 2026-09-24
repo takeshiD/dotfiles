@@ -12,13 +12,6 @@ return {
 		end,
 	},
 	{
-		"nyoom-engineering/oxocarbon.nvim",
-		lazy = false,
-		enabled = true,
-		priority = 1000,
-		-- opts = function() end,
-	},
-	{
 		"eldritch-theme/eldritch.nvim",
 		lazy = false,
 		enabled = true,

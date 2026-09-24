@@ -133,6 +133,11 @@ if command -v register-python-argcomplete > /dev/null 2>&1; then
     eval "$(register-python-argcomplete colcon)"
 fi
 
+# gitbook
+if command -v gitbook > /dev/null 2>&1; then
+    eval "$(gitbook completion bash)"
+fi
+
 #=======================================================
 # Prompt Look and Feel
 #=======================================================
@@ -191,3 +196,7 @@ if [[ "$DEFAULT_SHELL" == "fish" ]] && [[ $- == *i* && $- != *c* && $- != *s* ]]
     exec fish
   fi
 fi
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
