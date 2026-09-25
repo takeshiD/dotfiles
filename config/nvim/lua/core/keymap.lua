@@ -58,7 +58,6 @@ keymap.set("v", ":", ";")
 
 --############# LSP-keyboard ###############
 vim.keymap.set("n", "gf", function()
-	-- conform に formatter があればそれを使い、無ければ LSP にフォールバック
 	require("conform").format({ async = true, lsp_format = "fallback" })
 end, { desc = "Formatting" })
 vim.keymap.set("n", "g]", function()
@@ -67,3 +66,52 @@ end, { desc = "LSP Diagnostic Next" })
 vim.keymap.set("n", "g[", function()
 	vim.diagnostic.jump({ count = -1, float = false })
 end, { desc = "LSP Diagnostic Prev" })
+
+--############# Window resize submode ###############
+-- <C-w>H, <C-w>J, <C-w>K, <C-w>L でサブモードに入り、H,J,K,Lで調整
+local resize_steps = {
+	H = { "<", 4 },
+	L = { ">", 4 },
+	J = { "+", 2 },
+	K = { "-", 2 },
+}
+local function window_resize_mode()
+	local exits = { [vim.keycode("<Esc>")] = true, [vim.keycode("<CR>")] = true, q = true }
+	while true do
+		vim.cmd.redraw()
+		local ok, key = pcall(vim.fn.getcharstr)
+		if not ok or key == nil or exits[key] then
+			break
+		end
+		local step = resize_steps[key]
+		if step ~= nil then
+			local cmd, step_width = unpack(step)
+			local cur_winnr = vim.fn.winnr()
+			-- has_left
+			if vim.fn.winnr("h") ~= cur_winnr then
+				if cmd == ">" then
+					cmd = "<"
+				elseif cmd == "<" then
+					cmd = ">"
+				end
+			end
+			-- has_top
+			if vim.fn.winnr("k") ~= cur_winnr then
+				if cmd == "-" then
+					cmd = "+"
+				elseif cmd == "+" then
+					cmd = "-"
+				end
+			end
+			vim.cmd.wincmd({ args = { cmd }, count = step_width })
+		else
+			break
+		end
+	end
+	vim.api.nvim_echo({}, false, {})
+end
+
+keymap.set("n", "<C-w>H", window_resize_mode, { desc = "Window Resize Mode" })
+keymap.set("n", "<C-w>J", window_resize_mode, { desc = "Window Resize Mode" })
+keymap.set("n", "<C-w>K", window_resize_mode, { desc = "Window Resize Mode" })
+keymap.set("n", "<C-w>L", window_resize_mode, { desc = "Window Resize Mode" })

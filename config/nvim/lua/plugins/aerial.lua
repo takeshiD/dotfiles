@@ -1,4 +1,3 @@
-
 return {
 	"stevearc/aerial.nvim",
 	enabled = true,
@@ -8,10 +7,16 @@ return {
 	},
 	event = "VeryLazy",
 	keys = {
-		{ mode = { "n" }, "go", "<cmd>AerialToggle float<CR>", desc = "LSP Outline" },
+		{
+			mode = { "n" },
+			"go",
+			function()
+				require("aerial").snacks_picker()
+			end,
+			desc = "LSP Outline",
+		},
 	},
 	config = function()
-		require("telescope").load_extension("aerial")
 
 		-- ───────────────────────────────────────────────────────────────
 		-- 問題2: 折りたたみ時に種別アイコンを保つ(+ 折りたたみマーカー)

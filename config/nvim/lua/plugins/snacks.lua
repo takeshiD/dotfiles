@@ -553,7 +553,7 @@ end
 
 function jev.palette()
 	Snacks.picker.pick(jev_picker_opts({
-		title = "命令板",
+		title = "Ah yes!",
 		live = true,
 		layout = { preset = "vscode" },
 		finder = function(_, ctx)
@@ -659,8 +659,8 @@ return {
 			},
 		},
 		picker = {
-			enabled = false,
-			ui_select = false,
+			enabled = true,
+			ui_select = true,
 			matcher = {
 				fuzzy = true, -- use fuzzy matching
 				smartcase = true, -- use smartcase
@@ -675,19 +675,114 @@ return {
 				history_bonus = false, -- give more weight to chronological order
 			},
 		},
+		-- alternate toggleterm
+		-- ここに置いた設定は lazygit など snacks が開く全ての端末に効くので、
+		-- jk のような文字の割り当てはシェル端末側(<C-t> の呼び出し)にだけ付ける
+		terminal = {
+			win = {
+				position = "float",
+				border = "single",
+			},
+		},
+		-- lazygit では <Esc> を多用するので、snacks 端末既定の「<Esc> 2回で通常モード」を無効化する
+		lazygit = {
+			win = {
+				keys = {
+					term_normal = false,
+				},
+			},
+		},
 		input = { enabled = true },
 		image = { enabled = true },
 		explorer = { enabled = false },
 		bigfile = { enabled = true },
 	},
-    -- stylua: ignore
 	keys = {
-		{"<leader><leader>", function() require("snacks").picker.smart({
-            cwd = require("lspconfig.util").root_pattern(".git")(vim.fn.getcwd())
-             or vim.fn.getcwd()
-        }) end, desc = "Smart Find Files"},
-		{"<leader>?", function() jev.palette() end, desc = "jev: 命令板"},
-		{"<leader>jf", function() jev.lines() end, desc = "jev: 行検索(一覧)"},
-		{"<leader>j/", function() jev.incsearch() end, desc = "jev: 行検索(逐次)"},
+		{
+			"<leader><leader>",
+			function()
+				require("snacks").picker.smart({
+					cwd = require("snacks").git.get_root() or vim.fn.getcwd(),
+					hidden = true,
+					ignored = true,
+				})
+			end,
+			desc = "SmartFinder",
+		},
+		{
+			"<leader>fr",
+			function()
+				require("snacks").picker.grep({
+					cwd = require("snacks").git.get_root() or vim.fn.getcwd(),
+					hidden = true,
+					ignored = true,
+				})
+			end,
+			desc = "RipGrep",
+		},
+		{
+			"<leader>fj",
+			function()
+				require("snacks").picker.jumps()
+			end,
+			desc = "Jumplist",
+		},
+		{
+			"<leader>fb",
+			function()
+				require("snacks").picker.buffers()
+			end,
+			desc = "BufferList",
+		},
+		{
+			"<C-t>",
+			function()
+				require("snacks").terminal.toggle(nil, {
+					win = {
+						keys = {
+							term_normal_jk = {
+								"jk",
+								function()
+									vim.cmd.stopinsert()
+								end,
+								mode = "t",
+								desc = "Escape term mode",
+							},
+						},
+					},
+				})
+			end,
+			mode = { "n", "i", "t" },
+			desc = "Terminal Toggle",
+		},
+		{
+			"<leader>gg",
+			function()
+				require("snacks").lazygit()
+			end,
+			mode = { "n" },
+			desc = "LazyGit",
+		},
+		{
+			"<leader>?",
+			function()
+				jev.palette()
+			end,
+			desc = "Ah yes",
+		},
+		{
+			"<leader>jf",
+			function()
+				jev.lines()
+			end,
+			desc = "jev: 行検索(一覧)",
+		},
+		{
+			"<leader>j/",
+			function()
+				jev.incsearch()
+			end,
+			desc = "jev: 行検索(逐次)",
+		},
 	},
 }

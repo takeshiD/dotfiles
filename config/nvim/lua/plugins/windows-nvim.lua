@@ -7,9 +7,7 @@ return {
 		"anuvyklack/animation.nvim",
 	},
 	keys = {
-		{ "<C-w>zz", "<cmd>WindowsMaximize<cr>", mode = { "n" }, desc = "Window Maximize" },
-		{ "<C-w>zv", "<cmd>WindowsMaximizeVertically<cr>", mode = { "n" }, desc = "Window Maximize Vertical" },
-		{ "<C-w>zs", "<cmd>WindowsMaximizeHorizontally<cr>", mode = { "n" }, desc = "Window Maximize Horizontal" },
+		{ "<C-w>z", "<cmd>WindowsMaximize<cr>", mode = { "n" }, desc = "Window Maximize" },
 		{ "<C-w>=", "<cmd>WindowsEqualize<cr>", mode = { "n" }, desc = "Window Equalize" },
 		{ "<C-w>t", "<cmd>WindowsToggleAutowidth<cr>", mode = { "n" }, desc = "Window Toggle Autowidth" },
 	},

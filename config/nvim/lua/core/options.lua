@@ -48,10 +48,13 @@ opt.listchars = {
 	eol = "↲",
 }
 
+--====== UI2 ======
+require("vim._core.ui2").enable({})
+
 --====== Commandline ======
 opt.showcmd = true
 opt.showmode = false
-opt.cmdheight = 1
+opt.cmdheight = 0
 opt.laststatus = 2
 
 --====== MISC =====
