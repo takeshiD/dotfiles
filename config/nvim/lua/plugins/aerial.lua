@@ -11,7 +11,28 @@ return {
 			mode = { "n" },
 			"go",
 			function()
-				require("aerial").snacks_picker()
+				-- 既定の整形(木構造ガイド + 種別アイコン + 名前)の左に行番号を付ける。
+				-- 行番号は virtual にして絞り込み検索の対象外にする。
+				local bufnr = vim.api.nvim_get_current_buf()
+				local width = #tostring(vim.api.nvim_buf_line_count(bufnr))
+				require("aerial").snacks_picker({
+					format = function(item, picker)
+						local config = require("aerial.config")
+						local highlight = require("aerial.highlight")
+						local symbol = item.item
+						local icon = config.get_icon(bufnr, symbol.kind)
+						local icon_hl = highlight.get_highlight(symbol, true, false) or "NONE"
+
+						local ret = {}
+						local lnum = Snacks.picker.util.align(tostring(item.pos[1]), width, { align = "right" })
+						table.insert(ret, { lnum, "LineNr", virtual = true })
+						table.insert(ret, { " ", virtual = true })
+						vim.list_extend(ret, Snacks.picker.format.tree(item, picker))
+						table.insert(ret, { icon .. " ", icon_hl })
+						Snacks.picker.highlight.format(item, item.text, ret)
+						return ret
+					end,
+				})
 			end,
 			desc = "LSP Outline",
 		},

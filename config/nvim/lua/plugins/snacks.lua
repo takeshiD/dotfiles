@@ -770,19 +770,19 @@ return {
 			end,
 			desc = "Ah yes",
 		},
-		{
-			"<leader>jf",
-			function()
-				jev.lines()
-			end,
-			desc = "jev: 行検索(一覧)",
-		},
-		{
-			"<leader>j/",
-			function()
-				jev.incsearch()
-			end,
-			desc = "jev: 行検索(逐次)",
-		},
+		-- {
+		-- 	"<leader>jf",
+		-- 	function()
+		-- 		jev.lines()
+		-- 	end,
+		-- 	desc = "jev: 行検索(一覧)",
+		-- },
+		-- {
+		-- 	"<leader>j/",
+		-- 	function()
+		-- 		jev.incsearch()
+		-- 	end,
+		-- 	desc = "jev: 行検索(逐次)",
+		-- },
 	},
 }
