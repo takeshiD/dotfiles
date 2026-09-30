@@ -47,17 +47,13 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      # flake は既定で pure eval のため getEnv は空文字列になる。
-      # 素通しすると分かりにくい失敗をするので、明示的に落とす。
+      # For local user
       requireEnv =
         name:
         let
           value = builtins.getEnv name;
         in
-        if value == "" then
-          throw "環境変数 ${name} を取得できません。--impure を付けて実行してください。"
-        else
-          value;
+        if value == "" then throw "Not found `${name}`. Please execute again with `--impure`." else value;
     in
     {
       nixosConfigurations = {

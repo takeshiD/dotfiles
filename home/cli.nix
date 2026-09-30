@@ -7,10 +7,6 @@
 }:
 let
   corePkgs = with pkgs; [
-    # bash
-    # bash-completion
-    brush
-    fish
     neovim
     nix-bash-completions
     starship
@@ -31,8 +27,6 @@ let
     # aws-cdk-cli
     awscli2
     lazydocker
-    ssm-session-manager-plugin
-    influxdb2-cli
   ];
   miscPkgs = with pkgs; [
     bat
@@ -92,6 +86,7 @@ let
     taskwarrior3
     taskwarrior-tui
     python314Packages.bugwarrior
+    mermaid-cli
   ];
   wslPkgs = with pkgs; [
     # wslu

@@ -5,10 +5,10 @@ return {
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		"MunifTanjim/nui.nvim",
 	},
-    enabled = false,
+    enabled = true,
 	lazy = true,
 	keys = {
-		{ "<C-e>", "<cmd>Neotree toggle left<cr>", desc = "NeoTree Toggle" },
+		-- { "<leader>e", "<cmd>Neotree toggle left<cr>", desc = "NeoTree Toggle" },
 		{ "<leader>fb", "<cmd>Neotree toggle float buffers<cr>", desc = "NeoTree Buffers" },
 		-- { '<leader>g', '<cmd>Neotree float git_status<cr>',          desc = 'NeoTree Git' },
 		-- { '<leader>b', '<cmd>Neotree toggle show buffers right<cr>', desc = 'NeoTree Buffers' }

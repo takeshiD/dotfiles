@@ -121,8 +121,8 @@ in
     enableLsp = true;
   };
   dotfiles = {
-    shell = "bash";
-    enableCargoConfig = true;
+    # shell = "bash";
+    # enableCargoConfig = true;
   };
   home.packages =
     llmAgentsPkgs

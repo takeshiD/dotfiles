@@ -11,18 +11,6 @@ in
       description = "Path to the dotfiles repository used for config symlinks.";
     };
 
-    shell = lib.mkOption {
-      type = lib.types.enum [
-        "bash"
-        "fish"
-        "both"
-      ];
-      default = "both";
-      description = "Which shell configuration files to symlink.";
-    };
-
-    enableCargoConfig = lib.mkEnableOption "symlink .cargo/config.toml";
-
     enableLocalOverrides = lib.mkEnableOption "overrides for the local configuration (tmux prefix C-b, tmux2k duo theme, tmux-deck and starship gruvbox themes)";
   };
 
@@ -46,6 +34,10 @@ in
     ".config/gh-dash".source = mkLink "${cfg.path}/config/gh-dash";
     ".config/mdpeek".source = mkLink "${cfg.path}/config/mdpeek";
     ".config/herdr/config.toml".source = mkLink "${cfg.path}/config/herdr/config.toml";
+    ".bashrc".source = mkLink "${cfg.path}/config/bash/.bashrc";
+    ".inputrc".source = mkLink "${cfg.path}/config/bash/.inputrc";
+    ".config/fish".source = mkLink "${cfg.path}/config/fish";
+    ".cargo/config.toml".source = mkLink "${cfg.path}/config/cargo/config.toml";
     ".config/tmux-deck/config.toml".source = mkLink "${cfg.path}/config/tmux-deck/${
       if cfg.enableLocalOverrides then "config.local.toml" else "config.toml"
     }";
@@ -57,16 +49,6 @@ in
       force = true;
     }
   ) (lib.filterAttrs (_: type: type == "regular") (builtins.readDir ../config/codex/rules))
-  // lib.optionalAttrs (cfg.shell == "bash" || cfg.shell == "both") {
-    ".bashrc".source = mkLink "${cfg.path}/config/bash/.bashrc";
-    ".inputrc".source = mkLink "${cfg.path}/config/bash/.inputrc";
-  }
-  // lib.optionalAttrs (cfg.shell == "fish" || cfg.shell == "both") {
-    ".config/fish".source = mkLink "${cfg.path}/config/fish";
-  }
-  // lib.optionalAttrs cfg.enableCargoConfig {
-    ".cargo/config.toml".source = mkLink "${cfg.path}/config/cargo/config.toml";
-  }
   // lib.optionalAttrs cfg.enableLocalOverrides {
     ".config/tmux/local.conf".source = mkLink "${cfg.path}/config/tmux/local.conf";
   };

@@ -54,6 +54,9 @@ in
     nix-index-database.comma = {
       enable = true;
     };
+    zsh = {
+      enable = true;
+    };
   };
   # inherit dotfilesPath;
   cli = {
@@ -74,8 +77,8 @@ in
     enableLsp = true;
   };
   dotfiles = {
-    shell = "both";
-    enableCargoConfig = true;
+    # shell = "both";
+    # enableCargoConfig = true;
   };
   home.username = lib.mkDefault "tkcd";
   home.homeDirectory = lib.mkDefault "/home/tkcd";
