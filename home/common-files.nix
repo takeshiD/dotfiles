@@ -36,6 +36,7 @@ in
     ".config/herdr/config.toml".source = mkLink "${cfg.path}/config/herdr/config.toml";
     ".bashrc".source = mkLink "${cfg.path}/config/bash/.bashrc";
     ".inputrc".source = mkLink "${cfg.path}/config/bash/.inputrc";
+    ".zshrc".source = mkLink "${cfg.path}/config/zsh/.zshrc";
     ".config/fish".source = mkLink "${cfg.path}/config/fish";
     ".cargo/config.toml".source = mkLink "${cfg.path}/config/cargo/config.toml";
     ".config/tmux-deck/config.toml".source = mkLink "${cfg.path}/config/tmux-deck/${

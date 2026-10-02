@@ -48,7 +48,6 @@ local ensure_installed = {
 	"html",
 	"jsonls",
 	"lua_ls",
-	-- "luau_lsp",
 	"markdown_oxide",
 	"neocmake",
 	"nil_ls",

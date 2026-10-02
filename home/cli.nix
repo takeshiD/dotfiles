@@ -87,6 +87,10 @@ let
     taskwarrior-tui
     python314Packages.bugwarrior
     mermaid-cli
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-completions
+    zsh-abbr
   ];
   wslPkgs = with pkgs; [
     # wslu
@@ -186,7 +190,6 @@ in
 {
   imports = [
     ../modules/cli-options.nix
-    # ./rustup-nix-runtime.nix
   ];
 
   home.packages =
