@@ -54,9 +54,6 @@ in
     nix-index-database.comma = {
       enable = true;
     };
-    zsh = {
-      enable = true;
-    };
   };
   # inherit dotfilesPath;
   cli = {

@@ -1,30 +1,31 @@
-local langs = {
+local ensure_install_langs = {
+	"astro",
 	"bash",
 	"c",
+	"cmake",
 	"cpp",
+	"css",
+	"css",
+	"haskell",
+	"http",
+	"javascript",
+	"json",
 	"lua",
-	"vim",
-	"rust",
+	"make",
 	"markdown",
 	"markdown_inline",
 	"mermaid",
-	"haskell",
-	"http",
-	"css",
-	"javascript",
-	"typescript",
-	"tsx",
-	"css",
-	"json",
-	"make",
-	"cmake",
-	"python",
-	"scheme",
-	"yaml",
-	"toml",
 	"nix",
-	"astro",
+	"python",
+	"rust",
+	"scheme",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
 	"xml",
+	"yaml",
+	"zsh",
     "dockerfile",
 }
 return {
@@ -35,9 +36,9 @@ return {
 	version = false,
 	build = ":TSUpdate",
 	opts = function()
-		require("nvim-treesitter").install(langs)
+		require("nvim-treesitter").install(ensure_install_langs)
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = langs,
+			pattern = ensure_install_langs,
 			callback = function()
 				vim.treesitter.start()
 				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
