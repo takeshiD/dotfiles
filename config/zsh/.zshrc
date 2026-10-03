@@ -46,7 +46,6 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt extended_history
 
-
 #==============================================
 # Appearance
 #==============================================
@@ -118,14 +117,14 @@ fi
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"               # ファイル名を ls と同じ色に
-zstyle ':completion:*' group-name ''                                  # 種類ごとに分けて見出しを付ける
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"              # ファイル名を ls と同じ色に
+zstyle ':completion:*' group-name ''                                 # 種類ごとに分けて見出しを付ける
 zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'    # 見出し (黄)
 zstyle ':completion:*:messages' format '%F{blue}-- %d --%f'          # 案内 (青)
-zstyle ':completion:*:warnings' format '%F{red}-- No Candidate --%f'      # 該当なし (赤)
+zstyle ':completion:*:warnings' format '%F{red}-- No Candidate --%f' # 該当なし (赤)
 zstyle ':completion:*:corrections' format '%F{green}-- %d (Error %e) --%f'
-zstyle ':completion:*:options' list-colors '=(#b)(-[^ ]#)*=0=36'      # オプション名を水色に
-zstyle ':completion:*:commands' list-colors '=*=1;32'                 # コマンド名を太字緑に
+zstyle ':completion:*:options' list-colors '=(#b)(-[^ ]#)*=0=36' # オプション名を水色に
+zstyle ':completion:*:commands' list-colors '=*=1;32'            # コマンド名を太字緑に
 
 #---------------- autosuggestions ----------------
 if [ -f "$NIX_SHARE/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
@@ -133,15 +132,15 @@ if [ -f "$NIX_SHARE/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; 
 	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'        # 提案の色 (暗い灰色)
 	ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40            # 長い行では提案しない (速度対策)
 	source "$NIX_SHARE/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-	bindkey -M viins '^F' autosuggest-accept # 提案を丸ごと採用
+	bindkey -M viins '^L' autosuggest-accept # 提案を丸ごと採用
 	bindkey -M viins '^[f' forward-word      # Alt+f で一語だけ採用
 fi
 
 #---------------- zsh-abbr (autosuggestions の後、構文ハイライトの前) ----------------
 if [ -f "$NIX_SHARE/zsh/zsh-abbr/zsh-abbr.plugin.zsh" ]; then
 	ABBR_USER_ABBREVIATIONS_FILE="$HOME/dotfiles/config/zsh/abbr.zsh" # 略語の定義は dotfiles 内で管理
-	ABBR_SET_EXPANSION_CURSOR=1 # 展開文字列中の % の位置にカーソルを置く
-	ABBR_QUIET=1                # 起動時や add 時の案内を抑える
+	ABBR_SET_EXPANSION_CURSOR=1                                       # 展開文字列中の % の位置にカーソルを置く
+	ABBR_QUIET=1                                                      # 起動時や add 時の案内を抑える
 	source "$NIX_SHARE/zsh/zsh-abbr/zsh-abbr.plugin.zsh"
 	# 既定の割り当て: Space で展開、Enter で展開して実行、Ctrl+Space で展開せず空白
 fi
