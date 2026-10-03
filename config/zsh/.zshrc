@@ -6,16 +6,21 @@ bindkey -v
 KEYTIMEOUT=1 # ESC 後の待ち時間 10ms (inputrc の keyseq-timeout 5 相当)
 # モード表示 (show-mode-in-prompt) は starship の [character] が担当する
 
+# 履歴検索後にカーソルを行末へ移動させる版 (zsh 標準添付の関数)
+autoload -Uz history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
 # コマンドモード
 bindkey -M vicmd -r 'v' # visual モードを無効化 (inputrc の "v": "" 相当)
-bindkey -M vicmd '^P' history-beginning-search-backward
-bindkey -M vicmd '^N' history-beginning-search-forward
+bindkey -M vicmd '^P' history-beginning-search-backward-end
+bindkey -M vicmd '^N' history-beginning-search-forward-end
 bindkey -M vicmd 'L' vi-forward-word
 bindkey -M vicmd 'H' vi-backward-word
 
 # 挿入モード
-bindkey -M viins '^P' history-beginning-search-backward
-bindkey -M viins '^N' history-beginning-search-forward
+bindkey -M viins '^P' history-beginning-search-backward-end
+bindkey -M viins '^N' history-beginning-search-forward-end
 # vi 流の「今回挿入した分しか消せない」制約を外す
 bindkey -M viins '^?' backward-delete-char # Backspace
 bindkey -M viins '^H' backward-delete-char # Ctrl+H (端末によってはこちらが来る)
@@ -30,14 +35,23 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 # extended glob
 setopt extended_glob
-# delete command in history when duplicated
+#-------------------------
+# History
+#-------------------------
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt share_history
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
+setopt extended_history
+
 
 #==============================================
 # Appearance
 #==============================================
 if command -v starship >/dev/null; then
+	export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 	eval "$(starship init zsh)"
 fi
 #==============================================
