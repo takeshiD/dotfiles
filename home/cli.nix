@@ -156,7 +156,7 @@ let
     nodejs
     bun
     deno
-    typescript-go
+    typescript
   ];
   haskellPkgs = with pkgs; [
     haskellPackages.ghcup
