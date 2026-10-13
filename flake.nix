@@ -33,6 +33,7 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     ob-fish.url = "github:takeshid/ob.fish";
     markdown-tui-explorer.url = "github:leboiko/markdown-reader";
+    shuck.url = "github:takeshid/shuck?ref=feat/build-nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };

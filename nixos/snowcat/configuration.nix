@@ -202,6 +202,23 @@
       "docker"
     ];
     packages = [ ];
+    shell = pkgs.zsh;
+  };
+
+  # ログインシェルを zsh にする。
+  # 対話設定は home-manager が ~/.zshrc に張る dotfiles/config/zsh/.zshrc をそのまま使うため、
+  # NixOS 側の既定のプロンプトと compinit は無効にして干渉を避ける。
+  programs.zsh = {
+    enable = true;
+    enableGlobalCompInit = false;
+    promptInit = "";
+    # bash では .bashrc 経由で読んでいる home-manager のセッション変数を zsh でも読み込む
+    # (doppio の ~/.zshenv 相当)。
+    shellInit = ''
+      if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+        source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      fi
+    '';
   };
 
   environment.systemPackages = with pkgs; [

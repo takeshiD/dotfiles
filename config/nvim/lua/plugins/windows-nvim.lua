@@ -23,7 +23,14 @@ return {
 				easing = "in_out_quad",
 			},
 			ignore = {
-				filetype = { "neo-tree", "DiffviewFiles" },
+				filetype = { 
+                    "neo-tree",
+                    "DiffviewFiles",
+                    "md-readable",
+                    "md-readable-minimap",
+                    "md-readable-nav",
+                    "md-readable-links",
+                },
 			},
 		})
 	end,

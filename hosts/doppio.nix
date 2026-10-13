@@ -32,6 +32,9 @@ let
   markdowReaderPkgs = with inputs.markdown-tui-explorer.packages.${pkgs.system}; [
     markdown-reader
   ];
+  shuckPkgs = with inputs.shuck.packages.${pkgs.system}; [
+    shuck
+  ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -87,7 +90,8 @@ in
     ++ obfishPkgs
     ++ markdowReaderPkgs
     ++ mdpeekPkgs
-    ++ pcxPkgs;
+    ++ pcxPkgs
+    ++ shuckPkgs;
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_SHELL = "bash";
