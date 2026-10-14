@@ -1,7 +1,7 @@
 return {
 	"sindrets/diffview.nvim",
 	event = "VeryLazy",
-	enabled = true,
+	enabled = false,
 	keys = {
 		{ mode = { "n" }, "<leader>dh", "<cmd>DiffviewFileHistory %<CR>", desc = "Unstaged FileHistory" },
 		{
