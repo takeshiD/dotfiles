@@ -78,5 +78,6 @@
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "whyis.nvim": { "branch": "main", "commit": "77274276e077acc776d649be2e0e11f1e9084d60" },
   "windows.nvim": { "branch": "main", "commit": "c7492552b23d0ab30325e90b56066ec51242adc8" },
+  "zen-mode.nvim": { "branch": "main", "commit": "8564ce6d29ec7554eb9df578efa882d33b3c23a7" },
   "zk-nvim": { "branch": "main", "commit": "2093138f4fabce994cf19403fca89d629f312ac9" }
 }
