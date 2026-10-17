@@ -26,11 +26,6 @@ bindkey -M viins '^H' backward-delete-char # Ctrl+H (端末によってはこち
 bindkey -M viins '^W' backward-kill-word   # Ctrl+W
 bindkey -M viins '^U' backward-kill-line   # Ctrl+U
 
-# completion menu select
-# Tab: next candidate, Shift+Tab: prev candidate
-bindkey -M menuselect '^I' menu-complete
-bindkey -M menuselect '^[[Z' reverse-menu-complete
-
 #==============================================
 # Options
 #==============================================
@@ -60,7 +55,6 @@ fi
 #==============================================
 # Completions
 #==============================================
-# [zsh-completions](https://github.com/zsh-users/zsh-completions)
 fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
 autoload -Uz compinit && compinit
 
@@ -112,6 +106,7 @@ fi
 #=======================================================
 # Plugins
 #=======================================================
+# [zsh-completions](https://github.com/zsh-users/zsh-completions)
 NIX_SHARE="$HOME/.nix-profile/share"
 fpath=("$NIX_SHARE/zsh/site-functions" $fpath)
 
@@ -130,6 +125,12 @@ zstyle ':completion:*:warnings' format '%F{red}-- No Candidate --%f' # 該当な
 zstyle ':completion:*:corrections' format '%F{green}-- %d (Error %e) --%f'
 zstyle ':completion:*:options' list-colors '=(#b)(-[^ ]#)*=0=36' # オプション名を水色に
 zstyle ':completion:*:commands' list-colors '=*=1;32'            # コマンド名を太字緑に
+
+# completion menu select
+# Tab: next candidate, Shift+Tab: prev candidate
+zmodload zsh/complist
+bindkey -M menuselect '^I' menu-complete
+bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 #---------------- autosuggestions ----------------
 if [ -f "$NIX_SHARE/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
