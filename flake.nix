@@ -13,10 +13,13 @@
     ];
   };
   inputs = {
+    # NixOS 用
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # home-manager 用
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     # my tools
     tmux-deck.url = "github:takeshid/tmux-deck";
@@ -25,7 +28,7 @@
     ioskeley-mono-jp.url = "github:takeshid/IoskeleyMonoJP";
     herdr = {
       url = "github:herdrdev/herdr/v0.8.2";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     # thirdparty
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
@@ -35,11 +38,12 @@
     markdown-tui-explorer.url = "github:leboiko/markdown-reader";
     shuck.url = "github:takeshid/shuck?ref=feat/build-nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       nixos-wsl,
       nix-index-database,
@@ -47,7 +51,7 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs-unstable.legacyPackages.${system};
       # For local user
       requireEnv =
         name:
