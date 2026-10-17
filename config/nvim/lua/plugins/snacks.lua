@@ -148,5 +148,13 @@ return {
 			mode = { "n" },
 			desc = "LazyGit",
 		},
+		{
+			"<leader>?",
+			function()
+				require("snacks").picker.keymaps()
+			end,
+			mode = { "n" },
+			desc = "Keymaps",
+		},
 	},
 }
