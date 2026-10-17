@@ -11,21 +11,25 @@ autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
-# コマンドモード
+# Vi normal mode
 bindkey -M vicmd -r 'v' # visual モードを無効化 (inputrc の "v": "" 相当)
 bindkey -M vicmd '^P' history-beginning-search-backward-end
 bindkey -M vicmd '^N' history-beginning-search-forward-end
 bindkey -M vicmd 'L' vi-forward-word
 bindkey -M vicmd 'H' vi-backward-word
 
-# 挿入モード
+# Vi insert mode
 bindkey -M viins '^P' history-beginning-search-backward-end
 bindkey -M viins '^N' history-beginning-search-forward-end
-# vi 流の「今回挿入した分しか消せない」制約を外す
 bindkey -M viins '^?' backward-delete-char # Backspace
 bindkey -M viins '^H' backward-delete-char # Ctrl+H (端末によってはこちらが来る)
 bindkey -M viins '^W' backward-kill-word   # Ctrl+W
 bindkey -M viins '^U' backward-kill-line   # Ctrl+U
+
+# completion menu select
+# Tab: next candidate, Shift+Tab: prev candidate
+bindkey -M menuselect '^I' menu-complete
+bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 #==============================================
 # Options
@@ -56,10 +60,11 @@ fi
 #==============================================
 # Completions
 #==============================================
+# [zsh-completions](https://github.com/zsh-users/zsh-completions)
 fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
 autoload -Uz compinit && compinit
 
-# linear completion
+# linear
 if command -v linear >/dev/null 2>&1; then
 	eval "$(linear completions zsh)"
 fi

@@ -209,6 +209,5 @@ return {
 				hover = false,
 			},
 		})
-		-- vim.keymap.set("n", "<leader>cc", require("crates").show_features_popup, { desc = "Crates Feature" })
 	end,
 }
