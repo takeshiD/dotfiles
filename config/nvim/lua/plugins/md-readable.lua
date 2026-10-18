@@ -41,6 +41,9 @@ return {
 			scale = 1,
 			max_rows = 40,
 		},
+		git = {
+			enable = true,
+		},
 		code = {
 			theme = "github-dark",
 			label = "right",
