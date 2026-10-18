@@ -5,7 +5,6 @@ local ensure_install_langs = {
 	"cmake",
 	"cpp",
 	"css",
-	"css",
 	"haskell",
 	"http",
 	"javascript",
@@ -23,10 +22,11 @@ local ensure_install_langs = {
 	"tsx",
 	"typescript",
 	"vim",
+	"vhs",
 	"xml",
 	"yaml",
 	"zsh",
-    "dockerfile",
+	"dockerfile",
 }
 return {
 	"nvim-treesitter/nvim-treesitter",
