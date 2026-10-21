@@ -1,0 +1,57 @@
+%YAML 1.2
+---
+# VHS (https://github.com/charmbracelet/vhs) の .tape ファイル用
+name: VHS
+file_extensions:
+  - tape
+scope: source.vhs
+
+contexts:
+  main:
+    - match: '#.*$'
+      scope: comment.line.number-sign.vhs
+    - match: '^\s*(Set)\s+(\w+)'
+      captures:
+        1: keyword.other.vhs
+        2: support.type.setting.vhs
+    - match: '\b(Output|Require|Source|Type|Sleep|Hide|Show|Screenshot|Copy|Paste|Env|Wait)\b'
+      scope: keyword.other.vhs
+    - match: '\b(Backspace|Delete|Insert|Down|Enter|Escape|Left|Right|Space|Tab|Up|PageUp|PageDown|ScrollUp|ScrollDown)\b'
+      scope: keyword.other.key.vhs
+    - match: '\b(Ctrl|Alt|Shift)(\+)'
+      captures:
+        1: entity.name.function.vhs
+        2: keyword.operator.vhs
+    - match: '@'
+      scope: keyword.operator.vhs
+    - match: '\b\d+(\.\d+)?(ms|s|m)\b'
+      scope: string.other.time.vhs
+    - match: '\b\d+\.\d+\b'
+      scope: constant.numeric.float.vhs
+    - match: '\b\d+\b'
+      scope: constant.numeric.integer.vhs
+    - match: '"'
+      push: double_string
+    - match: "'"
+      push: single_string
+    - match: '`'
+      push: backtick_string
+    - match: '/'
+      push: regex
+
+  double_string:
+    - meta_scope: string.quoted.double.vhs
+    - match: '"'
+      pop: true
+  single_string:
+    - meta_scope: string.quoted.single.vhs
+    - match: "'"
+      pop: true
+  backtick_string:
+    - meta_scope: string.quoted.other.vhs
+    - match: '`'
+      pop: true
+  regex:
+    - meta_scope: string.regexp.vhs
+    - match: '/'
+      pop: true

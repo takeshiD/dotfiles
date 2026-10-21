@@ -9,13 +9,11 @@ function _G.get_oil_winbar()
 	end
 end
 
--- git の出力を { [ファイル名] = true } の表に変換する
 local function parse_output(proc)
 	local result = proc:wait()
 	local ret = {}
 	if result.code == 0 then
 		for line in vim.gsplit(result.stdout, "\n", { plain = true, trimempty = true }) do
-			-- 末尾のスラッシュを取り除く
 			line = line:gsub("/$", "")
 			ret[line] = true
 		end
@@ -23,15 +21,27 @@ local function parse_output(proc)
 	return ret
 end
 
--- ディレクトリごとに gitignore 対象の一覧を保持する（初回参照時に取得）
 local function new_git_status()
 	return setmetatable({}, {
 		__index = function(self, key)
 			local ignore_proc = vim.system(
 				{ "git", "ls-files", "--ignored", "--exclude-standard", "--others", "--directory" },
-				{ cwd = key, text = true }
+				{
+					cwd = key,
+					text = true,
+				}
 			)
-			local ret = { ignored = parse_output(ignore_proc) }
+			local tracked_proc = vim.system({ "git", "ls-tree", "HEAD", "--name-only" }, {
+				cwd = key,
+				text = true,
+			})
+			local ret = {
+				ignored = parse_output(ignore_proc),
+				tracked = parse_output(tracked_proc),
+				specified = {
+					[".git"] = true,
+				},
+			}
 			rawset(self, key, ret)
 			return ret
 		end,
@@ -76,14 +86,8 @@ return {
 			view_options = {
 				show_hidden = true,
 				is_hidden_file = function(name, bufnr)
-					local is_dotfile = vim.startswith(name, ".") and name ~= ".."
 					local dir = require("oil").get_current_dir(bufnr)
-					-- ローカルのディレクトリでない場合（ssh 経由など）はドットファイルのみ隠す
-					if not dir then
-						return is_dotfile
-					end
-					-- ドットファイルに加え、gitignore 対象のファイルも隠す
-					return is_dotfile or git_status[dir].ignored[name] == true
+					return git_status[dir].ignored[name] or git_status[dir].specified[name]
 				end,
 			},
 			keymaps = {
@@ -102,14 +106,14 @@ return {
 					mode = "n",
 				},
 				["<C-e>"] = { "actions.close", mode = "n" },
-				["<C-l>"] = "actions.refresh",
+				["<C-r>"] = { "actions.refresh", mode = "n" },
 				["-"] = { "actions.parent", mode = "n" },
 				["_"] = { "actions.open_cwd", mode = "n" },
 				["`"] = { "actions.cd", mode = "n" },
 				["g~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
 				["gs"] = { "actions.change_sort", mode = "n" },
 				["gx"] = "actions.open_external",
-				["g."] = { "actions.toggle_hidden", mode = "n" },
+				["H"] = { "actions.toggle_hidden", mode = "n" },
 				["g\\"] = { "actions.toggle_trash", mode = "n" },
 			},
 			use_default_keymaps = false,
@@ -177,14 +181,13 @@ return {
 				highlights = {
 					OilGitAdded = { fg = "#a6e3a1" },
 					OilGitModifiedStaged = { link = "GitSignsAdd" },
-					-- OilGitModifiedUnstaged = { fg = "#e5c890", bold = true },
 					OilGitModifiedUnstaged = { link = "GitSignsChange" },
 					OilGitBranch = { fg = "#89b4fa" },
 					OilGitRenamed = { fg = "#cba6f7" },
 					OilGitDeleted = { fg = "#f38ba8" },
 					OilGitCopied = { fg = "#cba6f7" },
 					OilGitConflict = { fg = "#fab387" },
-					OilGitUntracked = { fg = "#89b4fa" },
+					OilGitUntracked = { fg = "#ff8700" },
 					OilGitIgnored = { fg = "#6c7086" },
 				},
 			})

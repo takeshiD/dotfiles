@@ -23,3 +23,4 @@ abbr cdr='cd $(git rev-parse --show-toplevel)'
 abbr "du"="dust --reverse"
 abbr "df"="duf"
 abbr "lg"="lazygit"
+abbr "bc"="bc -l"

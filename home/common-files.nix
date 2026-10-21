@@ -27,6 +27,7 @@ in
       force = true;
     };
     ".config/lsd".source = mkLink "${cfg.path}/config/lsd";
+    ".config/bat".source = mkLink "${cfg.path}/config/bat";
     ".config/ghostty".source = mkLink "${cfg.path}/config/ghostty";
     ".config/wezterm".source = mkLink "${cfg.path}/config/wezterm";
     ".config/containers".source = mkLink "${cfg.path}/config/containers";
