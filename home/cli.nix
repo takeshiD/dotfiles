@@ -150,13 +150,11 @@ let
     go-tools
   ];
   nodePkgs = with pkgs; [
-    typescript-language-server
     eslint
     biome
     pnpm
     nodejs
     bun
-    deno
     typescript
   ];
   haskellPkgs = with pkgs; [
@@ -179,6 +177,7 @@ let
     tailwindcss-language-server
     vscode-langservers-extracted
     markdown-oxide
+    # mdx-language-server
     taplo
     tombi
     yaml-language-server

@@ -155,3 +155,11 @@ fi
 if [ -f "$NIX_SHARE/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
 	source "$NIX_SHARE/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
+
+# pnpm
+export PNPM_HOME='/home/tkcd/.local/share/pnpm'
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
