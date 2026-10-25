@@ -86,8 +86,9 @@ vim.o.foldcolumn = "1"
 
 
 --############ Persistent ###########
-opt.undodir = vim.fn.expand("$HOME") .. "/.nvim/.undo"
+vim.env.XDG_STATE_HOME = '/tmp' -- volatile state
 opt.undofile = true
+opt.undodir = vim.env.XDG_STATE_HOME .. "/nvim/undo"
 
 --########## Project Configure ###########
 vim.o.exrc = true

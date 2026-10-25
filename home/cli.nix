@@ -91,6 +91,7 @@ let
     zsh-syntax-highlighting
     zsh-completions
     zsh-abbr
+    pdfcpu
   ];
   wslPkgs = with pkgs; [
     # wslu

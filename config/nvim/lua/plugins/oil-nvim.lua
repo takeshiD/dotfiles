@@ -79,6 +79,8 @@ return {
 				"size",
 				"mtime",
 			},
+			skip_confirm_for_simple_edits = true,
+			delete_to_trach = true,
 			win_options = {
 				signcolumn = "yes:2",
 				winbar = "%!v:lua.get_oil_winbar()",
@@ -93,9 +95,16 @@ return {
 			keymaps = {
 				["g?"] = { "actions.show_help", mode = "n" },
 				["<CR>"] = "actions.select",
-				["<C-s>"] = { "actions.select", opts = { vertical = true } },
-				["<C-v>"] = { "actions.select", opts = { horizontal = true } },
-				["<C-t>"] = { "actions.select", opts = { tab = true } },
+				-- ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+				["<C-s>"] = {
+					callback = function()
+						require("oil").save({
+							confirm = false,
+						})
+					end,
+					desc = "Save without confirmation",
+				},
+				["<C-v>"] = { "actions.select", opts = { vertical = true } },
 				["<C-p>"] = {
 					callback = function()
 						require("oil.actions").preview.callback({

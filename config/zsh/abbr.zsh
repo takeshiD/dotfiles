@@ -1,7 +1,7 @@
-if command -v lsd >/dev/null 2>&1; then
-	abbr ls='lsd -a'
-	abbr ll='lsd -la'
-	abbr la='lsd -la --tree --depth 2'
+if command -v eza >/dev/null 2>&1; then
+	abbr ls='eza -a'
+	abbr ll='eza -la'
+	abbr la='eza -la --tree -L 2'
 else
 	# abbr ls='ls'
 	abbr ll='ls -alF'
