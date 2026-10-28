@@ -156,6 +156,8 @@ let
     nodejs
     bun
     typescript
+    oxfmt
+    oxlint
   ];
   haskellPkgs = with pkgs; [
     haskellPackages.ghcup

@@ -93,9 +93,9 @@ in
     ++ pcxPkgs
     ++ shuckPkgs;
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = lib.getExe pkgs.neovim;
+    SUDO_EDITOR = lib.getExe pkgs.neovim;
     DEFAULT_SHELL = "bash";
-    # DEFAULT_SHELL = "fish";
     PNPM_HOME = "$HOME/.local/share/pnpm";
     GH_CONFIG_DIR = "$HOME/.config/gh/";
   };

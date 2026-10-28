@@ -40,7 +40,6 @@ local ensure_installed = {
 	"cmake",
 	"csharp_ls",
 	"cssls",
-    "denols",
 	"eslint",
 	"golangci_lint_ls",
 	"gopls",
@@ -61,14 +60,16 @@ local ensure_installed = {
 	"tombi",
 	"tsc",
 	"tsrs",
+	"oxlint",
+	"oxfmt",
 	-- "taplo",
 	-- "ts_ls",
 	-- "ty",
-	"yamlls",
+	-- "yamlls",
 	"zuban",
-    "lemminx",
-    "staticcheck",
-    "shuck",
+	"lemminx",
+	"staticcheck",
+	"shuck",
 }
 for _, lsp_name in pairs(ensure_installed) do
 	vim.lsp.enable(lsp_name)
