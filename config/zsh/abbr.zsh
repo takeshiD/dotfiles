@@ -19,7 +19,11 @@ if command -v taskwarrior-tui >/dev/null 2>&1; then
 	abbr tt='taskwarrior-tui'
 fi
 
-abbr cdr='cd $(git rev-parse --show-toplevel)'
+if command -v tv && command -v nix-search-tv >/dev/null 2>&1; then
+	abbr "nix fuzzy"="nix-search-tv print | tv --inline"
+fi
+
+abbr cdr="cd $(git rev-parse --show-toplevel)"
 abbr "du"="dust --reverse"
 abbr "df"="duf"
 abbr "lg"="lazygit"

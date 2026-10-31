@@ -74,6 +74,7 @@ let
     ansible
     mdbook
     google-cloud-sdk
+    gws
     ookla-speedtest
     silicon
     lnav
@@ -92,6 +93,9 @@ let
     zsh-completions
     zsh-abbr
     pdfcpu
+    nix-search-tv
+    television
+    whois
   ];
   wslPkgs = with pkgs; [
     # wslu

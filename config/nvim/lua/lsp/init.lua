@@ -40,6 +40,7 @@ local ensure_installed = {
 	"cmake",
 	"csharp_ls",
 	"cssls",
+	"cdk",
 	"eslint",
 	"golangci_lint_ls",
 	"gopls",
