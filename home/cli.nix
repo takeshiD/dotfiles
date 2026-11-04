@@ -32,6 +32,7 @@ let
     bat
     bat-extras.batman
     bottom
+    btop
     cachix
     dig
     direnv
@@ -96,6 +97,7 @@ let
     nix-search-tv
     television
     whois
+    sqlite-interactive
   ];
   wslPkgs = with pkgs; [
     # wslu
@@ -177,7 +179,7 @@ let
     nixfmt
   ];
   lspPkgs = with pkgs; [
-    astro-language-server
+    # astro-language-server
     bash-language-server
     shellcheck
     tailwindcss-language-server

@@ -37,6 +37,7 @@ return {
         mermaid = {
             enable = true,
             renderer = "termaid",
+            -- renderer = "mmdc",
             no_sandbox = false,
             scale = 1,
             max_rows = 40,

@@ -32,7 +32,7 @@ vim.diagnostic.config({
 })
 
 local ensure_installed = {
-	"astro",
+	-- "astro",
 	"bacon_ls",
 	"bashls",
 	"biome",
@@ -60,7 +60,7 @@ local ensure_installed = {
 	"rust_analyzer",
 	"tombi",
 	"tsc",
-	"tsrs",
+	-- "tsrs",
 	"oxlint",
 	"oxfmt",
 	-- "taplo",

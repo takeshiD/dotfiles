@@ -163,3 +163,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+# go
+if command -v go > /dev/null; then
+    export PATH="$PATH:$(go env GOPATH)/bin"
+fi
+# pnpm end
