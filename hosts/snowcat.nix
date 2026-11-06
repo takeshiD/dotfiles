@@ -133,9 +133,11 @@ in
     ++ obfishPkgs
     ++ markdowReaderPkgs;
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = lib.getExe pkgs.neovim;
+    SUDO_EDITOR = lib.getExe pkgs.neovim;
     DEFAULT_SHELL = "bash";
     PNPM_HOME = "$HOME/.local/share/pnpm";
+    GH_CONFIG_DIR = "$HOME/.config/gh/";
   };
   home.sessionPath = [
     "$HOME/.cargo/bin"

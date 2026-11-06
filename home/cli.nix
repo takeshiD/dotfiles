@@ -84,7 +84,7 @@ let
     mcap-cli
     gdrive3
     inotify-tools
-    bubblewrap
+    # bubblewrap
     taskwarrior3
     taskwarrior-tui
     python314Packages.bugwarrior
