@@ -62,7 +62,7 @@ gui:
       - "  🐥  "
       - "  🐔  "
       - "🐔🩷🐔"
-    rate: 300
+    rate: 500
   timeFormat: "2006-01-02 15:04"
   shortTimeFormat: "15:04"
   theme:
