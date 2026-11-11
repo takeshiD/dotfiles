@@ -44,18 +44,25 @@ git:
 gui:
   commitGraphStyle: detailed
   spinner:
+    # frames:
+    #   - "⠋"
+    #   - "⠙"
+    #   - "⠹"
+    #   - "⠸"
+    #   - "⠼"
+    #   - "⠴"
+    #   - "⠦"
+    #   - "⠧"
+    #   - "⠇"
+    #   - "⠏"
+    # rate: 80
     frames:
-      - "⠋"
-      - "⠙"
-      - "⠹"
-      - "⠸"
-      - "⠼"
-      - "⠴"
-      - "⠦"
-      - "⠧"
-      - "⠇"
-      - "⠏"
-    rate: 80
+      - "  🥚  "
+      - "  🐣  "
+      - "  🐥  "
+      - "  🐔  "
+      - "🐔🩷🐔"
+    rate: 300
   timeFormat: "2006-01-02 15:04"
   shortTimeFormat: "15:04"
   theme:
