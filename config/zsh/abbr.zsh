@@ -1,4 +1,4 @@
-if command -v eza >/dev/null 2>&1; then
+if command -v eza >/dev/null; then
 	abbr ls='eza -a'
 	abbr ll='eza -la'
 	abbr la='eza -la --tree -L 2'
@@ -7,19 +7,19 @@ else
 	abbr ll='ls -alF'
 fi
 
-if command -v bat >/dev/null 2>&1; then
+if command -v bat >/dev/null; then
 	abbr cat='bat'
 fi
 
-if command -v man >/dev/null 2>&1; then
+if command -v man >/dev/null; then
 	abbr man='batman'
 fi
 
-if command -v taskwarrior-tui >/dev/null 2>&1; then
+if command -v taskwarrior-tui >/dev/null; then
 	abbr tt='taskwarrior-tui'
 fi
 
-if command -v tv && command -v nix-search-tv >/dev/null 2>&1; then
+if command -v tv && command -v nix-search-tv >/dev/null; then
 	abbr "nix fuzzy"="nix-search-tv print | tv --inline"
 fi
 
