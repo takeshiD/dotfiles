@@ -172,6 +172,9 @@ let
   luaPkgs = with pkgs; [
     lua-language-server
     stylua
+    emmylua-ls
+    emmylua-formatter
+    emmylua-check
   ];
   nixPkgs = with pkgs; [
     # nil

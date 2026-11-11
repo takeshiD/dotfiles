@@ -1,12 +1,12 @@
 vim.api.nvim_create_user_command("LspLog", function()
-	vim.cmd(string.format("tabnew %s", vim.lsp.log.get_filename()))
+    vim.cmd(string.format("tabnew %s", vim.lsp.log.get_filename()))
 end, {
-	desc = "Nvim LSP log.",
+    desc = "Nvim LSP log.",
 })
 vim.api.nvim_create_user_command("LspInfo", function()
-	vim.cmd("checkhealth vim.lsp")
+    vim.cmd("checkhealth vim.lsp")
 end, {
-	desc = "Nvim LSP checkhealth.",
+    desc = "Nvim LSP checkhealth.",
 })
 
 -- vim.lsp.set_log_level("debug")
@@ -18,60 +18,61 @@ vim.lsp.inlay_hint.enable()
 -- vim.lsp.inline_completion.enable()
 -- vim.lsp.linked_editing_range.enable()
 vim.diagnostic.config({
-	virtual_lines = false,
-	virtual_text = false,
-	signs = {
-		priority = 100,
-		text = {
-			[vim.diagnostic.severity.ERROR] = " ",
-			[vim.diagnostic.severity.WARN] = " ",
-			[vim.diagnostic.severity.INFO] = " ",
-			[vim.diagnostic.severity.HINT] = " ",
-		},
-	},
+    virtual_lines = false,
+    virtual_text = false,
+    signs = {
+        priority = 100,
+        text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = " ",
+        },
+    },
 })
 
 local ensure_installed = {
-	-- "astro",
-	"bacon_ls",
-	"bashls",
-	"biome",
-	"clangd",
-	"cmake",
-	"csharp_ls",
-	"cssls",
-	"cdk",
-	"eslint",
-	"golangci_lint_ls",
-	"gopls",
-	"hls",
-	"html",
-	"jsonls",
-	"lua_ls",
-	"markdown_oxide",
-	-- "mdx_analyzer",
-	"neocmake",
-	"nil_ls",
-	"nixd",
-	"pylsp",
-	-- "pyrefly",
-	-- "pyright",
-	"ruff",
-	"rust_analyzer",
-	"tombi",
-	"tsc",
-	-- "tsrs",
-	"oxlint",
-	"oxfmt",
-	-- "taplo",
-	-- "ts_ls",
-	-- "ty",
-	-- "yamlls",
-	"zuban",
-	"lemminx",
-	"staticcheck",
-	"shuck",
+    -- "astro",
+    "bacon_ls",
+    "bashls",
+    "biome",
+    "clangd",
+    "cmake",
+    "csharp_ls",
+    "cssls",
+    "cdk",
+    "eslint",
+    "emmylua_ls",
+    "golangci_lint_ls",
+    "gopls",
+    "hls",
+    "html",
+    "jsonls",
+    -- "lua_ls",
+    "markdown_oxide",
+    -- "mdx_analyzer",
+    "neocmake",
+    "nil_ls",
+    "nixd",
+    "pylsp",
+    -- "pyrefly",
+    -- "pyright",
+    "ruff",
+    "rust_analyzer",
+    "tombi",
+    "tsc",
+    -- "tsrs",
+    "oxlint",
+    "oxfmt",
+    -- "taplo",
+    -- "ts_ls",
+    -- "ty",
+    -- "yamlls",
+    "zuban",
+    "lemminx",
+    "staticcheck",
+    "shuck",
 }
 for _, lsp_name in pairs(ensure_installed) do
-	vim.lsp.enable(lsp_name)
+    vim.lsp.enable(lsp_name)
 end
