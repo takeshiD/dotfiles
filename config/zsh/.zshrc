@@ -104,6 +104,13 @@ if command -v direnv >/dev/null 2>&1; then
 fi
 
 #=======================================================
+# awsr
+#=======================================================
+if command -v aws_completer > /dev/null; then
+    complete -C aws_completer awsr
+fi
+
+#=======================================================
 # Plugins
 #=======================================================
 # [zsh-completions](https://github.com/zsh-users/zsh-completions)
@@ -149,6 +156,8 @@ if [ -f "$NIX_SHARE/zsh/zsh-abbr/zsh-abbr.plugin.zsh" ]; then
 	ABBR_QUIET=1                                                      # 起動時や add 時の案内を抑える
 	source "$NIX_SHARE/zsh/zsh-abbr/zsh-abbr.plugin.zsh"
 	# 既定の割り当て: Space で展開、Enter で展開して実行、Ctrl+Space で展開せず空白
+    # sudoで展開しない
+    typeset -ga ABBR_REGULAR_ABBREVIATION_SCALAR_PREFIXES=()
 fi
 
 #---------------- syntax highlight ----------------
