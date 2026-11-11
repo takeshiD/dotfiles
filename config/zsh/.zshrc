@@ -111,6 +111,13 @@ if command -v aws_completer > /dev/null; then
 fi
 
 #=======================================================
+# espup
+#=======================================================
+if command -v espup > /dev/null; then
+    eval "$(espup completions zsh)"
+fi
+
+#=======================================================
 # Plugins
 #=======================================================
 # [zsh-completions](https://github.com/zsh-users/zsh-completions)
