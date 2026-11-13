@@ -206,4 +206,4 @@ _cache_completion espup espup completions zsh
 _cache_completion espflash espflash completions zsh
 source "$HOME/export-esp.sh"
 
-zprof
+# zprof
