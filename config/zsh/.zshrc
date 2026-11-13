@@ -1,4 +1,8 @@
 #==============================================
+# Prifiling
+#==============================================
+zmodload zsh/zprof
+#==============================================
 # Key binds (bash の .inputrc 相当)
 #==============================================
 # Vi like keybind
@@ -53,20 +57,41 @@ if command -v starship >/dev/null; then
 	eval "$(starship init zsh)"
 fi
 #==============================================
+# Alias
+#==============================================
+alias grep="grep --color"
+
+#==============================================
 # Completions
 #==============================================
 fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
 autoload -Uz compinit && compinit
 
+# 補完スクリプトを生成してファイルに保存し、次回以降はそれを読み込む
+# 使い方: _cache_completion <保存名> <コマンド> [引数...]
+# 実行ファイルの実体パスが変わった (nix で更新された) か、
+# 実行ファイルが保存ファイルより新しくなったときだけ作り直す
+# 強制的に作り直す場合: rm ~/dotfiles/config/zsh/completions/*
+ZSH_COMPLETION_CACHE_DIR="$HOME/dotfiles/config/zsh/completions"
+_cache_completion() {
+	local name=$1 cmd=$2
+	shift
+	local bin=${commands[$cmd]}
+	[[ -n $bin ]] || return
+	local cache="$ZSH_COMPLETION_CACHE_DIR/_$name.zsh"
+	local stamp="# source: ${bin:A}"
+	if [[ ! -s $cache || $bin -nt $cache || "$(head -n 1 $cache)" != "$stamp" ]]; then
+		mkdir -p $ZSH_COMPLETION_CACHE_DIR
+		{ print -r -- $stamp; "$@" 2>/dev/null } >| $cache
+	fi
+	source $cache
+}
+
 # linear
-if command -v linear >/dev/null 2>&1; then
-	eval "$(linear completions zsh)"
-fi
+_cache_completion linear linear completions zsh
 
 # tailscale
-if command -v tailscale >/dev/null 2>&1; then
-	eval "$(tailscale completion zsh)"
-fi
+_cache_completion tailscale tailscale completion zsh
 
 # fzf
 if command -v fzf >/dev/null 2>&1; then
@@ -74,20 +99,14 @@ if command -v fzf >/dev/null 2>&1; then
 fi
 
 # herdr
-if command -v herdr >/dev/null 2>&1; then
-	eval "$(herdr completion zsh)"
-fi
+_cache_completion herdr herdr completion zsh
 
 # colcon, ros2
-if command -v register-python-argcomplete >/dev/null 2>&1; then
-	eval "$(register-python-argcomplete --shell zsh ros2)"
-	eval "$(register-python-argcomplete --shell zsh colcon)"
-fi
+_cache_completion ros2 register-python-argcomplete --shell zsh ros2
+_cache_completion colcon register-python-argcomplete --shell zsh colcon
 
 # gitbook
-if command -v gitbook >/dev/null 2>&1; then
-	eval "$(gitbook completion zsh)"
-fi
+_cache_completion gitbook gitbook completion zsh
 
 #=======================================================
 # zoxide
@@ -111,13 +130,6 @@ if command -v aws_completer > /dev/null; then
 fi
 
 #=======================================================
-# espup
-#=======================================================
-if command -v espup > /dev/null; then
-    eval "$(espup completions zsh)"
-fi
-
-#=======================================================
 # Plugins
 #=======================================================
 # [zsh-completions](https://github.com/zsh-users/zsh-completions)
@@ -133,6 +145,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"              # ファイル名を ls と同じ色に
 zstyle ':completion:*' group-name ''                                 # 種類ごとに分けて見出しを付ける
+zstyle ':completion:*' rehash true
 zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'    # 見出し (黄)
 zstyle ':completion:*:messages' format '%F{blue}-- %d --%f'          # 案内 (青)
 zstyle ':completion:*:warnings' format '%F{red}-- No Candidate --%f' # 該当なし (赤)
@@ -185,3 +198,12 @@ if command -v go > /dev/null; then
     export PATH="$PATH:$(go env GOPATH)/bin"
 fi
 # pnpm end
+
+#=======================================================
+# ESP32 Setup
+#=======================================================
+_cache_completion espup espup completions zsh
+_cache_completion espflash espflash completions zsh
+source "$HOME/export-esp.sh"
+
+zprof

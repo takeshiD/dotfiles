@@ -6,7 +6,8 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileencodings = "utf-8,cp932,euc-jp,utf-16le"
 -- opt.langmenu = "en_us"
-opt.guifont = "UDEV GothicNF:h12"
+opt.guifont = "UDEV Gothic NF:h12"
+-- opt.guifontwide = "UDEV Gothic NF:h12"
 -- vim.cmd[[language en_US.UTF-8]]
 
 --############ OperationBehavior ###########

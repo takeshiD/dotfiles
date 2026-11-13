@@ -5,3 +5,6 @@ session/
 view/
 .serena
 config/starship/starship.toml
+
+# zsh completion cache (generated)
+config/zsh/completions/
