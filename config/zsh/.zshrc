@@ -65,6 +65,7 @@ alias grep="grep --color"
 # Completions
 #==============================================
 fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
+autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
 # 補完スクリプトを生成してファイルに保存し、次回以降はそれを読み込む

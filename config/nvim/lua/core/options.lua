@@ -9,6 +9,7 @@ opt.fileencodings = "utf-8,cp932,euc-jp,utf-16le"
 opt.guifont = "UDEV Gothic NF:h12"
 -- opt.guifontwide = "UDEV Gothic NF:h12"
 -- vim.cmd[[language en_US.UTF-8]]
+opt.ambiwidth = "single"
 
 --############ OperationBehavior ###########
 opt.updatetime = 100
