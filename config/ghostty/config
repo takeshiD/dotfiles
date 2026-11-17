@@ -36,6 +36,7 @@ adjust-cell-height = 0
 adjust-cell-width = 0
 desktop-notifications = false
 keybind = ctrl+slash=text:\x1f
+keybind = shift+insert=paste_from_clipboard
 window-step-resize = true
 window-padding-balance = true
 window-padding-color = extend
