@@ -22,6 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     # my tools
+    obsidian-ai-workflow.url = "git+ssh://git@github.com/takeshiD/obsidian-ai-workflow.git?ref=main";
     tmux-deck.url = "github:takeshid/tmux-deck";
     markdown-peek.url = "github:takeshid/markdown-peek/v0.1.9";
     pcx.url = "github:takeshid/pcx";
@@ -65,6 +66,7 @@
         "snowcat" = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            inputs.obsidian-ai-workflow.nixosModules.default
             ./nixos/snowcat
           ];
           specialArgs = {

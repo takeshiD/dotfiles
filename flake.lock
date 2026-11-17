@@ -567,6 +567,22 @@
         "type": "github"
       }
     },
+    "obsidian-ai-workflow": {
+      "locked": {
+        "lastModified": 1794849255,
+        "narHash": "sha256-oI13hqUKzPeW3qO12GUJNS3NMzg2s/BKeaynXJSuZdU=",
+        "ref": "main",
+        "rev": "3419e1bb3563fa637db436d86c9d0e33ada0a9de",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/takeshiD/obsidian-ai-workflow.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/takeshiD/obsidian-ai-workflow.git"
+      }
+    },
     "pcx": {
       "inputs": {
         "nixpkgs": "nixpkgs_9",
@@ -600,6 +616,7 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "ob-fish": "ob-fish",
+        "obsidian-ai-workflow": "obsidian-ai-workflow",
         "pcx": "pcx",
         "shuck": "shuck",
         "tmux-deck": "tmux-deck"
