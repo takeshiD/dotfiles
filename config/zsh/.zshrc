@@ -1,7 +1,7 @@
 #==============================================
-# Prifiling
+# Profiling
 #==============================================
-zmodload zsh/zprof
+[[ ${ZSH_PROFILE:-0} == 1 ]] && zmodload zsh/zprof
 #==============================================
 # Key binds (bash の .inputrc 相当)
 #==============================================
@@ -50,11 +50,43 @@ setopt hist_ignore_space
 setopt extended_history
 
 #==============================================
+# Generated shell scripts
+#==============================================
+# 補完・初期化スクリプトはコマンド更新時だけ再生成する。
+# 強制再生成: rm ~/dotfiles/config/zsh/completions/*.zsh
+ZSH_COMPLETION_CACHE_DIR="$HOME/dotfiles/config/zsh/completions"
+_cache_zsh_script() {
+	local name=$1 cmd=$2
+	shift
+	local bin=${commands[$cmd]}
+	[[ -n $bin ]] || return
+	local cache="$ZSH_COMPLETION_CACHE_DIR/_$name.zsh"
+	local stamp="# source: ${bin:A}"
+	local cached_stamp
+	# head を起動せず、zsh の組み込み read で先頭行を読む。
+	[[ -r $cache ]] && IFS= read -r cached_stamp < "$cache"
+	if [[ ! -s $cache || $bin -nt $cache || $cached_stamp != $stamp ]]; then
+		local script
+		# 生成失敗時は既存キャッシュを使い、次の起動で再試行する。
+		if ! script=$("$@" 2>/dev/null); then
+			[[ -s $cache ]] && source "$cache"
+			return
+		fi
+		[[ -n $script ]] || return 1
+		mkdir -p -- "$ZSH_COMPLETION_CACHE_DIR" || return
+		local tmp="$cache.$$.tmp"
+		{ print -r -- "$stamp"; print -r -- "$script" } >| "$tmp" || return
+		mv -f -- "$tmp" "$cache" || return
+	fi
+	source "$cache"
+}
+
+#==============================================
 # Appearance
 #==============================================
 if command -v starship >/dev/null; then
 	export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-	eval "$(starship init zsh)"
+	_cache_zsh_script starship-init starship init zsh
 fi
 #==============================================
 # Alias
@@ -64,63 +96,45 @@ alias grep="grep --color"
 #==============================================
 # Completions
 #==============================================
-fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
+NIX_SHARE="$HOME/.nix-profile/share"
+typeset -U fpath
+fpath=("$NIX_SHARE/zsh/site-functions" $fpath)
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
-# 補完スクリプトを生成してファイルに保存し、次回以降はそれを読み込む
-# 使い方: _cache_completion <保存名> <コマンド> [引数...]
-# 実行ファイルの実体パスが変わった (nix で更新された) か、
-# 実行ファイルが保存ファイルより新しくなったときだけ作り直す
-# 強制的に作り直す場合: rm ~/dotfiles/config/zsh/completions/*
-ZSH_COMPLETION_CACHE_DIR="$HOME/dotfiles/config/zsh/completions"
-_cache_completion() {
-	local name=$1 cmd=$2
-	shift
-	local bin=${commands[$cmd]}
-	[[ -n $bin ]] || return
-	local cache="$ZSH_COMPLETION_CACHE_DIR/_$name.zsh"
-	local stamp="# source: ${bin:A}"
-	if [[ ! -s $cache || $bin -nt $cache || "$(head -n 1 $cache)" != "$stamp" ]]; then
-		mkdir -p $ZSH_COMPLETION_CACHE_DIR
-		{ print -r -- $stamp; "$@" 2>/dev/null } >| $cache
-	fi
-	source $cache
-}
-
 # linear
-_cache_completion linear linear completions zsh
+_cache_zsh_script linear linear completions zsh
 
 # tailscale
-_cache_completion tailscale tailscale completion zsh
+_cache_zsh_script tailscale tailscale completion zsh
 
 # fzf
 if command -v fzf >/dev/null 2>&1; then
-	eval "$(fzf --zsh)"
+	_cache_zsh_script fzf-init fzf --zsh
 fi
 
 # herdr
-_cache_completion herdr herdr completion zsh
+_cache_zsh_script herdr herdr completion zsh
 
 # colcon, ros2
-_cache_completion ros2 register-python-argcomplete --shell zsh ros2
-_cache_completion colcon register-python-argcomplete --shell zsh colcon
+_cache_zsh_script ros2 register-python-argcomplete --shell zsh ros2
+_cache_zsh_script colcon register-python-argcomplete --shell zsh colcon
 
 # gitbook
-_cache_completion gitbook gitbook completion zsh
+_cache_zsh_script gitbook gitbook completion zsh
 
 #=======================================================
 # zoxide
 #=======================================================
 if command -v zoxide >/dev/null 2>&1; then
-	eval "$(zoxide init zsh --cmd j)"
+	_cache_zsh_script zoxide-init zoxide init zsh --cmd j
 fi
 
 #=======================================================
 # direnv
 #=======================================================
 if command -v direnv >/dev/null 2>&1; then
-	eval "$(direnv hook zsh)"
+	_cache_zsh_script direnv-init direnv hook zsh
 fi
 
 #=======================================================
@@ -133,10 +147,6 @@ fi
 #=======================================================
 # Plugins
 #=======================================================
-# [zsh-completions](https://github.com/zsh-users/zsh-completions)
-NIX_SHARE="$HOME/.nix-profile/share"
-fpath=("$NIX_SHARE/zsh/site-functions" $fpath)
-
 # LS_COLORS を生成 (bash の alias.sh と同じ)
 if command -v dircolors >/dev/null 2>&1; then
 	eval "$(dircolors -b)"
@@ -203,8 +213,12 @@ fi
 #=======================================================
 # ESP32 Setup
 #=======================================================
-_cache_completion espup espup completions zsh
-_cache_completion espflash espflash completions zsh
-source "$HOME/export-esp.sh"
+_cache_zsh_script espup espup completions zsh
+_cache_zsh_script espflash espflash completions zsh
+if [[ -f "$HOME/export-esp.sh" ]]; then
+    source "$HOME/export-esp.sh"
+fi
 
-# zprof
+if [[ ${ZSH_PROFILE:-0} == 1 ]]; then
+	zprof
+fi
