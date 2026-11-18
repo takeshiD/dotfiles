@@ -28,9 +28,10 @@
     pcx.url = "github:takeshid/pcx";
     ioskeley-mono-jp.url = "github:takeshid/IoskeleyMonoJP";
     herdr = {
-      url = "github:herdrdev/herdr/v0.8.2";
+      url = "github:herdrdev/herdr";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    collie.url = "github:AltanS/collie";
     # thirdparty
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";

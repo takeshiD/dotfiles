@@ -12,6 +12,7 @@ let
     starship
     tmux
     inputs.herdr.packages.${pkgs.system}.default
+    inputs.collie.packages.${pkgs.system}.default
   ];
   gitPkgs = with pkgs; [
     delta

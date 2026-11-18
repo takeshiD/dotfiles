@@ -140,7 +140,7 @@
     };
   };
   services.ollama = {
-    enable = true;
+    enable = false;
     package = pkgs.ollama-cuda;
     loadModels = [
       "gemma3:27b"
@@ -152,6 +152,9 @@
       "qwen3.6:27b"
       "qwen3.6:27b"
     ];
+  };
+  services.cloudflared = {
+    enable = false;
   };
   services.resolved.enable = true;
   services.tailscale.enable = true;
@@ -234,9 +237,10 @@
     nixos-container
     usbutils
     pciutils
-    (ollama.override {
-      acceleration = "cuda";
-    })
+    cloudflared
+    # (ollama.override {
+    #   acceleration = "cuda";
+    # })
   ];
   nixpkgs.config = {
     allowUnfree = true;
@@ -379,6 +383,6 @@
           })
 
       c.Spawner.pre_spawn_hook = pre_spawn_hook
-        '';
+    '';
   };
 }
