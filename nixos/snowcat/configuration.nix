@@ -154,7 +154,14 @@
     ];
   };
   services.cloudflared = {
-    enable = false;
+    enable = true;
+    tunnels."collie-tunnel_snowcat" = {
+      credentialsFile = "/home/tkcd/.cloudflared/a2e3564f-b6a0-4606-9888-b57f2f439ebe.json";
+      ingress = {
+        "collie.tkcd.dev" = "http://127.0.0.1:8787";
+      };
+      default = "http_status:404";
+    };
   };
   services.resolved.enable = true;
   services.tailscale.enable = true;

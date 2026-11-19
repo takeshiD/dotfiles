@@ -146,6 +146,25 @@ in
   # home.sessionVariables = [
   #   PKG_CONFIG
   # ];
+  # collie (collie.tkcd.dev) が接続する herdr サーバーを常駐させる。
+  # ログイン無しでも起動するよう loginctl enable-linger tkcd 済みであること。
+  systemd.user.services.herdr = {
+    Unit = {
+      Description = "herdr headless server";
+      Before = [ "collie.service" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server";
+      ExecStop = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server stop";
+      Restart = "on-failure";
+      RestartSec = 5;
+      # ペイン内のプロセスはこのサーバー配下で動くため、停止時は herdr 自身に保存・終了させる
+      KillMode = "mixed";
+      TimeoutStopSec = 30;
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
   home.activation = {
     gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared"
