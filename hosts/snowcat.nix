@@ -159,6 +159,8 @@ in
       ExecStop = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server stop";
       Restart = "on-failure";
       RestartSec = 5;
+      # systemd user manager の SHELL は bash なので、ペインのシェルを zsh に固定する
+      Environment = [ "SHELL=/run/current-system/sw/bin/zsh" ];
       # ペイン内のプロセスはこのサーバー配下で動くため、停止時は herdr 自身に保存・終了させる
       KillMode = "mixed";
       TimeoutStopSec = 30;

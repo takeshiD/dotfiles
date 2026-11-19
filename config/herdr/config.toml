@@ -32,3 +32,7 @@ resize_pane_down = "prefix+shift+j"
 resize_pane_up = "prefix+shift+k"
 resize_pane_right = "prefix+shift+l"
 toggle_sidebar = "prefix+ctrl+e"
+
+[terminal]
+# ~/.zprofile (GH_PROMPT_USER, GIT_SSH_COMMAND など) を読ませるためログインシェルで起動する
+shell_mode = "login"
