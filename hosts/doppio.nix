@@ -39,6 +39,7 @@ in
 {
   nixpkgs.config.allowUnfree = true;
   imports = [
+    ../home/agent-skills.nix
     ../home/cli.nix
     ../home/common-files.nix
     # ../home/gui.nix

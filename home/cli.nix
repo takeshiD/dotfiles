@@ -118,7 +118,7 @@ let
   clangPkgs = with pkgs; [
     clang
     clang-tools
-    pkg-config
+    # pkg-config
     gnumake
     cmake
     mold

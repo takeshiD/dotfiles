@@ -78,6 +78,63 @@ home-manager switch --flake .#tkcd@doppio
 home-manager switch --flake .#local --impure
 ```
 
+### Agent Skills
+
+[agent-skills-nix](https://github.com/Kyure-A/agent-skills-nix) is configured
+for both hosts (and `local`) in `home/agent-skills.nix`. The 32 standalone skills
+are selected explicitly from Matt Pocock, Vercel, ibelick, gfargo,
+UI UX Pro Max, and the existing Herdr input. `resolving-merge-conflicts` uses
+a separate historical Matt Pocock input because it was removed upstream.
+
+Home Manager links skills into `~/.agents/skills` (read directly by Codex) and
+`~/.claude/skills`. It does not install duplicate copies into `~/.codex/skills`.
+The Claude destination is fixed and does not follow `CLAUDE_CONFIG_DIR`.
+App-managed skills remain separate: Codex system/plugin skills, Claude synced
+skills, and Collie's generated `collie-walky-talky` are not taken over.
+
+For the initial migration of an existing installation, run on each machine:
+
+```bash
+bash scripts/migrate-agent-skills.sh tkcd@snowcat
+# On doppio:
+bash scripts/migrate-agent-skills.sh tkcd@doppio
+```
+
+The script builds the configuration first, backs up selected skills (both
+resolved content and original links) under
+`~/.local/state/dotfiles/skills-backups/`, then activates Home Manager.
+After successful verification it removes the migrated entries from the old
+Skills CLI lock file. Other installed skills are left alone. Backups also
+preserve local edits and older versions; the active versions come from the
+pinned Nix inputs. Subsequent updates use normal `home-manager switch`.
+
+To add skills, first add a source input to `flake.nix`, for example:
+
+```nix
+anthropic-skills = {
+  url = "github:anthropics/skills";
+  flake = false;
+};
+```
+
+Then add the source and selection settings in `home/agent-skills.nix`:
+
+```nix
+sources.anthropic = {
+  input = "anthropic-skills";
+  subdir = "skills";
+};
+skills.explicit.frontend-design = {
+  from = "anthropic";
+  path = "frontend-design";
+};
+```
+
+Run `nix flake lock`, then apply the appropriate Home Manager configuration
+on each machine using the commands above. To update the integration itself,
+run `nix flake update agent-skills`. To update the Matt Pocock skills,
+run `nix flake update mattpocock-skills`.
+
 ### The `local` Configuration
 
 `.#local` is for machines whose account name or hostname must not be recorded

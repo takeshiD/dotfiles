@@ -33,6 +33,35 @@
     };
     collie.url = "github:AltanS/collie";
     # thirdparty
+    agent-skills = {
+      url = "github:Kyure-A/agent-skills-nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    mattpocock-skills = {
+      url = "github:mattpocock/skills";
+      flake = false;
+    };
+    mattpocock-skills-legacy = {
+      # Last revision before resolving-merge-conflicts was removed upstream.
+      url = "github:mattpocock/skills/153fc1b93de6584562765cdce299324e1ff9e661";
+      flake = false;
+    };
+    vercel-skills = {
+      url = "github:vercel-labs/skills";
+      flake = false;
+    };
+    ui-skills = {
+      url = "github:ibelick/ui-skills";
+      flake = false;
+    };
+    tui-design-skills = {
+      url = "github:gfargo/tui-design-skill";
+      flake = false;
+    };
+    ui-ux-pro-max-skills = {
+      url = "github:nextlevelbuilder/ui-ux-pro-max-skill";
+      flake = false;
+    };
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
     llm-agents.url = "github:numtide/llm-agents.nix";

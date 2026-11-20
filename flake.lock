@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "agent-skills": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794456227,
+        "narHash": "sha256-qu7S1arVl+Q6H/yZhJ2VdeDY/kBxY8mK8m6U49M0alk=",
+        "owner": "Kyure-A",
+        "repo": "agent-skills-nix",
+        "rev": "93a02cb60eda167de8c5baa085e4a2bcfc71b885",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kyure-A",
+        "repo": "agent-skills-nix",
+        "type": "github"
+      }
+    },
     "bun2nix": {
       "inputs": {
         "flake-parts": [
@@ -335,6 +355,39 @@
         "type": "github"
       }
     },
+    "mattpocock-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795095298,
+        "narHash": "sha256-fc5+qmchp1IQ/rQP1olWKC1eC4VdYhaB7YYzC3+JBe0=",
+        "owner": "mattpocock",
+        "repo": "skills",
+        "rev": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattpocock",
+        "repo": "skills",
+        "type": "github"
+      }
+    },
+    "mattpocock-skills-legacy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790238057,
+        "narHash": "sha256-Y9V+uQf3zx3OxVD3P0xdmplRV474SoP5BoZTLSV+sFo=",
+        "owner": "mattpocock",
+        "repo": "skills",
+        "rev": "153fc1b93de6584562765cdce299324e1ff9e661",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattpocock",
+        "repo": "skills",
+        "rev": "153fc1b93de6584562765cdce299324e1ff9e661",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -656,6 +709,7 @@
     },
     "root": {
       "inputs": {
+        "agent-skills": "agent-skills",
         "collie": "collie",
         "gfm-preview": "gfm-preview",
         "herdr": "herdr",
@@ -664,6 +718,8 @@
         "llm-agents": "llm-agents",
         "markdown-peek": "markdown-peek",
         "markdown-tui-explorer": "markdown-tui-explorer",
+        "mattpocock-skills": "mattpocock-skills",
+        "mattpocock-skills-legacy": "mattpocock-skills-legacy",
         "nix-index-database": "nix-index-database",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_8",
@@ -672,7 +728,11 @@
         "obsidian-ai-workflow": "obsidian-ai-workflow",
         "pcx": "pcx",
         "shuck": "shuck",
-        "tmux-deck": "tmux-deck"
+        "tmux-deck": "tmux-deck",
+        "tui-design-skills": "tui-design-skills",
+        "ui-skills": "ui-skills",
+        "ui-ux-pro-max-skills": "ui-ux-pro-max-skills",
+        "vercel-skills": "vercel-skills"
       }
     },
     "rust-overlay": {
@@ -929,6 +989,70 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "tui-design-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793222746,
+        "narHash": "sha256-Kmxys40+C07PFr83Ejm6AmlB2jQqtJuZ/L9uXmPBQ4E=",
+        "owner": "gfargo",
+        "repo": "tui-design-skill",
+        "rev": "74e095c177a387c61d368478074a1a94937d3aa1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gfargo",
+        "repo": "tui-design-skill",
+        "type": "github"
+      }
+    },
+    "ui-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795012618,
+        "narHash": "sha256-jqgcnMM99zrLhrQJgvmt8YtHxXwMfqhC23RCL1Ncf1E=",
+        "owner": "ibelick",
+        "repo": "ui-skills",
+        "rev": "347d3189830f8ec3c4c041421bce19182a79dc7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ibelick",
+        "repo": "ui-skills",
+        "type": "github"
+      }
+    },
+    "ui-ux-pro-max-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795050294,
+        "narHash": "sha256-QGE9pw0mJMv/6AQBDxjp1id2FB1de7Uv8rtuN+shMrk=",
+        "owner": "nextlevelbuilder",
+        "repo": "ui-ux-pro-max-skill",
+        "rev": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nextlevelbuilder",
+        "repo": "ui-ux-pro-max-skill",
+        "type": "github"
+      }
+    },
+    "vercel-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794877081,
+        "narHash": "sha256-Mc5DOu9W6cY5YdzN4vX6UzOICyj3U3MvhHXym6S9xd0=",
+        "owner": "vercel-labs",
+        "repo": "skills",
+        "rev": "57217cf86ba38148a57af9e90d14a4c049558330",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vercel-labs",
+        "repo": "skills",
         "type": "github"
       }
     }
