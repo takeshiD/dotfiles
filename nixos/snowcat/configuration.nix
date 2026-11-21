@@ -154,7 +154,7 @@
     ];
   };
   services.cloudflared = {
-    enable = true;
+    enable = false;
     tunnels."collie-tunnel_snowcat" = {
       credentialsFile = "/home/tkcd/.cloudflared/a2e3564f-b6a0-4606-9888-b57f2f439ebe.json";
       ingress = {

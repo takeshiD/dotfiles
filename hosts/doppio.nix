@@ -10,6 +10,9 @@ let
   llmAgentsPkgs = with inputs.llm-agents.packages.${pkgs.system}; [
     claude-code
     codex
+    pi
+    dsh
+    opencode2
   ];
   tmuxDeckPkgs = with inputs.tmux-deck.packages.${pkgs.system}; [
     tmux-deck

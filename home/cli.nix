@@ -13,6 +13,7 @@ let
     tmux
     inputs.herdr.packages.${pkgs.system}.default
     inputs.collie.packages.${pkgs.system}.default
+    t3code
   ];
   gitPkgs = with pkgs; [
     delta

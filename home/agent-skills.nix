@@ -30,9 +30,9 @@
       ui-ux-pro-max = {
         input = "ui-ux-pro-max-skills";
       };
-      herdr = {
-        input = "herdr";
-      };
+      # herdr = {
+      #   input = "herdr";
+      # };
     };
 
     # Explicit flat names preserve cross-skill references and avoid collisions.
@@ -81,18 +81,18 @@
         from = "mattpocock";
         path = "productivity/handoff";
       };
-      herdr = {
-        from = "herdr";
-        path = "skills/herdr";
-      };
-      herdr-pre-release-audit = {
-        from = "herdr";
-        path = ".agents/skills/herdr-pre-release-audit";
-      };
-      herdr-throwaway-repro = {
-        from = "herdr";
-        path = ".agents/skills/herdr-throwaway-repro";
-      };
+      # herdr = {
+      #   from = "herdr";
+      #   path = "skills/herdr";
+      # };
+      # herdr-pre-release-audit = {
+      #   from = "herdr";
+      #   path = ".agents/skills/herdr-pre-release-audit";
+      # };
+      # herdr-throwaway-repro = {
+      #   from = "herdr";
+      #   path = ".agents/skills/herdr-throwaway-repro";
+      # };
       implement = {
         from = "mattpocock";
         path = "engineering/implement";
@@ -137,10 +137,10 @@
         from = "mattpocock";
         path = "engineering/to-tickets";
       };
-      triage = {
-        from = "herdr";
-        path = ".agents/skills/triage";
-      };
+      # triage = {
+      #   from = "herdr";
+      #   path = ".agents/skills/triage";
+      # };
       tui-design = {
         from = "tui";
         path = "tui-design";

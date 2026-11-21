@@ -7,10 +7,19 @@
 }:
 let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
+  # Official v0.1.8 public Connect configuration (not credentials).
+  # nixpkgs builds omit these defaults; both the CLI and server need them.
+  t3ConnectEnvironment = {
+    T3CODE_RELAY_URL = "https://relay.t3.codes";
+    T3CODE_CLERK_PUBLISHABLE_KEY = "pk_live_Y2xlcmsudDMuY29kZXMk";
+    T3CODE_CLERK_CLI_OAUTH_CLIENT_ID = "hzxSgY2cH10sDU2r";
+  };
   llmAgentsPkgs = with inputs.llm-agents.packages.${pkgs.system}; [
     claude-code
     codex
-    openclaw
+    pi
+    dsh
+    opencode2
   ];
   tmuxDeckPkgs = with inputs.tmux-deck.packages.${pkgs.system}; [
     tmux-deck
@@ -133,7 +142,7 @@ in
     ++ gfmPreviewPkgs
     ++ obfishPkgs
     ++ markdowReaderPkgs;
-  home.sessionVariables = {
+  home.sessionVariables = t3ConnectEnvironment // {
     EDITOR = lib.getExe pkgs.neovim;
     SUDO_EDITOR = lib.getExe pkgs.neovim;
     DEFAULT_SHELL = "bash";
@@ -149,21 +158,40 @@ in
   # ];
   # collie (collie.tkcd.dev) が接続する herdr サーバーを常駐させる。
   # ログイン無しでも起動するよう loginctl enable-linger tkcd 済みであること。
-  systemd.user.services.herdr = {
-    Unit = {
-      Description = "herdr headless server";
-      Before = [ "collie.service" ];
-    };
+  # systemd.user.services.herdr = {
+  #   Unit = {
+  #     Description = "herdr headless server";
+  #     Before = [ "collie.service" ];
+  #   };
+  #   Service = {
+  #     Type = "simple";
+  #     ExecStart = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server";
+  #     ExecStop = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server stop";
+  #     Restart = "on-failure";
+  #     RestartSec = 5;
+  #     # systemd user manager の SHELL は bash なので、ペインのシェルを zsh に固定する
+  #     Environment = [ "SHELL=/run/current-system/sw/bin/zsh" ];
+  #     # ペイン内のプロセスはこのサーバー配下で動くため、停止時は herdr 自身に保存・終了させる
+  #     KillMode = "mixed";
+  #     TimeoutStopSec = 30;
+  #   };
+  #   Install.WantedBy = [ "default.target" ];
+  # };
+  # スマホからは T3 Connect 経由で接続する。
+  systemd.user.services.t3code = {
+    Unit.Description = "T3 Code server";
     Service = {
       Type = "simple";
-      ExecStart = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server";
-      ExecStop = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server stop";
+      ExecStart = "${pkgs.t3code}/bin/t3 serve --host 127.0.0.1 --port 3773";
+      WorkingDirectory = config.home.homeDirectory;
+      Environment = [
+        ''"GIT_SSH_COMMAND=ssh -F /home/tkcd/.ssh/t3code_config"''
+        "PATH=${config.home.homeDirectory}/.nix-profile/bin:${config.home.homeDirectory}/.local/bin:${config.home.homeDirectory}/.cargo/bin:/run/current-system/sw/bin"
+        "SHELL=/run/current-system/sw/bin/zsh"
+      ]
+      ++ lib.mapAttrsToList (name: value: "${name}=${value}") t3ConnectEnvironment;
       Restart = "on-failure";
       RestartSec = 5;
-      # systemd user manager の SHELL は bash なので、ペインのシェルを zsh に固定する
-      Environment = [ "SHELL=/run/current-system/sw/bin/zsh" ];
-      # ペイン内のプロセスはこのサーバー配下で動くため、停止時は herdr 自身に保存・終了させる
-      KillMode = "mixed";
       TimeoutStopSec = 30;
     };
     Install.WantedBy = [ "default.target" ];
