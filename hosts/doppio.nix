@@ -45,6 +45,7 @@ in
     ../home/agent-skills.nix
     ../home/cli.nix
     ../home/common-files.nix
+    ../home/pi.nix
     # ../home/gui.nix
   ];
   programs = {
@@ -83,6 +84,7 @@ in
   dotfiles = {
     # shell = "both";
     # enableCargoConfig = true;
+    pi.enable = true;
   };
   home.username = lib.mkDefault "tkcd";
   home.homeDirectory = lib.mkDefault "/home/tkcd";

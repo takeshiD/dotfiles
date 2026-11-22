@@ -92,6 +92,9 @@
         if value == "" then throw "Not found `${name}`. Please execute again with `--impure`." else value;
     in
     {
+      packages.${system} = {
+        pi-subagents = pkgs.callPackage ./pkgs/pi-subagents { };
+      };
       nixosConfigurations = {
         "snowcat" = nixpkgs.lib.nixosSystem {
           inherit system;

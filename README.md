@@ -135,6 +135,41 @@ on each machine using the commands above. To update the integration itself,
 run `nix flake update agent-skills`. To update the Matt Pocock skills,
 run `nix flake update mattpocock-skills`.
 
+### Pi Extensions
+
+[Pi](https://pi.dev) extensions are managed by `home/pi.nix`.
+
+- First-party extensions live in `config/pi/extensions/` and are linked into
+  `~/.pi/agent/extensions/`. They are symlinked to the working tree, so edits
+  apply with `/reload` without a `home-manager switch`.
+- Third-party packages (extensions plus their skills and prompts) are declared
+  in `dotfiles.pi.packages` and built in `pkgs/`. `pkgs/pi-subagents` builds
+  the published npm tarball with `buildNpmPackage` and exposes the package
+  root as `passthru.piPackage`.
+
+On activation, `dotfiles.pi.packages` is written to the `packages` array in
+`~/.pi/agent/settings.json`. That array is owned by Nix: packages added with
+`pi install` are replaced on the next switch, so add them to
+`dotfiles.pi.packages` instead. Recorded credentials, sessions, models, and
+other settings are left untouched.
+
+To update a package, bump `version` in its `pkgs/<name>/default.nix` and refresh
+both hashes. For `pkgs/pi-subagents`:
+
+```bash
+cd ~/dotfiles/pkgs/pi-subagents
+# 1. rebuild the lockfile from the new tarball (npm install in a scratch dir)
+# 2. nix store prefetch-file --hash-type sha256 "<tarball url>"
+# 3. nix run nixpkgs#prefetch-npm-deps -- package-lock.json
+nix build ~/dotfiles#pi-subagents
+```
+
+To add another package, create `pkgs/<name>/default.nix` that builds it with
+`buildNpmPackage` and sets
+`passthru.piPackage = "${finalAttrs.finalPackage}/lib/node_modules/<name>"`,
+add it to the `default` list of `dotfiles.pi.packages`, and apply the
+configuration.
+
 ### The `local` Configuration
 
 `.#local` is for machines whose account name or hostname must not be recorded

@@ -49,6 +49,7 @@ in
     ../home/agent-skills.nix
     ../home/cli.nix
     ../home/common-files.nix
+    ../home/pi.nix
     ../home/gui.nix
   ];
   programs = {
@@ -134,6 +135,7 @@ in
     # shell = "bash";
     # enableCargoConfig = true;
   };
+  dotfiles.pi.enable = true;
   home.packages =
     llmAgentsPkgs
     ++ tmuxDeckPkgs
@@ -156,27 +158,6 @@ in
   # home.sessionVariables = [
   #   PKG_CONFIG
   # ];
-  # collie (collie.tkcd.dev) が接続する herdr サーバーを常駐させる。
-  # ログイン無しでも起動するよう loginctl enable-linger tkcd 済みであること。
-  # systemd.user.services.herdr = {
-  #   Unit = {
-  #     Description = "herdr headless server";
-  #     Before = [ "collie.service" ];
-  #   };
-  #   Service = {
-  #     Type = "simple";
-  #     ExecStart = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server";
-  #     ExecStop = "${lib.getExe inputs.herdr.packages.${pkgs.system}.default} server stop";
-  #     Restart = "on-failure";
-  #     RestartSec = 5;
-  #     # systemd user manager の SHELL は bash なので、ペインのシェルを zsh に固定する
-  #     Environment = [ "SHELL=/run/current-system/sw/bin/zsh" ];
-  #     # ペイン内のプロセスはこのサーバー配下で動くため、停止時は herdr 自身に保存・終了させる
-  #     KillMode = "mixed";
-  #     TimeoutStopSec = 30;
-  #   };
-  #   Install.WantedBy = [ "default.target" ];
-  # };
   # スマホからは T3 Connect 経由で接続する。
   systemd.user.services.t3code = {
     Unit.Description = "T3 Code server";
