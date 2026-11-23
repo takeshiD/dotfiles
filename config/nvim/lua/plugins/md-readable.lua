@@ -19,7 +19,7 @@ return {
         },
         links = { enable = true }, -- false: リンクの強調表示と種別記号を出さない
         table = { enable = true }, -- false: 表を整形せずMarkdownのまま表示
-        focus = { enable = true }, -- 読書表示を開いた時点でFocusを有効にする
+        focus = { enable = false }, -- 読書表示を開いた時点でFocusを有効にする
         navigation = {
             enable = false,
             follow = true,
