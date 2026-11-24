@@ -206,3 +206,9 @@ fi
 # ESP32 Environment Setup
 source "$HOME/export-esp.sh"
 
+
+#=======================================================
+# T3 Code avoid telemetry
+#=======================================================
+export T3CODE_TELEMETRY_ENABLED=false
+export T3CODE_OTEL_SDK_DISABLED=true

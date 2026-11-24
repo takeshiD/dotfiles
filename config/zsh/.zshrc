@@ -222,3 +222,9 @@ fi
 if [[ ${ZSH_PROFILE:-0} == 1 ]]; then
 	zprof
 fi
+
+#=======================================================
+# T3 Code avoid telemetry
+#=======================================================
+export T3CODE_TELEMETRY_ENABLED=false
+export T3CODE_OTEL_SDK_DISABLED=true

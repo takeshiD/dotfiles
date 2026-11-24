@@ -13,6 +13,8 @@ let
     T3CODE_RELAY_URL = "https://relay.t3.codes";
     T3CODE_CLERK_PUBLISHABLE_KEY = "pk_live_Y2xlcmsudDMuY29kZXMk";
     T3CODE_CLERK_CLI_OAUTH_CLIENT_ID = "hzxSgY2cH10sDU2r";
+    T3CODE_TELEMETRY_ENABLED = "false";
+    T3CODE_OTEL_SDK_DISABLED = "true";
   };
   llmAgentsPkgs = with inputs.llm-agents.packages.${pkgs.system}; [
     claude-code
@@ -134,12 +136,7 @@ in
   };
   dotfiles.pi.enable = true;
   home.packages =
-    llmAgentsPkgs
-    ++ tmuxDeckPkgs
-    ++ mdpeekPkgs
-    ++ pcxPkgs
-    ++ gfmPreviewPkgs
-    ++ obfishPkgs;
+    llmAgentsPkgs ++ tmuxDeckPkgs ++ mdpeekPkgs ++ pcxPkgs ++ gfmPreviewPkgs ++ obfishPkgs;
   home.sessionVariables = t3ConnectEnvironment // {
     EDITOR = lib.getExe pkgs.neovim;
     SUDO_EDITOR = lib.getExe pkgs.neovim;
@@ -151,10 +148,6 @@ in
     "$HOME/.cargo/bin"
     "$HOME/.local/share/pnpm"
   ];
-  # home.sessionVariables = [
-  #   PKG_CONFIG
-  # ];
-  # スマホからは T3 Connect 経由で接続する。
   systemd.user.services.t3code = {
     Unit.Description = "T3 Code server";
     Service = {
