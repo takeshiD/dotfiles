@@ -78,7 +78,7 @@ return {
 			},
 		},
 		input = { enabled = true },
-		image = { enabled = true },
+		image = { enabled = false },
 		explorer = { enabled = false },
 		bigfile = { enabled = true },
 	},
