@@ -30,9 +30,18 @@
       ui-ux-pro-max = {
         input = "ui-ux-pro-max-skills";
       };
-      # herdr = {
-      #   input = "herdr";
-      # };
+      kenshu-loop = {
+        input = "kenshu-loop";
+        subdir = "skills";
+      };
+      cloudflare = {
+        input = "cloudflare-skills";
+        subdir = "skills";
+      };
+      drawio = {
+        input = "drawio-skills";
+        subdir = "plugins/claude-code/skills";
+      };
     };
 
     # Explicit flat names preserve cross-skill references and avoid collisions.
@@ -61,6 +70,10 @@
         from = "mattpocock";
         path = "engineering/domain-modeling";
       };
+      drawio = {
+        from = "drawio";
+        path = "drawio";
+      };
       find-skills = {
         from = "vercel";
         path = "find-skills";
@@ -81,18 +94,6 @@
         from = "mattpocock";
         path = "productivity/handoff";
       };
-      # herdr = {
-      #   from = "herdr";
-      #   path = "skills/herdr";
-      # };
-      # herdr-pre-release-audit = {
-      #   from = "herdr";
-      #   path = ".agents/skills/herdr-pre-release-audit";
-      # };
-      # herdr-throwaway-repro = {
-      #   from = "herdr";
-      #   path = ".agents/skills/herdr-throwaway-repro";
-      # };
       implement = {
         from = "mattpocock";
         path = "engineering/implement";
@@ -100,6 +101,10 @@
       improve-codebase-architecture = {
         from = "mattpocock";
         path = "engineering/improve-codebase-architecture";
+      };
+      kenshu-loop = {
+        from = "kenshu-loop";
+        path = "kenshu-loop";
       };
       prototype = {
         from = "mattpocock";
@@ -137,10 +142,6 @@
         from = "mattpocock";
         path = "engineering/to-tickets";
       };
-      # triage = {
-      #   from = "herdr";
-      #   path = ".agents/skills/triage";
-      # };
       tui-design = {
         from = "tui";
         path = "tui-design";
@@ -165,7 +166,24 @@
         from = "mattpocock";
         path = "productivity/writing-for-agents";
       };
-    };
+    }
+    # Cloudflare skills share their upstream directory names.
+    // lib.genAttrs [
+      "agents-sdk"
+      "cloudflare"
+      "cloudflare-email-service"
+      "cloudflare-one"
+      "cloudflare-one-migrations"
+      "durable-objects"
+      "sandbox-stable"
+      "turnstile-spin"
+      "web-perf"
+      "workers-best-practices"
+      "wrangler"
+    ] (name: {
+      from = "cloudflare";
+      path = name;
+    });
 
     # Codex reads the shared directory directly; no duplicate codex target.
     # Individual links preserve app-generated skills and Claude's synced folder.

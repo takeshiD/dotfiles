@@ -32,9 +32,6 @@ let
   obfishPkgs = with inputs.ob-fish.packages.${pkgs.system}; [
     ob-fish-completion
   ];
-  markdowReaderPkgs = with inputs.markdown-tui-explorer.packages.${pkgs.system}; [
-    markdown-reader
-  ];
   shuckPkgs = with inputs.shuck.packages.${pkgs.system}; [
     shuck
   ];
@@ -94,7 +91,6 @@ in
     ++ tmuxDeckPkgs
     ++ gfmPreviewPkgs
     ++ obfishPkgs
-    ++ markdowReaderPkgs
     ++ mdpeekPkgs
     ++ pcxPkgs
     ++ shuckPkgs;

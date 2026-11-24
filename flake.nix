@@ -27,11 +27,6 @@
     markdown-peek.url = "github:takeshid/markdown-peek/v0.1.9";
     pcx.url = "github:takeshid/pcx";
     ioskeley-mono-jp.url = "github:takeshid/IoskeleyMonoJP";
-    herdr = {
-      url = "github:herdrdev/herdr";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    collie.url = "github:AltanS/collie";
     # thirdparty
     agent-skills = {
       url = "github:Kyure-A/agent-skills-nix";
@@ -62,11 +57,22 @@
       url = "github:nextlevelbuilder/ui-ux-pro-max-skill";
       flake = false;
     };
+    kenshu-loop = {
+      url = "github:takeshid/kenshu-loop";
+      flake = false;
+    };
+    cloudflare-skills = {
+      url = "github:cloudflare/skills";
+      flake = false;
+    };
+    drawio-skills = {
+      url = "github:jgraph/drawio-mcp";
+      flake = false;
+    };
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     gfm-preview.url = "github:thiagokokada/gh-gfm-preview";
     llm-agents.url = "github:numtide/llm-agents.nix";
     ob-fish.url = "github:takeshid/ob.fish";
-    markdown-tui-explorer.url = "github:leboiko/markdown-reader";
     shuck.url = "github:takeshid/shuck?ref=feat/build-nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs-unstable";

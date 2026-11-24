@@ -39,9 +39,6 @@ let
   obfishPkgs = with inputs.ob-fish.packages.${pkgs.system}; [
     ob-fish-completion
   ];
-  markdowReaderPkgs = with inputs.markdown-tui-explorer.packages.${pkgs.system}; [
-    markdown-reader
-  ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -142,8 +139,7 @@ in
     ++ mdpeekPkgs
     ++ pcxPkgs
     ++ gfmPreviewPkgs
-    ++ obfishPkgs
-    ++ markdowReaderPkgs;
+    ++ obfishPkgs;
   home.sessionVariables = t3ConnectEnvironment // {
     EDITOR = lib.getExe pkgs.neovim;
     SUDO_EDITOR = lib.getExe pkgs.neovim;
