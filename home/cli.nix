@@ -98,6 +98,7 @@ let
     television
     whois
     sqlite-interactive
+    wireguard-tools
   ];
   wslPkgs = with pkgs; [
     # wslu
