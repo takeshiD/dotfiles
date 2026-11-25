@@ -22,11 +22,11 @@ let
     lazygit
     git-lfs
   ];
-  containerPkgs = with pkgs; [
+  cloudPkgs = with pkgs; [
     act
-    # aws-cdk-cli
     awscli2
     lazydocker
+    cloudflare-cli
   ];
   miscPkgs = with pkgs; [
     bat
@@ -206,7 +206,7 @@ in
   home.packages =
     lib.optionals config.cli.enableCore corePkgs
     ++ lib.optionals config.cli.enableGit gitPkgs
-    ++ lib.optionals config.cli.enableContainer containerPkgs
+    ++ lib.optionals config.cli.enableContainer cloudPkgs
     ++ lib.optionals config.cli.enableMisc miscPkgs
     ++ lib.optionals config.cli.enableWsl wslPkgs
     ++ lib.optionals config.cli.enableGcc gccPkgs
