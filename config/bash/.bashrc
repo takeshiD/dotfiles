@@ -204,7 +204,7 @@ fi
 [ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
 
 # ESP32 Environment Setup
-source "$HOME/export-esp.sh"
+[ -f "$HOME/export-eso.sh" ] && source "$HOME/export-esp.sh"
 
 
 #=======================================================
