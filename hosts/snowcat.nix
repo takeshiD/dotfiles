@@ -7,15 +7,6 @@
 }:
 let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
-  # Official v0.1.8 public Connect configuration (not credentials).
-  # nixpkgs builds omit these defaults; both the CLI and server need them.
-  t3ConnectEnvironment = {
-    T3CODE_RELAY_URL = "https://relay.t3.codes";
-    T3CODE_CLERK_PUBLISHABLE_KEY = "pk_live_Y2xlcmsudDMuY29kZXMk";
-    T3CODE_CLERK_CLI_OAUTH_CLIENT_ID = "hzxSgY2cH10sDU2r";
-    T3CODE_TELEMETRY_ENABLED = "false";
-    T3CODE_OTEL_SDK_DISABLED = "true";
-  };
   llmAgentsPkgs = with inputs.llm-agents.packages.${pkgs.system}; [
     claude-code
     codex
@@ -49,6 +40,7 @@ in
     ../home/cli.nix
     ../home/common-files.nix
     ../home/pi.nix
+    ../home/t3code.nix
     ../home/gui.nix
   ];
   programs = {
@@ -137,7 +129,7 @@ in
   dotfiles.pi.enable = true;
   home.packages =
     llmAgentsPkgs ++ tmuxDeckPkgs ++ mdpeekPkgs ++ pcxPkgs ++ gfmPreviewPkgs ++ obfishPkgs;
-  home.sessionVariables = t3ConnectEnvironment // {
+  home.sessionVariables = {
     EDITOR = lib.getExe pkgs.neovim;
     SUDO_EDITOR = lib.getExe pkgs.neovim;
     DEFAULT_SHELL = "bash";
@@ -148,24 +140,6 @@ in
     "$HOME/.cargo/bin"
     "$HOME/.local/share/pnpm"
   ];
-  systemd.user.services.t3code = {
-    Unit.Description = "T3 Code server";
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.t3code}/bin/t3 serve --host 127.0.0.1 --port 3773";
-      WorkingDirectory = config.home.homeDirectory;
-      Environment = [
-        ''"GIT_SSH_COMMAND=ssh -F /home/tkcd/.ssh/t3code_config"''
-        "PATH=${config.home.homeDirectory}/.nix-profile/bin:${config.home.homeDirectory}/.local/bin:${config.home.homeDirectory}/.cargo/bin:/run/current-system/sw/bin"
-        "SHELL=/run/current-system/sw/bin/zsh"
-      ]
-      ++ lib.mapAttrsToList (name: value: "${name}=${value}") t3ConnectEnvironment;
-      Restart = "on-failure";
-      RestartSec = 5;
-      TimeoutStopSec = 30;
-    };
-    Install.WantedBy = [ "default.target" ];
-  };
   home.activation = {
     gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.git}/bin/git config --global include.path "${dotfilesPath}/config/git/gitconfig_shared"
