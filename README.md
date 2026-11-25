@@ -256,3 +256,58 @@ nix flake update
 - **home-manager**: Declarative user environment management
 - **Symlinked configs**: Edit configs directly without rebuild
 - **Multi-host support**: Different configurations per machine
+
+### Paseo on snowcat
+
+Paseo and its dedicated Cloudflare Tunnel run as systemd user services, alongside
+T3 Code. Open https://paseo.tkcd.dev (T3 remains at https://t3code.tkcd.dev).
+The daemon binds to `127.0.0.1:6767`, serves the bundled web UI, and requires
+a password. The Paseo relay is disabled.
+
+`home/paseo.nix` uses the CLI package from the pinned `llm-agents` input
+(0.17.4, the npm `latest` release when installed). Updates are deliberate:
+
+```bash
+nix flake update llm-agents
+home-manager switch --flake .#tkcd@snowcat
+systemctl --user restart paseo
+```
+
+This updates the other packages provided by that input too.
+
+The login password is the value after `PASEO_PASSWORD=` in
+`~/.config/paseo/daemon.env`. View it locally:
+
+```bash
+cat ~/.config/paseo/daemon.env
+```
+
+Keep this file private (mode 600), outside Git and the Nix store. To change the
+password, edit this file and run `systemctl --user restart paseo`.
+The service refuses to start if the password is missing or empty.
+
+```bash
+systemctl --user status paseo cloudflared-paseo
+journalctl --user -u paseo -f
+```
+
+State and worktrees live under `~/.paseo`. Agent CLIs use the existing user's
+credentials. For authenticated CLI commands in a shell:
+
+```bash
+set -a
+. ~/.config/paseo/daemon.env
+set +a
+paseo ls
+unset PASEO_PASSWORD
+```
+
+The dedicated `paseo-tunnel` uses
+`~/.cloudflared/paseo-tunnel.json` and the DNS route `paseo.tkcd.dev`.
+These credentials are not managed by Nix. On a fresh machine, restore the
+private password and tunnel credentials before activating Home Manager.
+Enable user lingering (`sudo loginctl enable-linger tkcd`) to start at boot
+and continue after logout; it is already enabled on snowcat.
+
+References: [Paseo web UI](https://paseo.sh/docs/web-ui),
+[Cloudflare Tunnel configuration](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/configuration-file/).

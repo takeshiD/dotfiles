@@ -36,6 +36,7 @@ in
 {
   nixpkgs.config.allowUnfree = true;
   imports = [
+    ../home/paseo.nix
     ../home/agent-skills.nix
     ../home/cli.nix
     ../home/common-files.nix
