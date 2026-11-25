@@ -1,5 +1,6 @@
 return {
     "takeshid/md-readable.nvim",
+    -- branch = "feat/html-tags",
     enabled = true,
     keys = {
         { "<leader>mm", "<CMD>MdReadable<CR>", ft = "markdown", desc = "Readable" },
