@@ -153,16 +153,6 @@
       "qwen3.6:27b"
     ];
   };
-  services.cloudflared = {
-    enable = true;
-    tunnels."t3code-tunnel" = {
-      credentialsFile = "/home/tkcd/.cloudflared/t3code-tunnel.json";
-      ingress = {
-        "t3code.tkcd.dev" = "http://127.0.0.1:3773";
-      };
-      default = "http_status:404";
-    };
-  };
   services.resolved.enable = true;
   services.tailscale.enable = true;
   services.avahi = {

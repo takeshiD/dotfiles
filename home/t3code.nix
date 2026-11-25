@@ -8,9 +8,9 @@ let
   # Official v0.1.8 public Connect configuration (not credentials).
   # nixpkgs builds omit these defaults; both the CLI and server need them.
   t3ConnectEnvironment = {
-    T3CODE_RELAY_URL = "https://relay.t3.codes";
-    T3CODE_CLERK_PUBLISHABLE_KEY = "pk_live_Y2xlcmsudDMuY29kZXMk";
-    T3CODE_CLERK_CLI_OAUTH_CLIENT_ID = "hzxSgY2cH10sDU2r";
+    # T3CODE_RELAY_URL = "https://relay.t3.codes";
+    # T3CODE_CLERK_PUBLISHABLE_KEY = "pk_live_Y2xlcmsudDMuY29kZXMk";
+    # T3CODE_CLERK_CLI_OAUTH_CLIENT_ID = "hzxSgY2cH10sDU2r";
     T3CODE_TELEMETRY_ENABLED = "false";
     T3CODE_OTEL_SDK_DISABLED = "true";
   };
