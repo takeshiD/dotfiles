@@ -155,10 +155,10 @@
   };
   services.cloudflared = {
     enable = true;
-    tunnels."collie-tunnel_snowcat" = {
-      credentialsFile = "/home/tkcd/.cloudflared/a2e3564f-b6a0-4606-9888-b57f2f439ebe.json";
+    tunnels."t3code-tunnel" = {
+      credentialsFile = "/home/tkcd/.cloudflared/t3code-tunnel.json";
       ingress = {
-        "collie.tkcd.dev" = "http://127.0.0.1:8787";
+        "t3code.tkcd.dev" = "http://127.0.0.1:3773";
       };
       default = "http_status:404";
     };
